@@ -8,7 +8,7 @@
     <meta name="keywords" content="FreeVote, piattaforma voto, voto, voto online">
 	<meta name="description" content="Piattaforma voto">
 	<meta name="author" content="Bene Sabato, Cozzolino Lidia, Napoli Riccardo, Penna Alessandro">    
-    <title>FreeVote HomePage</title>
+    <title>FreeVote - HomePage</title>
 </head>            
 
 <body>
