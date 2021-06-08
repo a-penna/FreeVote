@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"
-    import="java.util.*, model.*"%>
+    pageEncoding="UTF-8" import="java.util.*, model.*"%>
 
 <% 
     Collection<?> partiti = (Collection<?>) request.getAttribute("partiti");
@@ -24,17 +23,18 @@
 <body>
 	<%@ include file="header.html"%>
     <br>
-    <h1>Lista partiti: </h1>
+    <h1>Lista partiti&colon;</h1>
     <br>
     <%
         Iterator<?> it = partiti.iterator();
         while(it.hasNext()) {
             PartitoBean partito = (PartitoBean)it.next(); 
+            if (!partito.getNome().equals("Scheda Bianca")) {
     %>
-            <a href="Partito?nome=<%=partito.getNome()%>"><%=partito.getNome()%></a>
-            <br>
-    <%   }
-    
+            	<a href="Partito?nome=<%=partito.getNome()%>"><%=partito.getNome()%></a>
+            	<br>
+    <%   	}
+        }
     %>
     
 </body>
