@@ -12,6 +12,9 @@
 </head>
 <body>
 
+<%@ include file="header.html"%>
+<br>
+
 <h3>Lista Autori del sito: </h3>
 <br>
 <p>Alessandro Penna</p> <a href="email@prova.com">Email</a>
@@ -21,6 +24,9 @@
 <p>Riccardo Napoli</p>  <a href="email@prova.com">Email</a>
 <br>
 <p>Sabato Bene</p>  <a href="email@prova.com">Email</a>
+<br>
+
+<a href="home.jsp">Torna alla Home</a>
 
 </body>
 </html>
