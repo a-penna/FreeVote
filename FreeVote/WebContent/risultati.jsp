@@ -1,5 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="java.util.*, model.*"%>
+   
+ <%
+    Collection<?> partiti = (Collection<?>) request.getAttribute("partiti");
+     
+    if(partiti == null) {
+        response.sendRedirect(response.encodeRedirectURL("./Risultati")); 
+        return;
+    }
+%>
+
 
 <!DOCTYPE html>
 <html>
@@ -14,16 +24,18 @@
 <body>
 	<%@ include file="header.html"%>
     <br/>
+    <h1>Risultati&colon;</h1>
         <%
         Iterator<?> it = partiti.iterator();
         while(it.hasNext()) {
-            PartitoBean partito = (PartitoBean)it.next(); 
-          
+            PartitoBean partito = (PartitoBean)it.next();    
+            if (!partito.getNome().equals("Scheda Bianca")) {  
     %>
-            	<a href="Partito?nome=<%=partito.getNome()%>"><%=partito.getNome()%></a>
+            	<p> <a href="Partito?nome=<%=partito.getNome()%>"><%=partito.getNome()%></a>
+                <%=partito.getn_votazioni_ricevute()%> </p>
             	<br>
-    <%   	}
-        }
+    <%   }
+    }
     %>
 </body>
 </html>

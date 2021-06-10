@@ -63,7 +63,7 @@ public class PartitoModelDS implements Model<PartitoBean>{
 		String selectSQL = "SELECT * FROM partito";
 
 		if (order != null && !order.equals("") && ((order == "leader") || (order == "nome") || (order == "descrizione") || (order == "n_votazioni_ricevute") || (order == "logo"))) {
-			selectSQL += " ORDER BY " + order;
+			selectSQL += " ORDER BY " + order + " DESC";
 		}
 
 		try {

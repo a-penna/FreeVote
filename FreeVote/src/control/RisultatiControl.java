@@ -32,7 +32,7 @@ import utils.Utility;
 			PartitoModelDS partitoModel = new PartitoModelDS(ds);
 			
 			try {
-				Collection<PartitoBean> partiti = partitoModel.doRetrieveAll("nome");
+				Collection<PartitoBean> partiti = partitoModel.doRetrieveAll("n_votazioni_ricevute");
 				request.setAttribute("partiti", partiti);
 			} catch (SQLException e) {
 				Utility.printSQLException(e);
