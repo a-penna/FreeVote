@@ -73,7 +73,7 @@ public class AdminModelDS implements Model<AdminBean> {
 		AdminBean bean = new AdminBean();
 		
 
-		String selectSQL = "SELECT * FROM Admin WHERE nomeutente = ?";
+		String selectSQL = "SELECT * FROM Admin WHERE nomeutente = MD5(?)";
 
 		try {
 			connection = ds.getConnection();

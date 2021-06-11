@@ -7,7 +7,10 @@ public class AdminBean {
 	
 	
 	
-	public AdminBean() { }
+	public AdminBean() { 
+		this.password = "";
+		this.nomeUtente = "";
+	}
 	
 	public void setPassword(String password) {
 		this.password=password;

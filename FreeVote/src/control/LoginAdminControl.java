@@ -1,6 +1,8 @@
 package control;
 
 import java.io.IOException;
+import java.sql.SQLException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -8,7 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 
-import model.AdminModelDS;
+import model.*;
+import utils.*;
+ 
 
 @WebServlet("/Administrator")
 public class LoginAdminControl extends HttpServlet {
@@ -21,33 +25,40 @@ public class LoginAdminControl extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		    DataSource ds = (DataSource) getServletContext().getAttribute("DataSource");
-		    AdminModelDS model = new AdminModelDS(ds);
+		    AdminModelDS model = new AdminModelDS(ds);		
 			
+			String username = request.getParameter("username");
+			String password = request.getParameter("password");
 			
-			//if (model.doRetrieveByKey("key") != null) {
-			 //	response.sendRedirect(response.encodeRedirectURL("./loginAdmin.jsp"));
-			 //	return;
-			// }
+			if (username == null) {
+			 	response.sendRedirect(response.encodeRedirectURL("./loginAdmin.jsp"));
+			 	return;
+			}
 			
-			String redirectedPage;
-		//	if (checkLogin(username, password)) {
-			//	request.getSession().setAttribute("adminRoles", "true");
-			//	redirectedPage = "/admin/interfacciaAdmin.jsp";
-			// } else {
-			//	redirectedPage = "/loginAdmin.jsp";
-			// }
-		//	response.sendRedirect(request.getContextPath() + redirectedPage);
-	// }
+			String redirectedPage = "";
 
-	//private boolean checkLogin(Admin) {
-		//return ("admin".equals(username)) && ("admin".equals(password));
-	}
-	
+			try {
+				AdminBean bean = model.doRetrieveByKey(username); 
+			
+				if (bean.getnomeUtente().equals("")) {
+					response.sendRedirect(response.encodeRedirectURL("./loginAdmin.jsp"));
+					return;
+				}
+		
+				if (bean.getPassword().equals(Utility.encryptMD5(password))) {
+					request.getSession().setAttribute("adminRoles", "true");
+					redirectedPage = "/admin/interfacciaAdmin.jsp";
+				} else {
+					redirectedPage = "/loginAdmin.jsp";
+				}
+			} catch(SQLException e) {
+				Utility.printSQLException(e);
+			}
+			response.sendRedirect(request.getContextPath() + redirectedPage);
+	}	
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		doPost(request, response);
 	}
-	
-
 }
