@@ -38,8 +38,6 @@ public class PartitoModelDS implements Model<PartitoBean>{
 				bean.setDescrizione(rs.getString("descrizione"));
 				bean.setn_votazioni_ricevute(rs.getInt("n_votazioni_ricevute"));
 				bean.setLogo(rs.getBytes("logo"));
-				System.out.println(rs.getBytes("logo"));
-				System.out.println(bean.getLogo());
 			}
 
 		} finally {
@@ -56,6 +54,16 @@ public class PartitoModelDS implements Model<PartitoBean>{
 		return bean;
 	}
 
+	private boolean checkOrder(String order) {
+		return order != null 
+			   && !order.equals("") 
+			   && ((order == "leader") 
+			   || (order == "nome") 
+			   || (order == "descrizione") 
+			   || (order == "n_votazioni_ricevute DESC") 
+			   || (order == "logo"));
+	}
+	
 	public Collection<PartitoBean> doRetrieveAll(String order) throws SQLException {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
@@ -64,7 +72,7 @@ public class PartitoModelDS implements Model<PartitoBean>{
 
 		String selectSQL = "SELECT * FROM partito";
 
-		if (order != null && !order.equals("") && ((order == "leader") || (order == "nome") || (order == "descrizione") || (order == "n_votazioni_ricevute") || (order == "logo"))) {
+		if (checkOrder(order)) {
 			selectSQL += " ORDER BY " + order;
 		}
 

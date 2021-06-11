@@ -14,24 +14,10 @@ import javax.sql.DataSource;
 import model.*;
 import utils.*;
 
-/**
- * Servlet implementation class ReferendumControl
- */
 @WebServlet("/Referendum")
 public class ReferendumControl extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public ReferendumControl() {
-        super();
-        
-    }
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		DataSource ds = (DataSource) getServletContext().getAttribute("DataSource");
 		MozioneModelDS model = new	MozioneModelDS(ds);
@@ -44,13 +30,10 @@ public class ReferendumControl extends HttpServlet {
 			Utility.printSQLException(e);
 		}
 		
-		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/referendum.jsp");
+		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher(response.encodeURL("/referendum.jsp"));
 		dispatcher.forward(request, response);
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
 	}

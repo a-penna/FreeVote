@@ -32,7 +32,7 @@ public class ListaPartitiControl extends HttpServlet {
 			Utility.printSQLException(e);
 		}
 
-		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/listaPartiti.jsp");
+		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher(response.encodeURL("/listaPartiti.jsp"));
 		dispatcher.forward(request, response);
 	}
 

@@ -14,26 +14,11 @@ import javax.sql.DataSource;
 import model.*;
 import utils.Utility;
 
-/**
- * Servlet implementation class PhotoControl
- */
 @WebServlet("/PhotoControl")
 public class PhotoControl extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public PhotoControl() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		String type = (String) request.getParameter("type");
 		String id = (String) request.getParameter("id");
 		
@@ -68,7 +53,6 @@ public class PhotoControl extends HttpServlet {
 			} catch (SQLException e) {
 				Utility.printSQLException(e);
 			}
-			
 		}
 		
 		ServletOutputStream out = response.getOutputStream();
@@ -78,15 +62,9 @@ public class PhotoControl extends HttpServlet {
 			response.setContentType("image/png");			
 		}
 		out.close();
-		
-		
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

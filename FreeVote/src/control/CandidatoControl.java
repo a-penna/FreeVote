@@ -18,17 +18,13 @@ import utils.Utility;
 
 @WebServlet("/Candidato")
 public class CandidatoControl extends HttpServlet {
-    	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
         
-	/*
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-    	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String cf = request.getParameter("cf");
 		
 		if (cf == null) {
-		 	response.sendRedirect(response.encodeRedirectURL("./PartitiControl")); //Pagina errore
+		 	response.sendRedirect(response.encodeRedirectURL("./PartitiControl")); 
 		 	return;
 		}
 		
@@ -42,17 +38,13 @@ public class CandidatoControl extends HttpServlet {
 			Utility.printSQLException(e);
 		}
 		
-		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/candidato.jsp");
+		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher(response.encodeURL("/candidato.jsp"));
 		dispatcher.forward(request, response);
 	}
 
-	/*
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
 	}
-
 	
 }
 

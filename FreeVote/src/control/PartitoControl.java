@@ -41,7 +41,7 @@ public class PartitoControl extends HttpServlet {
 			Utility.printSQLException(e);
 		}
 		
-		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/partito.jsp");
+		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher(response.encodeURL("/partito.jsp"));
 		dispatcher.forward(request, response);
 	}
 

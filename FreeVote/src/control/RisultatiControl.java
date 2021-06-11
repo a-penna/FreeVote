@@ -16,35 +16,26 @@ import model.PartitoBean;
 import model.PartitoModelDS;
 import utils.Utility;
 
-	/**
-	 * Servlet implementation class RisutatiControl
-	 */
 	@WebServlet("/Risultati")
 	public class RisultatiControl extends HttpServlet {
 		private static final long serialVersionUID = 1L;
 	       
-		/**
-		 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-		 */
 		protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 			DataSource ds = (DataSource) getServletContext().getAttribute("DataSource");
 			PartitoModelDS partitoModel = new PartitoModelDS(ds);
 			
 			try {
-				Collection<PartitoBean> partiti = partitoModel.doRetrieveAll("n_votazioni_ricevute");
+				Collection<PartitoBean> partiti = partitoModel.doRetrieveAll("n_votazioni_ricevute DESC");
 				request.setAttribute("partiti", partiti);
 			} catch (SQLException e) {
 				Utility.printSQLException(e);
 			}
 			
-			RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/risultati.jsp");
+			RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher(response.encodeURL("/risultati.jsp"));
 			dispatcher.forward(request, response);
 		}
 
-		/**
-		 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-		 */
 		protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 			doGet(request, response);
 		}

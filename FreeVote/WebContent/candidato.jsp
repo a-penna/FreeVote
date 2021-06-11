@@ -5,7 +5,7 @@
  	CandidatoBean candidato = (CandidatoBean)request.getAttribute("candidato");
   	
  	if(candidato == null) {
- 		response.sendRedirect(response.encodeRedirectURL("./PartitoControl"));
+ 		response.sendRedirect(response.encodeRedirectURL("./PartitiControl"));
  		return;
  	}
 %>    

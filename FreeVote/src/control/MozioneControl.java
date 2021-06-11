@@ -17,16 +17,10 @@ import utils.Utility;
 
 import model.*;
 
-/**
- * Servlet implementation class MozioneControl
- */
 @WebServlet("/Mozione")
 public class MozioneControl extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String id = request.getParameter("id");
 		
@@ -41,7 +35,7 @@ public class MozioneControl extends HttpServlet {
 		
 		try {
 			MozioneBean mozione = mozioneModel.doRetrieveByKey(id);
-			request.setAttribute("mozione", mozione); //??
+			request.setAttribute("mozione", mozione); 
 			
 			Collection<AutoreBean> autori = autoreModel.doRetrieveByID(mozione.getID());
 			request.setAttribute("autori", autori);
@@ -49,13 +43,10 @@ public class MozioneControl extends HttpServlet {
 			Utility.printSQLException(e);
 		}
 		
-		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/mozione.jsp");
+		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher(response.encodeURL("/mozione.jsp"));
 		dispatcher.forward(request, response);
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
 	}

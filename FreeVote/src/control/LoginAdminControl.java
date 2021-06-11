@@ -54,7 +54,7 @@ public class LoginAdminControl extends HttpServlet {
 			} catch(SQLException e) {
 				Utility.printSQLException(e);
 			}
-			response.sendRedirect(request.getContextPath() + redirectedPage);
+			response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + redirectedPage));
 	}	
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
