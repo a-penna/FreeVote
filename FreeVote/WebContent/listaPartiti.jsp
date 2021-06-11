@@ -15,9 +15,9 @@
 <head>
 	<meta charset="UTF-8">
     <meta name="keywords" content="FreeVote, piattaforma voto, voto, voto online, partiti">
-	<meta name="description" content="Piattaforma voto, partiti">
+	<meta name="description" content="Piattaforma voto, lista partiti">
 	<meta name="author" content="Bene Sabato, Cozzolino Lidia, Napoli Riccardo, Penna Alessandro">    
-    <title>FreeVote - Partiti</title>
+    <title>FreeVote &dash; Partiti</title>
 </head>            
 
 <body>
@@ -31,6 +31,7 @@
             PartitoBean partito = (PartitoBean)it.next(); 
             if (!partito.getNome().equals("Scheda Bianca")) {
     %>
+    			<img src="PhotoControl?type=partito&id=<%=partito.getNome()%>" onerror="this.src='./imgs/nologo.png'">
             	<a href="Partito?nome=<%=partito.getNome()%>"><%=partito.getNome()%></a>
             	<br>
     <%   	}

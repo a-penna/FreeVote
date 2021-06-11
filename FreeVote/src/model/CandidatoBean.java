@@ -1,15 +1,22 @@
+
 package model;
-import java.sql.Blob;
 
 public class CandidatoBean {
 	private String cf;
 	private String nome;
 	private String cognome;
 	private String partito;
-    private Blob foto;
+    private byte[] foto;
     private String curriculum;
 
-	public CandidatoBean() { ;}
+	public CandidatoBean() { 
+		cf = "";
+		nome = "";
+		cognome = "";
+		partito = "";
+		foto = null;
+		curriculum = "";
+	}
 	
     public String getCf() {
         return cf;
@@ -23,6 +30,18 @@ public class CandidatoBean {
         return cognome;
     }
 
+    public String getCurriculum() {
+    	return curriculum;
+    }
+    
+    public byte[] getFoto() {
+    	return foto;
+    }
+
+    public String getPartito() {
+    	return partito;
+    }
+
     public void setCf(String cf) {
         this.cf=cf;
     }
@@ -33,30 +52,22 @@ public class CandidatoBean {
     
     public void setCognome(String cognome) {
         this.cognome=cognome;
-    }
-    
-    public String getPartito() {
-		return partito;
-	}
+    }    
 
 	public void setPartito(String partito) {
 		this.partito = partito;
-	}
-
-    public String getCurriculum() {
-		return curriculum;
 	}
 
 	public void setCurriculum(String curriculum) {
 		this.curriculum = curriculum;
 	}
 
-    public Blob getFoto() {
-		return foto;
-	}
-
-	public void setFoto(Blob foto) {
+	public void setFoto(byte[] foto) {
 		this.foto = foto;
 	}
+	
+	public String toString() {
+		return getClass().getName() + "[cf=" + cf + ", nome=" + nome + ", cognome=" + cognome + ", partito=" + partito + ", curriculum=" + curriculum + "]";
+	} 
 }
 

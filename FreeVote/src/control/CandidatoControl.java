@@ -28,7 +28,7 @@ public class CandidatoControl extends HttpServlet {
 		String cf = request.getParameter("cf");
 		
 		if (cf == null) {
-		 	response.sendRedirect(response.encodeRedirectURL("./PartitoControl")); //Pagina errore
+		 	response.sendRedirect(response.encodeRedirectURL("./PartitiControl")); //Pagina errore
 		 	return;
 		}
 		

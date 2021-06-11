@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/LoginAdmin")
+@WebServlet("/Administrator")
 public class LoginAdminControl extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -17,20 +17,23 @@ public class LoginAdminControl extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		{
+		
 			String username = request.getParameter("username");
 			String password = request.getParameter("password");
+			
+			if (username == null) {
+			 	response.sendRedirect(response.encodeRedirectURL("./loginAdmin.jsp"));
+			 	return;
+			}
 			
 			String redirectedPage;
 			if (checkLogin(username, password)) {
 				request.getSession().setAttribute("adminRoles", "true");
-				redirectedPage = "/Admin/interfacciaAdmin.jsp";
+				redirectedPage = "/admin/interfacciaAdmin.jsp";
 			} else {
-				request.getSession().setAttribute("adminRoles", "false");
 				redirectedPage = "/loginAdmin.jsp";
 			}
 			response.sendRedirect(request.getContextPath() + redirectedPage);
-		}
 	}
 
 	private boolean checkLogin(String username, String password) {

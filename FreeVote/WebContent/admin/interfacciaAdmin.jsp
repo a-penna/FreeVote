@@ -1,7 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.util.*, model.*"%>
-%>
-
+    pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
 <html>
@@ -10,15 +8,13 @@
     <meta name="keywords" content="FreeVote, piattaforma voto, voto, voto online, login">
 	<meta name="description" content="Login Admin">
 	<meta name="author" content="Bene Sabato, Cozzolino Lidia, Napoli Riccardo, Penna Alessandro">    
-    <title>FreeVote - Login Admin</title>
+    <title>FreeVote &dash; Login Admin</title>
 </head>            
 
 <body>
-	<%@ include file="../header.html"%>
+	<%@ include file="admin-header.html"%>
     
     <h1> Interfaccia admin segreta </h1>
-
-
 
 </body>
 </html>

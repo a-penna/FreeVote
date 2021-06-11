@@ -25,4 +25,7 @@ public class AutoreBean {
 		this.id = id;
 	}
 
+    public String toString() {
+    	return getClass().getName() + "[nomeCompleto=" + nomeCompleto + ", id=" + id + "]";
+    } 
 }

@@ -15,22 +15,15 @@ import javax.sql.DataSource;
 import model.*;
 import utils.Utility;
 
-
-/**
- * Servlet implementation class PartitoControl
- */
 @WebServlet("/Partito")
 public class PartitoControl extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String nome = request.getParameter("nome");
 		
 		if (nome == null) {
-		 	response.sendRedirect(response.encodeRedirectURL("./PartitoControl"));
+		 	response.sendRedirect(response.encodeRedirectURL("./PartitiControl"));
 		 	return;
 		}
 		
@@ -52,9 +45,6 @@ public class PartitoControl extends HttpServlet {
 		dispatcher.forward(request, response);
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
 	}

@@ -18,21 +18,15 @@ public class AuthFilter implements Filter{
 		HttpServletRequest hrequest = (HttpServletRequest) request;
 		HttpServletResponse hresponse = (HttpServletResponse) response;
 		
-		String loginURI = hrequest.getContextPath() + "/Admin";
-		boolean loginRequest = hrequest.getRequestURI().startsWith(loginURI);
-
-		if(loginRequest) {
-			HttpSession session = hrequest.getSession(false);
-			boolean loggedIn = session != null && session.getAttribute("adminRoles").equals("true");
-
-			if(!loggedIn) {
-				hresponse.sendRedirect(hrequest.getContextPath()+ "/loginAdmin.jsp");
-			} else {
-				chain.doFilter(request, response);
-			}
+		HttpSession session = hrequest.getSession(false);
+		boolean loggedIn = session != null && session.getAttribute("adminRoles")!= null;
+		
+		if(!loggedIn) {
+			hresponse.sendRedirect(hrequest.getContextPath()+ "/loginAdmin.jsp");
 		} else {
 			chain.doFilter(request, response);
 		}
+		
 	}
 
 	public void init(FilterConfig fConfig) throws ServletException { }

@@ -41,7 +41,7 @@
  </filter>
  <filter-mapping>
     <filter-name>AuthFilter</filter-name>
-    <url-pattern>/Admin/*</url-pattern>
+    <url-pattern>/admin/*</url-pattern>
  </filter-mapping> 
 
   <error-page>

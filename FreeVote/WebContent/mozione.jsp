@@ -19,7 +19,7 @@
     <meta name="keywords" content="FreeVote, piattaforma voto, voto, voto online, Referendum, mozioni">
 	<meta name="description" content="Testo mozione">
 	<meta name="author" content="Bene Sabato, Cozzolino Lidia, Napoli Riccardo, Penna Alessandro">  
-	<title>FreeVote - Mozione <%=mozione.getID()%> </title>
+	<title>FreeVote &dash; Mozione <%=mozione.getID()%> </title>
 </head>
 <body>
 	<%@ include file="header.html"%>

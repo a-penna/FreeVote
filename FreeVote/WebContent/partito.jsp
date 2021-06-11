@@ -4,8 +4,8 @@
 <%
  	PartitoBean partito = (PartitoBean)request.getAttribute("partito");
   	
- 	if(partito == null) {
- 		response.sendRedirect(response.encodeRedirectURL("./PartitoControl"));
+ 	if(partito == null || (partito.getn_votazioni_ricevute() == -1)) {
+ 		response.sendRedirect(response.encodeRedirectURL("./PartitiControl"));
  		return;
  	}
  	
@@ -17,13 +17,14 @@
 <head>
 	<meta charset="UTF-8">
     <meta name="keywords" content="FreeVote, piattaforma voto, voto, voto online, partito, <%=partito.getNome()%>">
-	<meta name="description" content="Testo Partito">
+	<meta name="description" content="Pagina Partito">
 	<meta name="author" content="Bene Sabato, Cozzolino Lidia, Napoli Riccardo, Penna Alessandro">  
-	<title>FreeVote - <%=partito.getNome()%> </title>
+	<title>FreeVote &dash; <%=partito.getNome()%> </title>
 </head>
 <body>
 	<%@ include file="header.html"%>
 	<h1><%=partito.getNome()%></h1>
+	<img src="PhotoControl?type=partito&id=<%=partito.getNome()%>" onerror="this.src='./imgs/nologo.png'">
     <br>
 	<p><%=partito.getDescrizione()%></p>
 	<br>
@@ -32,7 +33,9 @@
 		Iterator<?> it  = candidati.iterator();
 		while(it.hasNext()) {
 			CandidatoBean candidato = (CandidatoBean) it.next();
-			%> <a href="Candidato?cf=<%=candidato.getCf()%>"><%=candidato.getNome()%> <%=candidato.getCognome()%></a> <%
+			%> 
+				<img src="PhotoControl?type=candidato&id=<%=candidato.getCf()%>" onerror="this.src='./imgs/nophoto.png'">
+				<a href="Candidato?cf=<%=candidato.getCf()%>"><%=candidato.getNome()%> <%=candidato.getCognome()%></a> <%
 		}
 	%>
 

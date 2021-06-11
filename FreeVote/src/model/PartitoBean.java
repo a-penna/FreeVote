@@ -1,16 +1,21 @@
 package model;
 
-import java.sql.Blob;
-
 public class PartitoBean {
 	
 	private String leader;
 	private String nome;
     private String descrizione;
     private int n_votazioni_ricevute;
-    private Blob logo;
+    private byte[] logo;
     
-
+    public PartitoBean() {
+		leader = "";
+		nome = "";
+		descrizione = "";
+		n_votazioni_ricevute = -1;
+		logo = null;
+	}
+    
     public String getLeader(){
         return leader;
     }
@@ -27,7 +32,7 @@ public class PartitoBean {
         return n_votazioni_ricevute;
     }
 
-    public Blob getLogo(){
+    public byte[] getLogo(){
         return logo;
     }
 
@@ -38,7 +43,6 @@ public class PartitoBean {
     public void setNome(String nome) {
         this.nome=nome;
     }
-
     
     public void setDescrizione(String descrizione){
         this.descrizione = descrizione;
@@ -48,9 +52,12 @@ public class PartitoBean {
         this.n_votazioni_ricevute=n_votazioni_ricevute;
     }
 
-    public void setLogo(Blob logo) {
+    public void setLogo(byte[] logo) {
         this.logo = logo;
     }
 
+    public String toString() {
+    	return getClass().getName() + "[leader=" + leader + ", nome=" + nome + ", descrizione=" + descrizione + ", n_votazioni_ricevute=" + n_votazioni_ricevute +"]";
+    } 
 
 }

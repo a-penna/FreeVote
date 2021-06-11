@@ -37,7 +37,9 @@ public class PartitoModelDS implements Model<PartitoBean>{
 				bean.setNome(rs.getString("nome"));
 				bean.setDescrizione(rs.getString("descrizione"));
 				bean.setn_votazioni_ricevute(rs.getInt("n_votazioni_ricevute"));
-				bean.setLogo(rs.getBlob("logo")); //???
+				bean.setLogo(rs.getBytes("logo"));
+				System.out.println(rs.getBytes("logo"));
+				System.out.println(bean.getLogo());
 			}
 
 		} finally {
@@ -63,7 +65,7 @@ public class PartitoModelDS implements Model<PartitoBean>{
 		String selectSQL = "SELECT * FROM partito";
 
 		if (order != null && !order.equals("") && ((order == "leader") || (order == "nome") || (order == "descrizione") || (order == "n_votazioni_ricevute") || (order == "logo"))) {
-			selectSQL += " ORDER BY " + order + " DESC";
+			selectSQL += " ORDER BY " + order;
 		}
 
 		try {
@@ -79,7 +81,7 @@ public class PartitoModelDS implements Model<PartitoBean>{
 				bean.setNome(rs.getString("nome"));
 				bean.setDescrizione(rs.getString("descrizione"));
 				bean.setn_votazioni_ricevute(rs.getInt("n_votazioni_ricevute"));
-				bean.setLogo(rs.getBlob("logo")); 
+				bean.setLogo(rs.getBytes("logo")); 
 
 				partiti.add(bean);
 			}
@@ -113,7 +115,7 @@ public class PartitoModelDS implements Model<PartitoBean>{
 			preparedStatement.setString(2, partito.getNome());
 			preparedStatement.setString(3, partito.getDescrizione());
 			preparedStatement.setInt(4, partito.getn_votazioni_ricevute());
-            preparedStatement.setBlob(5, partito.getLogo());
+            preparedStatement.setBytes(5, partito.getLogo());
 
 			preparedStatement.executeUpdate();
 
@@ -146,7 +148,7 @@ public class PartitoModelDS implements Model<PartitoBean>{
 			preparedStatement.setString(2, partito.getNome());
 			preparedStatement.setString(3, partito.getDescrizione());			
 			preparedStatement.setInt(4, partito.getn_votazioni_ricevute());
-			preparedStatement.setBlob(5, partito.getLogo());
+			preparedStatement.setBytes(5, partito.getLogo());
 
 			preparedStatement.executeUpdate();
 

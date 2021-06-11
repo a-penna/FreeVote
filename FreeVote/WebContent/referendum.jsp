@@ -17,7 +17,7 @@
     <meta name="keywords" content="FreeVote, piattaforma voto, voto, voto online, Referendum, mozioni">
 	<meta name="description" content="Lista mozioni corrispondenti al referendum in corso">
 	<meta name="author" content="Bene Sabato, Cozzolino Lidia, Napoli Riccardo, Penna Alessandro">  
-	<title>FreeVote - Referendum</title>
+	<title>FreeVote &dash; Referendum</title>
 </head>
 <body>
 	<%@ include file="header.html"%>

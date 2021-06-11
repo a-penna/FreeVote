@@ -5,10 +5,10 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-    <meta name="keywords" content="FreeVote, piattaforma voto, voto, voto online, risultati, risultati votazioni, votazioni">
+    <meta name="keywords" content="FreeVote, piattaforma voto, voto, voto online, FreeVote contatti">
 	<meta name="description" content="Info e Contatti">
 	<meta name="author" content="Bene Sabato, Cozzolino Lidia, Napoli Riccardo, Penna Alessandro">  
-<title>FreeVote - Info e Contatti</title>
+	<title>FreeVote &dash; Info e Contatti</title>
 </head>
 <body>
 
@@ -17,13 +17,13 @@
 
 <h3>Lista Autori del sito: </h3>
 <br>
-<p>Alessandro Penna</p> <a href="email@prova.com">Email</a>
+<p>Alessandro Penna <b>Email&colon; email@prova.com</b> </p>
 <br>
-<p>Lidia Cozzolino</p>  <a href="email@prova.com">Email</a>
+<p>Lidia Cozzolino <b>Email&colon; email@prova.com</b> </p>
 <br>
-<p>Riccardo Napoli</p>  <a href="email@prova.com">Email</a>
+<p>Riccardo Napoli <b>Email&colon; email@prova.com</b> </p>
 <br>
-<p>Sabato Bene</p>  <a href="email@prova.com">Email</a>
+<p>Sabato Bene <b>Email&colon; email@prova.com</b> </p>
 <br>
 
 <a href="home.jsp">Torna alla Home</a>
