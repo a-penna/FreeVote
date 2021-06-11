@@ -6,6 +6,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.sql.DataSource;
+
+import model.AdminModelDS;
 
 @WebServlet("/Administrator")
 public class LoginAdminControl extends HttpServlet {
@@ -17,27 +20,27 @@ public class LoginAdminControl extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
-			String username = request.getParameter("username");
-			String password = request.getParameter("password");
+		    DataSource ds = (DataSource) getServletContext().getAttribute("DataSource");
+		    AdminModelDS model = new AdminModelDS(ds);
 			
-			if (username == null) {
-			 	response.sendRedirect(response.encodeRedirectURL("./loginAdmin.jsp"));
-			 	return;
-			}
+			
+			//if (model.doRetrieveByKey("key") != null) {
+			 //	response.sendRedirect(response.encodeRedirectURL("./loginAdmin.jsp"));
+			 //	return;
+			// }
 			
 			String redirectedPage;
-			if (checkLogin(username, password)) {
-				request.getSession().setAttribute("adminRoles", "true");
-				redirectedPage = "/admin/interfacciaAdmin.jsp";
-			} else {
-				redirectedPage = "/loginAdmin.jsp";
-			}
-			response.sendRedirect(request.getContextPath() + redirectedPage);
-	}
+		//	if (checkLogin(username, password)) {
+			//	request.getSession().setAttribute("adminRoles", "true");
+			//	redirectedPage = "/admin/interfacciaAdmin.jsp";
+			// } else {
+			//	redirectedPage = "/loginAdmin.jsp";
+			// }
+		//	response.sendRedirect(request.getContextPath() + redirectedPage);
+	// }
 
-	private boolean checkLogin(String username, String password) {
-		return ("admin".equals(username)) && ("admin".equals(password));
+	//private boolean checkLogin(Admin) {
+		//return ("admin".equals(username)) && ("admin".equals(password));
 	}
 	
 
