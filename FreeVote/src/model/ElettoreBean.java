@@ -1,4 +1,4 @@
-/*package model;
+package model;
 
 public class ElettoreBean {
     private String codice;
@@ -55,4 +55,3 @@ public class ElettoreBean {
     
     
 }
-*/
