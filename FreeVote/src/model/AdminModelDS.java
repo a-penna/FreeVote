@@ -26,7 +26,7 @@ public class AdminModelDS implements Model<AdminBean> {
 
 		String selectSQL = "SELECT * FROM Admin";
 
-		if (order != null && !order.equals("") && (order == "password" || order == "nomeutente")) {
+		if (order != null && !order.equals("") && (order.equals("password") || order.equals("nomeutente"))) {
 			selectSQL += " ORDER BY " + order;
 		}
 

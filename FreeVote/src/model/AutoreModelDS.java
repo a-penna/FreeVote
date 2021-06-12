@@ -66,7 +66,7 @@ public class AutoreModelDS implements Model<AutoreBean> {
 
 		String selectSQL = "SELECT * FROM Autore";
 
-		if (order != null && !order.equals("") && (order == "id_mozione" || order == "nome_completo")) {
+		if (order != null && !order.equals("") && (order.equals("id_mozione") || order.equals("nome_completo"))) {
 			selectSQL += " ORDER BY " + order;
 		}
 

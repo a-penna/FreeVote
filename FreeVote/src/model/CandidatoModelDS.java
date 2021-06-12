@@ -59,12 +59,12 @@ public class CandidatoModelDS implements Model<CandidatoBean>{
 	private boolean checkOrder(String order) {
 		return order != null 
 				&& !order.equals("") 
-				&& ((order == "codice_fiscale") 
-				|| (order == "nome") 
-				|| (order == "cognome") 
-				|| (order == "partito") 
-				|| (order == "foto") 
-				|| (order == "curriculum"));
+				&& (order.equals("codice_fiscale") 
+				|| order.equals("nome") 
+				|| order.equals("cognome") 
+				|| order.equals("partito") 
+				|| order.equals("foto") 
+				|| order.equals("curriculum"));
 	}
 	
 	public Collection<CandidatoBean> doRetrieveAll(String order) throws SQLException {

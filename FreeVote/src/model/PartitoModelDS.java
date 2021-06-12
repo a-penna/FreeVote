@@ -57,11 +57,11 @@ public class PartitoModelDS implements Model<PartitoBean>{
 	private boolean checkOrder(String order) {
 		return order != null 
 			   && !order.equals("") 
-			   && ((order == "leader") 
-			   || (order == "nome") 
-			   || (order == "descrizione") 
-			   || (order == "n_votazioni_ricevute DESC") 
-			   || (order == "logo"));
+			   && (order.equals("leader") 
+			   || order.equals("nome") 
+			   || order.equals("descrizione") 
+			   || order.equals("n_votazioni_ricevute DESC") 
+			   || order.equals("logo"));
 	}
 	
 	public Collection<PartitoBean> doRetrieveAll(String order) throws SQLException {

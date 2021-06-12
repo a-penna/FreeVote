@@ -58,7 +58,7 @@ public class MozioneModelDS implements Model<MozioneBean> {
 
 		String selectSQL = "SELECT * FROM Mozione";
 
-		if (order != null && !order.equals("") && (order == "id" || order == "testo")) {
+		if (order != null && !order.equals("") && (order.equals("id") || order.equals("testo"))) {
 			selectSQL += " ORDER BY " + order;
 		}
 
