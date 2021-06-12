@@ -26,10 +26,9 @@
     <p>Scegliendo il nome di un partito ed inserendo una particolare fascia d'et&agrave; potrai visualizzare, in percentuale,
     quante votazioni quel partito ha ricevuto in quella specifica fascia d'et&agrave; </p>
 
-    
-
-    <form action="Elettore" method="post"> 
-        <select name="partito" size="5">
+    <form action="EtaControl" method="post"> 
+    	<label for="partito">Partito&colon; </label>
+        <select name="partito">
             <%
             Iterator<?> it = partiti.iterator();
             while(it.hasNext()) {
@@ -40,15 +39,24 @@
             <%  } 
             }
             %>
-        </select> <br>
-
-        <label for="eta">Et&agrave; minima</label>
+        </select> 
+        <br>
+        <label for="eta">Et&agrave; minima&colon; </label>
         <input type="number" id="eta" name="minima" min="18" max="120">
 
-        <label for="eta">Et&agrave; massima</label>
+        <label for="eta">Et&agrave; massima&colon; </label>
         <input type="number" id="eta" name="massima" min="18" max="120">
 
-
+		<%
+		  String percentuale = (String) request.getAttribute("percentuale");
+		  if (percentuale != null) { %>
+			  %> <p><%=request.getParameter("partito")%> ha ricevuto dalla fascia d'et&agrave;
+			   <%=request.getAttribute("minimo")%>&sol;<%=request.getAttribute("massimo")%> il <%=percentuale%>&percnt; dei voti</p>
+		 <% }
+		%>
+		<br>
+		<input type="reset" value="Reset"/>
+        <input type="submit" value="Invia"/>
     </form> 
  
 </body>

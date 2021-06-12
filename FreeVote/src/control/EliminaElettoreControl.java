@@ -10,22 +10,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 
-import model.AdminBean;
-import model.ElettoreBean;
-import model.ElettoreModelDS;
+import model.*;
 import utils.Utility;
 
 /**
  * Servlet implementation class EliminaElettore
  */
 @WebServlet("/EliminazioneElettore")
-public class EliminaElettore extends HttpServlet {
+public class EliminaElettoreControl extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public EliminaElettore() {
+    public EliminaElettoreControl() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -43,6 +41,8 @@ public class EliminaElettore extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		DataSource ds = (DataSource) getServletContext().getAttribute("DataSource");
 		ElettoreModelDS model = new ElettoreModelDS(ds);	
+		VotazionePoliticaModelDS votazioneModel = new VotazionePoliticaModelDS(ds);	
+		PartitoModelDS partitoModel = new PartitoModelDS(ds);	
 		String codice = request.getParameter("codice");
 		codice=Utility.encryptMD5(codice);
 		
@@ -55,6 +55,11 @@ public class EliminaElettore extends HttpServlet {
 
 		try {
 			ElettoreBean bean = model.doRetrieveByKey(codice);
+			VotazionePoliticaBean voto = votazioneModel.doRetrieveByElettore(bean.getCodice());
+			PartitoBean partito = partitoModel.doRetrieveByKey(voto.getPartito());
+			int updated = partito.getn_votazioni_ricevute() - 1;
+			partito.setn_votazioni_ricevute(updated);
+			partitoModel.doUpdate(partito);
 			boolean flag = model.doDeleteCheck(bean);
 			
 		    if(flag==true) {

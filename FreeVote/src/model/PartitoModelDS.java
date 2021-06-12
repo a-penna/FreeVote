@@ -145,7 +145,7 @@ public class PartitoModelDS implements Model<PartitoBean>{
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 
-		String updateSQL = "UPDATE partito SET leader = ?, nome = ?, descrizione = ?, n_votazioni_ricevute = ?, logo=? WHERE code = ?";
+		String updateSQL = "UPDATE partito SET leader = ?, descrizione = ?, n_votazioni_ricevute = ?, logo=? WHERE nome = ?";
 
 		try {
 			connection = ds.getConnection();
@@ -153,15 +153,15 @@ public class PartitoModelDS implements Model<PartitoBean>{
 			preparedStatement = connection.prepareStatement(updateSQL);
 
             preparedStatement.setString(1, partito.getLeader());
-			preparedStatement.setString(2, partito.getNome());
-			preparedStatement.setString(3, partito.getDescrizione());			
-			preparedStatement.setInt(4, partito.getn_votazioni_ricevute());
-			preparedStatement.setBytes(5, partito.getLogo());
+			preparedStatement.setString(2, partito.getDescrizione());			
+			preparedStatement.setInt(3, partito.getn_votazioni_ricevute());
+			preparedStatement.setBytes(4, partito.getLogo());
+			preparedStatement.setString(5, partito.getNome());
 
 			preparedStatement.executeUpdate();
 
 			connection.commit();
-
+		}catch(SQLException e){ System.out.println(e);
 		} finally {
 			try {
 				if (preparedStatement != null)

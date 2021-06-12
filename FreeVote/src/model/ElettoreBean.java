@@ -51,7 +51,5 @@ public class ElettoreBean {
 	public void setCap(String cap) {
 		this.cap = cap;
 	}
-
-    
     
 }

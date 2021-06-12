@@ -3,6 +3,7 @@ package control;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Collection;
+import java.util.Iterator;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,9 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 
-
-import model.PartitoBean;
-import model.PartitoModelDS;
+import model.*;
 import utils.Utility;
 
 @WebServlet("/EtaControl")
@@ -23,20 +22,38 @@ public class EtaControl extends HttpServlet {
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		DataSource ds = (DataSource) getServletContext().getAttribute("DataSource");
-		PartitoModelDS model = new PartitoModelDS(ds);
+		PartitoModelDS partitoModel = new PartitoModelDS(ds);
+		VotazionePoliticaModelDS votazioneModel  = new VotazionePoliticaModelDS(ds);
+		ElettoreModelDS elettoreModel  = new ElettoreModelDS(ds);
 
+		
         String partito = request.getParameter("partito");
 		
 		try {
-			Collection<PartitoBean> partiti = model.doRetrieveAll("nome");
+			Collection<PartitoBean> partiti = partitoModel.doRetrieveAll("nome");
 			request.setAttribute("partiti", partiti);
+			if (partito != null) {
+				int min = Integer.parseInt(request.getParameter("minima"));
+				int max = Integer.parseInt(request.getParameter("massima"));
+				if (!partitoModel.doRetrieveByKey(partito).isEmpty()) {
+					Collection<VotazionePoliticaBean> voti = votazioneModel.doRetrieveAllByPartito(partito);
+					int n = 0;
+					Iterator<VotazionePoliticaBean> it = voti.iterator();
+		            while(it.hasNext()) {
+		                VotazionePoliticaBean votazione = (VotazionePoliticaBean)it.next();   
+		                ElettoreBean elettore = elettoreModel.doRetrieveByKey(votazione.getElettore());
+		                if(elettore.getEta() <= max && elettore.getEta() >= min) {
+		                	n++;
+		                }
+		            }
+					request.setAttribute("percentuale", String.valueOf(n*100/voti.size()));
+					request.setAttribute("minima", String.valueOf(min));
+					request.setAttribute("massima", String.valueOf(max));
+					request.setAttribute("partito", partito);
+				}
+			}
 		} catch (SQLException e) {
 			Utility.printSQLException(e);
-		}
-
-		if (partito == null) {
-		 	response.sendRedirect(response.encodeRedirectURL("./risultatiPerEta.jsp"));
-		 	return;
 		}
 
 

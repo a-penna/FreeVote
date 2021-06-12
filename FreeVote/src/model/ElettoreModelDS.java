@@ -17,7 +17,6 @@ public class ElettoreModelDS implements Model<ElettoreBean>{
 		this.ds = ds;
 	}
 	
-	@Override
 	public ElettoreBean doRetrieveByKey(String key) throws SQLException {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
@@ -44,15 +43,12 @@ public class ElettoreModelDS implements Model<ElettoreBean>{
 			rs.close();
 		} finally {
 			try {
-				
 				if (preparedStatement != null)
 					preparedStatement.close();
 			} finally {
 				if (connection != null) {
 					connection.close();
-					
 				}
-				
 			}
 		}
 		return bean;
@@ -67,12 +63,9 @@ public class ElettoreModelDS implements Model<ElettoreBean>{
 				|| order.equals("ComuneNome") 
 				|| order.equals("ComuneCAP") 
 				|| order.equals("regione")
-				|| order.equals("sesso")
-						
-						);
+				|| order.equals("sesso"));
 	}
 	
-	@Override
 	public Collection<ElettoreBean> doRetrieveAll(String order) throws SQLException {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;

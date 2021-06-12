@@ -55,6 +55,10 @@ public class PartitoBean {
     public void setLogo(byte[] logo) {
         this.logo = logo;
     }
+    
+    public boolean isEmpty() {
+    	return n_votazioni_ricevute == -1;
+    }
 
     public String toString() {
     	return getClass().getName() + "[leader=" + leader + ", nome=" + nome + ", descrizione=" + descrizione + ", n_votazioni_ricevute=" + n_votazioni_ricevute +"]";
