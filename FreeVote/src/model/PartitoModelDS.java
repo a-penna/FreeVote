@@ -202,4 +202,74 @@ public class PartitoModelDS implements Model<PartitoBean>{
 			}
 		}
 	}
+
+	public boolean doDeleteCheck(PartitoBean bean) throws SQLException {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		
+		String nome = bean.getNome();
+		
+		String selectSQL = "DELETE FROM partito WHERE nome = ?";
+		
+		try {
+			connection = ds.getConnection();
+			preparedStatement = connection.prepareStatement(selectSQL);
+			preparedStatement.setString(1, nome);
+			
+			int rs = preparedStatement.executeUpdate();
+			if (rs==1) return true;
+		} 
+		finally {
+			try {
+				if (preparedStatement != null)
+					preparedStatement.close();
+			} finally {
+				if (connection != null) {
+					connection.close();
+				}
+			}
+		}
+		return false;
+	}
+
+	public Collection<PartitoBean> doRetrieveAllByCoalizione(PartitoBean partito) throws SQLException{
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+
+		Collection<PartitoBean> partiti = new LinkedList<PartitoBean>();
+
+		String selectSQL = "SELECT * FROM partito WHERE nome IN (SELECT partito FROM appartiene WHERE coalizione=(SELECT coalizione FROM appartiene WHERE partito=?))";
+
+		try {
+			connection = ds.getConnection();
+			preparedStatement = connection.prepareStatement(selectSQL);
+			preparedStatement.setString(1, partito.getNome());
+
+			ResultSet rs = preparedStatement.executeQuery();
+
+			while (rs.next()) {
+				PartitoBean bean = new PartitoBean();
+				bean.setLeader(rs.getString("leader"));
+				bean.setNome(rs.getString("nome"));
+				bean.setDescrizione(rs.getString("descrizione"));
+				bean.setn_votazioni_ricevute(rs.getInt("n_votazioni_ricevute"));
+				bean.setLogo(rs.getBytes("logo")); 
+
+				partiti.add(bean);
+			}
+		} finally {
+			try {
+				if (preparedStatement != null)
+					preparedStatement.close();
+			} finally {
+				if (connection != null) {
+					connection.close();
+				}
+			}
+		}
+
+		return partiti;
+
+	}
+    
 }

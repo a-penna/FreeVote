@@ -14,11 +14,11 @@
 <body>
 	<%@ include file="admin-header.html"%> <!-- Da Completare -->
     
-    <h3>Seleziona quello che vuoi fare:</h3>
+    <h3>Seleziona l'operazione da effettuare&colon;</h3>
     <br>
     <a href="">Inserisci un nuovo partito</a>
     <br>
-    <a href="">Elimina un partito</a>
+    <a href="./eliminaPartito.jsp">Elimina un partito</a>
     <br>
     <a href="">Elimina un partito da una coalizione</a>
     <br>

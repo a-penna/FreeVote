@@ -43,11 +43,10 @@ public class EliminaElettoreControl extends HttpServlet {
 		ElettoreModelDS model = new ElettoreModelDS(ds);	
 		VotazionePoliticaModelDS votazioneModel = new VotazionePoliticaModelDS(ds);	
 		PartitoModelDS partitoModel = new PartitoModelDS(ds);	
-		String codice = request.getParameter("codice");
-		codice=Utility.encryptMD5(codice);
+		String codice = Utility.encryptMD5(request.getParameter("codice"));
 		
 		if (codice == null) {
-		 	response.sendRedirect(response.encodeRedirectURL("./error/generic.jsp"));
+		 	response.sendRedirect(response.encodeRedirectURL("./eliminaElettore.jsp"));
 		 	return;
 		}
 		
@@ -62,14 +61,9 @@ public class EliminaElettoreControl extends HttpServlet {
 			partitoModel.doUpdate(partito);
 			boolean flag = model.doDeleteCheck(bean);
 			
-		    if(flag==true) {
-		    	
+		    if(flag) {
 		    	redirectedPage="/admin/successoEliminazione.jsp";
-		    	
-		    }
-		    else if(flag==false) {
-		    	redirectedPage="/error/generic.jsp";
-		    }
+		    } else redirectedPage="/error/generic.jsp";
 			
 		} catch(SQLException e) {
 			Utility.printSQLException(e);

@@ -137,16 +137,9 @@ public class ElettoreModelDS implements Model<ElettoreBean>{
 			preparedStatement.setString(1, codice);
 			
 			int rs = preparedStatement.executeUpdate();
-			
-			if (rs==1) {
-				return true;
-				
-				
-			}
+			if (rs==1) return true;
 			
 		} 
-		
-		
 		finally {
 			try {
 				if (preparedStatement != null)
@@ -158,8 +151,6 @@ public class ElettoreModelDS implements Model<ElettoreBean>{
 			}
 		}
 		return false;
-	
-		
 	}
     
 	public void doDelete(ElettoreBean bean) throws SQLException {}
