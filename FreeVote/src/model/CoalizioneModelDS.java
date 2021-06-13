@@ -49,39 +49,6 @@ public class CoalizioneModelDS implements Model<CoalizioneBean>{
 		return bean;
 	}
 
-	public CoalizioneBean doRetrieveByPartito(String partito) throws SQLException {
-		Connection connection = null;
-		PreparedStatement preparedStatement = null;
-
-		CoalizioneBean bean = new CoalizioneBean();
-
-		String selectSQL = "SELECT * FROM coalizione WHERE nome = (SELECT coalizione FROM appartiene WHERE partito=?)";
-
-		try {
-			connection = ds.getConnection();
-			preparedStatement = connection.prepareStatement(selectSQL);
-			preparedStatement.setString(1, partito);
-
-			ResultSet rs = preparedStatement.executeQuery();
-
-			while (rs.next()) 	
-				bean.setNome(rs.getString("nome"));
-			
-
-		} finally {
-			try {
-				if (preparedStatement != null)
-					preparedStatement.close();
-			} finally {
-				if (connection != null) {
-					connection.close();
-				}
-			}
-		}
-
-		return bean;
-	}
-	
 	public Collection<CoalizioneBean> doRetrieveAll(String order) throws SQLException {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
@@ -151,7 +118,6 @@ public class CoalizioneModelDS implements Model<CoalizioneBean>{
 
 	public void doUpdate(CoalizioneBean coalizione) throws SQLException { throw new UnsupportedOperationException(); }
 
-	@Override
 	public void doDelete(CoalizioneBean coalizione) throws SQLException {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
@@ -180,4 +146,37 @@ public class CoalizioneModelDS implements Model<CoalizioneBean>{
 		}
 	}
     
+	/*public CoalizioneBean doRetrieveByPartito(String partito) throws SQLException {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+
+		CoalizioneBean bean = new CoalizioneBean();
+
+		String selectSQL = "SELECT * FROM coalizione WHERE nome = (SELECT coalizione FROM appartiene WHERE partito=?)";
+
+		try {
+			connection = ds.getConnection();
+			preparedStatement = connection.prepareStatement(selectSQL);
+			preparedStatement.setString(1, partito);
+
+			ResultSet rs = preparedStatement.executeQuery();
+
+			while (rs.next()) 	
+				bean.setNome(rs.getString("nome"));
+			
+
+		} finally {
+			try {
+				if (preparedStatement != null)
+					preparedStatement.close();
+			} finally {
+				if (connection != null) {
+					connection.close();
+				}
+			}
+		}
+
+		return bean;
+	}*/
 }
+

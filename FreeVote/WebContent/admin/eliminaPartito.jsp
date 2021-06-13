@@ -13,9 +13,9 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
 </head>            
 
 <body>
-<%@ include file="/admin/admin-header.html"%>
+<%@ include file="/admin/admin-header.jsp"%>
 
-<form action="/FreeVote/EliminaPartito" method="post"> 
+<form action="<%=response.encodeURL("/FreeVote/EliminaPartito")%>" method="post"> 
     <fieldset>
         <legend>Inserisci credenziali&colon; </legend>
         <label for="nome">Nome&colon;</label>

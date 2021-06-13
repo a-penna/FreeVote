@@ -8,7 +8,9 @@ import java.util.Collection;
 import java.util.LinkedList;
 
 import javax.sql.DataSource;
-import utils.*;
+
+import utils.Utility;
+
 public class ElettoreModelDS implements Model<ElettoreBean>{
 
 	private DataSource ds = null;
@@ -110,38 +112,67 @@ public class ElettoreModelDS implements Model<ElettoreBean>{
 		return elettori; 
 	}
 
-	@Override
 	public void doSave(ElettoreBean bean) throws SQLException {
 		
-		//TODO
 	}
 
-	@Override
 	public void doUpdate(ElettoreBean bean) throws SQLException {
-		//TODO
 		
 	}
-
 	
 	public boolean doDeleteCheck(ElettoreBean bean) throws SQLException {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
+		PreparedStatement preparedStatement2 = null;
 		
-		String codice = bean.getCodice();
 		
-		String selectSQL = "DELETE FROM elettore WHERE codice = ?";
+		String updatePartitoSQL = "UPDATE Partito SET n_votazioni_ricevute=n_votazioni_ricevute-1 "
+					+ "WHERE nome=(SELECT partito  "
+					+ "FROM Votazione_Politica "
+					+ "WHERE elettore=?) " ;
+		
+		String deleteSQL = "DELETE FROM Elettore "
+						 + "WHERE codice=?" ;
 		
 		try {
 			connection = ds.getConnection();
-			preparedStatement = connection.prepareStatement(selectSQL);
+			connection.setAutoCommit(false);
+			
+			preparedStatement = connection.prepareStatement(updatePartitoSQL);
+			
+			String codice = bean.getCodice();
 			preparedStatement.setString(1, codice);
 			
-			int rs = preparedStatement.executeUpdate();
-			if (rs==1) return true;
+			int result = preparedStatement.executeUpdate();
+			if (result != 1) {
+				try {
+					connection.rollback();
+				} catch (SQLException e) {
+					Utility.printSQLException(e);
+				}
+				return false;
+			}
 			
+			preparedStatement2 = connection.prepareStatement(deleteSQL);
+			
+			preparedStatement2.setString(1, codice);
+			
+			result = preparedStatement2.executeUpdate();
+			if (result != 1) {
+				try {
+					connection.rollback();
+				} catch (SQLException e) {
+					Utility.printSQLException(e);
+				}
+				return false;
+			}
+			
+			connection.commit();
 		} 
 		finally {
 			try {
+				if (preparedStatement2 != null)
+					preparedStatement2.close();
 				if (preparedStatement != null)
 					preparedStatement.close();
 			} finally {
@@ -150,10 +181,12 @@ public class ElettoreModelDS implements Model<ElettoreBean>{
 				}
 			}
 		}
-		return false;
+		return true;
 	}
     
-	public void doDelete(ElettoreBean bean) throws SQLException {}
+	public void doDelete(ElettoreBean bean) throws SQLException {
+		doDeleteCheck(bean);
+	}
 	
 	
 	

@@ -12,13 +12,13 @@
 </head>            
 
 <body>
-	<%@ include file="admin-header.html"%> <!-- Da Completare -->
+	<%@ include file="admin-header.jsp"%> <!-- Da Completare -->
     
     <h3>Seleziona l'operazione da effettuare&colon;</h3>
     <br>
     <a href="">Inserisci un nuovo partito</a>
     <br>
-    <a href="./eliminaPartito.jsp">Elimina un partito</a>
+    <a href="<%=response.encodeURL("/FreeVote/admin/eliminaPartito.jsp")%>">Elimina un partito</a>
     <br>
     <a href="">Elimina un partito da una coalizione</a>
     <br>

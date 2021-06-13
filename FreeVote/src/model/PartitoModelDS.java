@@ -9,6 +9,8 @@ import java.util.LinkedList;
 
 import javax.sql.DataSource;
 
+import utils.Utility;
+
 public class PartitoModelDS implements Model<PartitoBean>{
     
 	private DataSource ds = null;
@@ -174,53 +176,80 @@ public class PartitoModelDS implements Model<PartitoBean>{
 		}
 	}
 
-	@Override
 	public void doDelete(PartitoBean partito) throws SQLException {
-		Connection connection = null;
-		PreparedStatement preparedStatement = null;
-
-		String deleteSQL = "DELETE FROM partito WHERE nome = ?";
-
-		try {
-			connection = ds.getConnection();
-			connection.setAutoCommit(false);
-			preparedStatement = connection.prepareStatement(deleteSQL);
-			preparedStatement.setString(1, partito.getNome());
-
-			preparedStatement.executeUpdate();
-
-			connection.commit();
-
-		} finally {
-			try {
-				if (preparedStatement != null)
-					preparedStatement.close();
-			} finally {
-				if (connection != null) {
-					connection.close();
-				}
-			}
-		}
+		doDeleteCheck(partito);
 	}
 
 	public boolean doDeleteCheck(PartitoBean bean) throws SQLException {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
+		PreparedStatement preparedStatement2 = null;
+		PreparedStatement preparedStatement3 = null;
 		
-		String nome = bean.getNome();
+		String querySQL = "SELECT COUNT(*) "
+				   				+ "FROM Appartiene "
+				   				+ "WHERE coalizione=(SELECT coalizione "
+				   					 			+ "FROM Appartiene "
+				   					 			+ "WHERE partito=? "
+				   					 			+ ") ";
 		
-		String selectSQL = "DELETE FROM partito WHERE nome = ?";
+		String deleteCoalizioneSQL =  "DELETE FROM Coalizione "
+						  + "WHERE nome=( SELECT coalizione "
+						  + "FROM Appartiene "
+						  + "WHERE partito=?"
+						  + " ) ";
+		
+		String deleteSQL = "DELETE FROM Partito "
+						+ "WHERE nome=?";
 		
 		try {
 			connection = ds.getConnection();
-			preparedStatement = connection.prepareStatement(selectSQL);
-			preparedStatement.setString(1, nome);
+			connection.setAutoCommit(false);
 			
-			int rs = preparedStatement.executeUpdate();
-			if (rs==1) return true;
+			String partito = bean.getNome();
+			preparedStatement = connection.prepareStatement(querySQL);
+			preparedStatement.setString(1, partito);
+			ResultSet rs = preparedStatement.executeQuery();
+			int count = 1000;
+			if (rs.next()) {
+				count = rs.getInt(1);
+			}
+		
+			if (count == 2) {
+				preparedStatement2 = connection.prepareStatement(deleteCoalizioneSQL);
+				preparedStatement2.setString(1, partito);
+				int result = preparedStatement2.executeUpdate();
+				if (result != 1) {
+					try {
+						connection.rollback();
+					} catch (SQLException e) {
+						Utility.printSQLException(e);
+					}
+					return false;
+				}
+			}
+	
+			preparedStatement3 = connection.prepareStatement(deleteSQL);
+			preparedStatement3.setString(1, partito);
+			
+			int result = preparedStatement3.executeUpdate();
+			if (result != 1) {
+				try {
+					connection.rollback();
+				} catch (SQLException e) {
+					Utility.printSQLException(e);
+				}
+				return false;
+			}
+			
+			connection.commit();
 		} 
 		finally {
 			try {
+				if (preparedStatement3 != null)
+					preparedStatement3.close();
+				if (preparedStatement2 != null)
+					preparedStatement2.close();
 				if (preparedStatement != null)
 					preparedStatement.close();
 			} finally {
@@ -229,47 +258,47 @@ public class PartitoModelDS implements Model<PartitoBean>{
 				}
 			}
 		}
-		return false;
+		return true;
 	}
+	
+	/*public Collection<PartitoBean> doRetrieveAllByCoalizione(PartitoBean partito) throws SQLException{
+	Connection connection = null;
+	PreparedStatement preparedStatement = null;
 
-	public Collection<PartitoBean> doRetrieveAllByCoalizione(PartitoBean partito) throws SQLException{
-		Connection connection = null;
-		PreparedStatement preparedStatement = null;
+	Collection<PartitoBean> partiti = new LinkedList<PartitoBean>();
 
-		Collection<PartitoBean> partiti = new LinkedList<PartitoBean>();
+	String selectSQL = "SELECT * FROM partito WHERE nome IN (SELECT partito FROM appartiene WHERE coalizione=(SELECT coalizione FROM appartiene WHERE partito=?))";
 
-		String selectSQL = "SELECT * FROM partito WHERE nome IN (SELECT partito FROM appartiene WHERE coalizione=(SELECT coalizione FROM appartiene WHERE partito=?))";
+	try {
+		connection = ds.getConnection();
+		preparedStatement = connection.prepareStatement(selectSQL);
+		preparedStatement.setString(1, partito.getNome());
 
+		ResultSet rs = preparedStatement.executeQuery();
+
+		while (rs.next()) {
+			PartitoBean bean = new PartitoBean();
+			bean.setLeader(rs.getString("leader"));
+			bean.setNome(rs.getString("nome"));
+			bean.setDescrizione(rs.getString("descrizione"));
+			bean.setn_votazioni_ricevute(rs.getInt("n_votazioni_ricevute"));
+			bean.setLogo(rs.getBytes("logo")); 
+
+			partiti.add(bean);
+		}
+	} finally {
 		try {
-			connection = ds.getConnection();
-			preparedStatement = connection.prepareStatement(selectSQL);
-			preparedStatement.setString(1, partito.getNome());
-
-			ResultSet rs = preparedStatement.executeQuery();
-
-			while (rs.next()) {
-				PartitoBean bean = new PartitoBean();
-				bean.setLeader(rs.getString("leader"));
-				bean.setNome(rs.getString("nome"));
-				bean.setDescrizione(rs.getString("descrizione"));
-				bean.setn_votazioni_ricevute(rs.getInt("n_votazioni_ricevute"));
-				bean.setLogo(rs.getBytes("logo")); 
-
-				partiti.add(bean);
-			}
+			if (preparedStatement != null)
+				preparedStatement.close();
 		} finally {
-			try {
-				if (preparedStatement != null)
-					preparedStatement.close();
-			} finally {
-				if (connection != null) {
-					connection.close();
-				}
+			if (connection != null) {
+				connection.close();
 			}
 		}
-
-		return partiti;
-
 	}
-    
+
+	return partiti;
+
+}
+*/
 }

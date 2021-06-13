@@ -13,67 +13,49 @@ import javax.sql.DataSource;
 import model.*;
 import utils.Utility;
 
-/**
- * Servlet implementation class EliminaElettore
- */
 @WebServlet("/EliminazioneElettore")
 public class EliminaElettoreControl extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public EliminaElettoreControl() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doPost(request,response);
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+		boolean loggedIn = request.getSession() != null && request.getSession().getAttribute("adminRoles")!= null;
+		if(!loggedIn) {
+			response.sendRedirect(request.getContextPath() + "/loginAdmin.jsp");
+			return;
+		}
+		
+		String codice = request.getParameter("codice");
+		if (codice == null) {
+			response.sendRedirect(response.encodeRedirectURL("/admin/eliminaElettore.jsp"));
+			return;
+		}
+		codice = Utility.encryptMD5(request.getParameter("codice"));
+		
 		DataSource ds = (DataSource) getServletContext().getAttribute("DataSource");
 		ElettoreModelDS model = new ElettoreModelDS(ds);	
-		VotazionePoliticaModelDS votazioneModel = new VotazionePoliticaModelDS(ds);	
-		PartitoModelDS partitoModel = new PartitoModelDS(ds);	
-		String codice = Utility.encryptMD5(request.getParameter("codice"));
-		
-		if (codice == null) {
-		 	response.sendRedirect(response.encodeRedirectURL("./eliminaElettore.jsp"));
-		 	return;
-		}
 		
 		String redirectedPage = "";
 
 		try {
 			ElettoreBean bean = model.doRetrieveByKey(codice);
-			VotazionePoliticaBean voto = votazioneModel.doRetrieveByElettore(bean.getCodice());
-			PartitoBean partito = partitoModel.doRetrieveByKey(voto.getPartito());
-			int updated = partito.getn_votazioni_ricevute() - 1;
-			partito.setn_votazioni_ricevute(updated);
-			partitoModel.doUpdate(partito);
+
 			boolean flag = model.doDeleteCheck(bean);
 			
 		    if(flag) {
 		    	redirectedPage="/admin/successoEliminazione.jsp";
-		    } else redirectedPage="/error/generic.jsp";
-			
+		    } else {
+		    	redirectedPage="/error/generic.jsp";
+		    }
 		} catch(SQLException e) {
 			Utility.printSQLException(e);
 		}
 		response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + redirectedPage));
 		}
-		
-		
-		
-		
-	
-
 }
+
+

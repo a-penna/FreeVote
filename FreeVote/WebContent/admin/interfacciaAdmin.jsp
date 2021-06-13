@@ -12,7 +12,7 @@
 </head>            
 
 <body>
-	<%@ include file="admin-header.html"%>
+	<%@ include file="admin-header.jsp"%>
     
     <h1> Interfaccia admin segreta </h1>
 

@@ -1,6 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="java.util.*, model.*"%>
 
+<%
+	boolean loggedIn = request.getSession() != null && request.getSession().getAttribute("adminRoles")!= null;
+
+	if(loggedIn) {
+		response.sendRedirect(response.encodeRedirectURL("admin/interfacciaAdmin.jsp"));
+	 	return;
+	}
+%>
+
 <!DOCTYPE html>
 <html>
 <head>
