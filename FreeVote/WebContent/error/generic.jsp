@@ -8,7 +8,7 @@
 	<title>FreeVote &dash; Errore</title>
 </head>
 <body>
-	<%@ include file="/header.html"%>
+	<%@ include file="/header.jsp"%>
     <br/>
     <h1>Errore&excl;</h1>
 </body>

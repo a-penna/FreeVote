@@ -25,16 +25,20 @@ public class EtaControl extends HttpServlet {
 		PartitoModelDS partitoModel = new PartitoModelDS(ds);
 		VotazionePoliticaModelDS votazioneModel  = new VotazionePoliticaModelDS(ds);
 		ElettoreModelDS elettoreModel  = new ElettoreModelDS(ds);
-
 		
         String partito = request.getParameter("partito");
 		
 		try {
 			Collection<PartitoBean> partiti = partitoModel.doRetrieveAll("nome");
 			request.setAttribute("partiti", partiti);
-			if (partito != null) {
+			if (partito != null && !request.getParameter("minima").equals("") && !request.getParameter("massima").equals("")) {
 				int min = Integer.parseInt(request.getParameter("minima"));
 				int max = Integer.parseInt(request.getParameter("massima"));
+				if (min > max) {
+					int temp = min;
+					min = max;
+					max = temp;
+				}
 				if (!partitoModel.doRetrieveByKey(partito).isEmpty()) {
 					Collection<VotazionePoliticaBean> voti = votazioneModel.doRetrieveAllByPartito(partito);
 					int n = 0;

@@ -23,7 +23,7 @@ public class EliminaElettoreControl extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		boolean loggedIn = request.getSession() != null && request.getSession().getAttribute("adminRoles")!= null;
+		boolean loggedIn = request.getSession(false) != null && request.getSession(false).getAttribute("adminRoles")!= null;
 		if(!loggedIn) {
 			response.sendRedirect(request.getContextPath() + "/loginAdmin.jsp");
 			return;
@@ -47,7 +47,7 @@ public class EliminaElettoreControl extends HttpServlet {
 			boolean flag = model.doDeleteCheck(bean);
 			
 		    if(flag) {
-		    	redirectedPage="/admin/successoEliminazione.jsp";
+		    	redirectedPage="/admin/successo.jsp";
 		    } else {
 		    	redirectedPage="/error/generic.jsp";
 		    }

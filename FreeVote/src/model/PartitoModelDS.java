@@ -111,11 +111,18 @@ public class PartitoModelDS implements Model<PartitoBean>{
 	}
 
 	public void doSave(PartitoBean partito) throws SQLException {
+		throw new UnsupportedOperationException();
+	}
+	
+	public boolean doSaveCheck(PartitoBean partito, CandidatoBean candidato) throws SQLException {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
+		PreparedStatement preparedStatement2 = null;
 
 		String insertSQL = "INSERT INTO Partito (leader, nome, descrizione, n_votazioni_ricevute, logo) VALUES (?, ?, ?, ?, ?)";
-
+		
+		String insertCandidatoSQL = "INSERT INTO Candidato(codice_fiscale,nome,cognome,partito, curriculum, foto) VALUES (MD5(?), ?, ?, ?, ?, ?)";
+		
 		try {
 			connection = ds.getConnection();
 			connection.setAutoCommit(false);
@@ -127,8 +134,35 @@ public class PartitoModelDS implements Model<PartitoBean>{
 			preparedStatement.setInt(4, partito.getn_votazioni_ricevute());
             preparedStatement.setBytes(5, partito.getLogo());
 
-			preparedStatement.executeUpdate();
+            int result = preparedStatement.executeUpdate();
+            if (result != 1) {
+				try {
+					connection.rollback();
+				} catch (SQLException e) {
+					Utility.printSQLException(e);
+				}
+				return false;
+			}
+            
+            preparedStatement2 = connection.prepareStatement(insertCandidatoSQL);
+            preparedStatement2.setString(1, candidato.getCf());
+            preparedStatement2.setString(2, candidato.getNome());
+            preparedStatement2.setString(3, candidato.getCognome());
+            preparedStatement2.setString(4, candidato.getPartito());
+            preparedStatement2.setString(5, candidato.getCurriculum());
+            preparedStatement2.setBytes(6, candidato.getFoto());
+            
+            result = preparedStatement2.executeUpdate();
 
+            if (result != 1) {
+				try {
+					connection.rollback();
+				} catch (SQLException e) {
+					Utility.printSQLException(e);
+				}
+				return false;
+			}
+            
 			connection.commit();
 
 		} finally {
@@ -141,6 +175,8 @@ public class PartitoModelDS implements Model<PartitoBean>{
 				}
 			}
 		}
+		
+		return true;
 	}
 
 	public void doUpdate(PartitoBean partito) throws SQLException {

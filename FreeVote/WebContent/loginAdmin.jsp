@@ -2,7 +2,7 @@
     pageEncoding="UTF-8" import="java.util.*, model.*"%>
 
 <%
-	boolean loggedIn = request.getSession() != null && request.getSession().getAttribute("adminRoles")!= null;
+	boolean loggedIn = request.getSession(false) != null && request.getSession(false).getAttribute("adminRoles")!= null;
 
 	if(loggedIn) {
 		response.sendRedirect(response.encodeRedirectURL("admin/interfacciaAdmin.jsp"));
@@ -21,7 +21,7 @@
 </head>            
 
 <body>
-	<%@ include file="header.html"%>
+	<%@ include file="header.jsp"%>
     
     <form action="Administrator" method="post"> 
         <fieldset>

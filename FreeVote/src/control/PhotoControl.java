@@ -34,7 +34,6 @@ public class PhotoControl extends HttpServlet {
 			PartitoModelDS partitoModel = new PartitoModelDS(ds);
 			try {
 				PartitoBean partito = partitoModel.doRetrieveByKey(id);
-				System.out.println(partito.getNome());
 				bt = partito.getLogo();
 				
 			} catch (SQLException e) {

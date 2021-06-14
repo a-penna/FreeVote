@@ -8,7 +8,7 @@
 	<title>FreeVote &dash; 404</title>
 </head>
 <body>
-	<%@ include file="/header.html"%>
+	<%@ include file="/header.jsp"%>
 	<br/>
 	<h1>Errore 404&colon; Risorsa non trovata&excl;</h1>
 </body>

@@ -22,7 +22,7 @@
 </head>            
 
 <body>
-	<%@ include file="header.html"%>
+	<%@ include file="header.jsp"%>
     <br/>
     <h1>Risultati&colon;</h1>
         <%

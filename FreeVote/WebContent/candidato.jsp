@@ -20,7 +20,7 @@
 	<title>FreeVote &dash; <%=candidato.getNome()%> <%=candidato.getCognome()%> </title>
 </head>
 <body>
-	<%@ include file="header.html"%>
+	<%@ include file="header.jsp"%>
 	<h1><%=candidato.getNome()%> <%=candidato.getCognome()%></h1> 
     <a href="Partito?nome=<%=candidato.getPartito()%>"><%=candidato.getPartito()%></a>
 	<img src="PhotoControl?type=candidato&id=<%=candidato.getCf()%>" onerror="this.src='./imgs/nophoto.png'">

@@ -20,7 +20,7 @@
 	<title>FreeVote &dash; Referendum</title>
 </head>
 <body>
-	<%@ include file="header.html"%>
+	<%@ include file="header.jsp"%>
 	
 	<p>Di seguito la lista di tutte le mozioni che hanno portato all&apos;attuale referendum&comma; 
 	cliccando sull&apos;id sar&agrave; possibile visualizzare il testo intero della mozione corrispondente&colon; </p>

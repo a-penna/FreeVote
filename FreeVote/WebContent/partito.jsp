@@ -22,7 +22,7 @@
 	<title>FreeVote &dash; <%=partito.getNome()%> </title>
 </head>
 <body>
-	<%@ include file="header.html"%>
+	<%@ include file="header.jsp"%>
 	<h1><%=partito.getNome()%></h1>
 	<img src="PhotoControl?type=partito&id=<%=partito.getNome()%>" onerror="this.src='./imgs/nologo.png'">
     <br>

@@ -16,7 +16,7 @@
     
     <h3>Seleziona l'operazione da effettuare&colon;</h3>
     <br>
-    <a href="">Inserisci un nuovo partito</a>
+    <a href="<%=response.encodeURL("/FreeVote/admin/inserisciPartito.jsp")%>">Inserisci un nuovo partito</a>
     <br>
     <a href="<%=response.encodeURL("/FreeVote/admin/eliminaPartito.jsp")%>">Elimina un partito</a>
     <br>

@@ -12,7 +12,7 @@
 </head>            
 
 <body>
-	<%@ include file="header.html"%>
+	<%@ include file="header.jsp"%>
     <br/>
     <a href="voto.html">Vota</a>   
 </body>

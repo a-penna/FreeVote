@@ -22,7 +22,7 @@
 	<title>FreeVote &dash; Mozione <%=mozione.getID()%> </title>
 </head>
 <body>
-	<%@ include file="header.html"%>
+	<%@ include file="header.jsp"%>
 	<h1>Testo della mozione <%=mozione.getID()%></h1>
 	<p><%=mozione.getTesto()%></p>
 	<br>

@@ -12,21 +12,19 @@
 </head>
 <body>
 
-<%@ include file="header.html"%>
-<br>
+	<%@ include file="header.jsp"%>
+	<br>
 
-<h3>Lista Autori del sito: </h3>
-<br>
-<p>Alessandro Penna <b>Email&colon; email@prova.com</b> </p>
-<br>
-<p>Lidia Cozzolino <b>Email&colon; email@prova.com</b> </p>
-<br>
-<p>Riccardo Napoli <b>Email&colon; email@prova.com</b> </p>
-<br>
-<p>Sabato Bene <b>Email&colon; email@prova.com</b> </p>
-<br>
-
-<a href="home.jsp">Torna alla Home</a>
+	<h3>Lista Autori del sito: </h3>
+	<br>
+	<p>Alessandro Penna <b>Email&colon; email@prova.com</b> </p>
+	<br>
+	<p>Lidia Cozzolino <b>Email&colon; email@prova.com</b> </p>
+	<br>
+	<p>Riccardo Napoli <b>Email&colon; email@prova.com</b> </p>
+	<br>
+	<p>Sabato Bene <b>Email&colon; email@prova.com</b> </p>
+	<br>
 
 </body>
 </html>

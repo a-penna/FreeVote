@@ -21,7 +21,7 @@
 </head>            
 
 <body>
-	<%@ include file="header.html"%>
+	<%@ include file="header.jsp"%>
     <br>
     <h1>Lista partiti&colon;</h1>
     <br>
