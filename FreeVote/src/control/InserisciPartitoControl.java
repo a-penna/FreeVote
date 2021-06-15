@@ -1,18 +1,22 @@
 package control;
 
 import java.io.IOException;
+//import java.io.InputStream;
 import java.sql.SQLException;
 
 import javax.servlet.ServletException;
+//import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+//import javax.servlet.http.Part;
 import javax.sql.DataSource;
 
 import model.*;
 import utils.Utility;
 
+//@MultipartConfig(maxFileSize = 16177215)
 @WebServlet("/InserisciPartito")
 public class InserisciPartitoControl extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -41,11 +45,27 @@ public class InserisciPartitoControl extends HttpServlet {
 		System.out.println(cf);
 		String curriculum = request.getParameter("curriculum");
 		System.out.println(curriculum);
+		
+         
 		if (nome == null || descrizione == null || nomeLeader == null || cognomeLeader == null || cf == null || curriculum == null) {
 			response.sendRedirect(response.encodeRedirectURL("/FreeVote/admin/inserisciPartito.jsp"));
 			return;
 		}
 		
+		/*InputStream streamLogo = null; 
+		
+		Part filePart = request.getPart("logo");
+		if (filePart != null) {
+			streamLogo = filePart.getInputStream();
+		}
+		
+		InputStream streamFoto = null; 
+		
+		filePart = request.getPart("foto");
+		if (filePart != null) {
+			streamFoto = filePart.getInputStream();
+		}*/
+
 		DataSource ds = (DataSource) getServletContext().getAttribute("DataSource");
 		PartitoModelDS model = new PartitoModelDS(ds);
 		
@@ -57,7 +77,7 @@ public class InserisciPartitoControl extends HttpServlet {
 			partito.setDescrizione(descrizione);
 			partito.setLeader(nomeLeader + " " + cognomeLeader);
 			partito.setn_votazioni_ricevute(0);
-			//partito.setLogo(null);
+			//partito.setLogo(streamLogo.readAllBytes());
 			
 			CandidatoBean candidato = new CandidatoBean();
 			candidato.setNome(nomeLeader);
@@ -65,7 +85,7 @@ public class InserisciPartitoControl extends HttpServlet {
 			candidato.setCf(cf);
 			candidato.setCurriculum(curriculum);
 			candidato.setPartito(nome);
-			//candidato.setFoto(null);
+			//candidato.setFoto(streamFoto.readAllBytes());
 
 			boolean flag = model.doSaveCheck(partito, candidato);
 			

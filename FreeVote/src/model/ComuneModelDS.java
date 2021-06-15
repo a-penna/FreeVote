@@ -27,6 +27,7 @@ public class ComuneModelDS implements Model<ComuneBean> {
 			connection = ds.getConnection();
 			preparedStatement = connection.prepareStatement(selectSQL);
 			preparedStatement.setString(1, key);
+			preparedStatement.setString(2, key2);
 
 			ResultSet rs = preparedStatement.executeQuery();
 
