@@ -5,7 +5,7 @@
 	Collection<?> partiti = (Collection<?>) request.getAttribute("partiti");
 
 	if (partiti == null) {
-  	  response.sendRedirect(response.encodeRedirectURL("./InfoVoto"));
+  	  response.sendRedirect(response.encodeRedirectURL("FreeVote/InfoVoto"));
    	 return;
 	}
 %>    
@@ -28,7 +28,7 @@
 	<%@ include file="/header.jsp"%>
     <br/>
     <h3>SCHEDA</h3>
-    <form action="/GestisciVoto" method="post">
+    <form action="FreeVote/GestisciVoto" method="post">
  	<%
         Iterator<?> it = partiti.iterator();
         while(it.hasNext()) {

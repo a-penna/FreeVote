@@ -32,7 +32,7 @@ public class InfoVoto extends HttpServlet {
 			Utility.printSQLException(e);
 		}
 
-		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher(response.encodeURL("/schedaVoto.jsp"));
+		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher(response.encodeURL("FreeVote/elettore/schedaVoto.jsp"));
 		dispatcher.forward(request, response);
 	}
 
