@@ -5,14 +5,10 @@
 	Collection<?> partiti = (Collection<?>) request.getAttribute("partiti");
 
 	if (partiti == null) {
-  	  response.sendRedirect(response.encodeRedirectURL("FreeVote/InfoVoto"));
+  	  response.sendRedirect(response.encodeRedirectURL("/FreeVote/InfoVoto"));
    	 return;
 	}
 %>    
-
-
-
-
 
 <!DOCTYPE html>
 <html>
@@ -28,16 +24,16 @@
 	<%@ include file="/header.jsp"%>
     <br/>
     <h3>SCHEDA</h3>
-    <form action="FreeVote/GestisciVoto" method="post">
+    <form action="GestisciVoto" method="post">
  	<%
         Iterator<?> it = partiti.iterator();
         while(it.hasNext()) {
             PartitoBean partito = (PartitoBean)it.next(); 
             if (!partito.getNome().equals("Scheda Bianca")) {
     %>
-    			<img src="PhotoControl?type=partito&id=<%=partito.getNome()%>" onerror="this.src='./imgs/nologo.png'">
+    			<img src="/FreeVote/PhotoControl?type=partito&id=<%=partito.getNome()%>" onerror="this.src='./imgs/nologo.png'">
             	<input type="radio" id="<%=partito.getNome()%>" name="<%=partito.getNome()%>" value="<%=partito.getNome()%>">
-            	<label for="<%=partito.getNome()%>"><a href="Partito?nome=<%=partito.getNome()%>"><%=partito.getNome()%></a></label>
+            	<label for="<%=partito.getNome()%>"><a href="/FreeVote/Partito?nome=<%=partito.getNome()%>"><%=partito.getNome()%></a></label>
             	
             	<br>
     <%   	}
