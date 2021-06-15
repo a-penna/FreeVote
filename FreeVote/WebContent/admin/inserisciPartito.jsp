@@ -16,7 +16,7 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
 	<%@ include file="/admin/admin-header.jsp"%>
 	<p>Inserisci i dati nel seguente form per registare un nuovo partito: <p>
 
-	<form action="<%=response.encodeURL("/FreeVote/InserisciPartito")%>" method="post"> 
+	<form action="<%=response.encodeURL("/FreeVote/InserisciPartito")%>" method="post"> <!--enctype="multipart/form-data"--> 
         <fieldset>
         <legend>Informazioni sul partito&colon; </legend>
         	<label for="nome">Nome&colon;</label>

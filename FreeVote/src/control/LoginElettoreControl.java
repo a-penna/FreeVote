@@ -24,62 +24,48 @@ public class LoginElettoreControl extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		    DataSource ds = (DataSource) getServletContext().getAttribute("DataSource");
-			ComuneModelDS comuneModel = new ComuneModelDS(ds);
-
-			if (request.getAttribute("listaComuni") == null) {
-				try {
-					Collection<ComuneBean> comuni = comuneModel.doRetrieveAll("nome");
-					request.setAttribute("listaComuni", comuni);
-					RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher(response.encodeURL("/loginElettore.jsp"));
-					dispatcher.forward(request, response);
-				} catch(SQLException e) {
-					Utility.printSQLException(e);
-				}
-			}
 			
 			String codice = request.getParameter("codice");
 			String password = request.getParameter("password");
-            String regione = request.getParameter("regione");
             String comune = request.getParameter("comune");
-            int eta = Integer.parseInt(request.getParameter("eta"));
+            String age = request.getParameter("eta");
             String sesso = request.getParameter("sesso");
-            String cap = request.getParameter("CAP");
-			
-			if (codice == null) {
-			 	response.sendRedirect(response.encodeRedirectURL("./loginElettore.jsp"));
-			 	return;
-			}
+            String cap = request.getParameter("cap");
 
-            ElettoreModelDS elettoreModel = new ElettoreModelDS(ds);		
-			String redirectedPage = "";
-
+			DataSource ds = (DataSource) getServletContext().getAttribute("DataSource");
+			ComuneModelDS comuneModel = new ComuneModelDS(ds);
 			try {
-				ComuneBean bean = comuneModel.doRetrieveByKey(comune, cap); 
+				Collection<ComuneBean> comuni = comuneModel.doRetrieveAll("nome");
+				request.setAttribute("listaComuni", comuni);
+				
+				if ( !(codice == null || codice.equals("") || comune.equals("") || age.equals("") || sesso.equals("") || cap.equals(""))) {
+					int eta = Integer.parseInt(age);
+					ComuneBean bean = comuneModel.doRetrieveByKey(comune, cap); 
 
-                if (bean.getNome().equals("")) {
-                    response.sendRedirect(response.encodeRedirectURL("./loginElettore.jsp"));
-			 	    return;
-                }
+					if (bean.getNome().equals("")) {
+						response.sendRedirect(response.encodeRedirectURL("./loginElettore.jsp"));
+						return;
+					}
 
-                String lista = bean.getListaCodiciPassword();
-				if (lista.contains(Utility.encryptMD5(codice+","+password))) {
-					request.getSession().setAttribute("elettoreRoles", "true");
-                    request.getSession().setAttribute("codice", codice);
-                    request.getSession().setAttribute("password", password);
-                    request.getSession().setAttribute("comune", comune);
-                    request.getSession().setAttribute("eta", eta);
-                    request.getSession().setAttribute("sesso", sesso);
-                    request.getSession().setAttribute("CAP", cap);
+					String lista = bean.getListaCodiciPassword();
+					if (lista.contains(Utility.encryptMD5(codice+","+password))) {
+						request.getSession().setAttribute("elettoreRoles", "true");
+						request.getSession().setAttribute("codice", codice);
+						request.getSession().setAttribute("password", password);
+						request.getSession().setAttribute("comune", comune);
+						request.getSession().setAttribute("eta", eta);
+						request.getSession().setAttribute("sesso", sesso);
+						request.getSession().setAttribute("CAP", cap);
 
-                    redirectedPage = "/elettore/schedaVoto.jsp";
-				} else {
-					redirectedPage = "/loginElettore.jsp";
+						response.sendRedirect(response.encodeRedirectURL("/FreeVote/elettore/schedaVoto.jsp"));
+						return;
+					}
 				}
 			} catch(SQLException e) {
 				Utility.printSQLException(e);
 			}
-			response.sendRedirect(request.getContextPath() + redirectedPage);
+			RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher(response.encodeURL("/loginElettore.jsp"));
+			dispatcher.forward(request, response);
 	}	
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)

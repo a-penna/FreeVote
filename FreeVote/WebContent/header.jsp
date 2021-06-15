@@ -3,9 +3,9 @@
 
 	<a href="<%=response.encodeURL("/FreeVote/home.jsp")%>">FreeVote</a>  <!--LOGO-->
 	
-	<% boolean logged = request.getSession(false) != null && request.getSession(false).getAttribute("adminRoles")!= null;
+	<% boolean isAdmin = request.getSession(false) != null && request.getSession(false).getAttribute("adminRoles")!= null;
 
-	if(logged) { %>
+	if(isAdmin) { %>
 		<a href="<%=response.encodeURL("/FreeVote/admin/interfacciaAdmin.jsp")%>">FreeVote Admin</a> <%
 	} %>
 	<br/>
@@ -20,3 +20,9 @@
 	<!--REFERENDUM-->
 	<a href="<%=response.encodeURL("/FreeVote/risultatireferendum.html")%>">Risultati Generali Referendum</a>
 	<a href="<%=response.encodeURL("/FreeVote/infoEContatti.jsp")%>">Info e contatti</a>
+	
+	<% boolean isElettore = request.getSession(false) != null && request.getSession(false).getAttribute("elettoreRoles")!= null;
+
+	if(isElettore) { %>
+		<a href="<%=response.encodeURL("/FreeVote/elettore/schedaVoto.jsp")%>">Vai alla scheda</a> <%
+	} %>
