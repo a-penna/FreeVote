@@ -1,4 +1,4 @@
-/*package model;
+package model;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,16 +9,48 @@ import java.util.LinkedList;
 
 import javax.sql.DataSource;
 
-import control.ListaPartitiControl;
-
-public class ComuneModelDS implements Model<Comune> {
+public class ComuneModelDS implements Model<ComuneBean> {
 	private DataSource ds;
 	
 	public ComuneModelDS(DataSource ds) {
 		this.ds = ds;
 	}
 	
+	public ComuneBean doRetrieveByKey(String key, String key2) throws SQLException {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		ComuneBean bean = new ComuneBean();
 
+		String selectSQL = "SELECT * FROM Comune1 NATURAL JOIN Comune2 WHERE nome=? AND cap=?";
+
+		try {
+			connection = ds.getConnection();
+			preparedStatement = connection.prepareStatement(selectSQL);
+			preparedStatement.setString(1, key);
+
+			ResultSet rs = preparedStatement.executeQuery();
+
+			if (rs.next()) {				
+				bean.setNome(rs.getString("nome"));
+                bean.setCAP(rs.getString("cap"));
+                bean.setListaCodiciPassword(rs.getString("LISTA_CODICI_E_PASSWORD_EMESSE"));
+                bean.setNAventiDiritto(rs.getInt("N_AVENTI_DIRITTO"));
+                bean.setRegione(rs.getString("NOME_REGIONE"));
+			}
+
+		} finally {
+			try {
+				if (preparedStatement != null)
+					preparedStatement.close();
+			} finally {
+				if (connection != null) {
+					connection.close();
+				}
+			}
+		}
+		
+		return bean;
+	}
 	
 	public Collection<ComuneBean> doRetrieveAll(String order) throws SQLException {
 		Connection connection = null;
@@ -28,14 +60,13 @@ public class ComuneModelDS implements Model<Comune> {
 
 		String selectSQL = "SELECT * FROM Comune1 NATURAL JOIN Comune2";
 
-		if (order != null && !order.equals("") && (order == "nome" || order == "cap" || order == "n_aventi_diritto")) {
+		if (order != null && !order.equals("") && (order.equals("nome") || order.equals("cap") || order.equals("n_aventi_diritto"))) {
 			selectSQL += " ORDER BY " + order;
 		}
 
 		try {
 			connection = ds.getConnection();
 			preparedStatement = connection.prepareStatement(selectSQL);
-
 			ResultSet rs = preparedStatement.executeQuery();
 
 			while (rs.next()) {
@@ -43,7 +74,7 @@ public class ComuneModelDS implements Model<Comune> {
                 bean.setNome(rs.getString("nome"));
                 bean.setCAP(rs.getString("cap"));
                 bean.setListaCodiciPassword(rs.getString("LISTA_CODICI_E_PASSWORD_EMESSE"));
-                bean.setNAventiDiritto(rs.getString("N_AVENTI_DIRITTO"));
+                bean.setNAventiDiritto(rs.getInt("N_AVENTI_DIRITTO"));
                 bean.setRegione(rs.getString("NOME_REGIONE"));
 
 				comuni.add(bean);
@@ -70,52 +101,15 @@ public class ComuneModelDS implements Model<Comune> {
 		throw new UnsupportedOperationException();
 	}
 
-	public void doDelete(AdminBean admin) throws SQLException {
+	public void doDelete(ComuneBean admin) throws SQLException {
         throw new UnsupportedOperationException();
     }
 
-    public void doRetrieveByKey(String key) throws SQLException {
+    public ComuneBean doRetrieveByKey(String key) throws SQLException {
         throw new UnsupportedOperationException();
     }
-	@Override
-	public ComuneBean doRetrieveByKey(String key, String key2) throws SQLException {
-		Connection connection = null;
-		PreparedStatement preparedStatement = null;
-		AdminBean bean = new AdminBean();
-		
 
-		String selectSQL = "SELECT * FROM Admin WHERE nomeutente = MD5(?)";
 
-		try {
-			connection = ds.getConnection();
-			preparedStatement = connection.prepareStatement(selectSQL);
-			preparedStatement.setString(1, key);
-
-			ResultSet rs = preparedStatement.executeQuery();
-
-			while (rs.next()) {
-								
-				
-				bean.setPassword(rs.getString("password"));
-				bean.setnomeUtente(rs.getString("nomeutente"));
-				
-				
-			}
-
-		} finally {
-			try {
-				if (preparedStatement != null)
-					preparedStatement.close();
-			} finally {
-				if (connection != null) {
-					connection.close();
-				}
-			}
-		}
-		
-		return bean;
-	}
 }
-
-	*/
+	
 

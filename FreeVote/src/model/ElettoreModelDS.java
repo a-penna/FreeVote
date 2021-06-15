@@ -113,11 +113,11 @@ public class ElettoreModelDS implements Model<ElettoreBean>{
 	}
 
 	public void doSave(ElettoreBean bean) throws SQLException {
-		
+		throw new UnsupportedOperationException();
 	}
 
 	public void doUpdate(ElettoreBean bean) throws SQLException {
-		
+		throw new UnsupportedOperationException();
 	}
 	
 	public boolean doDeleteCheck(ElettoreBean bean) throws SQLException {

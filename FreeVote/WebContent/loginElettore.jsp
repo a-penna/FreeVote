@@ -1,5 +1,13 @@
-<!-- <%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="java.util.*, model.*"%>
+
+<% 
+	Collection<?> comuni = (Collection<?>) request.getAttribute("listaComuni");
+    if (comuni == null) {
+        response.sendRedirect(response.encodeURL("/FreeVote/Elettore"));
+        return;
+    }
+%>
 
 <!DOCTYPE html>
 <html>
@@ -34,11 +42,21 @@
             <input type="radio" id="Femmina" name="sesso" value="Femmina">
             <label for="female">Femmina</label><br>
             
-            <select name="regione" size="20" <% %>>
-                
-            </select> <br>
-       </fieldset>
+            <label for="comune">Comune&colon; </label>
+            <select name="comune">
+            <%
+            Iterator<?> it = comuni.iterator();
+            while(it.hasNext()) {
+                ComuneBean bean = (ComuneBean)it.next(); 
+            %>
+            <option value="<%=bean.getNome()%>"><%=bean.getNome()%></option>
+            <%  } 
+            %>
+        </select> 
+        <br>
+        <input type="submit" value="Login"/>
+    </fieldset>
     </form> 
 
 </body>
-</html> -->
+</html> 

@@ -1,8 +1,10 @@
-/*package control;
+package control;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Collection;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,8 +12,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 
-import model.*;
-import utils.*;
+import model.ComuneBean;
+import model.ComuneModelDS;
+import model.ElettoreModelDS;
+import utils.Utility;
  
 
 @WebServlet("/Elettore")
@@ -21,6 +25,18 @@ public class LoginElettoreControl extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		    DataSource ds = (DataSource) getServletContext().getAttribute("DataSource");
+			ComuneModelDS comuneModel = new ComuneModelDS(ds);
+
+			if (request.getAttribute("listaComuni") == null) {
+				try {
+					Collection<ComuneBean> comuni = comuneModel.doRetrieveAll("nome");
+					request.setAttribute("listaComuni", comuni);
+					RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher(response.encodeURL("/loginElettore.jsp"));
+					dispatcher.forward(request, response);
+				} catch(SQLException e) {
+					Utility.printSQLException(e);
+				}
+			}
 			
 			String codice = request.getParameter("codice");
 			String password = request.getParameter("password");
@@ -34,8 +50,7 @@ public class LoginElettoreControl extends HttpServlet {
 			 	response.sendRedirect(response.encodeRedirectURL("./loginElettore.jsp"));
 			 	return;
 			}
-			
-		    ComuneModelDS comuneModel = new ComuneModelDS(ds);
+
             ElettoreModelDS elettoreModel = new ElettoreModelDS(ds);		
 			String redirectedPage = "";
 
@@ -57,7 +72,7 @@ public class LoginElettoreControl extends HttpServlet {
                     request.getSession().setAttribute("sesso", sesso);
                     request.getSession().setAttribute("CAP", cap);
 
-                    redirectedPage = "/elettore/interfacciaVoto.jsp";
+                    redirectedPage = "/elettore/schedaVoto.jsp";
 				} else {
 					redirectedPage = "/loginElettore.jsp";
 				}
@@ -72,4 +87,3 @@ public class LoginElettoreControl extends HttpServlet {
 		doPost(request, response);
 	}
 }
-*/

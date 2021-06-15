@@ -14,6 +14,6 @@
 <body>
 	<%@ include file="header.jsp"%>
     <br/>
-    <a href="voto.html">Vota</a>   
+    <a href="/FreeVote/Elettore">Vota</a>   
 </body>
 </html>
