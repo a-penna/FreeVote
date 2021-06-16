@@ -9,6 +9,8 @@ import java.util.LinkedList;
 
 import javax.sql.DataSource;
 
+import utils.Utility;
+
 public class VotazionePoliticaModelDS implements Model<VotazionePoliticaBean> {
 	private DataSource ds;
 	
@@ -166,9 +168,148 @@ public class VotazionePoliticaModelDS implements Model<VotazionePoliticaBean> {
 		return votazioni;
 	}
 
-	public void doSave(VotazionePoliticaBean voto) throws SQLException {
-		Connection connection = null;
-		PreparedStatement preparedStatement = null;
+	public void doSave(VotazionePoliticaBean voto) throws SQLException{
+		throw new UnsupportedOperationException();
+	}
+
+	public void doSave(VotazionePoliticaBean voto, ElettoreBean elettore) throws SQLException {
+
+    	Connection connection = null;
+		PreparedStatement preparedStatement1 = null;
+		PreparedStatement preparedStatement2 = null;
+		PreparedStatement preparedStatement3 = null;
+		PreparedStatement preparedStatement4 = null;
+		PreparedStatement preparedStatement5 = null;
+
+		
+		ResultSet rs = null;
+	
+		/*try {
+			con = DBConnectionPool.getConnection(user, pass);	
+						
+			String sql = "SELECT lista_codici_e_password_emesse "
+        			   + "FROM Comune1 "
+        			   + "WHERE nome=? AND cap=?";
+        
+			ps = con.prepareStatement(sql);
+			ps.setString(1, );
+			ps.setString(2,e.getComuneCAP());
+			rs = ps.executeQuery();
+			
+			int result = 0;
+			if(rs.next()) {		
+				String lista = rs.getString(1);
+				
+				String nuovo = lista.replace(Utility.encryptMD5(e.getCodice()+","+e.getPassword()),"");
+				sql = "UPDATE Comune1 "
+					+ "SET lista_codici_e_password_emesse=? "
+					+ "WHERE nome=? AND cap=?";
+				ps2 = con.prepareStatement(sql);
+				ps2.setString(1,nuovo);
+				ps2.setString(2, e.getComuneNome());
+				ps2.setString(3,e.getComuneCAP());
+				result = ps2.executeUpdate();
+				if (result <= 0) {
+					System.out.println("\nImpossibile entrare, riprovare!\n");
+					return;
+				}		
+			}
+			
+			sql = "INSERT INTO Elettore(codice,password,sesso,eta,comunenome,comunecap) "
+				+ "VALUES (MD5(?),MD5(?),?,?,?,?)";
+
+			ps3 = con.prepareStatement(sql);
+			ps3.setString(1, e.getCodice());
+			ps3.setString(2, e.getPassword());
+			ps3.setString(3, "" + e.getSesso());
+			ps3.setInt(4, e.getEta());
+			ps3.setString(5,e.getComuneNome());
+			ps3.setString(6, e.getComuneCAP());
+			ps3.setString(1, e.getCodice());
+            result = ps3.executeUpdate();
+            if (result <= 0) {
+				System.out.println("\nImpossibile inserire la votazione nel sistema!\n");
+				try {
+    				con.rollback();
+    			} catch (SQLException exc) {
+    				System.err.println(exc.getMessage());
+    			}
+				return;
+			}
+            
+            sql = "INSERT INTO Votazione_Politica(data,elettore,partito) "
+            	+ "VALUES (?,MD5(?),?)";
+            
+			ps4 = con.prepareStatement(sql);
+            if (vp.getData() != null) {
+				ps4.setDate(1, Utility.toSqlDate(vp.getData()));
+			} else {
+				ps4.setObject(1, null);
+			} 
+            ps4.setString(2, vp.getElettore());
+            ps4.setString(3, vp.getPartito());
+            result = ps4.executeUpdate();
+            if (result <= 0) {
+            	System.out.println("\nImpossibile inserire la votazione nel sistema!\n");
+            	try {
+    				con.rollback();
+    			} catch (SQLException exc) {
+    				System.err.println(exc.getMessage());
+    			}
+            	return;
+			}
+            
+            sql = "UPDATE Partito SET n_votazioni_ricevute=n_votazioni_ricevute+1 "
+            	+ "WHERE nome=? ";
+                
+            ps5 = con.prepareStatement(sql);
+            ps5.setString(1, vp.getPartito());
+            
+            result = ps5.executeUpdate();
+            if (result <= 0) {
+            	System.out.println("\nImpossibile inserire la votazione nel sistema!\n");
+            	try {
+            		con.rollback();
+            	} catch (SQLException exc) {
+            		System.err.println(exc.getMessage());
+            	}
+            	return;
+			}
+
+            con.commit();
+		} catch (SQLException s) {
+			try {
+				con.rollback();
+			} catch (SQLException exc) {
+				System.out.println(exc.getMessage());
+			}
+			System.out.println("\nERRORE NELL'INSERIMENTO VOTAZIONE!\n");
+			Utility.printSQLException(s);
+		} finally {
+			try {
+				if (rs != null)
+					rs.close();
+				if (ps != null)
+					ps.close();
+				if (ps2 != null)
+					ps2.close();
+				if (ps3 != null)
+					ps3.close();
+				if (ps4 != null)
+					ps4.close();
+				if (ps5 != null)
+					ps5.close();
+				if (ps6 != null)
+					ps6.close();
+				DBConnectionPool.releaseConnection(con);
+			} catch (SQLException s) {
+				System.err.println(s.getMessage());
+				Utility.printSQLException(s);
+			}
+        }
+    }
+    
+		
 
 		String insertSQL = "INSERT INTO Votazione_Politica(data,elettore,partito) VALUES (?,MD5(?),?)";
 
@@ -198,8 +339,8 @@ public class VotazionePoliticaModelDS implements Model<VotazionePoliticaBean> {
 					connection.close();
 				}
 			}
-		}
-	}
+		} */
+	} 
 
 	public void doUpdate(VotazionePoliticaBean mozione) throws SQLException {
 		throw new UnsupportedOperationException();

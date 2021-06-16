@@ -18,7 +18,7 @@ import model.PartitoModelDS;
 import utils.Utility;
 
 @WebServlet("/InfoVoto")
-public class InfoVoto extends HttpServlet {
+public class InfoVotoControl extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -32,7 +32,7 @@ public class InfoVoto extends HttpServlet {
 			Utility.printSQLException(e);
 		}
 
-		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher(response.encodeURL("/FreeVote/elettore/schedaVoto.jsp"));
+		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher(response.encodeURL("/elettore/schedaVoto.jsp"));
 		dispatcher.forward(request, response);
 	}
 

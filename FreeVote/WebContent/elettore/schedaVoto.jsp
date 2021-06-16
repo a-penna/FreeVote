@@ -32,7 +32,7 @@
             if (!partito.getNome().equals("Scheda Bianca")) {
     %>
     			<img src="/FreeVote/PhotoControl?type=partito&id=<%=partito.getNome()%>" onerror="this.src='./imgs/nologo.png'">
-            	<input type="radio" id="<%=partito.getNome()%>" name="<%=partito.getNome()%>" value="<%=partito.getNome()%>">
+            	<input type="radio" id="partitoScelto" name="partitoScelto" value="<%=partito.getNome()%>">
             	<label for="<%=partito.getNome()%>"><a href="/FreeVote/Partito?nome=<%=partito.getNome()%>"><%=partito.getNome()%></a></label>
             	
             	<br>
