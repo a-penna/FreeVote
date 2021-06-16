@@ -12,9 +12,9 @@
 </head>            
 
 <body>
-	<%@ include file="admin-header.jsp"%>
+	<%@ include file="/header.jsp"%>
 	<h2>SUCCESSO</h2>
 	<br>
-	<a href="<%=response.encodeURL("/FreeVote/admin/interfacciaAdmin.jsp")%>">Ritorna all'interfaccia admin</a>
+	<a href="<%=response.encodeURL("/FreeVote/home.jsp")%>">Ritorna</a>
 </body>
 </html> 

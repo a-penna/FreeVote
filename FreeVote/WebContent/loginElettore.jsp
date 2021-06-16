@@ -41,9 +41,9 @@
             <label for="eta">Età</label>
             <input type="number" id="eta" name="eta" min="18" max="130">
             <br>
-            <input type="radio" id="Maschio" name="sesso" value="Maschio">
+            <input type="radio" id="Maschio" name="sesso" value="M">
             <label for="male">Maschio</label><br>
-            <input type="radio" id="Femmina" name="sesso" value="Femmina">
+            <input type="radio" id="Femmina" name="sesso" value="F">
             <label for="female">Femmina</label><br>
             
             <label for="comune">Comune&colon; </label>

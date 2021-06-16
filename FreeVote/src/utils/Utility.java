@@ -56,10 +56,12 @@ public class Utility {
 	public static void printSQLException(SQLException ex) {
 		//System.out.println("Info sulla SQLException:\n");
 		while (ex != null) {
-			//System.out.println("Message: " + ex.getMessage());
+			System.out.println("Message: " + ex.getMessage());
 			System.out.println("SQLState: " + ex.getSQLState());
 			System.out.println("ErrorCode: " + ex.getErrorCode());
+			ex.printStackTrace();
 			ex = ex.getNextException();
+			
 		}
 	}
 	

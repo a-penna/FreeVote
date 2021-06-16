@@ -172,174 +172,128 @@ public class VotazionePoliticaModelDS implements Model<VotazionePoliticaBean> {
 		throw new UnsupportedOperationException();
 	}
 
-	public void doSave(VotazionePoliticaBean voto, ElettoreBean elettore) throws SQLException {
-
+	public boolean doSaveCheck(VotazionePoliticaBean voto, ElettoreBean elettore) throws SQLException {
     	Connection connection = null;
 		PreparedStatement preparedStatement1 = null;
 		PreparedStatement preparedStatement2 = null;
 		PreparedStatement preparedStatement3 = null;
 		PreparedStatement preparedStatement4 = null;
 		PreparedStatement preparedStatement5 = null;
-
 		
 		ResultSet rs = null;
 	
-		/*try {
-			con = DBConnectionPool.getConnection(user, pass);	
-						
-			String sql = "SELECT lista_codici_e_password_emesse "
+		try {
+			connection = ds.getConnection();	
+			connection.setAutoCommit(false);		
+			String selectSQL = "SELECT lista_codici_e_password_emesse "
         			   + "FROM Comune1 "
         			   + "WHERE nome=? AND cap=?";
         
-			ps = con.prepareStatement(sql);
-			ps.setString(1, );
-			ps.setString(2,e.getComuneCAP());
-			rs = ps.executeQuery();
+			preparedStatement1 = connection.prepareStatement(selectSQL);
+			preparedStatement1.setString(1, elettore.getComune());
+			preparedStatement1.setString(2, elettore.getCap());
+			rs = preparedStatement1.executeQuery();
 			
 			int result = 0;
 			if(rs.next()) {		
 				String lista = rs.getString(1);
 				
-				String nuovo = lista.replace(Utility.encryptMD5(e.getCodice()+","+e.getPassword()),"");
-				sql = "UPDATE Comune1 "
+				String nuovo = lista.replace(Utility.encryptMD5(elettore.getCodice()+ "," + elettore.getPassword()),"");
+				String updateSQL = "UPDATE Comune1 "
 					+ "SET lista_codici_e_password_emesse=? "
 					+ "WHERE nome=? AND cap=?";
-				ps2 = con.prepareStatement(sql);
-				ps2.setString(1,nuovo);
-				ps2.setString(2, e.getComuneNome());
-				ps2.setString(3,e.getComuneCAP());
-				result = ps2.executeUpdate();
-				if (result <= 0) {
-					System.out.println("\nImpossibile entrare, riprovare!\n");
-					return;
+				preparedStatement2 = connection.prepareStatement(updateSQL);
+				preparedStatement2.setString(1,nuovo);
+				preparedStatement2.setString(2, elettore.getComune());
+				preparedStatement2.setString(3, elettore.getCap());
+				result = preparedStatement2.executeUpdate();
+				if (result != 1) {
+					try {
+						connection.rollback();
+					} catch(SQLException e) {
+						Utility.printSQLException(e);
+					}
+					return false;
 				}		
 			}
 			
-			sql = "INSERT INTO Elettore(codice,password,sesso,eta,comunenome,comunecap) "
-				+ "VALUES (MD5(?),MD5(?),?,?,?,?)";
+			String insertSQL = "INSERT INTO Elettore(codice,password,sesso,eta,comunenome,comunecap) "
+				+ "VALUES (?,?,?,?,?,?)";
 
-			ps3 = con.prepareStatement(sql);
-			ps3.setString(1, e.getCodice());
-			ps3.setString(2, e.getPassword());
-			ps3.setString(3, "" + e.getSesso());
-			ps3.setInt(4, e.getEta());
-			ps3.setString(5,e.getComuneNome());
-			ps3.setString(6, e.getComuneCAP());
-			ps3.setString(1, e.getCodice());
-            result = ps3.executeUpdate();
-            if (result <= 0) {
-				System.out.println("\nImpossibile inserire la votazione nel sistema!\n");
-				try {
-    				con.rollback();
-    			} catch (SQLException exc) {
-    				System.err.println(exc.getMessage());
-    			}
-				return;
-			}
+			preparedStatement3 = connection.prepareStatement(insertSQL);
+			preparedStatement3.setString(1, elettore.getCodice());
+			preparedStatement3.setString(2, elettore.getPassword());
+			preparedStatement3.setString(3, elettore.getSesso());
+			preparedStatement3.setInt(4, elettore.getEta());
+			preparedStatement3.setString(5, elettore.getComune());
+			preparedStatement3.setString(6, elettore.getCap());
+            result = preparedStatement3.executeUpdate();
+         	if (result != 1) {
+					try {
+						connection.rollback();
+					} catch(SQLException e) {
+						Utility.printSQLException(e);
+					}
+					return false;
+				}
             
-            sql = "INSERT INTO Votazione_Politica(data,elettore,partito) "
-            	+ "VALUES (?,MD5(?),?)";
+            String insertVotoSQL = "INSERT INTO Votazione_Politica(data,elettore,partito) "
+            	+ "VALUES (?,?,?)";
             
-			ps4 = con.prepareStatement(sql);
-            if (vp.getData() != null) {
-				ps4.setDate(1, Utility.toSqlDate(vp.getData()));
+			preparedStatement4 = connection.prepareStatement(insertVotoSQL);
+            if (voto.getData() != null) {
+				preparedStatement4.setDate(1, voto.getData());
 			} else {
-				ps4.setObject(1, null);
+				preparedStatement4.setObject(1, null);
 			} 
-            ps4.setString(2, vp.getElettore());
-            ps4.setString(3, vp.getPartito());
-            result = ps4.executeUpdate();
-            if (result <= 0) {
-            	System.out.println("\nImpossibile inserire la votazione nel sistema!\n");
+            preparedStatement4.setString(2, voto.getElettore());
+            preparedStatement4.setString(3, voto.getPartito());
+            result = preparedStatement4.executeUpdate();
+            if (result != 1) {
             	try {
-    				con.rollback();
-    			} catch (SQLException exc) {
-    				System.err.println(exc.getMessage());
+    				connection.rollback();
+    			} catch (SQLException e) {
+    				Utility.printSQLException(e);
     			}
-            	return;
+            	return false;
 			}
             
-            sql = "UPDATE Partito SET n_votazioni_ricevute=n_votazioni_ricevute+1 "
+            String updatePartitoSQL = "UPDATE Partito SET n_votazioni_ricevute=n_votazioni_ricevute+1 "
             	+ "WHERE nome=? ";
                 
-            ps5 = con.prepareStatement(sql);
-            ps5.setString(1, vp.getPartito());
+            preparedStatement5 = connection.prepareStatement(updatePartitoSQL);
+            preparedStatement5.setString(1, voto.getPartito());
             
-            result = ps5.executeUpdate();
-            if (result <= 0) {
-            	System.out.println("\nImpossibile inserire la votazione nel sistema!\n");
+            result = preparedStatement5.executeUpdate();
+            if (result != 1) {
             	try {
-            		con.rollback();
-            	} catch (SQLException exc) {
-            		System.err.println(exc.getMessage());
+            		connection.rollback();
+            	} catch (SQLException e) {
+            		Utility.printSQLException(e);
             	}
-            	return;
+            	return false;
 			}
 
-            con.commit();
-		} catch (SQLException s) {
-			try {
-				con.rollback();
-			} catch (SQLException exc) {
-				System.out.println(exc.getMessage());
-			}
-			System.out.println("\nERRORE NELL'INSERIMENTO VOTAZIONE!\n");
-			Utility.printSQLException(s);
+            connection.commit();
 		} finally {
 			try {
-				if (rs != null)
-					rs.close();
-				if (ps != null)
-					ps.close();
-				if (ps2 != null)
-					ps2.close();
-				if (ps3 != null)
-					ps3.close();
-				if (ps4 != null)
-					ps4.close();
-				if (ps5 != null)
-					ps5.close();
-				if (ps6 != null)
-					ps6.close();
-				DBConnectionPool.releaseConnection(con);
-			} catch (SQLException s) {
-				System.err.println(s.getMessage());
-				Utility.printSQLException(s);
-			}
-        }
-    }
-    
-		
-
-		String insertSQL = "INSERT INTO Votazione_Politica(data,elettore,partito) VALUES (?,MD5(?),?)";
-
-		try {
-			connection = ds.getConnection();
-			connection.setAutoCommit(false);
-			preparedStatement = connection.prepareStatement(insertSQL);
-
-			if (voto.getData() != null) {
-				preparedStatement.setDate(1, voto.getData());
-			} else {
-				preparedStatement.setObject(1, null);
-			} 
-			preparedStatement.setString(2, voto.getElettore());
-			preparedStatement.setString(3, voto.getPartito());
-
-			preparedStatement.executeUpdate();
-
-			connection.commit();
-
-		} finally {
-			try {
-				if (preparedStatement != null)
-					preparedStatement.close();
+				if (preparedStatement5 != null)
+					preparedStatement5.close();
+				if (preparedStatement4 != null)
+					preparedStatement4.close();
+				if (preparedStatement3 != null)
+					preparedStatement3.close();
+				if (preparedStatement2 != null)
+					preparedStatement2.close();
+				if (preparedStatement1 != null)
+					preparedStatement1.close();
 			} finally {
 				if (connection != null) {
 					connection.close();
 				}
 			}
-		} */
+		} 
+		return true;
 	} 
 
 	public void doUpdate(VotazionePoliticaBean mozione) throws SQLException {
