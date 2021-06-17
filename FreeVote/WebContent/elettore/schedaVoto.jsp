@@ -25,27 +25,32 @@
     <br/>
     <h3>SCHEDA</h3>
     <form action="GestisciVoto" method="post">
- 	<%
+        <p>Scegli per cosa votare&colon;</p>
+        <label><input type="checkbox" name="type[]" value="politica">Politica</label>
+        <label><input type="checkbox" name="type[]" value="referendum">Referendum</label>
+        
+        <p>Scegli il partito&colon;</p>
+        <%
         Iterator<?> it = partiti.iterator();
         while(it.hasNext()) {
             PartitoBean partito = (PartitoBean)it.next(); 
             if (!partito.getNome().equals("Scheda Bianca")) {
-    %>
+        %>
     			<img src="/FreeVote/PhotoControl?type=partito&id=<%=partito.getNome()%>" onerror="this.src='./imgs/nologo.png'">
             	<input type="radio" id="partitoScelto" name="partitoScelto" value="<%=partito.getNome()%>">
             	<label for="<%=partito.getNome()%>"><a href="/FreeVote/Partito?nome=<%=partito.getNome()%>"><%=partito.getNome()%></a></label>
             	
             	<br>
     <%   	}
-        }
-        
-        
+        }     
     %>
+    <p>Fai la tua scelta per il referendum&colon;</p>
+    <label><input type="radio" id="preferenza" name="preferenza" value="Si">S&igrave;</label>
+    <label><input type="radio" id="preferenza" name="preferenza" value="No">No</label>
+    <label><input type="radio" id="preferenza" name="preferenza" value="Mi astengo">Mi astengo</label>
+
     <button type="submit">Vota</button>
     </form>
- 	
- 	
- 	
  	
 </body>
 </html>
