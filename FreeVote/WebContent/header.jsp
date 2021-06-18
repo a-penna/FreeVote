@@ -16,9 +16,9 @@
 	<!--POLITICHE-->
 	<a href="<%=response.encodeURL("/FreeVote/Risultati")%>">Risultati Generali</a> 
 	<a href="<%=response.encodeURL("/FreeVote/risultatiPerEta.jsp")%>">Risultati per fascia d'et&agrave;</a>
-	<a href="<%=response.encodeURL("/FreeVote/risultatipolitcheregioni.html")%>">Risultati per Regione</a>
+	<a href="<%=response.encodeURL("/FreeVote/risultatiRegioni.jsp")%>">Risultati per Regione</a>
 	<!--REFERENDUM-->
-	<a href="<%=response.encodeURL("/FreeVote/risultatireferendum.html")%>">Risultati Generali Referendum</a>
+	<a href="<%=response.encodeURL("/FreeVote/risultatiReferendum.jsp")%>">Risultati Generali Referendum</a>
 	<a href="<%=response.encodeURL("/FreeVote/infoEContatti.jsp")%>">Info e contatti</a>
 	
 	<% boolean isElettore = request.getSession(false) != null && request.getSession(false).getAttribute("elettoreRoles")!= null;

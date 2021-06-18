@@ -61,7 +61,7 @@ public class ComuneModelDS implements Model<ComuneBean> {
 
 		String selectSQL = "SELECT * FROM Comune1 NATURAL JOIN Comune2";
 
-		if (order != null && !order.equals("") && (order.equals("nome") || order.equals("cap") || order.equals("n_aventi_diritto"))) {
+		if (order != null && !order.equals("") && (order.equals("nome") || order.equals("cap") || order.equals("n_aventi_diritto") || order.equals("nome_regione"))) {
 			selectSQL += " ORDER BY " + order;
 		}
 

@@ -131,6 +131,47 @@ public class VotazionePoliticaModelDS implements Model<VotazionePoliticaBean> {
 		return votazioni;
 	}
 	
+	public Collection<VotazionePoliticaBean> doRetrieveAllByRegione(String regione) throws SQLException {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+
+		Collection<VotazionePoliticaBean> votazioni = new LinkedList<VotazionePoliticaBean>();
+
+		String selectSQL = "SELECT VP.data, VP.partito, VP.elettore, VP.codice "
+				+ "FROM Votazione_Politica as VP, Elettore as E, Comune2 as C2 "
+				+ "WHERE VP.elettore=E.codice "
+				+ "AND E.comuneCap=C2.cap "
+				+ "AND C2.nome_regione=?";
+
+		try {
+			connection = ds.getConnection();
+			preparedStatement = connection.prepareStatement(selectSQL);
+			preparedStatement.setString(1, regione);
+			ResultSet rs = preparedStatement.executeQuery();
+
+			while (rs.next()) {
+				VotazionePoliticaBean bean = new VotazionePoliticaBean();
+
+				bean.setData(rs.getDate("Data"));
+				bean.setPartito(rs.getString("Partito"));
+				bean.setElettore(rs.getString("Elettore"));
+				bean.setCodice(rs.getInt("Codice"));
+
+				votazioni.add(bean);
+			}
+		} finally {
+			try {
+				if (preparedStatement != null)
+					preparedStatement.close();
+			} finally {
+				if (connection != null) {
+					connection.close();
+				}
+			}
+		}
+		return votazioni;
+	}
+	
 	public Collection<VotazionePoliticaBean> doRetrieveAllByPartito(String partito) throws SQLException {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
