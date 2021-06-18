@@ -23,6 +23,12 @@
 	
 	<% boolean isElettore = request.getSession(false) != null && request.getSession(false).getAttribute("elettoreRoles")!= null;
 
-	if(isElettore) { %>
+	if (isElettore) { %>
 		<a href="<%=response.encodeURL("/FreeVote/elettore/schedaVoto.jsp")%>">Vai alla scheda</a> <%
-	} %>
+	} 
+	
+	if (isElettore || isAdmin) {
+		%>
+		<a href="<%=response.encodeURL("/FreeVote/Logout")%>">Logout</a> <%
+	}
+	%>

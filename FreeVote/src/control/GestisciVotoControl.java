@@ -2,7 +2,7 @@ package control;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.Date;
+import java.util.*;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -37,27 +37,28 @@ public class GestisciVotoControl extends HttpServlet {
 			String redirectedPage = "";
 
 			String[] selected = request.getParameterValues("type[]");
-			if(selected.length == 2) {
+			List tipo = Arrays.asList(selected);
+			if(tipo.contains("politica") && tipo.contains("referendum")) {
 				VotazionePoliticaModelDS modelVotazione = new VotazionePoliticaModelDS(ds);
 				try {
 					VotazionePoliticaBean voto = new VotazionePoliticaBean();
 					voto.setCodice(0);
 					voto.setData(Utility.toSqlDate(new Date()));
-					voto.setElettore((String) request.getSession().getAttribute("codice"));
+					voto.setElettore(Utility.encryptMD5((String) request.getSession().getAttribute("codice")));
 					voto.setPartito(request.getParameter("partitoScelto"));
 
 					VotazioneReferendumBean votoReferendum = new VotazioneReferendumBean();
 					votoReferendum.setCodice(0);
 					votoReferendum.setData(Utility.toSqlDate(new Date()));
 					votoReferendum.setPreferenza(request.getParameter("preferenza"));
-					votoReferendum.setElettore((String) request.getSession().getAttribute("codice"));
+					votoReferendum.setElettore(Utility.encryptMD5((String) request.getSession().getAttribute("codice")));
 
 					ElettoreBean elettore = new ElettoreBean();
 					elettore.setCap((String) request.getSession().getAttribute("CAP"));
-					elettore.setCodice((String) request.getSession().getAttribute("codice"));
+					elettore.setCodice(Utility.encryptMD5((String) request.getSession().getAttribute("codice")));
 					elettore.setComune((String) request.getSession().getAttribute("comune"));
 					elettore.setEta((Integer) (request.getSession().getAttribute("eta")));
-					elettore.setPassword((String) request.getSession().getAttribute("password"));
+					elettore.setPassword(Utility.encryptMD5((String) request.getSession().getAttribute("password")));
 					elettore.setSesso((String) request.getSession().getAttribute("sesso"));
 
 					if (modelVotazione.doSaveBoth(voto, votoReferendum, elettore)) {
@@ -69,23 +70,21 @@ public class GestisciVotoControl extends HttpServlet {
 					Utility.printSQLException(e);
 				}
 
-			} else if(selected.length == 1){
-
-				if(selected[0] == "politica") {
+			} else if(tipo.contains("politica") && !tipo.contains("referendum")){
 					VotazionePoliticaModelDS modelVotazione = new VotazionePoliticaModelDS(ds);
 					try {
 						VotazionePoliticaBean voto = new VotazionePoliticaBean();
 						voto.setCodice(0);
 						voto.setData(Utility.toSqlDate(new Date()));
-						voto.setElettore((String) request.getSession().getAttribute( "codice"));
+						voto.setElettore(Utility.encryptMD5((String) request.getSession().getAttribute("codice")));
 						voto.setPartito(request.getParameter("partitoScelto"));
 
 						ElettoreBean elettore = new ElettoreBean();
 						elettore.setCap((String) request.getSession().getAttribute("CAP"));
-						elettore.setCodice((String) request.getSession().getAttribute("codice"));
+						elettore.setCodice(Utility.encryptMD5((String) request.getSession().getAttribute("codice")));
 						elettore.setComune((String) request.getSession().getAttribute("comune"));
 						elettore.setEta((Integer) (request.getSession().getAttribute("eta")));
-						elettore.setPassword((String) request.getSession().getAttribute("password"));
+						elettore.setPassword(Utility.encryptMD5((String) request.getSession().getAttribute("password")));
 						elettore.setSesso((String) request.getSession().getAttribute("sesso"));
 
 						if (modelVotazione.doSaveCheck(voto, elettore)) {
@@ -96,22 +95,21 @@ public class GestisciVotoControl extends HttpServlet {
 					} catch(SQLException e) {
 						Utility.printSQLException(e);
 					}
-				}
-				else if(selected[0] == "referendum") {
+			} else if(!tipo.contains("politica") && tipo.contains("referendum")) {
 					VotazioneReferendumModelDS modelReferendum = new VotazioneReferendumModelDS(ds);
 					try {
 						VotazioneReferendumBean votoReferendum = new VotazioneReferendumBean();					
 						votoReferendum.setCodice(0);
 						votoReferendum.setData(Utility.toSqlDate(new Date()));
-						votoReferendum.setElettore((String) request.getSession().getAttribute( "codice"));
+						votoReferendum.setElettore(Utility.encryptMD5((String) request.getSession().getAttribute("codice")));
 						votoReferendum.setPreferenza(request.getParameter("preferenza"));
 
 						ElettoreBean elettore = new ElettoreBean();
 						elettore.setCap((String) request.getSession().getAttribute("CAP"));
-						elettore.setCodice((String) request.getSession().getAttribute("codice"));
+						elettore.setCodice(Utility.encryptMD5((String) request.getSession().getAttribute("codice")));
 						elettore.setComune((String) request.getSession().getAttribute("comune"));
 						elettore.setEta((Integer) (request.getSession().getAttribute("eta")));
-						elettore.setPassword((String) request.getSession().getAttribute("password"));
+						elettore.setPassword(Utility.encryptMD5((String) request.getSession().getAttribute("password")));
 						elettore.setSesso((String) request.getSession().getAttribute("sesso"));
 						if (modelReferendum.doSaveCheck(votoReferendum, elettore)) {
 							redirectedPage = "/elettore/successo.jsp";
@@ -121,10 +119,9 @@ public class GestisciVotoControl extends HttpServlet {
                     } catch(SQLException e) {
 						Utility.printSQLException(e);
 					}
+				} else if(!tipo.contains("politica") && !tipo.contains("referendum")) {
+						redirectedPage="/elettore/schedaVoto.jsp";
 				}
-			} else if(selected.length!=2 && selected.length!=1) {
-				redirectedPage="/elettore/schedaVoto.jsp";
-			}
 		
 			
 			response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + redirectedPage));

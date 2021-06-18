@@ -1,4 +1,3 @@
-
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,10 +14,21 @@ public class Logout extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
 
-		request.getSession().removeAttribute("adminRoles");
-		request.getSession().invalidate();
+		boolean isElettore = request.getSession(false) != null && request.getSession(false).getAttribute("elettoreRoles")!= null;
+		boolean isAdmin = request.getSession(false) != null && request.getSession(false).getAttribute("adminRoles")!= null;
+		String redirectedPage = "";
 
-		String redirectedPage = "/loginAdmin.jsp";
+		if(isElettore) {
+			redirectedPage += "/loginElettore.jsp";
+			request.getSession().removeAttribute("elettoreRoles");
+		}
+		
+		if(isAdmin) {
+			redirectedPage += "/loginAdmin.jsp";
+			request.getSession().removeAttribute("adminRoles");
+		}
+		request.getSession().invalidate();
+		
 		response.sendRedirect(request.getContextPath() + redirectedPage);	
 	}
 

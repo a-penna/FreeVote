@@ -255,7 +255,8 @@ public class VotazioneReferendumModelDS implements Model<VotazioneReferendumBean
     				Utility.printSQLException(e);
     			}
             	return false;
-			}       
+			}     
+			connection.commit();  
 		} finally {
 			try {
 				if (preparedStatement4 != null)
