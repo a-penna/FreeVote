@@ -61,8 +61,9 @@ public class GestisciVotoControl extends HttpServlet {
 					elettore.setPassword(Utility.encryptMD5((String) request.getSession().getAttribute("password")));
 					elettore.setSesso((String) request.getSession().getAttribute("sesso"));
 
-					if (modelVotazione.doSaveBoth(voto, votoReferendum, elettore)) {
-						redirectedPage = "/elettore/successo.jsp";
+					if (modelVotazione.doSaveBoth(voto, votoReferendum, elettore,(String) request.getSession().getAttribute("codice"), (String) request.getSession().getAttribute("password"))) {
+						redirectedPage = "/successo.jsp";
+						request.getSession().invalidate();
 					} else {
 						redirectedPage = "/error/generic.jsp";
 					}
@@ -87,8 +88,9 @@ public class GestisciVotoControl extends HttpServlet {
 						elettore.setPassword(Utility.encryptMD5((String) request.getSession().getAttribute("password")));
 						elettore.setSesso((String) request.getSession().getAttribute("sesso"));
 
-						if (modelVotazione.doSaveCheck(voto, elettore)) {
-							redirectedPage = "/elettore/successo.jsp";
+						if (modelVotazione.doSaveCheck(voto, elettore, (String) request.getSession().getAttribute("codice"), (String) request.getSession().getAttribute("password"))) {
+							redirectedPage = "/successo.jsp";
+							request.getSession().invalidate();
 						} else {
 							redirectedPage = "/error/generic.jsp";
 						}
@@ -111,8 +113,9 @@ public class GestisciVotoControl extends HttpServlet {
 						elettore.setEta((Integer) (request.getSession().getAttribute("eta")));
 						elettore.setPassword(Utility.encryptMD5((String) request.getSession().getAttribute("password")));
 						elettore.setSesso((String) request.getSession().getAttribute("sesso"));
-						if (modelReferendum.doSaveCheck(votoReferendum, elettore)) {
-							redirectedPage = "/elettore/successo.jsp";
+						if (modelReferendum.doSaveCheck(votoReferendum, elettore,(String) request.getSession().getAttribute("codice"), (String) request.getSession().getAttribute("password"))) {
+							redirectedPage = "/successo.jsp";
+							request.getSession().invalidate();
 						} else {
 							redirectedPage = "/error/generic.jsp";
 						}
@@ -122,8 +125,8 @@ public class GestisciVotoControl extends HttpServlet {
 				} else if(!tipo.contains("politica") && !tipo.contains("referendum")) {
 						redirectedPage="/elettore/schedaVoto.jsp";
 				}
-		
 			
+		
 			response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + redirectedPage));
 	}
 

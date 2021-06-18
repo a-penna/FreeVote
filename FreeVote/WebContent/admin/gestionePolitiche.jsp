@@ -26,7 +26,7 @@
     <br>
     <a href="">Aggiungi un candidato ad un partito</a>
     <br>
-    <a href="">Rimuovi un candidato da un partito</a>
+    <a href="<%=response.encodeURL("/FreeVote/admin/eliminaCandidato.jsp")%>">Rimuovi un candidato da un partito</a>
     
 
 </body>

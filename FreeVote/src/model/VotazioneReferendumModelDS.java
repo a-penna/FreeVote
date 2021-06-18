@@ -172,7 +172,7 @@ public class VotazioneReferendumModelDS implements Model<VotazioneReferendumBean
 		throw new UnsupportedOperationException();
 	}
 
-	public boolean doSaveCheck(VotazioneReferendumBean voto, ElettoreBean elettore) throws SQLException {
+	public boolean doSaveCheck(VotazioneReferendumBean voto, ElettoreBean elettore,String codice,String password) throws SQLException {
     	Connection connection = null;
 		PreparedStatement preparedStatement1 = null;
 		PreparedStatement preparedStatement2 = null;
@@ -197,7 +197,7 @@ public class VotazioneReferendumModelDS implements Model<VotazioneReferendumBean
 			if(rs.next()) {		
 				String lista = rs.getString(1);
 				
-				String nuovo = lista.replace(Utility.encryptMD5(elettore.getCodice()+ "," + elettore.getPassword()),"");
+				String nuovo = lista.replace(Utility.encryptMD5(codice+ "," + password), "");
 				String updateSQL = "UPDATE Comune1 "
 					+ "SET lista_codici_e_password_emesse=? "
 					+ "WHERE nome=? AND cap=?";

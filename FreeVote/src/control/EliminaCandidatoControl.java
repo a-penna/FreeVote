@@ -10,51 +10,52 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 
-import model.PartitoBean;
-import model.PartitoModelDS;
+import model.*;
 import utils.Utility;
 
-@WebServlet("/EliminaPartito")
-public class EliminaPartitoControl extends HttpServlet {
+@WebServlet("/EliminazioneCandidato")
+public class EliminaCandidatoControl extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+       
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doPost(request,response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
 		boolean loggedIn = request.getSession(false) != null && request.getSession(false).getAttribute("adminRoles")!= null;
 		if(!loggedIn) {
 			response.sendRedirect(request.getContextPath() + "/loginAdmin.jsp");
 			return;
 		}
 		
-		String nome = request.getParameter("nome");
-		if (nome == null) {
-			response.sendRedirect(response.encodeRedirectURL("./eliminaPartito.jsp"));
+		String codice = request.getParameter("cf");
+		if (codice == null) {
+			response.sendRedirect(response.encodeRedirectURL("/admin/eliminaCandidato.jsp"));
 			return;
 		}
+		codice = Utility.encryptMD5(request.getParameter("cf"));
 		
 		DataSource ds = (DataSource) getServletContext().getAttribute("DataSource");
-		PartitoModelDS model = new PartitoModelDS(ds);	
+		CandidatoModelDS model = new CandidatoModelDS(ds);	
 		
 		String redirectedPage = "";
 
 		try {
-			PartitoBean partito = new PartitoBean();
-            partito.setNome(nome);
+			CandidatoBean bean = model.doRetrieveByKey(codice);
 
-            boolean flag = model.doDeleteCheck(partito);
-
+			boolean flag = model.doDeleteCheck(bean);
+			
 		    if(flag) {
 		    	redirectedPage="/successo.jsp";
-		    } else redirectedPage="/error/generic.jsp";
-			
+		    } else {
+		    	redirectedPage="/error/generic.jsp";
+		    }
 		} catch(SQLException e) {
 			Utility.printSQLException(e);
 		}
 		response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + redirectedPage));
-	}
-
+		}
 }
+
 

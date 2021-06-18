@@ -172,7 +172,7 @@ public class VotazionePoliticaModelDS implements Model<VotazionePoliticaBean> {
 		throw new UnsupportedOperationException();
 	}
 
-	public boolean doSaveCheck(VotazionePoliticaBean voto, ElettoreBean elettore) throws SQLException {
+	public boolean doSaveCheck(VotazionePoliticaBean voto, ElettoreBean elettore, String codice, String password) throws SQLException {
     	Connection connection = null;
 		PreparedStatement preparedStatement1 = null;
 		PreparedStatement preparedStatement2 = null;
@@ -198,7 +198,7 @@ public class VotazionePoliticaModelDS implements Model<VotazionePoliticaBean> {
 			if(rs.next()) {		
 				String lista = rs.getString(1);
 				
-				String nuovo = lista.replace(Utility.encryptMD5(elettore.getCodice()+ "," + elettore.getPassword()),"");
+				String nuovo = lista.replace(Utility.encryptMD5(codice + "," + password),"");
 				String updateSQL = "UPDATE Comune1 "
 					+ "SET lista_codici_e_password_emesse=? "
 					+ "WHERE nome=? AND cap=?";
@@ -298,7 +298,7 @@ public class VotazionePoliticaModelDS implements Model<VotazionePoliticaBean> {
 
 
 
-	public boolean doSaveBoth(VotazionePoliticaBean voto, VotazioneReferendumBean votoReferendum, ElettoreBean elettore) throws SQLException{
+	public boolean doSaveBoth(VotazionePoliticaBean voto, VotazioneReferendumBean votoReferendum, ElettoreBean elettore, String codice, String password) throws SQLException{
 		Connection connection = null;
 		PreparedStatement preparedStatement1 = null;
 		PreparedStatement preparedStatement2 = null;
@@ -325,7 +325,7 @@ public class VotazionePoliticaModelDS implements Model<VotazionePoliticaBean> {
 			if(rs.next()) {		
 				String lista = rs.getString(1);
 				
-				String nuovo = lista.replace(Utility.encryptMD5(elettore.getCodice()+ "," + elettore.getPassword()),"");
+				String nuovo = lista.replace(Utility.encryptMD5(codice+ "," + password),"");
 				String updateSQL = "UPDATE Comune1 "
 					+ "SET lista_codici_e_password_emesse=? "
 					+ "WHERE nome=? AND cap=?";

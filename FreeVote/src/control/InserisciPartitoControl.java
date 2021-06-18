@@ -90,7 +90,7 @@ public class InserisciPartitoControl extends HttpServlet {
 			boolean flag = model.doSaveCheck(partito, candidato);
 			
 		    if(flag) {
-		    	redirectedPage="/admin/successo.jsp";
+		    	redirectedPage="/successo.jsp";
 		    } else {
 		    	redirectedPage="/error/generic.jsp";
 		    }
