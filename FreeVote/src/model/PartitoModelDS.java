@@ -297,7 +297,7 @@ public class PartitoModelDS implements Model<PartitoBean>{
 		return true;
 	}
 	
-	/*public Collection<PartitoBean> doRetrieveAllByCoalizione(PartitoBean partito) throws SQLException{
+	public Collection<PartitoBean> doRetrieveAllByCoalizione(PartitoBean partito) throws SQLException{
 	Connection connection = null;
 	PreparedStatement preparedStatement = null;
 
@@ -336,5 +336,5 @@ public class PartitoModelDS implements Model<PartitoBean>{
 	return partiti;
 
 }
-*/
+
 }

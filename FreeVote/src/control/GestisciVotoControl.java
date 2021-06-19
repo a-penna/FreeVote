@@ -38,6 +38,7 @@ public class GestisciVotoControl extends HttpServlet {
 
 			String[] selected = request.getParameterValues("type[]");
 			List tipo = Arrays.asList(selected);
+			if((boolean) request.getSession().getAttribute("referendum")==true) {
 			if(tipo.contains("politica") && tipo.contains("referendum")) {
 				VotazionePoliticaModelDS modelVotazione = new VotazionePoliticaModelDS(ds);
 				try {
@@ -70,7 +71,10 @@ public class GestisciVotoControl extends HttpServlet {
 				} catch(SQLException e) {
 					Utility.printSQLException(e);
 				}
-
+			}
+			else if((boolean) request.getSession().getAttribute("referendum")==false) {
+				redirectedPage="/error/generic.jsp";
+			}
 			} else if(tipo.contains("politica") && !tipo.contains("referendum")){
 					VotazionePoliticaModelDS modelVotazione = new VotazionePoliticaModelDS(ds);
 					try {
@@ -97,7 +101,9 @@ public class GestisciVotoControl extends HttpServlet {
 					} catch(SQLException e) {
 						Utility.printSQLException(e);
 					}
-			} else if(!tipo.contains("politica") && tipo.contains("referendum")) {
+			}
+			else if((boolean) request.getSession().getAttribute("referendum")==true) {
+			 if(!tipo.contains("politica") && tipo.contains("referendum")) {
 					VotazioneReferendumModelDS modelReferendum = new VotazioneReferendumModelDS(ds);
 					try {
 						VotazioneReferendumBean votoReferendum = new VotazioneReferendumBean();					
@@ -122,7 +128,13 @@ public class GestisciVotoControl extends HttpServlet {
                     } catch(SQLException e) {
 						Utility.printSQLException(e);
 					}
-				} else if(!tipo.contains("politica") && !tipo.contains("referendum")) {
+				} 
+			else if((boolean) request.getSession().getAttribute("referendum")==false) {
+				redirectedPage = "/error/generic.jsp";
+			}
+				
+			}
+			else if(!tipo.contains("politica") && !tipo.contains("referendum")) {
 						redirectedPage="/elettore/schedaVoto.jsp";
 				}
 			

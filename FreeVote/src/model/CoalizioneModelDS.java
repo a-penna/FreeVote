@@ -146,7 +146,7 @@ public class CoalizioneModelDS implements Model<CoalizioneBean>{
 		}
 	}
     
-	/*public CoalizioneBean doRetrieveByPartito(String partito) throws SQLException {
+	public CoalizioneBean doRetrieveByPartito(String partito) throws SQLException {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 
@@ -177,6 +177,6 @@ public class CoalizioneModelDS implements Model<CoalizioneBean>{
 		}
 
 		return bean;
-	}*/
+	}
 }
 
