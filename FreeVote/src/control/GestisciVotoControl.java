@@ -33,12 +33,12 @@ public class GestisciVotoControl extends HttpServlet {
 				response.sendRedirect(response.encodeRedirectURL("/FreeVote/elettore/loginElettore.jsp"));
  				return;
 			}
+			
 			DataSource ds = (DataSource) getServletContext().getAttribute("DataSource");
 			String redirectedPage = "";
 
 			String[] selected = request.getParameterValues("type[]");
 			List tipo = Arrays.asList(selected);
-			if((boolean) request.getSession().getAttribute("referendum")==true) {
 			if(tipo.contains("politica") && tipo.contains("referendum")) {
 				VotazionePoliticaModelDS modelVotazione = new VotazionePoliticaModelDS(ds);
 				try {
@@ -70,11 +70,7 @@ public class GestisciVotoControl extends HttpServlet {
 					}
 				} catch(SQLException e) {
 					Utility.printSQLException(e);
-				}
-			}
-			else if((boolean) request.getSession().getAttribute("referendum")==false) {
-				redirectedPage="/error/generic.jsp";
-			}
+				}			
 			} else if(tipo.contains("politica") && !tipo.contains("referendum")){
 					VotazionePoliticaModelDS modelVotazione = new VotazionePoliticaModelDS(ds);
 					try {
@@ -102,8 +98,7 @@ public class GestisciVotoControl extends HttpServlet {
 						Utility.printSQLException(e);
 					}
 			}
-			else if((boolean) request.getSession().getAttribute("referendum")==true) {
-			 if(!tipo.contains("politica") && tipo.contains("referendum")) {
+			else if(!tipo.contains("politica") && tipo.contains("referendum")) {
 					VotazioneReferendumModelDS modelReferendum = new VotazioneReferendumModelDS(ds);
 					try {
 						VotazioneReferendumBean votoReferendum = new VotazioneReferendumBean();					
@@ -128,15 +123,9 @@ public class GestisciVotoControl extends HttpServlet {
                     } catch(SQLException e) {
 						Utility.printSQLException(e);
 					}
-				} 
-			else if((boolean) request.getSession().getAttribute("referendum")==false) {
-				redirectedPage = "/error/generic.jsp";
-			}
-				
-			}
-			else if(!tipo.contains("politica") && !tipo.contains("referendum")) {
+			} else if(!tipo.contains("politica") && !tipo.contains("referendum")) {
 						redirectedPage="/elettore/schedaVoto.jsp";
-				}
+			}
 			
 		
 			response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + redirectedPage));

@@ -8,7 +8,7 @@
     <meta name="keywords" content="FreeVote, piattaforma voto, voto, voto online, gestioneReferendum">
 	<meta name="description" content="Gestione Referendum menù">
 	<meta name="author" content="Bene Sabato, Cozzolino Lidia, Napoli Riccardo, Penna Alessandro">    
-    <title>FreeVote &dash;Menu-gestione-referendum</title>
+    <title>FreeVote &dash;Menu gestione referendum</title>
 </head>            
 
 <body>
@@ -20,10 +20,6 @@
     <br>
     <a href="<%=response.encodeURL("")%>">Rimuovi una mozione</a>
     <br>
-    <a href="<%=response.encodeURL("/FreeVote/admin/disabilitaReferendum.jsp")%>">Disabilita o Abilita referendum</a>
-    <br>
-
-    
 
 </body>
 </html>

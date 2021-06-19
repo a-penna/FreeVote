@@ -3,6 +3,7 @@
 
 <% 
 	Collection<?> regioni = (Collection<?>)request.getAttribute("regioni");
+	
 	if(regioni == null) {
 		response.sendRedirect(response.encodeRedirectURL("/FreeVote/RisultatiReg"));
 		return; 
