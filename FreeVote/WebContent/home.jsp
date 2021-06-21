@@ -9,7 +9,7 @@
 	<meta name="description" content="Piattaforma voto">
 	<meta name="author" content="Bene Sabato, Cozzolino Lidia, Napoli Riccardo, Penna Alessandro">    
     <title>FreeVote &dash; HomePage</title>
-    <link rel="stylesheet" type="text/css" href="style.css" />
+    <link rel="stylesheet" type="text/css" href="/FreeVote/css/style.css" />
 </head>            
 
 <body>
