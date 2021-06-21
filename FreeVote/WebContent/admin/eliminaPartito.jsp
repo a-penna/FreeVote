@@ -1,15 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8" import="java.util.*, model.*"%>
 
+<% 
+	Collection<?> partiti = (Collection<?>) request.getAttribute("listaPartiti");
+    if (partiti == null) {
+        response.sendRedirect(response.encodeURL("/FreeVote/EliminaPartito"));
+        return;
+    }
+%>
 
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<meta name="keywords" content="FreeVote, piattaforma voto, voto, voto online, elimina eartito">
-<meta name="description" content="Elimina partito">
-<meta name="author" content="Bene Sabato, Cozzolino Lidia, Napoli Riccardo, Penna Alessandro">    
-<title>FreeVote &dash; Elimina Partito</title>
+	<meta charset="UTF-8">
+	<meta name="keywords" content="FreeVote, piattaforma voto, voto, voto online, elimina partito">
+	<meta name="description" content="Elimina partito">
+	<meta name="author" content="Bene Sabato, Cozzolino Lidia, Napoli Riccardo, Penna Alessandro">    
+	<title>FreeVote &dash; Elimina Partito</title>
 </head>            
 
 <body>
@@ -17,11 +24,19 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
 
 <form action="<%=response.encodeURL("/FreeVote/EliminaPartito")%>" method="post"> 
     <fieldset>
-        <legend>Inserisci credenziali&colon; </legend>
+        <legend>Inserisci informazioni sul partito&colon; </legend>
         <label for="nome">Nome&colon;</label>
-        <input id="nome" type="text" name="nome" placeholder="inserisci nome"> 
-        <br>
-        <input id="submit" type="submit" name="submit">
+        <select name="nome">
+	            <%
+	            Iterator<?> it = partiti.iterator();
+	            while(it.hasNext()) {
+	                PartitoBean bean = (PartitoBean)it.next(); 
+	            %>
+	            <option value="<%=bean.getNome()%>"><%=bean.getNome()%></option>
+	            <%  } 
+	            %>
+	     </select> 
+        <input id="submit" type="submit" value="Elimina">
    </fieldset>
 </form> 
 

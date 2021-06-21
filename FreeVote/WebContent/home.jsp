@@ -15,7 +15,7 @@
 <body>
 	<%@ include file="header.jsp"%>
     <br/>
-    <a href="/FreeVote/Elettore">Vota</a>
+    <a href="<%=response.encodeURL("/FreeVote/Elettore")%>">Vota</a>
     <div class= "container">
       <nav class="navbar">
       	<ul>

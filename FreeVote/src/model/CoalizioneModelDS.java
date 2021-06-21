@@ -116,9 +116,15 @@ public class CoalizioneModelDS implements Model<CoalizioneBean>{
 		}
 	}
 
-	public void doUpdate(CoalizioneBean coalizione) throws SQLException { throw new UnsupportedOperationException(); }
+	public void doUpdate(CoalizioneBean coalizione) throws SQLException { 
+		throw new UnsupportedOperationException(); 
+	}
 
 	public void doDelete(CoalizioneBean coalizione) throws SQLException {
+		doDeleteCheck(coalizione);
+	}
+	
+	public boolean doDeleteCheck(CoalizioneBean coalizione) throws SQLException {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 
@@ -130,8 +136,10 @@ public class CoalizioneModelDS implements Model<CoalizioneBean>{
 			preparedStatement = connection.prepareStatement(deleteSQL);
 			preparedStatement.setString(1, coalizione.getNome());
 
-			preparedStatement.executeUpdate();
-
+			int rs = preparedStatement.executeUpdate();
+			if (rs != 1) 
+				return false;
+			
 			connection.commit();
 
 		} finally {
@@ -144,9 +152,10 @@ public class CoalizioneModelDS implements Model<CoalizioneBean>{
 				}
 			}
 		}
+		return true;
 	}
     
-	/*public CoalizioneBean doRetrieveByPartito(String partito) throws SQLException {
+	public CoalizioneBean doRetrieveByPartito(String partito) throws SQLException {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 
@@ -177,6 +186,6 @@ public class CoalizioneModelDS implements Model<CoalizioneBean>{
 		}
 
 		return bean;
-	}*/
+	}
 }
 

@@ -10,6 +10,8 @@ import java.util.LinkedList;
 
 import javax.sql.DataSource;
 
+import utils.Utility;
+
 public class CandidatoModelDS implements Model<CandidatoBean>{
 	
 	private DataSource ds = null;
@@ -180,6 +182,10 @@ public class CandidatoModelDS implements Model<CandidatoBean>{
 	
 	@Override
 	public void doDelete(CandidatoBean candidato) throws SQLException {
+		doDeleteCheck(candidato);
+	}
+	
+	public boolean doDeleteCheck(CandidatoBean candidato) throws SQLException {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		
@@ -191,10 +197,16 @@ public class CandidatoModelDS implements Model<CandidatoBean>{
 			preparedStatement = connection.prepareStatement(deleteSQL);
 			preparedStatement.setString(1, candidato.getCf());
 			
-			preparedStatement.executeUpdate();
-			
+			int rs = preparedStatement.executeUpdate();
+			if (rs != 1) {
+				try {
+					connection.rollback();
+				} catch (SQLException e) {
+					Utility.printSQLException(e);
+				} 
+				return false;
+			}
 			connection.commit();
-			
 		} finally {
 			try {
 				if (preparedStatement != null)
@@ -205,8 +217,8 @@ public class CandidatoModelDS implements Model<CandidatoBean>{
 				}
 			}
 		}
+		return true;
 	}
-	
 	
 	public Collection<CandidatoBean> doRetrieveByPartito(String partito, String order) throws SQLException {
 		Connection connection = null;

@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 
-
 import model.PartitoBean;
 import model.PartitoModelDS;
 import utils.Utility;
@@ -24,10 +23,12 @@ public class ListaPartitiControl extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		DataSource ds = (DataSource) getServletContext().getAttribute("DataSource");
 		PartitoModelDS model = new PartitoModelDS(ds);
-
+		
 		try {
 			Collection<PartitoBean> partiti = model.doRetrieveAll("nome");
+			
 			request.setAttribute("partiti", partiti);
+			
 		} catch (SQLException e) {
 			Utility.printSQLException(e);
 		}

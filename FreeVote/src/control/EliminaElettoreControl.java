@@ -47,7 +47,7 @@ public class EliminaElettoreControl extends HttpServlet {
 			boolean flag = model.doDeleteCheck(bean);
 			
 		    if(flag) {
-		    	redirectedPage="/admin/successo.jsp";
+		    	redirectedPage="/successo.jsp";
 		    } else {
 		    	redirectedPage="/error/generic.jsp";
 		    }

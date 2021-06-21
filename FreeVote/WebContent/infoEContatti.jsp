@@ -11,7 +11,6 @@
 	<title>FreeVote &dash; Info e Contatti</title>
 </head>
 <body>
-
 	<%@ include file="header.jsp"%>
 	<br>
 
@@ -25,6 +24,5 @@
 	<br>
 	<p>Sabato Bene <b>Email&colon; email@prova.com</b> </p>
 	<br>
-
 </body>
 </html>

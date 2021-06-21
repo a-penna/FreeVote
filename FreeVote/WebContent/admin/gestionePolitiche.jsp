@@ -8,7 +8,7 @@
     <meta name="keywords" content="FreeVote, piattaforma voto, voto, voto online, gestionePolitiche">
 	<meta name="description" content="Gestione Politiche menù">
 	<meta name="author" content="Bene Sabato, Cozzolino Lidia, Napoli Riccardo, Penna Alessandro">    
-    <title>FreeVote &dash;Menu-gestione-politiche</title>
+    <title>FreeVote &dash; Menu gestione politiche</title>
 </head>            
 
 <body>
@@ -20,13 +20,17 @@
     <br>
     <a href="<%=response.encodeURL("/FreeVote/admin/eliminaPartito.jsp")%>">Elimina un partito</a>
     <br>
+    <a href="">Inserisci un partito in una coalizione</a>
+    <br>
     <a href="">Elimina un partito da una coalizione</a>
     <br>
-    <a href="">Elimina una coalizione</a>
+    <a href="">Crea una coalizione</a>
+    <br>
+    <a href="<%=response.encodeURL("/FreeVote/admin/eliminaCoalizione.jsp")%>">Elimina una coalizione</a>
     <br>
     <a href="">Aggiungi un candidato ad un partito</a>
     <br>
-    <a href="">Rimuovi un candidato da un partito</a>
+    <a href="<%=response.encodeURL("/FreeVote/admin/eliminaCandidato.jsp")%>">Rimuovi un candidato da un partito</a>
     
 
 </body>

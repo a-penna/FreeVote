@@ -12,9 +12,8 @@
 </head>            
 
 <body>
-	<%@ include file="/header.jsp"%>
+	<%@ include file="header.jsp"%>
 	<h2>SUCCESSO</h2>
 	<br>
-	<a href="<%=response.encodeURL("/FreeVote/home.jsp")%>">Ritorna</a>
 </body>
 </html> 

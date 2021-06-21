@@ -16,7 +16,6 @@ import model.ComuneBean;
 import model.ComuneModelDS;
 import model.ElettoreModelDS;
 import utils.Utility;
- 
 
 @WebServlet("/Elettore")
 public class LoginElettoreControl extends HttpServlet {
@@ -24,6 +23,16 @@ public class LoginElettoreControl extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+			
+			if (request.getSession(false) != null && request.getSession(false).getAttribute("AdminRoles")!= null) {
+				response.sendRedirect(response.encodeRedirectURL("/FreeVote/loginElettore.jsp"));
+	 			return;
+			}
+			
+			if (request.getSession(false) != null && request.getSession(false).getAttribute("ElettoreRoles")!= null) {
+				response.sendRedirect(response.encodeRedirectURL("/FreeVote/elettore/schedaVoto.jsp"));
+	 			return;
+			}
 			
 			String codice = request.getParameter("codice");
 			String password = request.getParameter("password");

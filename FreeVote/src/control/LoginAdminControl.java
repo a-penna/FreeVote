@@ -13,18 +13,19 @@ import javax.sql.DataSource;
 import model.*;
 import utils.*;
  
-
 @WebServlet("/Administrator")
 public class LoginAdminControl extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	public LoginAdminControl() {
-		super();
-	}	
-
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		    DataSource ds = (DataSource) getServletContext().getAttribute("DataSource");
+			
+			if (request.getSession(false) != null && request.getSession(false).getAttribute("AdminRoles")!= null) {
+				response.sendRedirect(response.encodeRedirectURL("/FreeVote/admin/interfacciaAdmin.jsp"));
+				return;
+			}
+			
+			DataSource ds = (DataSource) getServletContext().getAttribute("DataSource");
 		    AdminModelDS model = new AdminModelDS(ds);		
 			
 			String username = request.getParameter("username");
