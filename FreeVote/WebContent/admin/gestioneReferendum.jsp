@@ -9,6 +9,7 @@
 	<meta name="description" content="Gestione Referendum menù">
 	<meta name="author" content="Bene Sabato, Cozzolino Lidia, Napoli Riccardo, Penna Alessandro">    
     <title>FreeVote &dash;Menu gestione referendum</title>
+   
 </head>            
 
 <body>
@@ -16,7 +17,7 @@
     
     <h3>Seleziona l'operazione da effettuare&colon;</h3>
     <br>
-    <a href="<%=response.encodeURL("")%>">Aggiungi una mozione</a>
+    <a href="<%=response.encodeURL("/FreeVote/InserisciMozione")%>">Aggiungi una mozione</a>
     <br>
     <a href="<%=response.encodeURL("")%>">Rimuovi una mozione</a>
     <br>

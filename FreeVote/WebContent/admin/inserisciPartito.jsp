@@ -10,6 +10,7 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
 	<meta name="description" content="Elimina partito">
 	<meta name="author" content="Bene Sabato, Cozzolino Lidia, Napoli Riccardo, Penna Alessandro">    
 	<title>FreeVote &dash; Inserisci Partito</title>
+	
 </head>            
 
 	<body>

@@ -17,6 +17,7 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
 	<meta name="description" content="Elimina coalizione">
 	<meta name="author" content="Bene Sabato, Cozzolino Lidia, Napoli Riccardo, Penna Alessandro">    
 	<title>FreeVote &dash; Elimina Coalizione</title>
+
 </head>            
 
 <body>

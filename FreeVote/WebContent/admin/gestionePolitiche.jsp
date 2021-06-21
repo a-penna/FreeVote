@@ -8,7 +8,7 @@
     <meta name="keywords" content="FreeVote, piattaforma voto, voto, voto online, gestionePolitiche">
 	<meta name="description" content="Gestione Politiche menù">
 	<meta name="author" content="Bene Sabato, Cozzolino Lidia, Napoli Riccardo, Penna Alessandro">    
-    <title>FreeVote &dash; Menu gestione politiche</title>
+    <title>FreeVote &dash; Men&ugrave; gestione politiche</title>
 </head>            
 
 <body>

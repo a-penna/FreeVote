@@ -9,6 +9,8 @@ import java.util.LinkedList;
 
 import javax.sql.DataSource;
 
+import utils.Utility;
+
 public class MozioneModelDS implements Model<MozioneBean> {
 	private DataSource ds;
 	
@@ -91,33 +93,7 @@ public class MozioneModelDS implements Model<MozioneBean> {
 	}
 
 	public void doSave(MozioneBean mozione) throws SQLException {
-		Connection connection = null;
-		PreparedStatement preparedStatement = null;
-
-		String insertSQL = "INSERT INTO Mozione (testo, referendum) VALUES (?, ?)";
-
-		try {
-			connection = ds.getConnection();
-			connection.setAutoCommit(false);
-			preparedStatement = connection.prepareStatement(insertSQL);
-
-			preparedStatement.setString(1, mozione.getTesto());
-			preparedStatement.setInt(2, 1);
-
-			preparedStatement.executeUpdate();
-
-			connection.commit();
-
-		} finally {
-			try {
-				if (preparedStatement != null)
-					preparedStatement.close();
-			} finally {
-				if (connection != null) {
-					connection.close();
-				}
-			}
-		}
+		throw new UnsupportedOperationException();
 	}
 
 	public void doUpdate(MozioneBean mozione) throws SQLException {
@@ -176,5 +152,50 @@ public class MozioneModelDS implements Model<MozioneBean> {
 				}
 			}
 		}
+	}
+
+	public boolean doSaveCheck(MozioneBean mozione, AutoreBean autore) throws SQLException {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		PreparedStatement preparedStatement2 = null;
+
+		String insertSQL = "INSERT INTO Mozione(testo, referendum) VALUES (? , (SELECT id FROM Referendum))";
+		String insertAutoreSQL = "INSERT INTO Autore(id_mozione, nome_completo) VALUES ((SELECT id FROM Mozione WHERE testo=?) , ? )";
+
+		try {
+			connection = ds.getConnection();
+			connection.setAutoCommit(false);
+			preparedStatement = connection.prepareStatement(insertSQL);
+
+			preparedStatement.setString(1, mozione.getTesto());
+			preparedStatement.executeUpdate();
+			preparedStatement2 = connection.prepareStatement(insertAutoreSQL);
+			preparedStatement2.setString(1, mozione.getTesto());
+			preparedStatement2.setString(2, autore.getNomeCompleto());
+
+			int rs = preparedStatement2.executeUpdate();
+			if (rs != 1) {
+				try {
+					connection.rollback();
+				} catch(SQLException e) {
+					Utility.printSQLException(e);
+				}
+				return false;
+			}
+
+			connection.commit();
+		} finally {
+			try {
+				if (preparedStatement2 != null)
+					preparedStatement2.close();
+				if (preparedStatement != null)
+					preparedStatement.close();
+			} finally {
+				if (connection != null) {
+					connection.close();
+				}
+			}
+		}
+		return true;
 	}
 }

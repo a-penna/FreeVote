@@ -9,6 +9,7 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
 <meta name="description" content="Elimina candidato">
 <meta name="author" content="Bene Sabato, Cozzolino Lidia, Napoli Riccardo, Penna Alessandro">    
 <title>FreeVote &dash; Elimina Candidato</title>
+<link rel="stylesheet" type="text/css" href="/FreeVote/css/style.css" />
 </head>            
 
 <body>
