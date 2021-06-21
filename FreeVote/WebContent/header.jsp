@@ -1,8 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
-	<div class= "container">
-		<nav class="navbar">
+    
+	<div class="container-fluid">
+	<nav class= "navbar" >
+	
+		<link rel="stylesheet" type="text/css"  href="/FreeVote/css/style.css">
 			<ul>
 				<li><a href="<%=response.encodeURL("/FreeVote/home.jsp")%>">HOME</a>  <!--LOGO--></li>
 	<% boolean isAdmin = request.getSession(false) != null && request.getSession(false).getAttribute("adminRoles")!= null;
@@ -13,7 +15,13 @@
 	%>
 			  	<li><a href="<%=response.encodeURL("/FreeVote/PartitiControl")%>">Partiti</a></li>
 				<li><a href="<%=response.encodeURL("/FreeVote/Referendum")%>">Referendum</a></li>
-				<li><a href="#">Risultati Live</a></li><!--A TENDINA-->
+				<li><a href="#">Risultati Live</a><!--A TENDINA-->
+				<ul>
+					<li><a href="<%=response.encodeURL("/FreeVote/Risultati")%>">Risultati Generali</a></li>
+					<li><a href="<%=response.encodeURL("/FreeVote/risultatiPerEta.jsp")%>">Risultati per fascia d'et&agrave;</a></li>
+					<li><a href="<%=response.encodeURL("/FreeVote/risultatiRegioni.jsp")%>">Risultati per Regione</a></li>
+					<li><a href="<%=response.encodeURL("/FreeVote/risultatiReferendum.jsp")%>">Risultati Generali Referendum</a>--></li>
+				</ul>
 				<li><a href="#">Statistiche Live</a></li>
 	<% boolean isElettore = request.getSession(false) != null && request.getSession(false).getAttribute("elettoreRoles")!= null;
 		if (isElettore) { %>
