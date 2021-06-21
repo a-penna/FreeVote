@@ -170,7 +170,7 @@ public class CoalizioneModelDS implements Model<CoalizioneBean>{
 
 			ResultSet rs = preparedStatement.executeQuery();
 
-			while (rs.next()) 	
+			if (rs.next()) 	
 				bean.setNome(rs.getString("nome"));
 			
 

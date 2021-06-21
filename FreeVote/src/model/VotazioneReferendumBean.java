@@ -8,7 +8,12 @@ public class VotazioneReferendumBean {
 	private Date data;
 	private String elettore;
 
-	public VotazioneReferendumBean() {	}
+	public VotazioneReferendumBean() {	
+		codice = -1;
+		preferenza = "";
+		data = null;
+		elettore = "";
+	}
 	
 	public int getCodice() {
 		return codice;

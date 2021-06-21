@@ -10,6 +10,8 @@
  	}
  	
  	Collection<?> candidati = (Collection<?>)request.getAttribute("candidati");
+ 	
+ 	CoalizioneBean coalizione = (CoalizioneBean)request.getAttribute("coalizione");
 %>    
     
 <!DOCTYPE html>
@@ -24,6 +26,9 @@
 <body>
 	<%@ include file="header.jsp"%>
 	<h1><%=partito.getNome()%></h1>
+	<% if (!coalizione.getNome().equals("")) { %>
+		<h2>&lsqb;<%=coalizione.getNome()%>&rsqb;</h2>
+	<%} %>
 	<img src="PhotoControl?type=partito&id=<%=partito.getNome()%>" onerror="this.src='./imgs/nologo.png'">
     <br>
 	<p><%=partito.getDescrizione()%></p>

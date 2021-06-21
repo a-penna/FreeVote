@@ -5,8 +5,6 @@ public class AdminBean {
 	private String password;
 	private String nomeUtente;
 	
-	
-	
 	public AdminBean() { 
 		this.password = "";
 		this.nomeUtente = "";

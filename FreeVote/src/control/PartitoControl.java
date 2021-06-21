@@ -30,6 +30,7 @@ public class PartitoControl extends HttpServlet {
 		DataSource ds = (DataSource) getServletContext().getAttribute("DataSource");
 		PartitoModelDS partitoModel = new PartitoModelDS(ds);
         CandidatoModelDS candidatoModel = new CandidatoModelDS(ds);
+        CoalizioneModelDS coalizioneModel = new CoalizioneModelDS(ds);
 		
 		try {
 			PartitoBean partito = partitoModel.doRetrieveByKey(nome);
@@ -37,6 +38,9 @@ public class PartitoControl extends HttpServlet {
 			
 			Collection<CandidatoBean> candidati = candidatoModel.doRetrieveByPartito(nome, "cognome");
 			request.setAttribute("candidati", candidati);
+			
+			CoalizioneBean coalizione = coalizioneModel.doRetrieveByPartito(nome);
+			request.setAttribute("coalizione", coalizione);
 		} catch (SQLException e) {
 			Utility.printSQLException(e);
 		}

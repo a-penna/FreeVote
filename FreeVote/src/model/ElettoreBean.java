@@ -9,6 +9,16 @@ public class ElettoreBean {
     private String sesso;
     private String cap;
 
+    public ElettoreBean() {
+    	codice = "";
+    	password = "";
+    	regione = "";
+    	comune = "";
+    	eta = -1;
+    	sesso = "";
+    	cap = "";
+    }
+    
 	public String getCodice() {
 		return codice;
 	}
