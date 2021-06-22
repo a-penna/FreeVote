@@ -24,7 +24,7 @@
     <br>
     <a href="">Elimina un partito da una coalizione</a>
     <br>
-    <a href="">Crea una coalizione</a>
+    <a href="<%=response.encodeURL("/FreeVote/admin/inserisciCoalizione.jsp")%>">Crea una coalizione</a>
     <br>
     <a href="<%=response.encodeURL("/FreeVote/admin/eliminaCoalizione.jsp")%>">Elimina una coalizione</a>
     <br>

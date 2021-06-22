@@ -9,6 +9,8 @@ import java.util.LinkedList;
 
 import javax.sql.DataSource;
 
+import utils.Utility;
+
 public class CoalizioneModelDS implements Model<CoalizioneBean>{
     
 	private DataSource ds = null;
@@ -86,11 +88,15 @@ public class CoalizioneModelDS implements Model<CoalizioneBean>{
 
 	}
 
-	public void doSave(CoalizioneBean coalizione) throws SQLException {
+	public boolean doSaveCheck(CoalizioneBean coalizione, String partito1, String partito2) throws SQLException {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
+		PreparedStatement preparedStatement2 = null;
+		PreparedStatement preparedStatement3 = null;
 
 		String insertSQL = "INSERT INTO coalizione(nome) VALUES (?)";
+		String insert2SQL = "INSERT INTO appartiene(partito,coalizione) VALUES (?,?)";
+		String insert3SQL = "INSERT INTO appartiene(partito,coalizione) VALUES (?,?)";
 
 		try {
 			connection = ds.getConnection();
@@ -99,13 +105,47 @@ public class CoalizioneModelDS implements Model<CoalizioneBean>{
 
 			preparedStatement.setString(1, coalizione.getNome());
 
+			int rs = preparedStatement.executeUpdate();
+			if (rs != 1) {
+				return false;
+			}
+			
+			preparedStatement2 = connection.prepareStatement(insert2SQL);
+			preparedStatement2.setString(1, partito1);
+			preparedStatement2.setString(2, coalizione.getNome());
 
-			preparedStatement.executeUpdate();
+			rs = preparedStatement2.executeUpdate();
+			if (rs != 1) {
+				try {
+					connection.rollback();
+				} catch(SQLException e) {
+					Utility.printSQLException(e);
+				}
+				return false;
+			}
+		
+			preparedStatement3 = connection.prepareStatement(insert3SQL);
+			preparedStatement3.setString(1, partito2);
+			preparedStatement3.setString(2, coalizione.getNome());
+
+			rs = preparedStatement3.executeUpdate();
+			if (rs != 1) {
+				try {
+					connection.rollback();
+				} catch(SQLException e) {
+					Utility.printSQLException(e);
+				}
+				return false;
+			}
 
 			connection.commit();
 
 		} finally {
 			try {
+				if (preparedStatement3 != null)
+					preparedStatement3.close();
+				if (preparedStatement2 != null)
+					preparedStatement2.close();
 				if (preparedStatement != null)
 					preparedStatement.close();
 			} finally {
@@ -114,6 +154,11 @@ public class CoalizioneModelDS implements Model<CoalizioneBean>{
 				}
 			}
 		}
+		return true;
+	}
+
+	public void doSave(CoalizioneBean coalizione) throws SQLException {
+		throw new UnsupportedOperationException();
 	}
 
 	public void doUpdate(CoalizioneBean coalizione) throws SQLException { 
