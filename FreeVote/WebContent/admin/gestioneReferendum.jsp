@@ -19,7 +19,7 @@
     <br>
     <a href="<%=response.encodeURL("/FreeVote/InserisciMozione")%>">Aggiungi una mozione</a>
     <br>
-    <a href="<%=response.encodeURL("")%>">Rimuovi una mozione</a>
+    <a href="<%=response.encodeURL("/FreeVote/admin/eliminaMozione.jsp")%>">Rimuovi una mozione</a>
     <br>
 
 </body>

@@ -198,4 +198,40 @@ public class MozioneModelDS implements Model<MozioneBean> {
 		}
 		return true;
 	}
+	
+	
+	public boolean doDeleteCheck(MozioneBean mozione) throws SQLException {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+
+		String deleteSQL = "DELETE FROM mozione WHERE id = ?";
+
+		try {
+			connection = ds.getConnection();
+			connection.setAutoCommit(false);
+			preparedStatement = connection.prepareStatement(deleteSQL);
+			preparedStatement.setInt(1, mozione.getID());
+
+			preparedStatement.executeUpdate();
+
+			connection.commit();
+
+		}
+		
+		catch (SQLException e) {
+			Utility.printSQLException(e);
+			return false;
+		}
+		finally {
+			try {
+				if (preparedStatement != null)
+					preparedStatement.close();
+			} finally {
+				if (connection != null) {
+					connection.close();
+				}
+			}
+		}
+		return true;
+	}
 }
