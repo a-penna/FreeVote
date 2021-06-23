@@ -6,8 +6,8 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
 <html>
 <head>
 	<meta charset="UTF-8">
-	<meta name="keywords" content="FreeVote, piattaforma voto, voto, voto online, elimina eartito">
-	<meta name="description" content="Elimina partito">
+	<meta name="keywords" content="FreeVote, piattaforma voto, voto, voto online, inserisci partito, partito">
+	<meta name="description" content="Inserisci partito">
 	<meta name="author" content="Bene Sabato, Cozzolino Lidia, Napoli Riccardo, Penna Alessandro">    
 	<title>FreeVote &dash; Inserisci Partito</title>
 	
@@ -15,7 +15,7 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
 
 	<body>
 	<%@ include file="/admin/admin-header.jsp"%>
-	<p>Inserisci i dati nel seguente form per registare un nuovo partito: <p>
+	<p>Inserisci i dati nel seguente form per registare un nuovo partito&colon; <p>
 
 	<form action="<%=response.encodeURL("/FreeVote/InserisciPartito")%>" method="post" enctype="multipart/form-data"> 
         <fieldset>
@@ -24,8 +24,7 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
        	    <input id="nome" type="text" name="nome" placeholder="Nome partito"> 
             <br>
         	<label for="descrizione">Descrizione&colon;</label>
-        	<textarea id="descrizione" name="descrizione" rows="10" cols="48" placeholder="Inserisci qui la descrizione"> 
-        	</textarea>
+        	<textarea id="descrizione" name="descrizione" rows="10" cols="48" placeholder="Inserisci qui la descrizione"></textarea>
 			<br>
         	<label for="logo">Carica Logo&colon;</label>
        	    <input id="logo" type="file" name="logo"> 
@@ -42,8 +41,7 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
         	<input id="cf" type="text" name="cf" placeholder="Cf">
         	<br>
         	<label for="curriculum">Curriculum&colon;</label>
-        	<textarea id="curriculum" name="curriculum" rows="10" cols="48" placeholder="Inserisci qui il curriculum"> 
-        	</textarea>
+        	<textarea id="curriculum" name="curriculum" rows="10" cols="48" placeholder="Inserisci qui il curriculum"></textarea>
         	<br>
         	<label for="foto">Carica Foto&colon;</label>
        	    <input id="foto" type="file" name="foto">  

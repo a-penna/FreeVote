@@ -1,22 +1,22 @@
 package control;
 
 import java.io.IOException;
-//import java.io.InputStream;
+import java.io.InputStream;
 import java.sql.SQLException;
 
 import javax.servlet.ServletException;
-//import javax.servlet.annotation.MultipartConfig;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-//import javax.servlet.http.Part;
+import javax.servlet.http.Part;
 import javax.sql.DataSource;
 
 import model.*;
 import utils.Utility;
 
-//@MultipartConfig(maxFileSize = 16177215)
+@MultipartConfig(maxFileSize = 16177215)
 @WebServlet("/InserisciPartito")
 public class InserisciPartitoControl extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -34,25 +34,18 @@ public class InserisciPartitoControl extends HttpServlet {
 		}
 		
 		String nome = request.getParameter("nome");
-		System.out.println(nome);
 		String descrizione = request.getParameter("descrizione");
-		System.out.println(descrizione);
 		String nomeLeader = request.getParameter("nomeLeader");
-		System.out.println(nomeLeader);
 		String cognomeLeader = request.getParameter("cognomeLeader");
-		System.out.println(cognomeLeader);
 		String cf = request.getParameter("cf");
-		System.out.println(cf);
 		String curriculum = request.getParameter("curriculum");
-		System.out.println(curriculum);
-		
          
 		if (nome == null || descrizione == null || nomeLeader == null || cognomeLeader == null || cf == null || curriculum == null) {
 			response.sendRedirect(response.encodeRedirectURL("/FreeVote/admin/inserisciPartito.jsp"));
 			return;
 		}
 		
-		/*InputStream streamLogo = null; 
+		InputStream streamLogo = null; 
 		
 		Part filePart = request.getPart("logo");
 		if (filePart != null) {
@@ -64,7 +57,7 @@ public class InserisciPartitoControl extends HttpServlet {
 		filePart = request.getPart("foto");
 		if (filePart != null) {
 			streamFoto = filePart.getInputStream();
-		}*/
+		}
 
 		DataSource ds = (DataSource) getServletContext().getAttribute("DataSource");
 		PartitoModelDS model = new PartitoModelDS(ds);
@@ -77,7 +70,7 @@ public class InserisciPartitoControl extends HttpServlet {
 			partito.setDescrizione(descrizione);
 			partito.setLeader(nomeLeader + " " + cognomeLeader);
 			partito.setn_votazioni_ricevute(0);
-			//partito.setLogo(streamLogo.readAllBytes());
+			partito.setLogo(streamLogo.readAllBytes());
 			
 			CandidatoBean candidato = new CandidatoBean();
 			candidato.setNome(nomeLeader);
@@ -85,10 +78,9 @@ public class InserisciPartitoControl extends HttpServlet {
 			candidato.setCf(cf);
 			candidato.setCurriculum(curriculum);
 			candidato.setPartito(nome);
-			//candidato.setFoto(streamFoto.readAllBytes());
+			candidato.setFoto(streamFoto.readAllBytes());
 
 			boolean flag = model.doSaveCheck(partito, candidato);
-			
 		    if(flag) {
 		    	redirectedPage="/successo.jsp";
 		    } else {
@@ -96,9 +88,11 @@ public class InserisciPartitoControl extends HttpServlet {
 		    }
 		} catch(SQLException e) {
 			Utility.printSQLException(e);
+			response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/error/insertError.jsp"));
+			return;
 		}
 		response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + redirectedPage));
-		}
+	}
 }
 
 

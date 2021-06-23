@@ -212,12 +212,13 @@ public class MozioneModelDS implements Model<MozioneBean> {
 			preparedStatement = connection.prepareStatement(deleteSQL);
 			preparedStatement.setInt(1, mozione.getID());
 
-			preparedStatement.executeUpdate();
-
+			int rs = preparedStatement.executeUpdate();
+			if (rs != 1) {
+				return false;
+			}
 			connection.commit();
-
+			
 		}
-		
 		catch (SQLException e) {
 			Utility.printSQLException(e);
 			return false;

@@ -20,9 +20,9 @@
     <br>
     <a href="<%=response.encodeURL("/FreeVote/admin/eliminaPartito.jsp")%>">Elimina un partito</a>
     <br>
-    <a href="">Inserisci un partito in una coalizione</a>
+    <a href="<%=response.encodeURL("/FreeVote/admin/inserisciPartitoCoalizione.jsp")%>">Inserisci un partito in una coalizione</a>
     <br>
-    <a href="">Elimina un partito da una coalizione</a>
+    <a href="<%=response.encodeURL("/FreeVote/admin/eliminaPartitoCoalizione.jsp")%>">Elimina un partito da una coalizione</a>
     <br>
     <a href="<%=response.encodeURL("/FreeVote/admin/inserisciCoalizione.jsp")%>">Crea una coalizione</a>
     <br>

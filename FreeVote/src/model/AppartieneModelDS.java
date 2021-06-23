@@ -62,28 +62,44 @@ public class AppartieneModelDS implements Model<AppartieneBean>{
     public boolean doSaveCheck(AppartieneBean appartiene) throws SQLException {
         Connection connection = null;
 		PreparedStatement preparedStatement = null;
+		PreparedStatement preparedStatement2 = null;
 
+		ResultSet rs = null;
+		String selectSQL = "SELECT COUNT(*) FROM Appartiene WHERE partito=?";
 		String insertSQL = "INSERT INTO appartiene(partito,coalizione) VALUES (?,?)";
 
 		try {
 			connection = ds.getConnection();
 			connection.setAutoCommit(false);
-			preparedStatement = connection.prepareStatement(insertSQL);
-
+			
+			preparedStatement = connection.prepareStatement(selectSQL);
 			preparedStatement.setString(1, appartiene.getPartito());
-            preparedStatement.setString(2, appartiene.getCoalizione());
+			rs = preparedStatement.executeQuery();
 
-			int rs = preparedStatement.executeUpdate();
-            if (rs != 1) {
+			int count = 1000;
+			if (rs.next()) {
+				count = rs.getInt(1);
+			}
+			if (count > 0) {
+				return false;
+			}
+			
+			preparedStatement2 = connection.prepareStatement(insertSQL);
+			preparedStatement2.setString(1, appartiene.getPartito());
+            preparedStatement2.setString(2, appartiene.getCoalizione());
+
+			int result = preparedStatement2.executeUpdate();
+            if (result != 1) {
                 return false;
             }    
-        
 			connection.commit();
 
 		} finally {
 			try {
 				if (preparedStatement != null)
 					preparedStatement.close();
+				if (preparedStatement2 != null)
+					preparedStatement2.close();
 			} finally {
 				if (connection != null) {
 					connection.close();
@@ -140,7 +156,6 @@ public class AppartieneModelDS implements Model<AppartieneBean>{
 				if (result > 0) {
 					return true;
 				} else {
-					
 					return false;
 				}
 			} else if (count == 2){
@@ -148,7 +163,7 @@ public class AppartieneModelDS implements Model<AppartieneBean>{
 					+ "WHERE nome=( SELECT coalizione "
 								 + "FROM Appartiene "
 								 + "WHERE partito=?"
-								+ " ) ";
+								 + " ) ";
 				
 				preparedStatement2 = connection.prepareStatement(deleteSQL);
 				int result = preparedStatement2.executeUpdate(deleteSQL);
