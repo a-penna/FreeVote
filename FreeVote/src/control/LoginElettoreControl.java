@@ -14,7 +14,6 @@ import javax.sql.DataSource;
 
 import model.ComuneBean;
 import model.ComuneModelDS;
-import model.ElettoreModelDS;
 import utils.Utility;
 
 @WebServlet("/Elettore")

@@ -22,20 +22,24 @@
 
 <body>
 	<%@ include file="header.jsp"%>
+    <% boolean loggedAsElettore = request.getSession(false) != null && request.getSession(false).getAttribute("elettoreRoles")!= null;  
     
-    <form action="Administrator" method="post"> 
-        <fieldset>
-             <legend>Inserisci credenziali: </legend>
-             <label for="username">Username</label>
-             <input id="username" type="text" name="username" placeholder="inserisci username"> 
-             <br>   
-             <label for="password">Password</label>
-             <input id="password" type="password" name="password" placeholder="inserisci password"> 
-             <br>
-             <input type="reset" value="Reset"/>
-             <input type="submit" value="Login"/>
-    	</fieldset>
-    </form> 
-
+    if (loggedAsElettore)  { 
+		%><h3>Si prega di effettuare il logout da elettore prima di procedere con la normale autenticazione da admin</h3><%
+	} else { %>
+	    <form action="Administrator" method="post"> 
+	        <fieldset>
+	             <legend>Inserisci credenziali: </legend>
+	             <label for="username">Username</label>
+	             <input id="username" type="text" name="username" placeholder="inserisci username"> 
+	             <br>   
+	             <label for="password">Password</label>
+	             <input id="password" type="password" name="password" placeholder="inserisci password"> 
+	             <br>
+	             <input type="reset" value="Reset"/>
+	             <input type="submit" value="Login"/>
+	    	</fieldset>
+	    </form> 
+<% 	} %>
 </body>
 </html>

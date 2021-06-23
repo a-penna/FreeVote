@@ -30,7 +30,7 @@ public class Logout extends HttpServlet {
 		}
 		request.getSession().invalidate();
 		
-		response.sendRedirect(request.getContextPath() + redirectedPage);	
+		response.sendRedirect("/FreeVote" + redirectedPage);	
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) 

@@ -2,7 +2,6 @@ package control;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.Collection;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -16,24 +15,10 @@ import model.MozioneBean;
 import model.MozioneModelDS;
 import utils.Utility;
 
-/**
- * Servlet implementation class EliminaMozioneControl
- */
 @WebServlet("/EliminaMozione")
 public class EliminaMozioneControl extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public EliminaMozioneControl() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		boolean loggedIn = request.getSession(false) != null && request.getSession(false).getAttribute("adminRoles")!= null;
 		if(!loggedIn) {
@@ -65,9 +50,6 @@ public class EliminaMozioneControl extends HttpServlet {
 		
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		doGet(request, response);

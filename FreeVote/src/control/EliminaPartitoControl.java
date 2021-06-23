@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 
-import model.CoalizioneBean;
 import model.PartitoBean;
 import model.PartitoModelDS;
 import utils.Utility;

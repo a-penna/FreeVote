@@ -20,8 +20,13 @@ public class LoginAdminControl extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 			
-			if (request.getSession(false) != null && request.getSession(false).getAttribute("AdminRoles")!= null) {
+			if (request.getSession(false) != null && request.getSession(false).getAttribute("adminRoles")!= null) {
 				response.sendRedirect(response.encodeRedirectURL("/FreeVote/admin/interfacciaAdmin.jsp"));
+				return;
+			}
+			
+			if (request.getSession(false) != null && request.getSession(false).getAttribute("elettoreRoles")!= null) {
+				response.sendRedirect(response.encodeRedirectURL("/FreeVote/loginAdmin.jsp"));
 				return;
 			}
 			
