@@ -53,7 +53,7 @@ public class InserisciMozioneControl extends HttpServlet{
 				response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/successo.jsp"));
 				return;
 			} else {
-				response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/error/generic.jsp"));
+				response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/error/insertError.jsp"));
 				return;
 			}
         } catch(SQLException e) {

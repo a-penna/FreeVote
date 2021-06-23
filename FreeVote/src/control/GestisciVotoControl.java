@@ -66,7 +66,7 @@ public class GestisciVotoControl extends HttpServlet {
 						redirectedPage = "/successo.jsp";
 						request.getSession().invalidate();
 					} else {
-						redirectedPage = "/error/generic.jsp";
+						redirectedPage = "/error/noAuth.jsp";
 					}
 				} catch(SQLException e) {
 					Utility.printSQLException(e);
@@ -92,7 +92,7 @@ public class GestisciVotoControl extends HttpServlet {
 							redirectedPage = "/successo.jsp";
 							request.getSession().invalidate();
 						} else {
-							redirectedPage = "/error/generic.jsp";
+							redirectedPage = "/error/noAuth.jsp";
 						}
 					} catch(SQLException e) {
 						Utility.printSQLException(e);
@@ -118,7 +118,7 @@ public class GestisciVotoControl extends HttpServlet {
 							redirectedPage = "/successo.jsp";
 							request.getSession().invalidate();
 						} else {
-							redirectedPage = "/error/generic.jsp";
+							redirectedPage = "/error/noAuth.jsp";
 						}
                     } catch(SQLException e) {
 						Utility.printSQLException(e);

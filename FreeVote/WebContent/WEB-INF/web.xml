@@ -59,8 +59,16 @@
   </error-page>
 	
   <error-page>
+  	<error-code>403</error-code>
+	<location>/error/noAuth.jsp</location>
+  </error-page>
+  
+  <error-page>
 	<location>/error/generic.jsp</location>
   </error-page>
+  
+  
+  
   
 <!--<session-config>
 <cookie-config>

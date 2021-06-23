@@ -92,7 +92,7 @@ public class InserisciPartitoControl extends HttpServlet {
 		    if(flag) {
 		    	redirectedPage="/successo.jsp";
 		    } else {
-		    	redirectedPage="/error/generic.jsp";
+		    	redirectedPage="/error/insertError.jsp";
 		    }
 		} catch(SQLException e) {
 			Utility.printSQLException(e);
