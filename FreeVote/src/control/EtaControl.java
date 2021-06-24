@@ -55,7 +55,7 @@ public class EtaControl extends HttpServlet {
 					request.setAttribute("massima", String.valueOf(max));
 					request.setAttribute("partito", partito);
 				}
-			}
+			} //Non funziona con partito5 e partito6 stranamente
 		} catch (SQLException e) {
 			Utility.printSQLException(e);
 		}

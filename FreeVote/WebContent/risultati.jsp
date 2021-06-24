@@ -1,14 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="java.util.*, model.*"%>
    
- <%
+<% 
     Collection<?> partiti = (Collection<?>) request.getAttribute("partiti");
-     
-    if(partiti == null) {
-        response.sendRedirect(response.encodeRedirectURL("./Risultati")); 
+
+    if (partiti == null) {
+        response.sendRedirect(response.encodeRedirectURL("./Risultati"));
         return;
     }
-%>
+    Collection<?> coalizioni = (Collection<?>) request.getAttribute("coalizioni");
+
+    if (coalizioni == null) {
+        response.sendRedirect(response.encodeRedirectURL("./Risultati"));
+        return;
+    }
+%>    
 
 
 <!DOCTYPE html>
@@ -27,15 +33,22 @@
     <h1>Risultati&colon;</h1>
         <%
         Iterator<?> it = partiti.iterator();
-        while(it.hasNext()) {
+        Iterator<?> it2 = coalizioni.iterator();
+        while(it.hasNext() && it2.hasNext()) {
+        	CoalizioneBean coalizione= (CoalizioneBean)it2.next();
             PartitoBean partito = (PartitoBean)it.next();    
             if (!partito.getNome().equals("Scheda Bianca")) {  
     %>
-            	<p> <a href="Partito?nome=<%=partito.getNome()%>"><%=partito.getNome()%></a>
-                <%=partito.getn_votazioni_ricevute()%> </p>
-            	<br>
-    <%   }
-    }
+            	<img src="PhotoControl?type=partito&id=<%=partito.getNome()%>" onerror="this.src='./imgs/nologo.png'">
+    			<% if (!coalizione.getNome().equals("")) { %>
+            		<p><%=partito.getNome()%> &lsqb;<%=coalizione.getNome()%>&rsqb; Voti: <%=partito.getn_votazioni_ricevute()%></p>
+            	<%} else { %>
+            		<p><%=partito.getNome()%> Voti: <%=partito.getn_votazioni_ricevute()%></p>
+            		<br>
+            	<% } 
+            	
+      	}
+        }
     %>
 </body>
 </html>

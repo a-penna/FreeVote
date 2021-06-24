@@ -32,10 +32,11 @@
         </a>
         <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="<%=response.encodeURL("/FreeVote/Risultati")%>">Risultati Generali</a>
+          <a class="dropdown-item" href="<%=response.encodeURL("")%>">Risultati per coalizione</a>
           <a class="dropdown-item" href="<%=response.encodeURL("/FreeVote/risultatiPerEta.jsp")%>">Risultati per fascia d'et&agrave;</a>
           <a class="dropdown-item" href="<%=response.encodeURL("/FreeVote/risultatiRegioni.jsp")%>">Risultati per Regione</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href=<%=response.encodeURL("/FreeVote/risultatiReferendum.jsp")%>">Risultati Generali Referendum</a>
+          <a class="dropdown-item" href="<%=response.encodeURL("/FreeVote/risultatiReferendum.jsp")%>">Risultati Generali Referendum</a>
         </div>
       </li>
      <% 
