@@ -232,5 +232,40 @@ public class CoalizioneModelDS implements Model<CoalizioneBean>{
 
 		return bean;
 	}
+
+	public int doRetrieveVoti(CoalizioneBean coalizione) throws SQLException {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+
+		int somma = -1;
+		String selectSQL = "SELECT SUM(n_votazioni_ricevute) "
+							+ "FROM partito "
+							+ "WHERE nome IN (SELECT partito "
+											+ "FROM appartiene "
+											+ "WHERE coalizione = ?)";
+		
+		try {
+			connection = ds.getConnection();
+			preparedStatement = connection.prepareStatement(selectSQL);
+			preparedStatement.setString(1, coalizione.getNome());
+
+			ResultSet rs = preparedStatement.executeQuery();
+
+			if (rs.next()) 	
+				 somma = rs.getInt(1);
+				
+		} finally {
+			try {
+				if (preparedStatement != null)
+					preparedStatement.close();
+			} finally {
+				if (connection != null) {
+					connection.close();
+				}
+			}
+		}
+
+		return somma;
+	}
 }
 

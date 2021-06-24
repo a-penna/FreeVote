@@ -114,10 +114,14 @@ public class CandidatoModelDS implements Model<CandidatoBean>{
 	}
 	
 	public void doSave(CandidatoBean candidato) throws SQLException {
+		doSaveCheck(candidato);
+	}
+	
+	public boolean doSaveCheck(CandidatoBean candidato) throws SQLException {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		
-		String insertSQL = "INSERT INTO Candidato (codice_fiscale,nome,cognome,curriculum,foto,partito) VALUES (?, ?, ?, ?, ?, ?,?)";
+		String insertSQL = "INSERT INTO Candidato (codice_fiscale,nome,cognome,curriculum,foto,partito) VALUES (?, ?, ?, ?, ?, ?)";
 		
 		try {
 			connection = ds.getConnection();
@@ -128,13 +132,14 @@ public class CandidatoModelDS implements Model<CandidatoBean>{
 			preparedStatement.setString(2, candidato.getNome());
 			preparedStatement.setString(3, candidato.getCognome());
 			preparedStatement.setString(4, candidato.getCurriculum());
-			//preparedStatement.setBlob(5, candidato.getFoto());
+			preparedStatement.setBytes(5, candidato.getFoto());
 			preparedStatement.setString(6, candidato.getPartito());
 			
-			preparedStatement.executeUpdate();
-			
+			int rs = preparedStatement.executeUpdate();
+			if (rs != 1) {
+				return false;
+			}
 			connection.commit();
-			
 		} finally {
 			try {
 				if (preparedStatement != null)
@@ -145,8 +150,9 @@ public class CandidatoModelDS implements Model<CandidatoBean>{
 				}
 			}
 		}
+		return true;
 	}
-	
+
 	public void doUpdate(CandidatoBean candidato) throws SQLException {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
@@ -161,7 +167,7 @@ public class CandidatoModelDS implements Model<CandidatoBean>{
 			preparedStatement.setString(1, candidato.getNome());
 			preparedStatement.setString(2, candidato.getCognome());
 			preparedStatement.setString(3, candidato.getPartito());			
-			//preparedStatement.setBlob(4, candidato.getFoto());
+			preparedStatement.setBytes(4, candidato.getFoto());
 			preparedStatement.setString(5, candidato.getCurriculum());
 			preparedStatement.setString(6, candidato.getCf());
 			
@@ -180,7 +186,7 @@ public class CandidatoModelDS implements Model<CandidatoBean>{
 		}
 	}
 	
-	@Override
+
 	public void doDelete(CandidatoBean candidato) throws SQLException {
 		doDeleteCheck(candidato);
 	}
@@ -245,7 +251,7 @@ public class CandidatoModelDS implements Model<CandidatoBean>{
 				bean.setNome(rs.getString("nome"));
 				bean.setCognome(rs.getString("cognome"));
 				bean.setPartito(rs.getString("partito"));
-				//bean.setFoto(rs.getBlob("foto")); 
+				bean.setFoto(rs.getBytes("foto")); 
 				bean.setCurriculum(rs.getString("curriculum")); 
 				
 				candidati.add(bean);

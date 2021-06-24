@@ -50,12 +50,17 @@ public class EtaControl extends HttpServlet {
 		                	n++;
 		                }
 		            }
-					request.setAttribute("percentuale", String.valueOf(n*100/voti.size()));
+					if(voti.size() != 0) {
+						request.setAttribute("percentuale", "" + n*100/voti.size());
+					} else {
+						request.setAttribute("percentuale", "0");
+					}
 					request.setAttribute("minima", String.valueOf(min));
 					request.setAttribute("massima", String.valueOf(max));
 					request.setAttribute("partito", partito);
-				}
-			} //Non funziona con partito5 e partito6 stranamente
+					
+				}                                    
+			}                                                                                                                             
 		} catch (SQLException e) {
 			Utility.printSQLException(e);
 		}

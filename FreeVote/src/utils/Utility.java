@@ -75,5 +75,83 @@ public class Utility {
 	        return null;
 	    }
 	}
+
+	public static String filter(String input) {
+		StringBuffer filtered = new StringBuffer(input.length());
+		char c;
+				
+		for (int i = 0; i < input.length(); i++) {
+			c = input.charAt(i);
+			if (c == '<') {
+				filtered.append("&lt;");
+			}
+			else if (c == '>') {
+				filtered.append("&gt;");
+			}
+			else if (c == '.') {
+				filtered.append("&period;");
+			}
+			else if (c == ',') {
+				filtered.append("&comma;");
+			}
+			else if (c == ':') {
+				filtered.append("&colon;");
+			}
+			else if (c == '$') {
+				filtered.append("&dollar;");
+			}
+			else if (c == '%') {
+				filtered.append("&percnt;");
+			}
+			else if (c == '&') {
+				filtered.append("&amp;");
+			} else if (c == '"') {
+				filtered.append("&quot;");
+			}
+			else if (c == '@') {
+				filtered.append("&commat;");
+			} /*
+			else if (c == 'à') {
+				filtered.append("&agrave;");
+			}
+			else if (c == 'è') {
+				filtered.append("&egrave;");
+			}
+			else if (c == 'ì') {
+				filtered.append("&igrave;");
+			}
+			else if (c == 'ò') {
+				filtered.append("&ograve;");
+			}
+			else if (c == 'ù') {
+				filtered.append("&ugrave;");
+			}
+			else if (c == '[') {
+				filtered.append("&lsqb;");
+			}
+			else if (c == ']') {
+				filtered.append("&rsqb;");
+			}
+			else if (c == ';') {
+				filtered.append("&semi;");
+			}
+			else if (c == 'é') {
+				filtered.append("&eacute;");
+			}
+			else if (c == 'É') {
+				filtered.append("&Eacute;");
+			} 
+			else if (c == '/') {
+				filtered.append("&sol;");
+			}
+			else if (c == '\\') {
+				filtered.append("&bsol;&bsol;");
+			} */
+			else {
+				filtered.append(c);
+			}
+		} 	
+		return filtered.toString();
+	}
 	
 }

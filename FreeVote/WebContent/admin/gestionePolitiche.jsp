@@ -22,13 +22,13 @@
     <br>
     <a href="<%=response.encodeURL("/FreeVote/admin/inserisciPartitoCoalizione.jsp")%>">Inserisci un partito in una coalizione</a>
     <br>
-    <a href="<%=response.encodeURL("/FreeVote/admin/eliminaPartitoCoalizione.jsp")%>">Elimina un partito da una coalizione</a>
+    <a href="<%=response.encodeURL("/FreeVote/admin/eliminaPartitoCoalizione.jsp")%>">Elimina un partito da una coalizione</a> 
     <br>
     <a href="<%=response.encodeURL("/FreeVote/admin/inserisciCoalizione.jsp")%>">Crea una coalizione</a>
     <br>
     <a href="<%=response.encodeURL("/FreeVote/admin/eliminaCoalizione.jsp")%>">Elimina una coalizione</a>
     <br>
-    <a href="">Aggiungi un candidato ad un partito</a>
+    <a href="<%=response.encodeURL("/FreeVote/admin/inserisciCandidato.jsp")%>">Aggiungi un candidato ad un partito</a>
     <br>
     <a href="<%=response.encodeURL("/FreeVote/admin/eliminaCandidato.jsp")%>">Rimuovi un candidato da un partito</a>
     
