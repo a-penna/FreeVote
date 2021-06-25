@@ -130,14 +130,15 @@ public class AppartieneModelDS implements Model<AppartieneBean>{
 		ResultSet rs = null;
 
 		try {
-			connection = ds.getConnection();		    
+			connection = ds.getConnection();
+			connection.setAutoCommit(false);		    
 			
 			String selectSQL = "SELECT COUNT(*) "
 					   + "FROM Appartiene "
 					   + "WHERE coalizione=(SELECT coalizione "
 					   					 + "FROM Appartiene "
 					   					 + "WHERE partito=? "
-					   					 + ") ";
+					   					 + ")";
 			
 			preparedStatement = connection.prepareStatement(selectSQL);
 			preparedStatement.setString(1, appartiene.getPartito());
@@ -146,34 +147,33 @@ public class AppartieneModelDS implements Model<AppartieneBean>{
 			if (rs.next()) 
 				count = rs.getInt(1);
 			
-			if (count > 2) {
+			if (count == 1000) {
+				return false;
+			} else if (count > 2) {
 				String deleteSQL = "DELETE FROM Appartiene "
-						+ "WHERE Partito=?";
+						+ "WHERE partito=?";
 				
 				preparedStatement2 = connection.prepareStatement(deleteSQL);
                 preparedStatement2.setString(1, appartiene.getPartito());
-				int result = preparedStatement2.executeUpdate(deleteSQL);
-				if (result > 0) {
-					return true;
-				} else {
+				int result = preparedStatement2.executeUpdate();
+				if (result <= 0) {
 					return false;
-				}
+				} 
 			} else if (count == 2){
 				String deleteSQL = "DELETE FROM Coalizione "
-					+ "WHERE nome=( SELECT coalizione "
+					+ "WHERE nome=(SELECT coalizione "
 								 + "FROM Appartiene "
 								 + "WHERE partito=?"
-								 + " ) ";
+								 + " )";
 				
 				preparedStatement2 = connection.prepareStatement(deleteSQL);
-				int result = preparedStatement2.executeUpdate(deleteSQL);
-				if (result > 0) {
-					return true;
-				} else {
+				preparedStatement2.setString(1, appartiene.getPartito());
+				int result = preparedStatement2.executeUpdate();
+				if (result <= 0) {
 					return false;
-				}
+				} 
 			} else if (count == 0) {
-				return false;
+				return true;
 			}
             connection.commit();
 		}

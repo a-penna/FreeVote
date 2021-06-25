@@ -30,10 +30,11 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
 	            <%
 	            Iterator<?> it = partiti.iterator();
 	            while(it.hasNext()) {
-	                PartitoBean bean = (PartitoBean)it.next(); 
-	            %>
-	            <option value="<%=bean.getNome()%>"><%=bean.getNome()%></option>
-	            <%  } 
+					PartitoBean bean = (PartitoBean)it.next();
+					if (!bean.getNome().equals("Scheda Bianca")) { %>
+	            		<option value="<%=bean.getNome()%>"><%=bean.getNome()%></option>
+	            <%	}  
+				} 
 	            %>
 	     </select> 
         <input id="submit" type="submit" value="Elimina">

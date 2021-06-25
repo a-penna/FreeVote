@@ -264,7 +264,6 @@ public class CoalizioneModelDS implements Model<CoalizioneBean>{
 				}
 			}
 		}
-
 		return somma;
 	}
 }
