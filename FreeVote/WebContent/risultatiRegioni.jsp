@@ -55,18 +55,20 @@
     <table>
     	<tr>
  			<th>Partito</th>
- 			<th>&percnt;Abitanti</th>
+ 			<th>&percnt;Voti</th>
 		</tr>
 		<% 	it = percentuali.iterator();	
 			while(it.hasNext()) { 
 				String perc = (String)it.next();
-				String[] tableEl = perc.split(" ");
+				if (!perc.contains("Scheda Bianca")) {
+					String[] tableEl = perc.split(" ");
 		%> 
 		<tr>
  			<td><%=tableEl[0]%></td>
  			<td><%=tableEl[1]%></td>
     	</tr>
 	<%
+				}
 			}
 		}
     %>

@@ -16,8 +16,6 @@ import javax.sql.DataSource;
 
 import model.CoalizioneBean;
 import model.CoalizioneModelDS;
-import model.PartitoBean;
-import model.PartitoModelDS;
 import utils.Utility;
 
 	@WebServlet("/RisultatiCoalizione")

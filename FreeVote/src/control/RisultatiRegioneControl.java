@@ -2,9 +2,7 @@ package control;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.LinkedList;
+import java.util.*;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -27,13 +25,7 @@ public class RisultatiRegioneControl extends HttpServlet {
 		VotazionePoliticaModelDS votoModel = new VotazionePoliticaModelDS(ds);
 		
 		try {
-			Collection<String> regioni = new LinkedList<String>();
-			Collection<ComuneBean> comuni = comuneModel.doRetrieveAll("nome_regione");
-			for (ComuneBean c : comuni) {
-				if (!regioni.contains(c.getRegione())) {
-					regioni.add(c.getRegione());
-				}
-			}
+			Collection<String> regioni = comuneModel.doRetrieveAllRegioni("nome_regione");
 			request.setAttribute("regioni", regioni);
 			
 			String regione = request.getParameter("regione");
@@ -44,23 +36,7 @@ public class RisultatiRegioneControl extends HttpServlet {
 			}
 			request.setAttribute("regione", regione);
 			
-			Collection<VotazionePoliticaBean> voti = votoModel.doRetrieveAllByRegione(regione);
-			Collection<String> partiti = new LinkedList<String>();
-			for (VotazionePoliticaBean v : voti) {
-				if (!partiti.contains(v.getPartito()) && !v.getPartito().equals("Scheda Bianca")) {
-					partiti.add(v.getPartito());
-				}
-			}
-			
-			Collection<String> percentuali = new LinkedList<String>();
-			for (String p : partiti) {
-				int count = 0;
-				Iterator<VotazionePoliticaBean> it = voti.iterator();
-				while(it.hasNext()) {
-					if(it.next().getPartito().equals(p)) count++;
-				}
-				percentuali.add(p + " " + count*100/voti.size());
-			}
+			Collection<String> percentuali = votoModel.doRetrievePercByRegione(regione);
 
 			request.setAttribute("percentuali", percentuali);
 			RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher(response.encodeURL("/risultatiRegioni.jsp"));

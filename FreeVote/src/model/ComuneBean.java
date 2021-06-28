@@ -27,7 +27,7 @@ public class ComuneBean {
 	}
 
 	public void setCAP(String CAP) {
-		CAP = CAP;
+		this.CAP = CAP;
 	}
 
 	public int getNAventiDiritto() {

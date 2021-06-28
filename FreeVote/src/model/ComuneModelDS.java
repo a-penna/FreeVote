@@ -110,6 +110,39 @@ public class ComuneModelDS implements Model<ComuneBean> {
         throw new UnsupportedOperationException();
     }
 
+    public Collection<String> doRetrieveAllRegioni(String order) throws SQLException {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+
+		Collection<String> regioni = new LinkedList<String>();
+
+		String selectSQL = "SELECT DISTINCT nome_regione FROM comune2";
+
+		if (order != null && !order.equals("") && order.equals("nome_regione")) {
+			selectSQL += " ORDER BY " + order;
+		}
+
+		try {
+			connection = ds.getConnection();
+			preparedStatement = connection.prepareStatement(selectSQL);
+			ResultSet rs = preparedStatement.executeQuery();
+
+			while (rs.next()) {
+				regioni.add(rs.getString(1));
+			}
+		} finally {
+			try {
+				if (preparedStatement != null)
+					preparedStatement.close();
+			} finally {
+				if (connection != null) {
+					connection.close();
+				}
+			}
+		}
+
+		return regioni;
+	}
 
 }
 	

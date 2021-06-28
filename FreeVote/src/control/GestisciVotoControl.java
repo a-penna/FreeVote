@@ -38,7 +38,7 @@ public class GestisciVotoControl extends HttpServlet {
 			String redirectedPage = "";
 
 			String[] selected = request.getParameterValues("type[]");
-			List tipo = Arrays.asList(selected);
+			List<String> tipo = Arrays.asList(selected);
 			if(tipo.contains("politica") && tipo.contains("referendum")) {
 				VotazionePoliticaModelDS modelVotazione = new VotazionePoliticaModelDS(ds);
 				try {

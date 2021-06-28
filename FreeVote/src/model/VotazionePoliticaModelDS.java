@@ -494,5 +494,52 @@ public class VotazionePoliticaModelDS implements Model<VotazionePoliticaBean> {
 	public void doDelete(VotazionePoliticaBean mozione) throws SQLException {
 		throw new UnsupportedOperationException();
 	}
+	
+	public Collection<String> doRetrievePercByRegione(String regione) throws SQLException {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+
+		Collection<String> percentuali = new LinkedList<String>();
+
+		String selectSQL = "SELECT VP.partito, COUNT(*)*100/(SELECT COUNT(*) "
+														  + "FROM Votazione_Politica as VP2, Elettore as E2, Comune2 as C2 "
+														  + "WHERE c2.nome_regione=? "
+														  + "AND VP2.elettore = E2.codice "
+														  + "AND E2.comuneCap=C2.cap) AS PERCENTUALE "
+						+ "FROM Votazione_Politica as VP, Elettore as E, Comune2 as C "
+						+ "WHERE VP.elettore=E.codice "
+						+ "AND E.comuneCap=C.cap "
+						+ "AND C.nome_regione=? "
+						+ "GROUP BY VP.partito "
+						+ "ORDER BY  PERCENTUALE desc";
+		try {
+			connection = ds.getConnection();
+			preparedStatement = connection.prepareStatement(selectSQL);
+			preparedStatement.setString(1, regione);
+			preparedStatement.setString(2, regione);
+
+			ResultSet rs = preparedStatement.executeQuery();
+
+			while (rs.next()) {
+				String percentuale = "";
+				percentuale += rs.getString("partito");
+				percentuale += " ";
+				percentuale += rs.getString("percentuale");
+				percentuali.add(percentuale);
+			}
+
+		} finally {
+			try {
+				if (preparedStatement != null)
+					preparedStatement.close();
+			} finally {
+				if (connection != null) {
+					connection.close();
+				}
+			}
+		}
+
+		return percentuali;
+	}
 }
 
