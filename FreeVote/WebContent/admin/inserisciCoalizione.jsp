@@ -6,10 +6,48 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
 <html>
 <head>
 	<meta charset="UTF-8">
-	<meta name="keywords" content="FreeVote, piattaforma voto, voto, voto online, inserisci coalizione, coalizione">
+	<meta name="keywords" content="FreeVote, piattaforma voto, voto, voto online, inserisci coalizione, coalizione, operazioni admin, inserisci">
 	<meta name="description" content="Inserisci Coalizione">
 	<meta name="author" content="Bene Sabato, Cozzolino Lidia, Napoli Riccardo, Penna Alessandro">    
 	<title>FreeVote &dash; Inserisci Coalizione</title>
+	<script>
+		var count = 3;
+		
+		function addPartito()  {
+			var container = document.getElementById("partiti");
+		
+			var divv = document.createElement("div");
+			divv.id = "id"+count;
+			count++;
+			
+			var label = document.createElement("label");
+			label.htmlFor = "nomePartito";
+			label.appendChild(document.createTextNode("Nome del partito:"));
+			divv.appendChild(label);
+			
+			var element = document.createElement("input");
+			element.type = "text";
+			element.name = "nomePartito";
+			element.placeholder = "Nome del partito";
+			element.required = "required";
+			divv.appendChild(element);
+			
+			var input = document.createElement("input");
+			input.type = "button";
+			input.value = "-";
+			input.addEventListener("click", function() {removePartito(divv.id)});
+			divv.appendChild(input);
+			
+			container.appendChild(divv);
+
+		}
+		 
+		function removePartito(idd) {
+			var element = document.getElementById(idd);
+			element.parentNode.removeChild(element);
+		}
+	</script>
+
 </head>            
 <body>
 
@@ -20,15 +58,16 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
         <fieldset>
         <legend>Informazioni sulla coalizione&colon; </legend> 
         	<label for="nome">Nome Coalizione&colon;</label>  
-       	    <input id="nome" type="text" name="nomeCoalizione" placeholder="Nome della coalizione"> 
+       	    <input id="nome" type="text" name="nomeCoalizione" placeholder="Nome della coalizione" required> 
             <br>
-        	<label for="nomePartito1">Nome del primo partito&colon;</label>   <!--Inserimento più partiti con javascript da inserire -->
-			<input id="nomePartito1" type="text" name="nomePartito1" placeholder="Nome del primo partito"> 
-            <label for="nomePartito2">Nome del secondo partito&colon;</label>
-            <input id="nomePartito2" type="text" name="nomePartito2" placeholder="Nome del secondo partito"> 
-			<br>
+			<div id = "partiti">
+				<label>Nome del primo partito&colon; <input type="text" name="nomePartito" placeholder="Nome del primo partito" required> </label>   <!--Inserimento più partiti con javascript da inserire -->
+				<label>Nome del secondo partito&colon; <input type="text" name="nomePartito" placeholder="Nome del secondo partito" required> </label>
+				<input type="button" value="&plus;" onclick="addPartito()">
+			</div>
+			<br> 
         </fieldset>
-        <input id="submit" type="submit" name="submit">
+        <input id="submit" type="submit" value="Crea">
 	</form> 
 
 </body>

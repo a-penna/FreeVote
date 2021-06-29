@@ -88,21 +88,20 @@ public class CoalizioneModelDS implements Model<CoalizioneBean>{
 
 	}
 
-	public boolean doSaveCheck(CoalizioneBean coalizione, String partito1, String partito2) throws SQLException {
+	public boolean doSaveCheck(CoalizioneBean coalizione, String[] partiti) throws SQLException {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
-		PreparedStatement preparedStatement2 = null;
-		PreparedStatement preparedStatement3 = null;
 
 		String insertSQL = "INSERT INTO coalizione(nome) VALUES (?)";
-		String insert2SQL = "INSERT INTO appartiene(partito,coalizione) VALUES (?,?)";
-		String insert3SQL = "INSERT INTO appartiene(partito,coalizione) VALUES (?,?)";
+		String selectAppartenenzaSQL = "SELECT COUNT(*) FROM Appartiene WHERE partito=?";
+		String insertPartitoSQL = "INSERT INTO appartiene(partito,coalizione) VALUES (?,?)";
+		
 
 		try {
 			connection = ds.getConnection();
 			connection.setAutoCommit(false);
-			preparedStatement = connection.prepareStatement(insertSQL);
 
+			preparedStatement = connection.prepareStatement(insertSQL);
 			preparedStatement.setString(1, coalizione.getNome());
 
 			int rs = preparedStatement.executeUpdate();
@@ -110,42 +109,45 @@ public class CoalizioneModelDS implements Model<CoalizioneBean>{
 				return false;
 			}
 			
-			preparedStatement2 = connection.prepareStatement(insert2SQL);
-			preparedStatement2.setString(1, partito1);
-			preparedStatement2.setString(2, coalizione.getNome());
+			for (String partito : partiti) {
+				PreparedStatement preparedStatement2 = null;
+				preparedStatement2 = connection.prepareStatement(selectAppartenenzaSQL);
+				preparedStatement2.setString(1, partito);
+				ResultSet result = preparedStatement2.executeQuery();
+				int count = 1000;
+				
+				if (result.next())
+					count = result.getInt(1);
 
-			rs = preparedStatement2.executeUpdate();
-			if (rs != 1) {
-				try {
-					connection.rollback();
-				} catch(SQLException e) {
-					Utility.printSQLException(e);
-				}
-				return false;
-			}
-		
-			preparedStatement3 = connection.prepareStatement(insert3SQL);
-			preparedStatement3.setString(1, partito2);
-			preparedStatement3.setString(2, coalizione.getNome());
+				if (count <= 0) {
+					PreparedStatement preparedStatement3 = null;
+					preparedStatement3 = connection.prepareStatement(insertPartitoSQL);
+					preparedStatement3.setString(1, partito);
+					preparedStatement3.setString(2, coalizione.getNome());
 
-			rs = preparedStatement3.executeUpdate();
-			if (rs != 1) {
-				try {
-					connection.rollback();
-				} catch(SQLException e) {
-					Utility.printSQLException(e);
+					rs = preparedStatement3.executeUpdate();
+					if (rs != 1) {
+						try {
+							connection.rollback();
+						} catch(SQLException e) {
+							Utility.printSQLException(e);
+						}
+						return false;
+					}
+					if (preparedStatement3 != null)
+						preparedStatement3.close();
+				} else{
+					return false;
 				}
-				return false;
+
+				if (preparedStatement2 != null)
+					preparedStatement2.close();
 			}
 
 			connection.commit();
 
 		} finally {
 			try {
-				if (preparedStatement3 != null)
-					preparedStatement3.close();
-				if (preparedStatement2 != null)
-					preparedStatement2.close();
 				if (preparedStatement != null)
 					preparedStatement.close();
 			} finally {

@@ -22,11 +22,11 @@ public class InserisciCoalizioneControl extends HttpServlet{
 			response.sendRedirect(request.getContextPath() + "/loginAdmin.jsp");
 			return;
 		}
-        
+	
         String nome = request.getParameter("nomeCoalizione");
-        String partito1 = request.getParameter("nomePartito1");
-        String partito2 = request.getParameter("nomePartito2");
-        if(nome == null || partito1 == null || partito2 == null) {
+		String[] partiti = request.getParameterValues("nomePartito");
+
+        if(nome == null || partiti == null) {
             response.sendRedirect(response.encodeRedirectURL("/FreeVote/admin/inserisciCoalizione.jsp"));
 			return;
         }
@@ -38,7 +38,7 @@ public class InserisciCoalizioneControl extends HttpServlet{
             CoalizioneBean bean = new CoalizioneBean();
             bean.setNome(nome);
             
-           boolean flag = model.doSaveCheck(bean, partito1, partito2);
+           boolean flag = model.doSaveCheck(bean, partiti);
             if(flag) {
 				response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/successo.jsp"));
 				return; 
