@@ -13,7 +13,7 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
 <html>
 <head>
 	<meta charset="UTF-8">
-	<meta name="keywords" content="FreeVote, piattaforma voto, voto, voto online, elimina partito da una coalizione, partito, coalizione">
+	<meta name="keywords" content="FreeVote, piattaforma voto, voto, voto online, elimina partito da una coalizione, partito, coalizione, operazioni admin, admin">
 	<meta name="description" content="Elimina partito da una coalizione">
 	<meta name="author" content="Bene Sabato, Cozzolino Lidia, Napoli Riccardo, Penna Alessandro">    
 	<title>FreeVote &dash; Elimina Partito da una Coalizione</title>
@@ -26,7 +26,7 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
 <form action="<%=response.encodeURL("/FreeVote/EliminaPartitoCoalizione")%>" method="post"> 
     <fieldset>
         <label for="nome">Partito&colon;</label>
-        <select name="nome">
+        <select name="nome" required>
             <%
             Iterator<?> it = partiti.iterator();
             while(it.hasNext()) {

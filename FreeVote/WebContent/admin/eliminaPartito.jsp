@@ -13,7 +13,7 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
 <html>
 <head>
 	<meta charset="UTF-8">
-	<meta name="keywords" content="FreeVote, piattaforma voto, voto, voto online, elimina partito">
+	<meta name="keywords" content="FreeVote, piattaforma voto, voto, voto online, operazioni admin, admin, elimina, partito elimina partito">
 	<meta name="description" content="Elimina partito">
 	<meta name="author" content="Bene Sabato, Cozzolino Lidia, Napoli Riccardo, Penna Alessandro">    
 	<title>FreeVote &dash; Elimina Partito</title>
@@ -26,7 +26,7 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
     <fieldset>
         <legend>Inserisci informazioni sul partito&colon; </legend>
         <label for="nome">Nome&colon;</label>
-        <select name="nome">
+        <select name="nome" required>
 	            <%
 	            Iterator<?> it = partiti.iterator();
 	            while(it.hasNext()) {

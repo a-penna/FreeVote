@@ -5,7 +5,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-    <meta name="keywords" content="FreeVote, piattaforma voto, voto, voto online, Elimina Elettore">
+    <meta name="keywords" content="FreeVote, piattaforma voto, voto, voto online, operazioni admin, elimina, elettore, Elimina Elettore">
 	<meta name="description" content="Elimina elettore">
 	<meta name="author" content="Bene Sabato, Cozzolino Lidia, Napoli Riccardo, Penna Alessandro">    
     <title>FreeVote &dash; Elimina Elettore</title>
@@ -18,9 +18,9 @@
         <fieldset>
             <legend>Inserisci credenziali&colon; </legend>
             <label for="codice">Codice&colon;</label>
-            <input id="codice" type="text" name="codice" placeholder="inserisci codice"> 
+            <input id="codice" type="text" name="codice" placeholder="inserisci codice" required> 
             <br>
-            <input id="submit" type="submit" name="submit">
+            <input id="submit" type="submit" value="Elimina">
        </fieldset>
     </form> 
 

@@ -2,12 +2,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8" import="java.util.*, model.*"%>
 
-
 <!DOCTYPE html>
 <html>
 <head>
 	<meta charset="UTF-8">
-	<meta name="keywords" content="FreeVote, piattaforma voto, voto, voto online, inserisci partito in una coalizione, coalizione, inserisci partito">
+	<meta name="keywords" content="FreeVote, piattaforma voto, voto, voto online, inserisci partito in una coalizione, operazioni admin, partito, coalizione, inserisci partito">
 	<meta name="description" content="Inserisci partito in una coalizione">
 	<meta name="author" content="Bene Sabato, Cozzolino Lidia, Napoli Riccardo, Penna Alessandro">    
 	<title>FreeVote &dash; Inserisci Partito in Coalizione</title>
@@ -21,14 +20,14 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
 	<form action="<%=response.encodeURL("/FreeVote/InserisciPartitoCoalizione")%>" method="post"> 
         <fieldset>
         	<label for="nome">Nome Partito&colon;</label>
-       	    <input id="nome" type="text" name="nome" placeholder="Nome partito"> 
+       	    <input id="nome" type="text" name="nome" placeholder="Nome partito" required> 
             <br>
         	<label for="coalizione">Nome Coalizione&colon;</label>
-            <input id="coalizione" type="coalizione" name="coalizione" placeholder="Nome coalizione"> 
+            <input id="coalizione" type="coalizione" name="coalizione" placeholder="Nome coalizione" required> 
         	<br>
         </fieldset>
         
-        <input id="submit" type="submit" name="submit">
+        <input id="submit" type="submit" value="Inserisci">
 	</form> 
 
 </body>
