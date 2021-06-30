@@ -31,7 +31,7 @@ public class ListaPartitiControl extends HttpServlet {
 				PartitoBean partito = (PartitoBean)it.next();
 				coalizioni.add(coalizioneModel.doRetrieveByPartito(partito.getNome()));
 			}
-			request.setAttribute("partiti", partiti);
+			request.setAttribute("partiti", partiti); //prova
 			request.setAttribute("coalizioni", coalizioni);
 		} catch (SQLException e) {
 			Utility.printSQLException(e);
