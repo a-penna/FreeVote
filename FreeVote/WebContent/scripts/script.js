@@ -1,4 +1,4 @@
-/*function checkNomeCognome(inputtxt) {
+function checkNomeCognome(inputtxt) {
 	var name = /^[A-Za-z ]+$/;
 	if(inputtxt.value.match(name)) 
 		return true;
@@ -13,4 +13,3 @@ function checkCf(inputtxt)  {
 
 	return false;	
 }
-*/

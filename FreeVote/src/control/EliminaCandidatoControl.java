@@ -40,7 +40,9 @@ public class EliminaCandidatoControl extends HttpServlet {
 			request.setAttribute("cfInvalido", "true");
 			RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher(response.encodeURL("/admin/eliminaCandidato.jsp"));
 			dispatcher.forward(request, response);
+			return;
 		} 
+		codice = codice.toUpperCase();
 		
 		codice = Utility.encryptMD5(request.getParameter("cf"));
 

@@ -11,7 +11,7 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
 <title>FreeVote &dash; Elimina Candidato</title>
 <script type="text/javascript" src="/FreeVote/scripts/script.js"></script>
 <link rel="stylesheet" type="text/css" href="/FreeVote/css/style.css" />
-<!--<script>
+<script>
         function validate(obj) {	
             var valid = true;	
 
@@ -25,7 +25,7 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
             
             if(valid) obj.submit();
         }
-    </script> -->
+    </script> 
 </head>            
 
 <body>
