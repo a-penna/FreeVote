@@ -2,6 +2,7 @@ package control;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Collection;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -30,22 +31,30 @@ public class EliminaMozioneControl extends HttpServlet {
 		MozioneModelDS model = new MozioneModelDS(ds);	
 		
 		try {
-            	MozioneBean mozione = new MozioneBean();
-            	mozione.setID(Integer.parseInt(request.getParameter("id")));
-				boolean flag = model.doDeleteCheck(mozione);
-				
-				if(flag) {
-					response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/successo.jsp"));
-					return;
-				} else {
-					response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/error/deleteError.jsp"));
-					return;
+				Collection<MozioneBean> mozioni = model.doRetrieveAll("id");
+				request.setAttribute("mozioni", mozioni);
+				if (request.getParameter("id") != null) {
+					MozioneBean mozione = new MozioneBean();
+					try {
+						mozione.setID(Integer.parseInt(request.getParameter("id")));
+					} catch(NumberFormatException exc) {
+						response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/error/deleteError.jsp"));
+						return;
+					}
+					boolean flag = model.doDeleteCheck(mozione);
+					if(flag) {
+						response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/successo.jsp"));
+						return;
+					} else {
+						response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/error/deleteError.jsp"));
+						return;
+					}
 				}
 			
 		} catch(SQLException e) {
 			Utility.printSQLException(e);
 		}
-		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher(response.encodeURL("/admin/eliminaPartito.jsp"));
+		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher(response.encodeURL("/admin/eliminaMozione.jsp"));
 		dispatcher.forward(request, response);
 		
 	}

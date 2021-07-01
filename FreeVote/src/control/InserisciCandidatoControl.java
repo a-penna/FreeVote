@@ -35,7 +35,7 @@ public class InserisciCandidatoControl extends HttpServlet {
 		
 		String nome = Utility.filter(request.getParameter("nome"));
 		String cognome = Utility.filter(request.getParameter("cognome"));
-		String cf = request.getParameter("cf");
+		String cf = Utility.encryptMD5(request.getParameter("cf"));
 		String curriculum = Utility.filter(request.getParameter("curriculum"));
         String partito = Utility.filter(request.getParameter("partito"));
         

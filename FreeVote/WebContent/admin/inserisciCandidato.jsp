@@ -6,33 +6,17 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
 <html>
 <head>
 	<meta charset="UTF-8">
-	<meta name="keywords" content="FreeVote, piattaforma voto, voto, voto online, operazione admin, inserisci candidato, candidato">
+	<meta name="keywords" content="FreeVote, piattaforma voto, voto, voto online, operazione admin, inserisci candidato, candidato, inserisci">
 	<meta name="description" content="Inserisci candidato">
 	<meta name="author" content="Bene Sabato, Cozzolino Lidia, Napoli Riccardo, Penna Alessandro">    
 	<title>FreeVote &dash; Inserisci Candidato</title>
-	<script src="scripts/script.js"></script>
+	<script type="text/javascript" src="/FreeVote/scripts/script.js"></script>
     <script>
-
-        function checkNomeCognome(inputtxt) {
-            var name = /^[A-Za-z]+$/;
-            if(inputtxt.value.match(name)) 
-                return true;
-
-            return false;	
-        }
-
-        function checkCf(inputtxt)  {
-            var name = /^[A-Z0-9]+$/;
-            if(inputtxt.value.match(name)) 
-                return true;
-
-            return false;	
-        }
         function validate(obj) {	
             var valid = true;	
 
             var name = document.getElementsByName("nome")[0];
-            if(!checkNomeCognome(nome)) {
+            if(!checkNomeCognome(name)) {
                 valid = false;
                 document.getElementById("nomeError").innerHTML = "Nome non valido!";
             } else {
@@ -40,14 +24,14 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
             }
             
             var surname = document.getElementsByName("cognome")[0];
-            if(!checkNomeCognome(cognome)) {
+            if(!checkNomeCognome(surname)) {
                 valid = false;
                 document.getElementById("cognomeError").innerHTML = "Cognome non valido!";
             } else {
                 document.getElementById("cognomeError").innerHTML = "";
             }
 
-            var surname = document.getElementsByName("cf")[0];
+            var cf = document.getElementsByName("cf")[0];
             if(!checkCf(cf)) {
                 valid = false;
                 document.getElementById("cfError").innerHTML = "Codice fiscale non valido!";
@@ -55,7 +39,7 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
                 document.getElementById("cfError").innerHTML = "";
             }
             
-            if(valid) obj.submit(); <!--non funziona-->
+            if(valid) obj.submit();
         }
     </script>
     
@@ -89,7 +73,7 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
         	<label for="partito">Nome&colon;</label>
        	    <input id="partito" type="text" name="partito" placeholder="Nome partito" required> 
         </fieldset>
-        <input id="submit" type="submit" value="Inserisci">
+        <input type="submit" value="Inserisci">
 	</form> 
 
 </body>
