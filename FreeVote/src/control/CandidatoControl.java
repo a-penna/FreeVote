@@ -3,7 +3,6 @@ package control;
 import java.io.IOException;
 import java.sql.SQLException;
 
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -33,6 +32,10 @@ public class CandidatoControl extends HttpServlet {
 		
 		try {
 			CandidatoBean candidato = candidatoModel.doRetrieveByKey(cf);
+			if (candidato.getCf().equals("")) {
+				response.sendRedirect(response.encodeRedirectURL("./PartitiControl")); //creare pagina errore il candidato non esiste torna a lista partiti
+				return;
+			}
 			request.setAttribute("candidato", candidato); 
 		} catch (SQLException e) {
 			Utility.printSQLException(e);

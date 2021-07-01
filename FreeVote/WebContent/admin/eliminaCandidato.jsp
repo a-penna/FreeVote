@@ -11,21 +11,21 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
 <title>FreeVote &dash; Elimina Candidato</title>
 <script type="text/javascript" src="/FreeVote/scripts/script.js"></script>
 <link rel="stylesheet" type="text/css" href="/FreeVote/css/style.css" />
-<script>
+<!--<script>
         function validate(obj) {	
             var valid = true;	
 
             var cf = document.getElementsByName("cf")[0];
             if(!checkCf(cf)) {
                 valid = false;
-                document.getElementById("cfError").innerHTML = "Codice fiscale non valido!";
+                document.getElementById("cfError").innerHTML = "Codice fiscale non valido&excl;";
             } else {
                 document.getElementById("cfError").innerHTML = "";
             }
             
             if(valid) obj.submit();
         }
-    </script>
+    </script> -->
 </head>            
 
 <body>
@@ -33,8 +33,12 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
 <p>Inserire i dati del candidato da eliminare&colon;</p>
 <form action="<%=response.encodeURL("/FreeVote/EliminazioneCandidato")%>" method="post" onsubmit="event.preventDefault(); validate(this)"> 
         <label for="cf">Codice Fiscale&colon;</label>
-        <input id="cf" type="text" name="cf" placeholder="codice fiscale" required> 
-        <p id="cfError"></p>
+        <input id="cf" type="text" name="cf" placeholder="codice fiscale" required>
+        <%if (request.getAttribute("cfInvalido") != null) { %>                   
+            <p id="cfError">non valido&excl;</p>
+        <%} else { %>
+            <p id="cfError"></p>
+        <%}%>
         <input type="submit" value="Elimina">
 </form> 
 

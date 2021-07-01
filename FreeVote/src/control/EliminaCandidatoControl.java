@@ -3,6 +3,7 @@ package control;
 import java.io.IOException;
 import java.sql.SQLException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -34,8 +35,15 @@ public class EliminaCandidatoControl extends HttpServlet {
 			response.sendRedirect(response.encodeRedirectURL("/admin/eliminaCandidato.jsp"));
 			return;
 		}
-		codice = Utility.encryptMD5(request.getParameter("cf"));
 		
+		if (!Utility.checkCf(codice)) {
+			request.setAttribute("cfInvalido", "true");
+			RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher(response.encodeURL("/admin/eliminaCandidato.jsp"));
+			dispatcher.forward(request, response);
+		} 
+		
+		codice = Utility.encryptMD5(request.getParameter("cf"));
+
 		DataSource ds = (DataSource) getServletContext().getAttribute("DataSource");
 		CandidatoModelDS model = new CandidatoModelDS(ds);	
 		
@@ -49,7 +57,7 @@ public class EliminaCandidatoControl extends HttpServlet {
 		    if(flag) {
 		    	redirectedPage="/successo.jsp";
 		    } else {
-		    	redirectedPage="/error/deleteError.jsp";
+		    	redirectedPage="/error/deleteError.jsp"; //page di errore non esiste candidato
 		    }
 		} catch(SQLException e) {
 			Utility.printSQLException(e);

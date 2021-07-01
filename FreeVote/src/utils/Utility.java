@@ -154,4 +154,47 @@ public class Utility {
 		return filtered.toString();
 	}
 	
+
+	public static boolean checkCf(String cf) {
+		int i = 0;
+		for (; (i < cf.length()) && (i < 6); i++ ) {
+			if (Character.isDigit(cf.charAt(i)))
+				return false;
+		}
+		if (i >= cf.length()) 
+			return false;
+		
+		for (; (i < cf.length()) && (i < 8); i++ ) {
+			if (Character.isLetter(cf.charAt(i)))
+				return false;
+		}
+		if (i >= cf.length()) return false;
+		
+		if (Character.isDigit(cf.charAt(i++)))
+			return false;
+		
+		for (; (i < cf.length()) && (i < 11); i++ ) {
+			if (Character.isLetter(cf.charAt(i)))
+				return false;
+		}
+		if (i >= cf.length()) return false;
+
+		if (Character.isDigit(cf.charAt(i++)))
+			return false;
+
+		for (; (i < cf.length()) && (i < 15); i++ ) {
+			if (Character.isLetter(cf.charAt(i)))
+				return false;
+		}
+		if (i >= cf.length()) return false;
+
+		if (Character.isDigit(cf.charAt(i++))) {
+			return false;
+		}
+
+		return true;
+		//6 lettere 2 numeri 1 lettera 2 numeri 1 lettera 3 numeri 1 lettera ignore case
+
+	}
 }
+

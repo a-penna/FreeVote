@@ -15,7 +15,7 @@
 <head>
 	<meta charset="UTF-8">
     <meta name="keywords" content="FreeVote, piattaforma voto, voto, voto online, votazioni, scheda voto, scheda elettorale, scheda">
-	<meta name="description" content="Risultati votazioni per et&agrave;">
+	<meta name="description" content="Scheda voto">
 	<meta name="author" content="Bene Sabato, Cozzolino Lidia, Napoli Riccardo, Penna Alessandro">    
     <title>FreeVote &dash; Scheda Elettorale</title>
 </head>            
