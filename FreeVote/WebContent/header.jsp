@@ -40,7 +40,7 @@
         </div>
       </li>
 	  <li class="nav-item">
-          <a class="nav-link" href="<%=response.encodeURL("")%>">Statistiche Live</a>
+          <a class="nav-link" href="<%=response.encodeURL("/FreeVote/statisticheLive.jsp")%>">Statistiche Live</a>
       </li>
      <% 
      	boolean isElettore = request.getSession(false) != null && request.getSession(false).getAttribute("elettoreRoles")!= null;
