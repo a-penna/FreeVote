@@ -12,19 +12,21 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-    <meta name="keywords" content="FreeVote, piattaforma voto, voto, voto online,statistiche live">
+    <meta name="keywords" content="FreeVote, piattaforma voto, voto, voto online, statistiche live">
 	<meta name="description" content="Statistiche Live">
 	<meta name="author" content="Bene Sabato, Cozzolino Lidia, Napoli Riccardo, Penna Alessandro">    
 	<title>FreeVote &dash; Statistiche in tempo reale</title>
 	<script src="jquery.js"></script>
-<!--  	<script>
+
+
+	<!--  	<script>
 		$(document).ready(function() {
 			
 			$('#btn_refresh').click(function() {
 				var bianche = //Prendere dal database
 				var astenuti = //Prendere dal database
 				var votanti = //Prendere dal database
-				if($.trim(bianche) != '' && $.trim(bianche) != '' && $.trim(bianche) != '') {
+				if($.trim(bianche) != '' && $.trim(astenuti) != '' && $.trim(votanti) != '') {
 					
 					$.ajax({
 						url:"statistiche.jsp",

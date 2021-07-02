@@ -27,13 +27,16 @@ public class EtaControl extends HttpServlet {
 		ElettoreModelDS elettoreModel  = new ElettoreModelDS(ds);
 		
         String partito = request.getParameter("partito");
-		
+		String minima = request.getParameter("minima");
+		String massima = request.getParameter("massima");
+
 		try {
 			Collection<PartitoBean> partiti = partitoModel.doRetrieveAll("nome");
 			request.setAttribute("partiti", partiti);
-			if (partito != null && !request.getParameter("minima").equals("") && !request.getParameter("massima").equals("")) {
-				int min = Integer.parseInt(request.getParameter("minima"));
-				int max = Integer.parseInt(request.getParameter("massima"));
+			if (partito != null) {
+				int min = Integer.parseInt(minima);
+				int max = Integer.parseInt(massima);
+
 				if (min > max) {
 					int temp = min;
 					min = max;
@@ -57,12 +60,16 @@ public class EtaControl extends HttpServlet {
 					}
 					request.setAttribute("minima", String.valueOf(min));
 					request.setAttribute("massima", String.valueOf(max));
-					request.setAttribute("partito", partito);
-					
+					request.setAttribute("partito", partito);	
 				}                                    
 			}                                                                                                                             
 		} catch (SQLException e) {
 			Utility.printSQLException(e);
+		} catch (NumberFormatException e2) {
+			request.setAttribute("erroreEta", "true");
+			RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher(response.encodeURL("/risultatiPerEta.jsp"));
+			dispatcher.forward(request, response);
+			return;
 		}
 
 

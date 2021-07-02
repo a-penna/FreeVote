@@ -12,13 +12,14 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
 	<title>FreeVote &dash; Inserisci Candidato</title>
 	<script type="text/javascript" src="/FreeVote/scripts/script.js"></script>
     <script>
+
         function validate(obj) {	
             var valid = true;	
 
             var name = document.getElementsByName("nome")[0];
             if(!checkNomeCognome(name)) {
                 valid = false;
-                document.getElementById("nomeError").innerHTML = "Nome non valido!";
+                document.getElementById("nomeError").innerHTML = "Nome non valido&excl;";
             } else {
                 document.getElementById("nomeError").innerHTML = "";
             }
@@ -26,7 +27,7 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
             var surname = document.getElementsByName("cognome")[0];
             if(!checkNomeCognome(surname)) {
                 valid = false;
-                document.getElementById("cognomeError").innerHTML = "Cognome non valido!";
+                document.getElementById("cognomeError").innerHTML = "Cognome non valido&excl;";
             } else {
                 document.getElementById("cognomeError").innerHTML = "";
             }
@@ -34,7 +35,7 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
             var cf = document.getElementsByName("cf")[0];
             if(!checkCf(cf)) {
                 valid = false;
-                document.getElementById("cfError").innerHTML = "Codice fiscale non valido!";
+                document.getElementById("cfError").innerHTML = "Codice fiscale non valido&excl;";
             } else {
                 document.getElementById("cfError").innerHTML = "";
             }
@@ -59,7 +60,7 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
             <input id="cognome" type="text" name="cognome" placeholder="Cognome candidato" required> 
             <p id="cognomeError"></p>        
             <label for="cf">Codice fiscale&colon;</label>
-            <input id="cf" type="text" name="cf" placeholder="Codice Fiscale" required>
+            <input id="cf" type="text" name="cf" placeholder="Codice Fiscale" onkeyup="toUpperCaseCf()" required>
             <p id="cfError"></p>
             <label for="curriculum">Curriculum&colon;</label>
             <textarea id="curriculum" name="curriculum" rows="10" cols="48" placeholder="Inserisci qui il curriculum" required></textarea>

@@ -133,7 +133,7 @@ public class AppartieneModelDS implements Model<AppartieneBean>{
 			connection = ds.getConnection();
 			connection.setAutoCommit(false);		    
 			
-			String selectSQL = "SELECT COUNT(*) "
+			String selectSQL = "SELECT COUNT(*) " 
 					   + "FROM Appartiene "
 					   + "WHERE coalizione=(SELECT coalizione "
 					   					 + "FROM Appartiene "
@@ -173,7 +173,7 @@ public class AppartieneModelDS implements Model<AppartieneBean>{
 					return false;
 				} 
 			} else if (count == 0) {
-				return true;
+				return false;
 			}
             connection.commit();
 		}

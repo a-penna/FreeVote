@@ -59,7 +59,7 @@ public class EliminaCandidatoControl extends HttpServlet {
 		    if(flag) {
 		    	redirectedPage="/successo.jsp";
 		    } else {
-		    	redirectedPage="/error/deleteError.jsp"; //page di errore non esiste candidato
+		    	redirectedPage="/error/deleteError.jsp"; 
 		    }
 		} catch(SQLException e) {
 			Utility.printSQLException(e);

@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8" import="java.util.*, model.*"%>
 
@@ -12,6 +13,7 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
 <script type="text/javascript" src="/FreeVote/scripts/script.js"></script>
 <link rel="stylesheet" type="text/css" href="/FreeVote/css/style.css" />
 <script>
+    
         function validate(obj) {	
             var valid = true;	
 
@@ -33,9 +35,9 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
 <p>Inserire i dati del candidato da eliminare&colon;</p>
 <form action="<%=response.encodeURL("/FreeVote/EliminazioneCandidato")%>" method="post" onsubmit="event.preventDefault(); validate(this)"> 
         <label for="cf">Codice Fiscale&colon;</label>
-        <input id="cf" type="text" name="cf" placeholder="codice fiscale" required>
+        <input id="cf" type="text" name="cf" placeholder="codice fiscale" onkeyup="toUpperCaseCf()" required>
         <%if (request.getAttribute("cfInvalido") != null) { %>                   
-            <p id="cfError">non valido&excl;</p>
+            <p id="cfError">Codice fiscale non valido&excl;</p>
         <%} else { %>
             <p id="cfError"></p>
         <%}%>

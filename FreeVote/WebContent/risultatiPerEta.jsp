@@ -14,10 +14,35 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-    <meta name="keywords" content="FreeVote, piattaforma voto, voto, voto online, risultati, risultati votazioni, votazioni, risultati per et&agrave;">
+    <meta name="keywords" content="FreeVote, piattaforma voto, voto, voto online, risultati, risultati votazioni, votazioni, risultati per et&agrave;, et&agrave;">
 	<meta name="description" content="Risultati votazioni per et&agrave;">
 	<meta name="author" content="Bene Sabato, Cozzolino Lidia, Napoli Riccardo, Penna Alessandro">    
-    <title>FreeVote &dash; Risultati per et&agrave;</title>
+    <title>FreeVote &dash; Risultati votazioni per et&agrave;</title>
+    <script type="text/javascript" src="/FreeVote/scripts/script.js"></script>
+    <script>
+        function validate(obj) {	
+            var valid = true;	
+            
+            var minima = document.getElementsByName("minima")[0];
+           
+            if(!checkEta(minima)) {
+                valid = false;
+                document.getElementById("etaError").innerHTML = "Et&agrave; non valida&excl;";
+            } else {
+                document.getElementById("etaError").innerHTML = "";
+            }
+
+            var massima = document.getElementsByName("massima")[0];            
+            if(!checkEta(massima)) {
+                valid = false;
+                document.getElementById("etaError").innerHTML = "Et&agrave; non valida&excl;";
+            } else {
+                document.getElementById("etaError").innerHTML = "";
+            }
+
+            if(valid) obj.submit();
+        }
+    </script> 
 </head>            
 
 <body>
@@ -30,7 +55,7 @@
 	  if (partito == null) partito = "";
 	%>
 	
-    <form action="EtaControl" method="post"> 
+    <form action="EtaControl" method="post" onsubmit="event.preventDefault(); validate(this)"> 
     	<label for="partito">Partito&colon; </label>
         <select name="partito">
             <%
@@ -50,17 +75,22 @@
         </select> 
         <br>
         <% String min = (String)request.getAttribute("minima");
-           if(min == null) min = "";
-           
-           String max = (String)request.getAttribute("massima");
-           if(max == null) max = "";
+        if(min == null) min = "";
+        
+        String max = (String)request.getAttribute("massima");
+        if(max == null) max = "";
         %>
         <label for="eta">Et&agrave; minima&colon; </label>
-        <input type="number" id="eta" name="minima" min="18" max="120" value="<%=min%>">
-
+        <input type="number" id="eta" name="minima" value="<%=min%>">
+        
         <label for="eta">Et&agrave; massima&colon; </label>
-        <input type="number" id="eta" name="massima" min="18" max="120" value="<%=max%>">
-
+        <input type="number" id="eta" name="massima" value="<%=max%>">
+        
+        <%if (request.getAttribute("erroreEta") != null) { %>                   
+            <p id="etaError">Et&agrave; non valida&excl;</p>
+        <%} else { %>
+            <p id="etaError"></p>
+        <%}%>
 		<%
 		  String percentuale = (String) request.getAttribute("percentuale");
 		  if (percentuale != null) { %>

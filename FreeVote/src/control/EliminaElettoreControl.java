@@ -22,7 +22,6 @@ public class EliminaElettoreControl extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
 		boolean loggedIn = request.getSession(false) != null && request.getSession(false).getAttribute("adminRoles")!= null;
 		if(!loggedIn) {
 			response.sendRedirect(request.getContextPath() + "/loginAdmin.jsp");
@@ -38,24 +37,22 @@ public class EliminaElettoreControl extends HttpServlet {
 		
 		DataSource ds = (DataSource) getServletContext().getAttribute("DataSource");
 		ElettoreModelDS model = new ElettoreModelDS(ds);	
-		
-		String redirectedPage = "";
 
 		try {
 			ElettoreBean bean = model.doRetrieveByKey(codice);
-
 			boolean flag = model.doDeleteCheck(bean);
 			
 		    if(flag) {
-		    	redirectedPage="/successo.jsp";
+		    	response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/successo.jsp"));
+				return;
 		    } else {
-		    	redirectedPage="/error/deleteError.jsp";
+		    	response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/error/deleteError.jsp"));
+				return;
 		    }
 		} catch(SQLException e) {
 			Utility.printSQLException(e);
 		}
-		response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + redirectedPage));
-		}
+	}
 }
 
 

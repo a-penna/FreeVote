@@ -22,7 +22,7 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
 <body>
 <%@ include file="/admin/admin-header.jsp"%>
 
-<p>Selezionare un partito per scollegarlo dalla sua coalizione&comma; nel caso in cui non ne abbia una l'operazione non avr&agrave; effetto&period;</p>
+<p>Selezionare un partito per scollegarlo dalla sua coalizione&comma; nel caso in cui non ne abbia una l'operazione fallir&agrave;&period;</p>
 <form action="<%=response.encodeURL("/FreeVote/EliminaPartitoCoalizione")%>" method="post"> 
     <fieldset>
         <label for="nome">Partito&colon;</label>
