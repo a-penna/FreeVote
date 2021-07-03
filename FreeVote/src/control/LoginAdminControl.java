@@ -36,7 +36,7 @@ public class LoginAdminControl extends HttpServlet {
 			String username = request.getParameter("username");
 			String password = request.getParameter("password");
 			
-			if (username == null) {
+			if (username == null || password == null) {
 			 	response.sendRedirect(response.encodeRedirectURL("./loginAdmin.jsp"));
 			 	return;
 			}

@@ -33,7 +33,7 @@ public class CandidatoControl extends HttpServlet {
 		try {
 			CandidatoBean candidato = candidatoModel.doRetrieveByKey(cf);
 			if (candidato.getCf().equals("")) {
-				response.sendRedirect(response.encodeRedirectURL("./PartitiControl")); //creare pagina errore il candidato non esiste torna a lista partiti
+				response.sendRedirect(response.encodeRedirectURL("./PartitiControl")); 
 				return;
 			}
 			request.setAttribute("candidato", candidato); 

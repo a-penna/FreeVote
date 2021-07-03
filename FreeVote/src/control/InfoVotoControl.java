@@ -28,6 +28,11 @@ public class InfoVotoControl extends HttpServlet {
 		try {
 			Collection<PartitoBean> partiti = model.doRetrieveAll("nome");
 			request.setAttribute("partiti", partiti);
+			if(partiti == null) {
+				RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher(response.encodeURL("/FreeVote/error/generic.jsp"));
+				dispatcher.forward(request, response);
+				return;
+			}
 		} catch (SQLException e) {
 			Utility.printSQLException(e);
 		}

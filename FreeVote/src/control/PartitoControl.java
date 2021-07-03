@@ -34,12 +34,22 @@ public class PartitoControl extends HttpServlet {
 		
 		try {
 			PartitoBean partito = partitoModel.doRetrieveByKey(nome);
-			request.setAttribute("partito", partito); 
+			
 			
 			Collection<CandidatoBean> candidati = candidatoModel.doRetrieveByPartito(nome, "cognome");
-			request.setAttribute("candidati", candidati);
+			
+			
 			
 			CoalizioneBean coalizione = coalizioneModel.doRetrieveByPartito(nome);
+			
+			if(partito.getNome()=="" || candidati==null || coalizione.getNome()=="") {
+				RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher(response.encodeURL("./PartitiControl"));
+				dispatcher.forward(request, response);
+				return;
+			}
+			
+			request.setAttribute("partito", partito); 
+			request.setAttribute("candidati", candidati);
 			request.setAttribute("coalizione", coalizione);
 		} catch (SQLException e) {
 			Utility.printSQLException(e);

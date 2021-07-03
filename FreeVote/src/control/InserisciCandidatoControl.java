@@ -71,6 +71,7 @@ public class InserisciCandidatoControl extends HttpServlet {
 		    } else {
 		    	redirectedPage="/error/insertError.jsp";
 		    }
+		    
 		} catch(SQLException e) {
 			Utility.printSQLException(e);
 			response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/error/insertError.jsp"));
