@@ -19,9 +19,16 @@ import utils.Utility;
 
 @WebServlet("/InfoVoto")
 public class InfoVotoControl extends HttpServlet {
+
 	private static final long serialVersionUID = 1L;
-       
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		boolean loggedIn = request.getSession(false) != null && request.getSession(false).getAttribute("elettoreRoles")!= null;
+		if(!loggedIn) {
+			response.sendRedirect(response.encodeRedirectURL("/FreeVote/elettore/loginElettore.jsp"));
+ 			return;
+		}
+
 		DataSource ds = (DataSource) getServletContext().getAttribute("DataSource");
 		PartitoModelDS model = new PartitoModelDS(ds);
 

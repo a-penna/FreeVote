@@ -5,9 +5,16 @@
 	Collection<?> partiti = (Collection<?>) request.getAttribute("partiti");
 
 	if (partiti == null) {
-  	  response.sendRedirect(response.encodeRedirectURL("/FreeVote/InfoVoto"));
-   	 return;
+  	    response.sendRedirect(response.encodeRedirectURL("/FreeVote/InfoVoto"));
+   	    return;
 	}
+
+    SchedaVoto scheda = (SchedaVoto) request.getAttribute("scheda");
+    if (scheda == null) {
+        response.sendRedirect(response.encodeRedirectURL("/FreeVote/InfoVoto"));
+   	    return;
+    }
+    
 %>    
 
 <!DOCTYPE html>
@@ -24,32 +31,46 @@
 	<%@ include file="/header.jsp"%>
     <br/>
     <h3>SCHEDA</h3>
-    <form action="GestisciVoto" method="post">
-        <p>Scegli per cosa votare&colon;</p>
-        <label><input type="checkbox" name="type[]" value="politica">Politica</label>
-        <label><input type="checkbox" name="type[]" value="referendum">Referendum</label>
-        
-        <p>Scegli il partito&colon;</p>
-        <%
-        Iterator<?> it = partiti.iterator();
-        while(it.hasNext()) {
-            PartitoBean partito = (PartitoBean)it.next(); 
-            if (!partito.getNome().equals("Scheda Bianca")) {
-        %>
-    			<img src="/FreeVote/PhotoControl?type=partito&id=<%=partito.getNome()%>" onerror="this.src='./imgs/nologo.png'">
-            	<input type="radio" id="partitoScelto" name="partitoScelto" value="<%=partito.getNome()%>">
-            	<label for="<%=partito.getNome()%>"><a href="/FreeVote/Partito?nome=<%=partito.getNome()%>"><%=partito.getNome()%></a></label>
-            	
-            	<br>
-    <%   	}
-        }     
+    <% 
+    VotazionePoliticaBean vp = scheda.getVP();
+    VotazionePoliticaBean vr = scheda.getVR();
+    
+    if (vp != null) { %>
+       <h2>Partito scelto&colon;</h2> 
+        <%=vp.getPartito()%>
+ <% } 
+    if (vr != null) { %>
+        <h2>Per il referendum hai scelto&colon;</h2> 
+        <%=vr.getPreferenza()%>
+ <% }
+    if (vp == null && vr == null) { %>
+        <h2>La tua scheda elettorale &egrave; vuota&excl;</h2>
+ <% }
     %>
-    <p>Fai la tua scelta per il referendum&colon;</p>
-    <label><input type="radio" id="preferenza" name="preferenza" value="Si">S&igrave;</label>
-    <label><input type="radio" id="preferenza" name="preferenza" value="No">No</label>
-    <label><input type="radio" id="preferenza" name="preferenza" value="Mi astengo">Mi astengo</label>
+    <a href="/FreeVote/GestisciVoto?action=vota">Conferma</a>
+  
+    <label><input type="checkbox">Esprimi una preferenza politica</label>
+        
+    <br>
+    <%
+    Iterator<?> it = partiti.iterator();
+    while(it.hasNext()) {
+        PartitoBean partito = (PartitoBean)it.next(); 
+        if (!partito.getNome().equals("Scheda Bianca")) {
+            %>
+    		<img src="/FreeVote/PhotoControl?type=partito&id=<%=partito.getNome()%>" onerror="this.src='./imgs/nologo.png'">   
+            <label><a href="/FreeVote/Partito?nome=<%=partito.getNome()%>"><%=partito.getNome()%></a>
+            <a href="/FreeVote/GestisciVoto?partitoScelto=<%=partito.getNome()%>">Scegli</a>
+            <br>
+            <%   	}
+        }     
+     %> 
+    <label><input type="checkbox">Esprimi una preferenza per il referendum</label>
+    <br>
+    <a href="/FreeVote/GestisciVoto?preferenza=Si">S&igrave;</a>
+    <a href="/FreeVote/GestisciVoto?preferenza=No">No</a>
+    <a href="/FreeVote/GestisciVoto?preferenza=Mi_Astengo">Mi Astengo</a>
 
-    <button type="submit">Vota</button>
     </form>
  	
 </body>

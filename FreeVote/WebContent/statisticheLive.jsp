@@ -47,7 +47,8 @@
 	<%@ include file="header.jsp"%>
     <h3>Statistiche aggiornate in tempo reale&colon;</h3>
 	  <form name="refresh" method="get">
-      <p> Numero di schede bianche : <p>
+      
+	  <p> Numero di schede bianche : <p>
       
       <br>
       <p> Numero astenuti : <p>
