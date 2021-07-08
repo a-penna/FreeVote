@@ -29,7 +29,7 @@
 						method:"GET",
 					})
 					.done(function(msg) {
-						$("#comune").html("");
+						$("#comune").html("<option disabled selected>Seleziona Comune</option>");
 						var comuni = msg.listaComuni;  
 						var c;
 						for (c in comuni) {
@@ -82,6 +82,7 @@
 	            
 	            <label for="regione">Regioni&colon; </label>
 	            <select name="regione" id="regione">
+	            	<option disabled selected>Seleziona Regione</option>
 					<%
 					Iterator<?> it = regioni.iterator();
 					while(it.hasNext()) {
@@ -94,6 +95,7 @@
 					            
 	            <label for="comune">Comuni&colon; </label>
 				<select name="comune" id="comune">
+					<option disabled selected>Seleziona Comune</option>
 		
 				</select>
 

@@ -51,7 +51,6 @@ public class ListaComuniControl extends HttpServlet {
 		Utility.printSQLException(e1);
 		}
 
-		System.out.println(json);
 		response.getWriter().print(json);
 	}
 
