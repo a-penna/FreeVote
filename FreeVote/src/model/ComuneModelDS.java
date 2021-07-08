@@ -144,6 +144,49 @@ public class ComuneModelDS implements Model<ComuneBean> {
 		return regioni;
 	}
 
+
+	
+	public Collection<ComuneBean> doRetrieveByRegione(String regione, String order) throws SQLException {
+			Connection connection = null;
+			PreparedStatement preparedStatement = null;
+
+			Collection<ComuneBean> comuni = new LinkedList<ComuneBean>();
+
+			String selectSQL = "SELECT * FROM Comune1 NATURAL JOIN Comune2 where nome_regione = ? ";
+
+			if (order != null && !order.equals("") && order.equals("nome")) { //???
+				selectSQL += " ORDER BY " + order;
+			}
+			
+			try {
+				connection = ds.getConnection();
+				preparedStatement = connection.prepareStatement(selectSQL);
+				preparedStatement.setString(1, regione); 
+
+				ResultSet rs = preparedStatement.executeQuery();
+
+				while (rs.next()) {
+					ComuneBean bean = new ComuneBean();
+					bean.setNome(rs.getString("nome"));
+					bean.setCAP(rs.getString("cap"));
+					bean.setListaCodiciPassword(rs.getString("LISTA_CODICI_E_PASSWORD_EMESSE"));
+					bean.setNAventiDiritto(rs.getInt("N_AVENTI_DIRITTO"));
+					bean.setRegione(rs.getString("NOME_REGIONE"));
+					comuni.add(bean);
+				} 
+			} finally {       
+				try {
+					if (preparedStatement != null)
+						preparedStatement.close();
+				} finally {
+					if (connection != null) {
+						connection.close();
+					}
+				}
+			}
+
+			return comuni;
+		}
+
 }
 	
-

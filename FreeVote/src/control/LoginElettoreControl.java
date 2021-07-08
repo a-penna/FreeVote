@@ -43,8 +43,8 @@ public class LoginElettoreControl extends HttpServlet {
 			DataSource ds = (DataSource) getServletContext().getAttribute("DataSource");
 			ComuneModelDS comuneModel = new ComuneModelDS(ds);
 			try {
-				Collection<ComuneBean> comuni = comuneModel.doRetrieveAll("nome");
-				request.setAttribute("listaComuni", comuni);
+				Collection<String> regioni = comuneModel.doRetrieveAllRegioni("nome_regione");
+				request.setAttribute("listaRegioni", regioni);
 				
 				if ( !(codice == null || codice.equals("") || comune.equals("") || age.equals("") || sesso.equals("") || cap.equals(""))) {
 					int eta = Integer.parseInt(age);

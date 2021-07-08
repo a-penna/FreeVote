@@ -1,3 +1,4 @@
+/*
 package control;
 
 import java.io.IOException;
@@ -60,7 +61,7 @@ public class GestisciVotoControl extends HttpServlet {
 					elettore.setSesso((String) request.getSession().getAttribute("sesso"));
 					if (vp != null && vr != null) {
 						VotazionePoliticaModelDS modelVotazione = new VotazionePoliticaModelDS(ds);
-			/*Da vedere*/ 	if (modelVotazione.doSaveBoth(vp, vr, elettore, (String) request.getSession().getAttribute("codice"), (String) request.getSession().getAttribute("password"))) {
+						if (modelVotazione.doSaveBoth(vp, vr, elettore, (String) request.getSession().getAttribute("codice"), (String) request.getSession().getAttribute("password"))) {
 							request.getSession().invalidate();
 							response.sendRedirect(response.encodeRedirectURL("/successo.jsp"));
  							return;
@@ -144,7 +145,7 @@ public class GestisciVotoControl extends HttpServlet {
 			} catch(SQLException e) {
 				Utility.printSQLException(e);
 			}
-			*/
+			
 			PartitoModelDS model = new PartitoModelDS(ds);
 
 			try {
@@ -165,3 +166,4 @@ public class GestisciVotoControl extends HttpServlet {
 	}
 
 }
+*/

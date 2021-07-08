@@ -33,7 +33,7 @@
     <h3>SCHEDA</h3>
     <% 
     VotazionePoliticaBean vp = scheda.getVP();
-    VotazionePoliticaBean vr = scheda.getVR();
+    VotazioneReferendumBean vr = scheda.getVR();
     
     if (vp != null) { %>
        <h2>Partito scelto&colon;</h2> 
