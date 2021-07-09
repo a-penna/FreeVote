@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.sql.SQLException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -35,19 +36,47 @@ public class InserisciCandidatoControl extends HttpServlet {
 		
 		String nome = request.getParameter("nome");
 		String cognome = request.getParameter("cognome");
-		String cf = Utility.encryptMD5(request.getParameter("cf"));
+		String cf = request.getParameter("cf");
 		String curriculum = request.getParameter("curriculum");
         String partito = request.getParameter("partito");
+        boolean error = false;
         
-		if (nome == null || cognome == null || cf == null || curriculum == null || partito == null) {
-			response.sendRedirect(response.encodeRedirectURL("/FreeVote/admin/inserisciCandidato.jsp"));
-			return;
+        if (nome == null || cognome == null || cf == null || curriculum == null || partito == null) {
+        	response.sendRedirect(response.encodeRedirectURL("/FreeVote/admin/inserisciCandidato.jsp"));
+        	return;
+        }
+        
+		if (!Utility.checkNomeCognome(nome)) {
+			request.setAttribute("erroreNome", "true");
+			error = true;
+		}
+		if (!Utility.checkNomeCognome(cognome)) {
+			request.setAttribute("erroreCognome", "true");
+			error = true;
+		}
+		if (!Utility.checkCf(cf)) {
+			request.setAttribute("erroreCf", "true");
+			error = true;
 		}
 		
 		nome = Utility.filter(nome);
 		cognome = Utility.filter(cognome);
+		cf = Utility.filter(cf);
 		curriculum = Utility.filter(curriculum);
-        partito = Utility.filter(partito);
+		partito = Utility.filter(partito);
+		
+		if(error) {
+			request.setAttribute("nome", nome);
+			request.setAttribute("cognome", cognome);
+			request.setAttribute("cf", cf);
+			request.setAttribute("curriculum", curriculum);
+			request.setAttribute("partito", partito);
+			RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher(response.encodeURL("/admin/inserisciCandidato.jsp"));
+			dispatcher.forward(request, response);
+			return;
+		}
+		
+		cf = Utility.encryptMD5(request.getParameter("cf"));
         
 		InputStream streamFoto = null; 
 		

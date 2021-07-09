@@ -154,7 +154,15 @@ public class Utility {
 		return filtered.toString();
 	}
 	
-
+	public static boolean checkNomeCognome(String s) {
+		int i = 0;
+		for (; i < s.length(); i++) {
+			if (!Character.isLetter(s.charAt(i)))
+				return false;
+		}
+		return true;
+	}
+	
 	public static boolean checkCf(String cf) {
 		int i = 0;
 		for (; (i < cf.length()) && (i < 6); i++ ) {
