@@ -15,7 +15,7 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
 
 	<body>
 	<%@ include file="/admin/admin-header.jsp"%>
-	<p>Inserisci i dati nel seguente form per inserire un partito in una coalizione&colon; &comma; sia il partito che la coalizione devono essere gi&agrave; presenti nel database<p>
+	<p>Inserisci i dati nel seguente form per inserire un partito in una coalizione&period; Sia il partito che la coalizione devono essere gi&agrave; presenti nel database&period;<p>
 
 	<form action="<%=response.encodeURL("/FreeVote/InserisciPartitoCoalizione")%>" method="post"> 
         <fieldset>

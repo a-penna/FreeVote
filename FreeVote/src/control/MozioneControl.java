@@ -41,7 +41,11 @@ public class MozioneControl extends HttpServlet {
 			request.setAttribute("autori", autori);
 		} catch (SQLException e) {
 			Utility.printSQLException(e);
+		} catch (NumberFormatException e1) {
+		 	response.sendRedirect(response.encodeRedirectURL("./Referendum"));
+		 	return;
 		}
+		
 		
 		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher(response.encodeURL("/mozione.jsp"));
 		dispatcher.forward(request, response);

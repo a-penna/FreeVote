@@ -33,17 +33,22 @@ public class InserisciCandidatoControl extends HttpServlet {
 			return;
 		}
 		
-		String nome = Utility.filter(request.getParameter("nome"));
-		String cognome = Utility.filter(request.getParameter("cognome"));
+		String nome = request.getParameter("nome");
+		String cognome = request.getParameter("cognome");
 		String cf = Utility.encryptMD5(request.getParameter("cf"));
-		String curriculum = Utility.filter(request.getParameter("curriculum"));
-        String partito = Utility.filter(request.getParameter("partito"));
+		String curriculum = request.getParameter("curriculum");
+        String partito = request.getParameter("partito");
         
 		if (nome == null || cognome == null || cf == null || curriculum == null || partito == null) {
 			response.sendRedirect(response.encodeRedirectURL("/FreeVote/admin/inserisciCandidato.jsp"));
 			return;
 		}
 		
+		nome = Utility.filter(nome);
+		cognome = Utility.filter(cognome);
+		curriculum = Utility.filter(curriculum);
+        partito = Utility.filter(partito);
+        
 		InputStream streamFoto = null; 
 		
 		Part filePart = request.getPart("foto");

@@ -23,7 +23,7 @@ public class PartitoControl extends HttpServlet {
 		String nome = request.getParameter("nome");
 		
 		if (nome == null) {
-		 	response.sendRedirect(response.encodeRedirectURL("/PartitiControl"));
+		 	response.sendRedirect(response.encodeRedirectURL("./PartitiControl"));
 		 	return;
 		}
 		
@@ -40,7 +40,7 @@ public class PartitoControl extends HttpServlet {
 			CoalizioneBean coalizione = coalizioneModel.doRetrieveByPartito(nome);
 			
 			if(partito.getNome().equals("") || candidati==null) {
-				RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher(response.encodeURL("/PartitiControl"));
+				RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher(response.encodeURL("./PartitiControl"));
 				dispatcher.forward(request, response);
 				return;
 			}

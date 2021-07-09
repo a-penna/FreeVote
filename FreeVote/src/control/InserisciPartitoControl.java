@@ -33,17 +33,21 @@ public class InserisciPartitoControl extends HttpServlet {
 			return;
 		}
 		
-		String nome = Utility.filter(request.getParameter("nome"));
-		String descrizione = Utility.filter(request.getParameter("descrizione"));
-		String nomeLeader = Utility.filter(request.getParameter("nomeLeader"));
-		String cognomeLeader = Utility.filter(request.getParameter("cognomeLeader"));
+		String nome = request.getParameter("nome");
+		String descrizione = request.getParameter("descrizione");
+		String nomeLeader = request.getParameter("nomeLeader");
+		String cognomeLeader = request.getParameter("cognomeLeader");
 		String cf = request.getParameter("cf");
-		String curriculum = Utility.filter(request.getParameter("curriculum"));
-         
+		String curriculum = request.getParameter("curriculum");
 		if (nome == null || descrizione == null || nomeLeader == null || cognomeLeader == null || cf == null || curriculum == null) {
 			response.sendRedirect(response.encodeRedirectURL("/FreeVote/admin/inserisciPartito.jsp"));
 			return;
 		}
+		nome = Utility.filter(nome);
+		descrizione = Utility.filter(descrizione);
+		nomeLeader = Utility.filter(nomeLeader);
+		cognomeLeader = Utility.filter(cognomeLeader);
+        curriculum = Utility.filter(curriculum);
 		
 		InputStream streamLogo = null; 
 		
