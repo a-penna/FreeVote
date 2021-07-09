@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Collection;
 import java.util.LinkedList;
 
@@ -337,4 +338,39 @@ public class PartitoModelDS implements Model<PartitoBean>{
 
 }
 
+	
+	public int doRetrieveVotazioniBianche() throws SQLException {
+		Connection connection = null;
+		Statement statement = null;
+
+		int votazioni = -1;
+
+		String selectSQL = "SELECT n_votazioni_ricevute FROM partito WHERE nome = SCHEDA BIANCA";
+
+		try {
+			connection = ds.getConnection();
+			statement = connection.createStatement();
+
+			ResultSet rs = statement.executeQuery(selectSQL);
+
+			if (rs.next()) {
+				votazioni = rs.getInt(1);
+				
+			}
+
+		} finally {
+			try {
+				if (statement != null)
+					statement.close();
+			} finally {
+				if (connection != null) {
+					connection.close();
+				}
+			}
+		}
+
+		return votazioni;
+	}
+	
+	
 }

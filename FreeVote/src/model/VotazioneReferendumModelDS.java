@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Collection;
 import java.util.LinkedList;
 
@@ -283,4 +284,40 @@ public class VotazioneReferendumModelDS implements Model<VotazioneReferendumBean
 	public void doDelete(VotazioneReferendumBean mozione) throws SQLException {
 		throw new UnsupportedOperationException();
 	}
+	
+	public int doRetrieveAstenuti() throws SQLException {
+		Connection connection = null;
+		Statement statement = null;
+
+		int astenuti = -1;
+
+		String selectSQL = "SELECT COUNT(*) FROM votazione_referendum WHERE preferenza = Mi Astengo";
+
+		try {
+			connection = ds.getConnection();
+			statement = connection.createStatement();
+
+			ResultSet rs = statement.executeQuery(selectSQL);
+
+			if (rs.next()) {
+				astenuti = rs.getInt(1);
+				
+			}
+
+		} finally {
+			try {
+				if (statement != null)
+					statement.close();
+			} finally {
+				if (connection != null) {
+					connection.close();
+				}
+			}
+		}
+
+		return astenuti;
+	}
+	
+	
+	
 }
