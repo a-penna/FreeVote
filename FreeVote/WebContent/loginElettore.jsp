@@ -14,26 +14,35 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-    <meta name="keywords" content="FreeVote, piattaforma voto, voto, voto online, Votazione">
-	<meta name="description" content="Votazioni">
+    <meta name="keywords" content="FreeVote, piattaforma voto, voto, voto online, Votazione, login, login elettore, elettore, autenticazione">
+	<meta name="description" content="Login Elettore">
 	<meta name="author" content="Bene Sabato, Cozzolino Lidia, Napoli Riccardo, Penna Alessandro">    
-    <title>FreeVote &dash; Votazioni</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="/FreeVote/css/style.css">						
+	<!-- Latest compiled and minified CSS --> 
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> 
+	<!-- jQuery library --> 
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
+	<!-- Popper JS --> 
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script> 
+	<!-- Latest compiled JavaScript --> 
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> 
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script>
-
+		
 		$(document).ready(function() {
 			$('#regione').change(function() {
 				var reg = $(this).val();
-					$.ajax({
-						url:"ListaComuni?regione=" + reg,
-						method:"GET",
-					})
-					.done(function(msg) {
-						$("#comune").html("<option disabled selected>Seleziona Comune</option>");
-						var comuni = msg.listaComuni;  
-						var c;
-						for (c in comuni) {
-							var opt = document.createElement("option");
+				$.ajax({
+					url:"ListaComuni?regione=" + reg,
+					method:"GET",
+				})
+				.done(function(msg) {
+					$("#comune").html("<option disabled selected>Seleziona Comune</option>");
+					var comuni = msg.listaComuni;  
+					var c;
+					for (c in comuni) {
+						var opt = document.createElement("option");
 							opt.value = comuni[c];
 							$("#comune").append("<option value=" + comuni[c] + ">" + comuni[c] + "</option>");
 						}
@@ -41,11 +50,12 @@
 					.fail(function(xhr, textStatus) {
 						alert("Errore");
 					});	
-				
+					
+				});
 			});
-		});
-
-	</script> 
+			
+			</script> 
+			<title>FreeVote &dash; Login Elettore</title>
 </head>            
 
 <body>
@@ -63,6 +73,8 @@
         	return;
     	}
 	%>
+	
+	<div class="container-fluid pt-4">  
 	    <form action="Elettore" method="post"> 
 	        <fieldset>
 	            <legend>Inserisci credenziali&colon; </legend>
@@ -106,6 +118,7 @@
 				<input type="submit" value="Login"/>
 			</fieldset>
 	    </form> 
+	</div>
 <%} %>
 </body>
 </html> 

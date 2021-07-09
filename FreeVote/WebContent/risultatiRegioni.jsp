@@ -51,7 +51,7 @@
     
     <%  
     	Collection<?> percentuali = (Collection<?>)request.getAttribute("percentuali");
-		if (percentuali != null) { %>
+		if (percentuali != null && !percentuali.isEmpty()) { %>
     <table>
     	<tr>
  			<th>Partito</th>

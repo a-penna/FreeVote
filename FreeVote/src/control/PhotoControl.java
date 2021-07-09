@@ -23,7 +23,7 @@ public class PhotoControl extends HttpServlet {
 		String id = (String) request.getParameter("id");
 		
 		if (type == null || id == null) {
-			response.sendRedirect(response.encodeRedirectURL("./PartitiControl"));
+			response.sendRedirect(response.encodeRedirectURL("/FreeVote/PartitiControl"));
 		 	return;
 		}
 		
@@ -42,7 +42,7 @@ public class PhotoControl extends HttpServlet {
 			
 		}
 		
-		if (type.equals("candidato")) {
+		else if (type.equals("candidato")) {
 			DataSource ds = (DataSource) getServletContext().getAttribute("DataSource");
 			CandidatoModelDS candidatoModel = new CandidatoModelDS(ds);
 			try {
@@ -53,7 +53,10 @@ public class PhotoControl extends HttpServlet {
 				Utility.printSQLException(e);
 			}
 		}
-		
+		else {
+			response.sendRedirect(response.encodeRedirectURL("/FreeVote/PartitiControl"));
+		 	return;
+		}
 		ServletOutputStream out = response.getOutputStream();
 		
 		if(bt != null) {

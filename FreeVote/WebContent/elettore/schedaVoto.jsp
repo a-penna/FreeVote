@@ -93,6 +93,7 @@
 	    <a href="/FreeVote/GestisciVoto?action=aggiornaPreferenza&preferenza=Si">S&igrave;</a>
 	    <a href="/FreeVote/GestisciVoto?action=aggiornaPreferenza&preferenza=No">No</a>
 	</div>
+
  	
 </body>
 </html>
