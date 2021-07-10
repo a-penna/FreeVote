@@ -20,7 +20,8 @@
 	<!-- Popper JS --> 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script> 
 	<!-- Latest compiled JavaScript --> 
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>           
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
 <body>
 
 <header class="head-banner text-white text-center">
@@ -86,30 +87,6 @@
 	<%@ include file="header.jsp"%>
     <br/>
     <a href="<%=response.encodeURL("/FreeVote/Elettore")%>">Vota</a>
-      <section id="home">
-      <h1>Welcome To Our Site</h1>
-      <p> "Descrizione" </p> 
-      </section>
-      <section id="partiti">
-      <h1>Partiti</h1>
-      <p> "Descrizione" </p>
-      </section>
-      <section id="referendum">
-      <h1>Referendum</h1>
-      <p> "Descrizione" </p>
-      </section>
-      <section id="risultati">
-      <h1>Risultati</h1>
-      <p> "Descrizione" </p>
-      </section>
-      <section id="info">
-      <h1>Info e Contatti</h1>
-      <p> "Descrizione" </p>
-      </section>
-      <section id="statistiche">
-      <h1>Statistiche Live</h1>
-      <p> "Descrizione" </p>
-      </section>
       
 </body>
 

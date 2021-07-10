@@ -33,6 +33,27 @@
 }
 }
 
+.autori{
+	padding-top: 9rem;
+	padding-bottom: 9rem;
+	text-align: center;
+}
 
+.row{
+	padding-right: 8rem;
+	padding-left: 8rem;
+}
+.referendum{
+	padding-top: 11rem;
+	padding-bottom: 11rem;
+}
 
+.mozione{
+	padding-top: 14rem;
+	padding-bottom: 14rem;
+}
 
+.risultatiCoalizioni{
+	padding-top: 14rem;
+	padding-bottom: 14rem;
+}
