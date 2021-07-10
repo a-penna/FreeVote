@@ -13,32 +13,43 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
 <html>
 <head>
 	<meta charset="UTF-8">
-	<meta name="keywords" content="FreeVote, piattaforma voto, voto, voto online, operazione admin, elimina, coalizione, elimina coalizione">
+	<meta name="keywords" content="FreeVote, piattaforma voto, voto, voto online, operazione admin, admin, elimina, coalizione, elimina coalizione">
 	<meta name="description" content="Elimina coalizione">
 	<meta name="author" content="Bene Sabato, Cozzolino Lidia, Napoli Riccardo, Penna Alessandro">    
 	<title>FreeVote &dash; Elimina Coalizione</title>
-
+	<link rel="stylesheet" type="text/css" href="/FreeVote/css/style.css" />
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> 
+	<!-- jQuery library --> 
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
+	<!-- Popper JS --> 
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script> 
+	<!-- Latest compiled JavaScript --> 
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> 
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>            
 
 <body>
 <%@ include file="/admin/admin-header.jsp"%>
-
-	<h3>Scegliere il nome della coalizione per procedere&comma; ricorda che 
-	saranno cancellati tutti i dati della coalizione ma non quelli dei singoli partiti che la compongono</h3>
+<div class="container py-4">
+	<h4>Scegliere il nome della coalizione per procedere&comma; ricorda che 
+	saranno cancellati tutti i dati della coalizione ma non quelli dei singoli partiti che la compongono</h4>
 	<form action="<%=response.encodeURL("/FreeVote/EliminaCoalizione")%>" method="post"> 
-        <label for="coalizione">Scegli Coalizione&colon;</label>
-        <select name="coalizione" required>
+		<div class="form-group">
+        <select class="form-select" name="coalizione" required>
+        		<option disabled selected>Scegli Coalizione&colon;</option>
 	            <%
 	            Iterator<?> it = coalizioni.iterator();
 	            while(it.hasNext()) {
 	                CoalizioneBean bean = (CoalizioneBean)it.next(); 
 	            %>
 	            <option value="<%=bean.getNome()%>"><%=bean.getNome()%></option>
-	            <%  } 
-	            %>
+	            <%  }
+				%>
 	     </select> 
-        <input id="submit" type="submit" value="Elimina">
+	     </div>
+        <button type="submit" class="btn btn-primary">Elimina</button>
 	</form> 
+</div>
 
 </body>
 </html> 
