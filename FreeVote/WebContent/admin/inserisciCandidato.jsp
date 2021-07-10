@@ -66,7 +66,7 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
 	<body>
 	<%@ include file="/admin/admin-header.jsp"%>
 
-        <div class="container py-4">
+        <div class="container pt-3">
 		  <p>Inserisci i dati nel seguente form per inserire un nuovo candidato all&apos;interno di un partito gi&agrave; registrato sulla piattaforma&colon;<p>
  			<form name="form" action="<%=response.encodeURL("/FreeVote/InserisciCandidato")%>" method="post" enctype="multipart/form-data" onsubmit="event.preventDefault(); validate(this)"> 
                  <fieldset>
