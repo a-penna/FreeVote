@@ -23,17 +23,16 @@ public class CandidatoControl extends HttpServlet {
 		String cf = request.getParameter("cf");
 		
 		if (cf == null) {
-		 	response.sendRedirect(response.encodeRedirectURL("./PartitiControl")); 
+		 	response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/PartitiControl")); 
 		 	return;
 		}
-		
 		DataSource ds = (DataSource) getServletContext().getAttribute("DataSource");
         CandidatoModelDS candidatoModel = new CandidatoModelDS(ds);
 		
 		try {
 			CandidatoBean candidato = candidatoModel.doRetrieveByKey(cf);
 			if (candidato.getCf().equals("")) {
-				response.sendRedirect(response.encodeRedirectURL("./PartitiControl")); 
+				response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/PartitiControl")); 
 				return;
 			}
 			request.setAttribute("candidato", candidato); 

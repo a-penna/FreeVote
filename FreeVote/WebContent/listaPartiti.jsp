@@ -8,6 +8,7 @@
         response.sendRedirect(response.encodeRedirectURL("./PartitiControl"));
         return;
     }
+    
     Collection<?> coalizioni = (Collection<?>) request.getAttribute("coalizioni");
 
     if (coalizioni == null) {

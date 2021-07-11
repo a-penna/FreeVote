@@ -23,49 +23,49 @@ public class EliminaCandidatoControl extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		
 		boolean loggedIn = request.getSession(false) != null && request.getSession(false).getAttribute("adminRoles")!= null;
 		if(!loggedIn) {
-			response.sendRedirect(request.getContextPath() + "/loginAdmin.jsp");
+			response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/loginAdmin.jsp"));
 			return;
 		}
 		
 		String codice = request.getParameter("cf");
 		if (codice == null) {
-			response.sendRedirect(response.encodeRedirectURL("/admin/eliminaCandidato.jsp"));
+			response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/admin/eliminaCandidato.jsp"));
 			return;
 		}
 		
 		if (!Utility.checkCf(codice)) {
 			request.setAttribute("cfInvalido", "true");
+			request.setAttribute("cf", codice);
 			RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher(response.encodeURL("/admin/eliminaCandidato.jsp"));
 			dispatcher.forward(request, response);
 			return;
 		} 
-		codice = codice.toUpperCase();
 		
-		codice = Utility.encryptMD5(request.getParameter("cf"));
+		codice = codice.toUpperCase();
+		codice = Utility.encryptMD5(codice);
 
 		DataSource ds = (DataSource) getServletContext().getAttribute("DataSource");
 		CandidatoModelDS model = new CandidatoModelDS(ds);	
-		
-		String redirectedPage = "";
 
 		try {
 			CandidatoBean bean = model.doRetrieveByKey(codice);
 
 			boolean flag = model.doDeleteCheck(bean);
-			
-		    if(flag) {
-		    	redirectedPage="/successo.jsp";
+
+			if(flag) {
+		    	response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/successo.jsp"));
+		    	return;
 		    } else {
-		    	redirectedPage="/error/deleteError.jsp"; 
+		    	response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/error/deleteError.jsp"));
+		    	return;
 		    }
 		} catch(SQLException e) {
 			Utility.printSQLException(e);
 		}
-		response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + redirectedPage));
-		}
+	}
 }
 
 

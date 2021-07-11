@@ -22,15 +22,16 @@ public class EliminaElettoreControl extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		boolean loggedIn = request.getSession(false) != null && request.getSession(false).getAttribute("adminRoles")!= null;
 		if(!loggedIn) {
-			response.sendRedirect(request.getContextPath() + "/loginAdmin.jsp");
+			response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/loginAdmin.jsp"));
 			return;
 		}
 		
 		String codice = request.getParameter("codice");
 		if (codice == null) {
-			response.sendRedirect(response.encodeRedirectURL("/admin/eliminaElettore.jsp"));
+			response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/admin/eliminaElettore.jsp"));
 			return;
 		}
 		codice = Utility.encryptMD5(request.getParameter("codice"));

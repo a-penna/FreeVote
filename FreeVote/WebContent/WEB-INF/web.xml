@@ -67,11 +67,21 @@
 	<location>/error/generic.jsp</location>
   </error-page>
   
-	<session-config>
+  <security-constraint>
+      <web-resource-collection>
+         <web-resource-name>All</web-resource-name>
+         <url-pattern>/*</url-pattern>
+      </web-resource-collection>
+      <user-data-constraint>
+         <transport-guarantee>CONFIDENTIAL</transport-guarantee>
+      </user-data-constraint>
+   </security-constraint>
+   
+  <session-config>
 	<cookie-config>
 	<http-only>true</http-only>
 	<secure>true</secure>
 	</cookie-config>
-	</session-config>
+  </session-config>
 
 </web-app>  

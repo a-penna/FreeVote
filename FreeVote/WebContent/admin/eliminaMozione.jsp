@@ -33,7 +33,7 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
 	<div class="container py-4">
 		<p>Inserisci i dati nel seguente form per eliminare una mozione già presente: <p>
 	
-		<form action="<%=response.encodeURL("/FreeVote/EliminaMozione")%>" method="get"> 
+		<form action="<%=response.encodeURL("/FreeVote/EliminaMozione")%>" method="POST"> 
 			<div class="form-group">
 		        <fieldset>
 		        <legend>Inserisci l'ID della mozione da rimuovere&colon; </legend> <!-- Testo, Nome completo autore-->
