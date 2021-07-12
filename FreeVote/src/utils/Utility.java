@@ -110,43 +110,7 @@ public class Utility {
 			}
 			else if (c == '@') {
 				filtered.append("&commat;");
-			} /*
-			else if (c == 'à') {
-				filtered.append("&agrave;");
-			}
-			else if (c == 'è') {
-				filtered.append("&egrave;");
-			}
-			else if (c == 'ì') {
-				filtered.append("&igrave;");
-			}
-			else if (c == 'ò') {
-				filtered.append("&ograve;");
-			}
-			else if (c == 'ù') {
-				filtered.append("&ugrave;");
-			}
-			else if (c == '[') {
-				filtered.append("&lsqb;");
-			}
-			else if (c == ']') {
-				filtered.append("&rsqb;");
-			}
-			else if (c == ';') {
-				filtered.append("&semi;");
-			}
-			else if (c == 'é') {
-				filtered.append("&eacute;");
-			}
-			else if (c == 'É') {
-				filtered.append("&Eacute;");
 			} 
-			else if (c == '/') {
-				filtered.append("&sol;");
-			}
-			else if (c == '\\') {
-				filtered.append("&bsol;&bsol;");
-			} */
 			else {
 				filtered.append(c);
 			}

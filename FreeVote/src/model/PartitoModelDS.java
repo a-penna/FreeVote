@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.Collection;
 import java.util.LinkedList;
 
@@ -299,78 +298,46 @@ public class PartitoModelDS implements Model<PartitoBean>{
 	}
 	
 	public Collection<PartitoBean> doRetrieveAllByCoalizione(PartitoBean partito) throws SQLException{
-	Connection connection = null;
-	PreparedStatement preparedStatement = null;
-
-	Collection<PartitoBean> partiti = new LinkedList<PartitoBean>();
-
-	String selectSQL = "SELECT * FROM partito WHERE nome IN (SELECT partito FROM appartiene WHERE coalizione=(SELECT coalizione FROM appartiene WHERE partito=?))";
-
-	try {
-		connection = ds.getConnection();
-		preparedStatement = connection.prepareStatement(selectSQL);
-		preparedStatement.setString(1, partito.getNome());
-
-		ResultSet rs = preparedStatement.executeQuery();
-
-		while (rs.next()) {
-			PartitoBean bean = new PartitoBean();
-			bean.setLeader(rs.getString("leader"));
-			bean.setNome(rs.getString("nome"));
-			bean.setDescrizione(rs.getString("descrizione"));
-			bean.setn_votazioni_ricevute(rs.getInt("n_votazioni_ricevute"));
-			bean.setLogo(rs.getBytes("logo")); 
-
-			partiti.add(bean);
-		}
-	} finally {
-		try {
-			if (preparedStatement != null)
-				preparedStatement.close();
-		} finally {
-			if (connection != null) {
-				connection.close();
-			}
-		}
-	}
-
-	return partiti;
-
-}
-
-	
-	public int doRetrieveVotazioniBianche() throws SQLException {
 		Connection connection = null;
-		Statement statement = null;
-
-		int votazioni = -1;
-
-		String selectSQL = "SELECT n_votazioni_ricevute FROM partito WHERE nome = SCHEDA BIANCA";
-
+		PreparedStatement preparedStatement = null;
+	
+		Collection<PartitoBean> partiti = new LinkedList<PartitoBean>();
+	
+		String selectSQL = "SELECT * FROM partito WHERE nome IN (SELECT partito FROM appartiene WHERE coalizione=(SELECT coalizione FROM appartiene WHERE partito=?))";
+	
 		try {
 			connection = ds.getConnection();
-			statement = connection.createStatement();
-
-			ResultSet rs = statement.executeQuery(selectSQL);
-
-			if (rs.next()) {
-				votazioni = rs.getInt(1);
-				
+			preparedStatement = connection.prepareStatement(selectSQL);
+			preparedStatement.setString(1, partito.getNome());
+	
+			ResultSet rs = preparedStatement.executeQuery();
+	
+			while (rs.next()) {
+				PartitoBean bean = new PartitoBean();
+				bean.setLeader(rs.getString("leader"));
+				bean.setNome(rs.getString("nome"));
+				bean.setDescrizione(rs.getString("descrizione"));
+				bean.setn_votazioni_ricevute(rs.getInt("n_votazioni_ricevute"));
+				bean.setLogo(rs.getBytes("logo")); 
+	
+				partiti.add(bean);
 			}
-
 		} finally {
 			try {
-				if (statement != null)
-					statement.close();
+				if (preparedStatement != null)
+					preparedStatement.close();
 			} finally {
 				if (connection != null) {
 					connection.close();
 				}
 			}
 		}
-
-		return votazioni;
+	
+		return partiti;
 	}
-	
-	
+
 }
+
+	
+	
+

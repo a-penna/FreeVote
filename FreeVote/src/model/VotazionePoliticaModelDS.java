@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Collection;
 import java.util.LinkedList;
 
@@ -541,5 +542,150 @@ public class VotazionePoliticaModelDS implements Model<VotazionePoliticaBean> {
 
 		return percentuali;
 	}
+	
+	public Collection<String> doRetrieveAffluenza() throws SQLException {
+		Connection connection = null;
+		Statement statement = null;
+
+		Collection<String> percentuali = new LinkedList<String>();
+
+		String selectSQL = "SELECT data, count(*) * 100 / ( SELECT COUNT(*) FROM (SELECT data "
+																				+ "FROM Votazione_Politica "
+																				+ "UNION ALL "
+																				+ "SELECT data "
+																				+ "FROM Votazione_Referendum "
+																				+ ")AS TBL1 ) "
+						+ "FROM (SELECT data "
+							  + "FROM Votazione_Politica "
+							  + "UNION ALL "
+							  + "SELECT data "
+							  + "FROM Votazione_Referendum )AS TBL2 "
+					    + "GROUP BY data ORDER BY data";
+		try {
+			connection = ds.getConnection();
+			statement = connection.createStatement();
+			ResultSet rs = statement.executeQuery(selectSQL);
+			while (rs.next()) {
+				String percentuale = "";
+				percentuale += rs.getString(1);
+				percentuale += " ";
+				percentuale += rs.getDouble(2);
+				percentuali.add(percentuale);
+			}
+
+		} finally {
+			try {
+				if (statement != null)
+					statement.close();
+			} finally {
+				if (connection != null) {
+					connection.close();
+				}
+			}
+		}
+
+		return percentuali;
+	}
+	
+	public int doRetrieveNVotanti() throws SQLException {
+		Connection connection = null;
+		Statement statement = null;
+
+		int votazioni = -1;
+
+		String selectSQL = "SELECT SUM(n_votazioni_ricevute) FROM Partito WHERE nome<>'Scheda Bianca'";
+
+		try {
+			connection = ds.getConnection();
+			statement = connection.createStatement();
+
+			ResultSet rs = statement.executeQuery(selectSQL);
+
+			if (rs.next()) {
+				votazioni = rs.getInt(1);
+				
+			}
+
+		} finally {
+			try {
+				if (statement != null)
+					statement.close();
+			} finally {
+				if (connection != null) {
+					connection.close();
+				}
+			}
+		}
+
+		return votazioni;
+	}
+	
+	public int doRetrieveNSchedeBianche() throws SQLException {
+		Connection connection = null;
+		Statement statement = null;
+
+		int votazioni = -1;
+
+		String selectSQL = "SELECT n_votazioni_ricevute FROM Partito WHERE nome='Scheda Bianca'";
+
+		try {
+			connection = ds.getConnection();
+			statement = connection.createStatement();
+
+			ResultSet rs = statement.executeQuery(selectSQL);
+
+			if (rs.next()) {
+				votazioni = rs.getInt(1);
+				
+			}
+
+		} finally {
+			try {
+				if (statement != null)
+					statement.close();
+			} finally {
+				if (connection != null) {
+					connection.close();
+				}
+			}
+		}
+
+		return votazioni;
+	}
+	
+	public int doRetrieveNNonVotanti() throws SQLException {
+		Connection connection = null;
+		Statement statement = null;
+
+		int votazioni = -1;
+
+		String selectSQL = "SELECT ((SELECT SUM(n_aventi_diritto) FROM Comune1) - (SELECT SUM(n_votazioni_ricevute) FROM Partito))";
+
+		try {
+			connection = ds.getConnection();
+			statement = connection.createStatement();
+
+			ResultSet rs = statement.executeQuery(selectSQL);
+
+			if (rs.next()) {
+				votazioni = rs.getInt(1);
+				
+			}
+
+		} finally {
+			try {
+				if (statement != null)
+					statement.close();
+			} finally {
+				if (connection != null) {
+					connection.close();
+				}
+			}
+		}	
+		return votazioni;
+	}
+	
 }
+
+
 

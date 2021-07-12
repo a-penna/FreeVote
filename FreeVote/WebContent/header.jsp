@@ -4,7 +4,7 @@ pageEncoding="UTF-8"%>
 <%	
 boolean isAdmin = request.getSession(false) != null && request.getSession(false).getAttribute("adminRoles")!= null;
 %>
-<div class="container-fluid">   
+<div class="container-fluid pb-5">   
 <nav class="navbar navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>

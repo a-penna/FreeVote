@@ -70,7 +70,7 @@ public class GestisciVotoControl extends HttpServlet {
 							vr.setCodice(0);
 							vr.setData(Utility.toSqlDate(new Date()));
 							vr.setElettore(Utility.encryptMD5((String) request.getSession().getAttribute("codice")));
-							vr.setPreferenza("Mi Astengo");
+							vr.setPreferenza("Mi astengo");
 						}
 						
 						if (modelVotazione.doSaveBoth(vp, vr, elettore, (String) request.getSession().getAttribute("codice"), (String) request.getSession().getAttribute("password"))) {

@@ -285,13 +285,13 @@ public class VotazioneReferendumModelDS implements Model<VotazioneReferendumBean
 		throw new UnsupportedOperationException();
 	}
 	
-	public int doRetrieveAstenuti() throws SQLException {
+	public int doRetrieveNVotanti() throws SQLException {
 		Connection connection = null;
 		Statement statement = null;
 
 		int astenuti = -1;
 
-		String selectSQL = "SELECT COUNT(*) FROM votazione_referendum WHERE preferenza = Mi Astengo";
+		String selectSQL = "SELECT COUNT(*) FROM Votazione_Referendum WHERE preferenza<>'Mi astengo'";
 
 		try {
 			connection = ds.getConnection();
@@ -317,6 +317,77 @@ public class VotazioneReferendumModelDS implements Model<VotazioneReferendumBean
 
 		return astenuti;
 	}
+
+	
+	public int doRetrieveNAstenuti() throws SQLException {
+		Connection connection = null;
+		Statement statement = null;
+
+		int astenuti = -1;
+
+		String selectSQL = "SELECT COUNT(*) FROM votazione_referendum WHERE preferenza = 'Mi Astengo'";
+
+		try {
+			connection = ds.getConnection();
+			statement = connection.createStatement();
+
+			ResultSet rs = statement.executeQuery(selectSQL);
+
+			if (rs.next()) {
+				astenuti = rs.getInt(1);
+				
+			}
+
+		} finally {
+			try {
+				if (statement != null)
+					statement.close();
+			} finally {
+				if (connection != null) {
+					connection.close();
+				}
+			}
+		}
+
+		return astenuti;
+	}
+	
+
+	public int doRetrieveNNonVotanti() throws SQLException {
+		Connection connection = null;
+		Statement statement = null;
+
+		int astenuti = -1;
+
+		String selectSQL = "SELECT (SELECT SUM(n_aventi_diritto) FROM Comune1) "
+				+ "- ((SELECT COUNT(*) FROM Votazione_Referendum WHERE preferenza<>'Mi astengo') "
+				+ "+ (SELECT COUNT(*) FROM Votazione_Referendum WHERE preferenza='Mi astengo'))";
+
+		try {
+			connection = ds.getConnection();
+			statement = connection.createStatement();
+
+			ResultSet rs = statement.executeQuery(selectSQL);
+
+			if (rs.next()) {
+				astenuti = rs.getInt(1);
+				
+			}
+
+		} finally {
+			try {
+				if (statement != null)
+					statement.close();
+			} finally {
+				if (connection != null) {
+					connection.close();
+				}
+			}
+		}
+
+		return astenuti;
+	}
+
 	
 	
 	

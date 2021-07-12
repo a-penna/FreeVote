@@ -27,7 +27,7 @@ public class EliminaPartitoControl extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		boolean loggedIn = request.getSession(false) != null && request.getSession(false).getAttribute("adminRoles")!= null;
 		if(!loggedIn) {
-			response.sendRedirect(request.getContextPath() + "/loginAdmin.jsp");
+			response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/loginAdmin.jsp"));
 			return;
 		}
 		
@@ -54,6 +54,7 @@ public class EliminaPartitoControl extends HttpServlet {
 		} catch(SQLException e) {
 			Utility.printSQLException(e);
 		}
+		
 		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher(response.encodeURL("/admin/eliminaPartito.jsp"));
 		dispatcher.forward(request, response);
 	}
