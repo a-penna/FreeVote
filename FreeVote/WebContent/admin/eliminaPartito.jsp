@@ -32,24 +32,24 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
 	<%@ include file="/admin/admin-header.jsp"%>
 	<div class="container py-4">
 		<form action="<%=response.encodeURL("/FreeVote/EliminaPartito")%>" method="post"> 
-			<div class="form-group">
 			    <fieldset>
 			        <legend>Inserisci informazioni sul partito&colon; </legend>
-			        <select class="form-select" name="nome" required>
-			        		<option disabled selected>Nome&colon;</option>
-				            <%
-				            Iterator<?> it = partiti.iterator();
-				            while(it.hasNext()) {
-								PartitoBean bean = (PartitoBean)it.next();
-								if (!bean.getNome().equals("Scheda Bianca")) { %>
-				            		<option value="<%=bean.getNome()%>"><%=bean.getNome()%></option>
-				            <%	}  
-							} 
-				            %>
-				     </select> 
+					<div class="form-group">
+				        <select class="form-select" name="nome" required>
+				        		<option disabled selected>Nome&colon;</option>
+					            <%
+					            Iterator<?> it = partiti.iterator();
+					            while(it.hasNext()) {
+									PartitoBean bean = (PartitoBean)it.next();
+									if (!bean.getNome().equals("Scheda Bianca")) { %>
+					            		<option value="<%=bean.getNome()%>"><%=bean.getNome()%></option>
+					            <%	}  
+								} 
+					            %>
+					     </select> 
+		   			</div>
 			        <button type="submit" class="btn btn-primary">Elimina</button>
 			   </fieldset>
-		   </div>
 		</form> 
 	</div>
 </body>

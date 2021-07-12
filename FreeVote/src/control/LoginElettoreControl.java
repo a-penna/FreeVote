@@ -46,10 +46,11 @@ public class LoginElettoreControl extends HttpServlet {
 				Collection<String> regioni = comuneModel.doRetrieveAllRegioni("nome_regione");
 				request.setAttribute("listaRegioni", regioni);
 				
-				if ( !(codice == null || codice.equals("") || comune.equals("") || age.equals("") || sesso.equals("") || cap.equals(""))) {
+				if ( !(codice == null  || comune==null || age==null || sesso==null || cap==null || codice.equals("") || comune.equals("") || age.equals("") || sesso.equals("") || cap.equals(""))) {
 					int eta = Integer.parseInt(age);
 					ComuneBean bean = comuneModel.doRetrieveByKey(comune, cap); 
 
+				
 					if (bean.getNome().equals("")) {
 						response.sendRedirect(response.encodeRedirectURL("./loginElettore.jsp"));
 						return;

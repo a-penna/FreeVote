@@ -28,6 +28,7 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
 		
 			var divv = document.createElement("div");
 			divv.id = "id"+count;
+			divv.classList.add("form-row");
 			count++;
 			
 			var label = document.createElement("label");
@@ -47,6 +48,7 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
 	        input.type = "button";
 			input.classList.add("btn");
 			input.classList.add("btn-primary");
+			input.classList.add("mb-2");
 	        input.value = "-";
 	        input.addEventListener("click", function() {removePartito(divv.id)});
 	        divv.appendChild(input);
@@ -66,24 +68,30 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
 	<%@ include file="/admin/admin-header.jsp"%>
 	<div class="container py-4">
 		<p>Inserisci i dati nel seguente form per registare una nuova coalizione: <p>
-	
 		<form action="<%=response.encodeURL("/FreeVote/InserisciCoalizione")%>" method="get">
-		<div class="form-group"> 
 		        <fieldset>
 		        	<legend>Informazioni sulla coalizione&colon; </legend> 
-		        	<label for="nome">Nome Coalizione&colon;</label>  
-		       	    <input id="nome" type="text" class="form-control" name="nomeCoalizione" placeholder="Nome della coalizione" required> 
-		            <br>
-					<div id = "partiti">
-						<label>Nome del primo partito&colon; <input type="text" class="form-control" name="nomePartito" placeholder="Nome del primo partito" required> </label>
-						<label>Nome del secondo partito&colon; <input type="text" class="form-control" name="nomePartito" placeholder="Nome del secondo partito" required> </label>
-					 	<input type="button" class="btn btn-primary" value="&plus;" onclick="addPartito()"> 
-					</div>
-					<br> 
+					<div class="form-group"> 
+			        	<label for="nome">Nome Coalizione&colon;</label>  
+			       	    <input id="nome" type="text" class="form-control" name="nomeCoalizione" placeholder="Nome della coalizione" required> 
+			 		</div>
+						<div id = "partiti">
+							<div class="form-group">
+								<label for="partito1">Nome del primo partito&colon;</label>
+								<input type="text" id="partito1" class="form-control" name="nomePartito" placeholder="Nome del primo partito" required>
+							</div>
+							<div class="row form-group align-items-end">
+								<div class="col-xl-10">
+									<label for="partito2">Nome del secondo partito&colon;</label>
+									<input type="text" id="partito2" class="form-control" name="nomePartito" placeholder="Nome del secondo partito" required>
+								</div>
+								<div class="col-xl-2">
+						 			<input type="button" class="btn btn-primary" value="&plus;" onclick="addPartito()"> 
+						 		</div>
+							</div>
+						</div>
 		        </fieldset>
-		        <button type="submit" class="btn btn-primary">Crea</button>
-		 </div>
-	        
+		        <button type="submit" class="btn btn-primary">Crea</button>    
 		</form> 
 	</div>
 

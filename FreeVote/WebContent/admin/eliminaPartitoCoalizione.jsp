@@ -33,8 +33,8 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
 	<div class="container py-4">
 		<p>Selezionare un partito per scollegarlo dalla sua coalizione&comma; nel caso in cui non ne abbia una l'operazione fallir&agrave;&period;</p>
 		<form action="<%=response.encodeURL("/FreeVote/EliminaPartitoCoalizione")%>" method="post"> 
-			<div class="form-group">
 			    <fieldset>
+				<div class="form-group">
 			        <select name="nome" class="form-select" required>
 			        	<option disabled selected>Partito&colon;</option>
 			            <%
@@ -48,8 +48,8 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
 			            %>
 				    </select> 
 			    	<button type="submit" class="btn btn-primary">Elimina</button>
+				</div>
 				</fieldset>
-			</div>
 		</form> 
 	</div>
 </body>

@@ -32,11 +32,10 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
 	<%@ include file="/admin/admin-header.jsp"%>
 	<div class="container py-4">
 		<p>Inserisci i dati nel seguente form per eliminare una mozione già presente: <p>
-	
 		<form action="<%=response.encodeURL("/FreeVote/EliminaMozione")%>" method="POST"> 
-			<div class="form-group">
 		        <fieldset>
 		        <legend>Inserisci l'ID della mozione da rimuovere&colon; </legend> <!-- Testo, Nome completo autore-->
+			<div class="form-group">
 					<select class="form-select" name="id" required>
 						<option disabled selected>ID della mozione&colon;</option>
 			            <%
@@ -48,10 +47,9 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
 			            <%  } 
 			            %>
 			     	</select>    
+			</div>
 		        </fieldset>
-		        <br>
 		        <button type="submit" class="btn btn-primary">Elimina</button>
-	        </div>
 		</form> 
 	</div>
 

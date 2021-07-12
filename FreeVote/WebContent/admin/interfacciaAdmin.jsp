@@ -13,7 +13,6 @@
 
 <body>
 	<%@ include file="admin-header.jsp"%>
-   <% System.out.println(request.getContextPath());%>
     <h1> Interfaccia admin segreta </h1>
 
 </body>
