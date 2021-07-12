@@ -6,7 +6,6 @@
 			<ul>
 			<li><a href="<%=response.encodeURL("/FreeVote/admin/interfacciaAdmin.jsp")%>">FreeVote Admin</a></li>
 			<li><a href="<%=response.encodeURL("/FreeVote/home.jsp")%>">FreeVote Home</a></li>  <!--LOGO-->
-			<br/>
 			<li><a href="<%=response.encodeURL("/FreeVote/admin/gestionePolitiche.jsp")%>">Gestisci Politiche</a></li>
 			<li><a href="<%=response.encodeURL("/FreeVote/admin/gestioneReferendum.jsp")%>">Gestisci Referendum</a></li>
 			<li><a href="<%=response.encodeURL("/FreeVote/admin/eliminaElettore.jsp")%>">Elimina un elettore</a></li>

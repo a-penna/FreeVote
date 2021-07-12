@@ -9,9 +9,9 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
 	<meta name="description" content="Inserisci Mozione">
 	<meta name="author" content="Bene Sabato, Cozzolino Lidia, Napoli Riccardo, Penna Alessandro">    
 	<title>FreeVote &dash; Inserisci Mozione</title>
-	<link rel="stylesheet" type="text/css" href="/FreeVote/css/style.css" />
+	<link rel="stylesheet" type="text/css" href="/FreeVote/css/style.css"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> 
-	<!-- jQuery library --> 
+	<!--jQuery library--> 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
 	<!-- Popper JS --> 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script> 
@@ -26,9 +26,11 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
             var nomeCompleto = document.getElementsByName("nomeCompleto")[0];
             if(!checkNomeCognome(nomeCompleto)) {
                 valid = false;
-                document.getElementById("nomeError").innerHTML = "Nome non valido!";
+                nomeCompleto.classList.remove("is-valid");
+                nomeCompleto.classList.add("is-invalid");
             } else {
-                document.getElementById("nomeError").innerHTML = "";
+            	nomeCompleto.classList.remove("is-invalid");
+            	nomeCompleto.classList.add("is-valid");
             }
             
             if(valid) obj.submit();
@@ -38,20 +40,33 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
 <body>
 
 	<%@ include file="/admin/admin-header.jsp"%>
-	<p>Inserisci i dati nel seguente form per registare una nuova mozione: <p>
-
-	<form action="<%=response.encodeURL("/FreeVote/InserisciMozione")%>" method="post" onsubmit="event.preventDefault(); validate(this)"> 
-        <fieldset>
-        <legend>Informazioni sulla mozione&colon; </legend> <!-- Testo,Nome completo autore-->
-        	<label for="nomeCompleto">Nome e cognome dell&apos;autore&colon;</label> 
-       	    <input id="nomeCompleto" type="text" name="nomeCompleto" placeholder="Nome e cognome autore" required> 
-            <p id="nomeError"></p>
-        	<label for="testo">Testo della mozione&colon;</label>
-        	<textarea id="testo" name="testo" rows="10" cols="48" placeholder="Inserisci qui il testo della mozione" required></textarea>
-			<br>
-        </fieldset>
-        <input type="submit" value="Crea">
-	</form> 
+	<div class="container py-4">
+		<p>Inserisci i dati nel seguente form per registare una nuova mozione: <p>
+	
+		<form action="<%=response.encodeURL("/FreeVote/InserisciMozione")%>" method="post" onsubmit="event.preventDefault(); validate(this)"> 
+			<div class="form-group">
+		        <fieldset>
+		        <legend>Informazioni sulla mozione&colon; </legend>
+		        	<label for="nomeCompleto">Nome e cognome dell&apos;autore&colon;</label> 
+		        	<%
+						if (request.getAttribute("erroreNomeCompleto") != null) {
+							%><input type="text" class="form-control is-invalid" id="nomeCompleto" placeholder="Nome e cognome Autore" value="<%=request.getAttribute("nomeCompleto")%>" name="nomeCompleto" required><% 
+						} else if (request.getAttribute("nomeCompleto") != null) {
+							%><input type="text" class="form-control is-valid" id="nomeCompleto" placeholder="Nome e cognome Autore" value="<%=request.getAttribute("nomeCompleto")%>" name="nomeCompleto" required><% 
+						} else {
+							%><input type="text" class="form-control" id="nomeCompleto" placeholder="Nome e cognome Autore" name="nomeCompleto" required><% 
+						}
+					%>
+                        <div class="valid-feedback">Corretto</div>
+                        <div class="invalid-feedback">Nome non valido&excl;</div>
+		        	<label for="testo">Testo della mozione&colon;</label>
+		        	<textarea id="testo" class="form-control" name="testo" rows="10" cols="48" placeholder="Inserisci qui il testo della mozione" required></textarea>
+					<br>
+		        </fieldset>
+		        <button type="submit" class="btn btn-primary">Crea</button>
+		    </div>
+		</form> 
+	</div>
 
 </body>
 </html> 
