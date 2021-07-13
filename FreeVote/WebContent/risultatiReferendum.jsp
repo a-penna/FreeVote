@@ -31,11 +31,13 @@
 </head>
 <body>
 	<%@ include file="header.jsp"%>
+	<div class="container-fluid pt-4"> 
     <br>
     <h3>Di seguito i risultati del referendum&colon;</h3>
 	
 	<p>Numero di S&igrave;&colon; <%=si%></p>
 	<p>Numero di No&colon; <%=no%></p>
 	<p>Numero di Astenuti&colon; <%=astenuti%></p>
+	</div>
 </body>
 </html>

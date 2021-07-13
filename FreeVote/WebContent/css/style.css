@@ -57,3 +57,10 @@
 	padding-top: 14rem;
 	padding-bottom: 14rem;
 }
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 15%;
+}

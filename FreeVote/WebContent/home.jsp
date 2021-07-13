@@ -42,7 +42,7 @@
   					<path d="M10.854 5.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 7.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>
 				</svg>
 					<h3>Sicuro</h3>
-					<p class="lead mb-0">Paragrafo 1 della landing page</p>
+					<p class="lead mb-0">Il nostro sito web è sicuro ed efficace, rispetta la privacy ed è amministrato nel modo più trasparente possibile</p>
 				</div>
 			</div>
 			<div class="col-lg-4">
@@ -51,7 +51,7 @@
 				  <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V4.5z"/>
 				</svg>
 					<h3>Facile da usare</h3>
-					<p class="lead mb-0">Paragrafo 1 della landing page</p>
+					<p class="lead mb-0">Grazie alla grafica interattiva e alla dinamicità il sito risulta di semplice utilizzo</p>
 				</div>
 			</div>
 			<div class="col-lg-4">
@@ -61,7 +61,7 @@
 				  <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z"/>
 				</svg>
 					<h3>Online 24/7h</h3>
-					<p class="lead mb-0">Paragrafo 1 della landing page</p>
+					<p class="lead mb-0">Il sito web resterà sempre attivo per consultare i risultati anche dopo la fine delle votazioni</p>
 				</div>
 			</div>
 		</div>

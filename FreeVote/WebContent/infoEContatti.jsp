@@ -31,7 +31,7 @@
 				<div class="email mx-auto mb-5 mb-lg-0">
 						<img class="img-fluid roundend-circle mb-3" src="https://banner2.cleanpng.com/20180418/evq/kisspng-pointer-computer-icons-encapsulated-postscript-5ad7d9175bc6f9.5007918615240952553759.jpg" alt="Foto autore">
 						<h5>Sabato Bene</h5>
-						<p class="font-weight-light mb-0">email sabato bene</p>
+						<p class="font-weight-light mb-0">s.bene@studenti.unisa.it</p>
 				</div>	
 			</div>
 			<div class="col-lg-3">

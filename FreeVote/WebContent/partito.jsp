@@ -34,11 +34,14 @@
 </head>
 <body>
 	<%@ include file="header.jsp"%>
-	<h1><%=partito.getNome()%></h1>
+	<div class="container-fluid pt-4">  
+	<h1 align="center"><%=partito.getNome()%></h1>
+	
 	<% if (!coalizione.getNome().equals("")) { %>
-		<h2>&lsqb;<%=coalizione.getNome()%>&rsqb;</h2>
+		<h2 align="center">&lsqb;<%=coalizione.getNome()%>&rsqb;</h2>
 	<%} %>
-	<img src="PhotoControl?type=partito&id=<%=partito.getNome()%>" onerror="this.src='./imgs/nologo.png'">
+	
+	<img src="PhotoControl?type=partito&id=<%=partito.getNome()%>" class = "center" onerror="this.src='./imgs/nologo.png'" alt="foto">
     <br>
 	<p><%=partito.getDescrizione()%></p>
 	<br>
@@ -52,6 +55,7 @@
 				<a href="Candidato?cf=<%=candidato.getCf()%>"><%=candidato.getNome()%> <%=candidato.getCognome()%></a> <%
 		}
 	%>
+	</div>
 
 </body>
 </html>

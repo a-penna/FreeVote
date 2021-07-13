@@ -75,6 +75,7 @@
 	%>
 	
 	<div class="container-fluid pt-4">  
+	<div class="form-group">
 	    <form action="Elettore" method="post"> 
 	        <fieldset>
 	            <legend>Inserisci credenziali&colon; </legend>
@@ -118,6 +119,7 @@
 				<input type="submit" value="Login"/>
 			</fieldset>
 	    </form> 
+	    </div>
 	</div>
 <%} %>
 </body>

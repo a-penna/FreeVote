@@ -38,8 +38,9 @@
 
 <body>
 	<%@ include file="header.jsp"%>
+	<div class="container-fluid pt-4"> 
     <br/>
-    <h1>Risultati&colon;</h1>
+    <h1 align="center">Risultati&colon;</h1>
         <%
         Iterator<?> it = partiti.iterator();
         Iterator<?> it2 = coalizioni.iterator();
@@ -59,5 +60,6 @@
       	}
         }
     %>
+    </div>
 </body>
 </html>

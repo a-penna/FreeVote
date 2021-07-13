@@ -37,19 +37,23 @@
     if (loggedAsElettore)  { 
 		%><h3>Si prega di effettuare il logout da elettore prima di procedere con la normale autenticazione da admin</h3><%
 	} else { %>
+		<div class="container-fluid pt-4">  
+		<div class="form-group">
 	    <form action="Administrator" method="post"> 
 	        <fieldset>
 	             <legend>Inserisci credenziali: </legend>
 	             <label for="username">Username</label>
 	             <input id="username" type="text" name="username" placeholder="inserisci username"> 
 	             <br>   
-	             <label for="password">Password</label>
+	             <label for="password">Password </label>
 	             <input id="password" type="password" name="password" placeholder="inserisci password"> 
 	             <br>
 	             <input type="reset" value="Reset"/>
 	             <input type="submit" value="Login"/>
 	    	</fieldset>
 	    </form> 
+	    </div>
+	    </div>
 <% 	} %>
 </body>
 </html>

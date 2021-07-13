@@ -31,14 +31,15 @@
 </head>
 <body>
 	<%@ include file="header.jsp"%>
-    <br/>
+	<div class="container-fluid pt-4"> 
+    <br>
     <h3>Scegliendo il nome di una regione sarà possibile visualizzare 
     	in percentuale le preferenze politiche espresse dagli abitanti</h3>
 
 	<%String regione = (String)request.getAttribute("regione");
 	  if (regione == null) regione = "";
 	%>
-	
+	<div class="form-group">
     <form action="RisultatiReg" method="post"> 
     	<label for="regione">Regione&colon; </label>
         <select name="regione">
@@ -58,7 +59,7 @@
         <br>
         <input type="submit" value="Scegli"/>
     </form> 
-    
+    </div>
     <%  
     	Collection<?> percentuali = (Collection<?>)request.getAttribute("percentuali");
 		if (percentuali != null && !percentuali.isEmpty()) { %>
@@ -83,5 +84,6 @@
 		}
     %>
     </table>
+    </div>
 </body>
 </html>

@@ -56,14 +56,15 @@
 
 <body>
 	<%@ include file="header.jsp"%>
-    <br/>
+	<div class="container-fluid pt-4"> 
+    <br>
     <h3>Scegliendo il nome di un partito ed inserendo una particolare fascia d'et&agrave; potrai visualizzare, in percentuale,
     quante votazioni quel partito ha ricevuto in quella specifica fascia d'et&agrave; </h3>
 
 	<%String partito = (String)request.getAttribute("partito");
 	  if (partito == null) partito = "";
 	%>
-	
+	<div class="form-group">
     <form action="EtaControl" method="post" onsubmit="event.preventDefault(); validate(this)"> 
     	<label for="partito">Partito&colon; </label>
         <select name="partito">
@@ -110,6 +111,7 @@
 		<br>
         <input type="submit" value="Invia"/>
     </form> 
- 
+ </div>
+ </div>
 </body>
 </html>

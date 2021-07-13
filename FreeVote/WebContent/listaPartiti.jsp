@@ -38,9 +38,11 @@
 
 <body>
 	<%@ include file="header.jsp"%>
+	<div class="container py-4">
     <br>
     <h1>Lista partiti&colon;</h1>
     <br>
+    </div>
     <%
         Iterator<?> it = partiti.iterator();
     	Iterator<?> it2 = coalizioni.iterator();
@@ -48,12 +50,19 @@
             PartitoBean partito = (PartitoBean)it.next(); 
             CoalizioneBean coalizione= (CoalizioneBean)it2.next(); 
             if (!partito.getNome().equals("Scheda Bianca")) {
-    %>
+    %>			<span class="container py-4">
     			<img src="PhotoControl?type=partito&id=<%=partito.getNome()%>" onerror="this.src='./imgs/nologo.png'">
+    			</span>
     			<% if (!coalizione.getNome().equals("")) { %>
+    				<span class="container py-4">
             		<a href="Partito?nome=<%=partito.getNome()%>"><%=partito.getNome()%> &lsqb;<%=coalizione.getNome()%>&rsqb;</a>
+            		</span>
+            		<br>
             	<%} else { %>
+            		<span class="container py-4">
             		<a href="Partito?nome=<%=partito.getNome()%>"><%=partito.getNome()%></a>
+            		</span>
+            		<br>
             	<%} %>
             	<br>
     <%   	}
