@@ -30,10 +30,10 @@ public class GestisciVotoControl extends HttpServlet {
 	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 			boolean loggedIn = request.getSession(false) != null && request.getSession(false).getAttribute("elettoreRoles")!= null;
-
 			if(!loggedIn) {
-				response.sendRedirect(response.encodeRedirectURL("/FreeVote/elettore/loginElettore.jsp"));
+				response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/elettore/loginElettore.jsp"));
  				return;
 			}
 
@@ -75,11 +75,11 @@ public class GestisciVotoControl extends HttpServlet {
 						
 						if (modelVotazione.doSaveBoth(vp, vr, elettore, (String) request.getSession().getAttribute("codice"), (String) request.getSession().getAttribute("password"))) {
 							request.getSession().invalidate();
-							response.sendRedirect(response.encodeRedirectURL("/FreeVote/successo.jsp"));
+							response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/successo.jsp"));
 	 						return;
 						} else {
 							request.getSession().invalidate();
-							response.sendRedirect(response.encodeRedirectURL("/FreeVote/error/generic.jsp"));
+							response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/error/generic.jsp"));
 	 						return;
 						}
 					} 
@@ -115,7 +115,7 @@ public class GestisciVotoControl extends HttpServlet {
 				Collection<PartitoBean> partiti = model.doRetrieveAll("nome");
 				request.setAttribute("partiti", partiti);
 				if(partiti == null) {
-					RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher(response.encodeURL("/FreeVote/error/generic.jsp"));
+					RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher(response.encodeURL("/error/generic.jsp"));
 					dispatcher.forward(request, response);
 					return;
 				}

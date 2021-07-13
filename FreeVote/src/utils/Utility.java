@@ -127,6 +127,23 @@ public class Utility {
 		return true;
 	}
 	
+	public static int checkEta(String e) {
+		if (e.equals(""))
+			return -1;
+		
+		int i = 0;
+		for (; i < e.length(); i++) {
+			if (!Character.isDigit(e.charAt(i)))
+				return -1;
+		}
+		
+		int eta = Integer.parseInt(e);
+		if (eta < 18 || eta > 130) 
+			return -1;
+		
+		return eta;
+	}
+	
 	public static boolean checkCf(String cf) {
 		int i = 0;
 		for (; (i < cf.length()) && (i < 6); i++ ) {

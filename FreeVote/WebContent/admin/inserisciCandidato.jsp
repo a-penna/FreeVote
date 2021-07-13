@@ -139,7 +139,7 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
 					%> 
 	                 </div>
                  </fieldset>
-               <button type="submit" class="btn btn-primary">Inserisci</button>
+               <button type="submit" class="btn btn-dark">Inserisci</button>
             </form>
         </div>
 

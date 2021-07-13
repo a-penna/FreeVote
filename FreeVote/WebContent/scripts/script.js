@@ -8,10 +8,15 @@ function checkNomeCognome(inputtxt) {
 
 function checkEta(inputtxt) {
 	var name = /^[0-9]+$/;
-	if(inputtxt.value.match(name)) 
-		return true;
+	if(!inputtxt.value.match(name)) {
+		return false; 
+	}
 
-	return false;	
+	if((inputtxt.value < 18) || (inputtxt.value > 130)) {
+		return false;	
+	}
+	
+	return true;
 }
 
 function checkCf(inputtxt)  {

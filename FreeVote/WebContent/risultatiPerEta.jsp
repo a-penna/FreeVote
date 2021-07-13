@@ -18,6 +18,7 @@
 	<meta name="description" content="Risultati votazioni per et&agrave;">
 	<meta name="author" content="Bene Sabato, Cozzolino Lidia, Napoli Riccardo, Penna Alessandro">    
     <title>FreeVote &dash; Risultati votazioni per et&agrave;</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="/FreeVote/css/style.css">						
 	<!-- Latest compiled and minified CSS --> 
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> 
@@ -27,91 +28,131 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script> 
 	<!-- Latest compiled JavaScript --> 
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="/FreeVote/scripts/script.js"></script>
+	<script type="text/javascript" src="/FreeVote/scripts/script.js"></script>
     <script>
         function validate(obj) {	
             var valid = true;	
+            
+            var partito = document.getElementsByName("partito")[0];
+            if (partito.value == "Seleziona Partito") {
+            	valid = false;
+            	partito.classList.add("is-invalid");
+            } else {
+            	 partito.classList.remove("is-invalid");
+            }
             
             var minima = document.getElementsByName("minima")[0];
            
             if(!checkEta(minima)) {
                 valid = false;
-                document.getElementById("etaError").innerHTML = "Et&agrave; non valida&excl;";
+                minima.classList.add("is-invalid");
             } else {
-                document.getElementById("etaError").innerHTML = "";
+            	 minima.classList.remove("is-invalid");
             }
-
+            
             var massima = document.getElementsByName("massima")[0];            
             if(!checkEta(massima)) {
                 valid = false;
-                document.getElementById("etaError").innerHTML = "Et&agrave; non valida&excl;";
+                massima.classList.add("is-invalid");
             } else {
-                document.getElementById("etaError").innerHTML = "";
+            	massima.classList.remove("is-invalid");
             }
 
             if(valid) obj.submit();
         }
     </script> 
+
 </head>            
 
 <body>
 	<%@ include file="header.jsp"%>
-	<div class="container-fluid pt-4"> 
-    <br>
-    <h3>Scegliendo il nome di un partito ed inserendo una particolare fascia d'et&agrave; potrai visualizzare, in percentuale,
-    quante votazioni quel partito ha ricevuto in quella specifica fascia d'et&agrave; </h3>
-
+	<div class="container py-5"> 
 	<%String partito = (String)request.getAttribute("partito");
 	  if (partito == null) partito = "";
 	%>
-	<div class="form-group">
     <form action="EtaControl" method="post" onsubmit="event.preventDefault(); validate(this)"> 
-    	<label for="partito">Partito&colon; </label>
-        <select name="partito">
-            <%
-            Iterator<?> it = partiti.iterator();
-            while(it.hasNext()) {
-                PartitoBean bean = (PartitoBean)it.next(); 
-                if (bean.getNome().equals(partito)) {  
-                    %>
-                    <option value="<%=bean.getNome()%>" selected><%=bean.getNome()%></option>
-            <%  } 
-            	else if (!bean.getNome().equals("Scheda Bianca")) {  
-            %>
-            <option value="<%=bean.getNome()%>"><%=bean.getNome()%></option>
-            <%  } 
-            }
-            %>
-        </select> 
-        <br>
-        <% String min = (String)request.getAttribute("minima");
-        if(min == null) min = "";
-        
-        String max = (String)request.getAttribute("massima");
-        if(max == null) max = "";
-        %>
-        <label for="eta">Et&agrave; minima&colon; </label>
-        <input type="number" id="eta" name="minima" value="<%=min%>">
-        
-        <label for="eta">Et&agrave; massima&colon; </label>
-        <input type="number" id="eta" name="massima" value="<%=max%>">
-        
-        <%if (request.getAttribute("erroreEta") != null) { %>                   
-            <p id="etaError">Et&agrave; non valida&excl;</p>
-        <%} else { %>
-            <p id="etaError"></p>
-        <%}%>
+     <fieldset>
+       <legend>Scegliendo il nome di un partito ed inserendo una particolare fascia d'et&agrave; potrai visualizzare, in percentuale,
+    quante votazioni quel partito ha ricevuto in quella specifica fascia d'et&agrave;</legend>
+		<div class="form-group">
+	    	<label for="partito">Partito&colon; </label>
+	    	 <%
+				if (request.getAttribute("errorePartito") != null) { %>
+					<select name="partito" class="custom-select is-invalid" required>
+						<option disabled selected>Seleziona Partito</option>
+			            <%
+			            Iterator<?> it = partiti.iterator();
+			            while(it.hasNext()) {
+			                PartitoBean bean = (PartitoBean)it.next(); 
+			            	if (!bean.getNome().equals("Scheda Bianca")) {  
+			            %>
+			            		<option value="<%=bean.getNome()%>"><%=bean.getNome()%></option>
+			            <%  } 
+			            }
+			            %>
+			        </select>
+			 <%	} else {
+        	 %>
+	        		<select name="partito" class="custom-select" required>
+			        	<option disabled selected>Seleziona Partito</option>
+			            <%
+			            Iterator<?> it = partiti.iterator();
+			            while(it.hasNext()) {
+			                PartitoBean bean = (PartitoBean)it.next(); 
+			                if (bean.getNome().equals(partito)) {  
+			                    %>
+			                    <option value="<%=bean.getNome()%>" selected><%=bean.getNome()%></option>
+			            <%  } 
+			            	else if (!bean.getNome().equals("Scheda Bianca")) {  
+			            %>
+			            <option value="<%=bean.getNome()%>"><%=bean.getNome()%></option>
+			            <%  } 
+			            }
+			            %>
+		        </select>
+	        <% } %>
+       	<div class="invalid-feedback">Selezionare un partito&excl;</div>
+        </div> 
+
+        <div class="form-group">
+	        <label for="etaMin">Et&agrave; minima&colon; </label>
+	        <%
+				if (request.getAttribute("erroreEtaMin") != null) {
+					%><input type="number" class="form-control is-invalid" id="etaMin" name="minima" min="18" max="130" value="<%=request.getAttribute("min")%>" required><% 
+				} else if (request.getAttribute("min") != null) {
+					%><input type="number" class="form-control" id="etaMin" name="minima" min="18" max="130" value="<%=request.getAttribute("min")%>" required><% 
+				} else {
+					%><input type="number" class="form-control" id="etaMin" name="minima" min="18" max="130" required><% 
+				}
+			%>
+            <div class="invalid-feedback">Et&agrave; minima non corretta&excl; Ricorda che il sistema ammette solo un&apos;et&agrave; compresa tra 18 e 130</div>
+	    </div>
+        <div class="form-group">
+	        <label for="etaMax">Et&agrave; massima&colon; </label>
+	         <%
+				if (request.getAttribute("erroreEtaMax") != null) {
+					%><input type="number" class="form-control is-invalid" id="etaMax" name="massima" min="18" max="130" value="<%=request.getAttribute("max")%>" required><% 
+				} else if (request.getAttribute("max") != null) {
+					%><input type="number" class="form-control" id="etaMax" name="massima" min="18" max="130" value="<%=request.getAttribute("max")%>" required><% 
+				} else {
+					%><input type="number" class="form-control" id="etaMax" name="massima" min="18" max="130" required><% 
+				}
+			%>
+ <div class="invalid-feedback">Et&agrave; massima non corretta&excl; Ricorda che il sistema ammette solo un&apos;et&agrave; compresa tra 18 e 130</div>	    </div>
+        <input type="submit" class="btn btn-dark" value="Invia"/>
+       </fieldset>
+    </form> 
 		<%
 		  String percentuale = (String) request.getAttribute("percentuale");
 		  if (percentuale != null) { %>
-			  <p><%=request.getParameter("partito")%> ha ricevuto dalla fascia d'et&agrave;
-			   <%=min%>&sol;<%=max%> il <%=percentuale%>&percnt; dei voti</p>
+		  <br>
+		  <div class="alert alert-info" role="alert">
+			  <a href="Partito?nome=<%=request.getParameter("partito")%>" class="alert-link"><%=request.getParameter("partito")%></a> ha ricevuto dalla fascia d'et&agrave;
+			   <%=request.getAttribute("min")%>&sol;<%=request.getAttribute("max")%> il <%=percentuale%>&percnt; dei voti
+		  </div>
 		 <% }
 		%>
-		<br>
-        <input type="submit" value="Invia"/>
-    </form> 
  </div>
- </div>
+ 
 </body>
 </html>
