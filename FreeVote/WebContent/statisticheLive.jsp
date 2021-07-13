@@ -74,15 +74,22 @@
 		<p> Numero voti espressi&lpar;schede bianche escluse&rpar; &colon; <%=nVotantiPol%><p>
 		  
 		<p> Numero di schede bianche &colon; <%=nBianche%><p>
-	
+		</div>
+		
+	   <div class="container pt-5">
 	   <h4>Referendum</h4>
 	      
 	    <p> Numero di preferenze espresse &colon; <%=nVotantiRef%><p>
 		  
 		<p> Numero di astenuti &colon; <%=nAstenuti%><p>
 		  
+	  	</div>
+	  	
+	  	<div class="container pt-5">
 		<h4> Numero totale di non votanti&lpar;persone che non si sono connesse alla piattaforma per votare&rpar; &colon; <%=nonVotanti%></h4>
-	  	  
+	  	</div>
+	  	
+	  	<div class="container pt-5">
 	  	<h4>Affluenza elettori nei diversi giorni delle votazioni &colon;</h4> 
 	    <table>
 	    	<tr>
