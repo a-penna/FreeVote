@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.sql.SQLException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -39,15 +40,45 @@ public class InserisciPartitoControl extends HttpServlet {
 		String cognomeLeader = request.getParameter("cognomeLeader");
 		String cf = request.getParameter("cf");
 		String curriculum = request.getParameter("curriculum");
-		if (nome == null || descrizione == null || nomeLeader == null || cognomeLeader == null || cf == null || curriculum == null) {
+		boolean error = false;
+		
+		if (nome == null || descrizione == null || nomeLeader == null || cognomeLeader == null || cf == null || curriculum == null
+				|| nome.equals("") || descrizione.equals("") || nomeLeader.equals("") || cognomeLeader.equals("") || cf.equals("") || curriculum.equals("")) {
 			response.sendRedirect(response.encodeRedirectURL("/FreeVote/admin/inserisciPartito.jsp"));
 			return;
 		}
+		
+		if (!Utility.checkNomeCognome(nomeLeader)) {
+			request.setAttribute("erroreNome", "true");
+			error = true;
+		}
+		if (!Utility.checkNomeCognome(cognomeLeader)) {
+			request.setAttribute("erroreCognome", "true");
+			error = true;
+		}
+		if (!Utility.checkCf(cf)) {
+			request.setAttribute("erroreCf", "true");
+			error = true;
+		}
+		
 		nome = Utility.filter(nome);
 		descrizione = Utility.filter(descrizione);
 		nomeLeader = Utility.filter(nomeLeader);
 		cognomeLeader = Utility.filter(cognomeLeader);
         curriculum = Utility.filter(curriculum);
+		
+		if(error) {
+			request.setAttribute("nome", nome);
+			request.setAttribute("descrizione", descrizione);
+			request.setAttribute("nomeLeader", nomeLeader);
+			request.setAttribute("cognomeLeader", cognomeLeader);
+			request.setAttribute("cf", cf);
+			request.setAttribute("curriculum", curriculum);
+			
+			RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher(response.encodeURL("/admin/inserisciPartito.jsp"));
+			dispatcher.forward(request, response);
+			return;
+		}
 		
 		InputStream streamLogo = null; 
 		
@@ -66,7 +97,6 @@ public class InserisciPartitoControl extends HttpServlet {
 		DataSource ds = (DataSource) getServletContext().getAttribute("DataSource");
 		PartitoModelDS model = new PartitoModelDS(ds);
 		
-		String redirectedPage = "";
 
 		try {
 			PartitoBean partito = new PartitoBean();
@@ -86,16 +116,15 @@ public class InserisciPartitoControl extends HttpServlet {
 
 			boolean flag = model.doSaveCheck(partito, candidato);
 		    if(flag) {
-		    	redirectedPage="/successo.jsp";
+		    	response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/successo.jsp"));
 		    } else {
-		    	redirectedPage="/error/insertError.jsp";
+		    	response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/insertError.jsp"));
 		    }
 		} catch(SQLException e) {
 			Utility.printSQLException(e);
 			response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/error/insertError.jsp"));
 			return;
 		}
-		response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + redirectedPage));
 	}
 }
 

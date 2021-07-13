@@ -49,7 +49,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-    <meta name="keywords" content="FreeVote, piattaforma voto, voto, voto online, statistiche live">
+    <meta name="keywords" content="FreeVote, piattaforma voto, voto, voto online, statistiche live, live, risultati live">
 	<meta name="description" content="Statistiche Live">
 	<meta name="author" content="Bene Sabato, Cozzolino Lidia, Napoli Riccardo, Penna Alessandro">    
 	<title>FreeVote &dash; Statistiche Live</title>

@@ -14,9 +14,11 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-    <meta name="keywords" content="FreeVote, piattaforma voto, voto, voto online, login admin">
+    <meta name="keywords" content="FreeVote, piattaforma voto, voto, voto online, login admin, admin, amministratore, autenticazione">
 	<meta name="description" content="Login Admin">
 	<meta name="author" content="Bene Sabato, Cozzolino Lidia, Napoli Riccardo, Penna Alessandro">    
+    <title>FreeVote &dash; Login Admin</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" type="text/css" href="/FreeVote/css/style.css">						
 	<!-- Latest compiled and minified CSS --> 
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> 
@@ -27,7 +29,6 @@
 	<!-- Latest compiled JavaScript --> 
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> 
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> 
-    <title>FreeVote &dash; Login Admin</title>
 </head>            
 
 <body>
@@ -37,23 +38,23 @@
     if (loggedAsElettore)  { 
 		%><h3>Si prega di effettuare il logout da elettore prima di procedere con la normale autenticazione da admin</h3><%
 	} else { %>
-		<div class="container-fluid pt-4">  
-		<div class="form-group">
-	    <form action="Administrator" method="post"> 
-	        <fieldset>
-	             <legend>Inserisci credenziali: </legend>
-	             <label for="username">Username</label>
-	             <input id="username" type="text" name="username" placeholder="inserisci username"> 
-	             <br>   
-	             <label for="password">Password </label>
-	             <input id="password" type="password" name="password" placeholder="inserisci password"> 
-	             <br>
-	             <input type="reset" value="Reset"/>
-	             <input type="submit" value="Login"/>
-	    	</fieldset>
-	    </form> 
-	    </div>
-	    </div>
+		<div class="container py-4">  
+		    <form action="Administrator" method="post"> 
+		        <fieldset>
+		             <legend>Inserisci credenziali&colon; </legend>
+		             <div class="form-group">
+			             <label for="username">Username&colon;</label>
+			             <input id="username" type="text" class="form-control" name="username" placeholder="inserisci username" required>   
+			         </div>
+			         <div class="form-group">
+			             <label for="password">Password&colon;</label>
+			             <input id="password" type="password" class="form-control" name="password" placeholder="inserisci password" required> 
+		             </div>
+		             <input type="submit" class="btn btn-primary" value="Login"/>
+		    	</fieldset>
+		    </form> 
+		</div>
+
 <% 	} %>
 </body>
 </html>

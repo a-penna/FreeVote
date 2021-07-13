@@ -16,7 +16,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-    <meta name="keywords" content="FreeVote, piattaforma voto, voto, voto online, Referendum, mozioni">
+    <meta name="keywords" content="FreeVote, piattaforma voto, voto, voto online, Referendum, mozioni, mozione, ">
 	<meta name="description" content="Testo mozione">
 	<meta name="author" content="Bene Sabato, Cozzolino Lidia, Napoli Riccardo, Penna Alessandro">  
 	<title>FreeVote &dash; Mozione <%=mozione.getID()%> </title>

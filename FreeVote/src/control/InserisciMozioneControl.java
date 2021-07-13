@@ -33,11 +33,30 @@ public class InserisciMozioneControl extends HttpServlet{
         
         String nomeCompleto = request.getParameter("nomeCompleto");
         String testo = request.getParameter("testo");
-        if(nomeCompleto == null || testo == null) {
+        boolean error = false;
+        
+        if(nomeCompleto == null || testo == null || nomeCompleto.equals("") || testo.equals("")) {
             response.sendRedirect(response.encodeRedirectURL("/FreeVote/admin/inserisciMozione.jsp"));
 			return;
         }
         
+		if (!Utility.checkNomeCognome(nomeCompleto)) {
+			request.setAttribute("erroreNomeCompleto", "true");
+			error = true;
+		}
+        
+		nomeCompleto = Utility.filter(nomeCompleto);
+		testo = Utility.filter(testo);
+
+		if(error) {
+			request.setAttribute("nomeCompleto", nomeCompleto);
+			request.setAttribute("testo", testo);
+			RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher(response.encodeURL("/admin/inserisciMozione.jsp"));
+			dispatcher.forward(request, response);
+			return;
+		}
+		
+		
         DataSource ds = (DataSource) getServletContext().getAttribute("DataSource");
         MozioneModelDS mozioneModel = new MozioneModelDS(ds);
         

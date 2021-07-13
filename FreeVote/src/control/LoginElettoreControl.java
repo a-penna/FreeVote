@@ -39,6 +39,10 @@ public class LoginElettoreControl extends HttpServlet {
             String age = request.getParameter("eta");
             String sesso = request.getParameter("sesso");
             String cap = request.getParameter("cap");
+            boolean error = false;
+            int eta = 9000;
+            
+
 
 			DataSource ds = (DataSource) getServletContext().getAttribute("DataSource");
 			ComuneModelDS comuneModel = new ComuneModelDS(ds);
@@ -47,12 +51,35 @@ public class LoginElettoreControl extends HttpServlet {
 				request.setAttribute("listaRegioni", regioni);
 				
 				if ( !(codice == null  || comune==null || age==null || sesso==null || cap==null || codice.equals("") || comune.equals("") || age.equals("") || sesso.equals("") || cap.equals(""))) {
-					int eta = Integer.parseInt(age);
+					try {
+						eta = Integer.parseInt(age);
+						
+						if(eta<18 || eta>120) {
+							request.setAttribute("erroreEta", "true");
+							error = true;
+						}
+					} catch (NumberFormatException e) {
+						request.setAttribute("erroreEta", "true");
+						error = true;
+					}
+					
+					if(error) {
+						request.setAttribute("codice", codice);
+						request.setAttribute("password", password);
+						request.setAttribute("comune", comune);
+						request.setAttribute("eta", age);
+						request.setAttribute("sesso", sesso);
+						request.setAttribute("cap", cap);
+						RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher(response.encodeURL("/loginElettore.jsp"));
+						dispatcher.forward(request, response);
+						return;
+					}
 					ComuneBean bean = comuneModel.doRetrieveByKey(comune, cap); 
-
-				
+					
+					
+					
 					if (bean.getNome().equals("")) {
-						response.sendRedirect(response.encodeRedirectURL("./loginElettore.jsp"));
+						response.sendRedirect(response.encodeRedirectURL("/FreeVote/loginElettore.jsp"));
 						return;
 					}
 

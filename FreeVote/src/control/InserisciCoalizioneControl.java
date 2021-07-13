@@ -26,7 +26,14 @@ public class InserisciCoalizioneControl extends HttpServlet{
         String nome = request.getParameter("nomeCoalizione");
 		String[] partiti = request.getParameterValues("nomePartito");
 
-        if(nome == null || partiti == null) {
+		for(int i=0; i<partiti.length; i++) {
+			if(partiti[i].equals("")) {
+	            response.sendRedirect(response.encodeRedirectURL("/FreeVote/admin/inserisciCoalizione.jsp"));
+				return;
+			}
+		}
+		
+        if(nome == null || partiti == null || nome.equals("")) {
             response.sendRedirect(response.encodeRedirectURL("/FreeVote/admin/inserisciCoalizione.jsp"));
 			return;
         }

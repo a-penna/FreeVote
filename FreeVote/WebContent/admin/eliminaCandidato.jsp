@@ -47,7 +47,7 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
     	<div class="form-group">
         	<label for="cf">Codice Fiscale&colon;</label>
            	<%
-				if (request.getAttribute("erroreCf") != null) {
+				if (request.getAttribute("cfInvalido") != null) {
 					%><input type="text" class="form-control is-invalid" onkeyup="toUpperCaseCf()" id="cf" placeholder="Codice Fiscale" value="<%=request.getAttribute("cf")%>" name="cf" required><% 
 				} else if (request.getAttribute("cf") != null) {
 					%><input type="text" class="form-control is-valid" onkeyup="toUpperCaseCf()" id="cf" placeholder="Codice Fiscale" value="<%=request.getAttribute("cf")%>" name="cf" required><% 

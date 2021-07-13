@@ -17,6 +17,7 @@
     <meta name="keywords" content="FreeVote, piattaforma voto, voto, voto online, Votazione, login, login elettore, elettore, autenticazione">
 	<meta name="description" content="Login Elettore">
 	<meta name="author" content="Bene Sabato, Cozzolino Lidia, Napoli Riccardo, Penna Alessandro">    
+	<title>FreeVote &dash; Login Elettore</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="/FreeVote/css/style.css">						
 	<!-- Latest compiled and minified CSS --> 
@@ -55,7 +56,6 @@
 			});
 			
 			</script> 
-			<title>FreeVote &dash; Login Elettore</title>
 </head>            
 
 <body>
@@ -74,52 +74,55 @@
     	}
 	%>
 	
-	<div class="container-fluid pt-4">  
-	<div class="form-group">
+	<div class="container py-4">  
 	    <form action="Elettore" method="post"> 
 	        <fieldset>
 	            <legend>Inserisci credenziali&colon; </legend>
-	            <label for="codice">Codice&colon;</label>
-	            <input id="codice" type="text" name="codice" placeholder="inserisci codice"> 
-	            <br>   
-	            <label for="password">Password&colon;</label>
-	            <input id="password" type="password" name="password" placeholder="inserisci codice"> 
-	            <br>
-	            <label for="eta">Età</label>
-	            <input type="number" id="eta" name="eta" min="18" max="130">
-	            <br>
-	            <input type="radio" id="Maschio" name="sesso" value="M">
-	            <label for="male">Maschio</label><br>
-	            <input type="radio" id="Femmina" name="sesso" value="F">
-	            <label for="female">Femmina</label><br>
-	            
-	            <label for="regione">Regioni&colon; </label>
-	            <select name="regione" id="regione">
-	            	<option disabled selected>Seleziona Regione</option>
-					<%
-					Iterator<?> it = regioni.iterator();
-					while(it.hasNext()) {
-						String regione = (String)it.next(); 
-					%>
-					<option value="<%=regione%>"><%=regione%></option>
-					<%  } 
-					%>
-				</select> 
-					            
-	            <label for="comune">Comuni&colon; </label>
-				<select name="comune" id="comune">
-					<option disabled selected>Seleziona Comune</option>
-		
-				</select>
-
-				<br>
-				<label for="cap">Cap&colon;</label>
-				<input id="cap" type="text" name="cap" placeholder="CAP"> 
-				<br>
-				<input type="submit" value="Login"/>
+				<div class="form-group">
+		            <label for="codice">Codice&colon;</label>
+		            <input id="codice" type="text" class="form-control" name="codice" placeholder="inserisci codice" required> 
+		        </div>   
+	            <div class="form-group">
+		            <label for="password">Password&colon;</label>
+		            <input id="password" type="password" class="form-control" name="password" placeholder="inserisci password" required> 
+		        </div>
+	            <div class="form-group">
+		            <label for="eta">Età&colon;</label>
+		            <input type="number" id="eta" name="eta" class="form-control" placeholder="Et&agrave;" min="18" max="130" required>
+		        </div>
+	            <div class="form-group">
+		            <input type="radio" id="Maschio" name="sesso" value="M" required>
+		            <label for="male">Maschio</label><br>
+		            <input type="radio" id="Femmina" name="sesso" value="F" required>
+		            <label for="female">Femmina</label><br>
+		        </div>
+	            <div class="form-group">
+		            <label for="regione">Regioni&colon; </label>
+		            <select name="regione" class="form-control" id="regione" required>
+		            	<option disabled selected>Seleziona Regione</option>
+						<%
+						Iterator<?> it = regioni.iterator();
+						while(it.hasNext()) {
+							String regione = (String)it.next(); 
+						%>
+						<option value="<%=regione%>"><%=regione%></option>
+						<%  } 
+						%>
+					</select>
+				</div> 
+				<div class="form-group">
+		            <label for="comune">Comuni&colon; </label>
+					<select name="comune" id="comune" class="form-control" required>
+						<option disabled selected>Seleziona Comune</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<label for="cap">Cap&colon;</label>
+					<input id="cap" type="text" class="form-control" name="cap" placeholder="CAP" required> 
+				</div>
+				<input type="submit" class="btn btn-primary" value="Login"/>
 			</fieldset>
 	    </form> 
-	    </div>
 	</div>
 <%} %>
 </body>

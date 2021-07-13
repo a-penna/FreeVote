@@ -5,7 +5,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-    <meta name="keywords" content="FreeVote, piattaforma voto, voto, voto online, FreeVote contatti">
+    <meta name="keywords" content="FreeVote, piattaforma voto, voto, voto online, info, info e contatti, contatti, email, sviluppatori, devs">
 	<meta name="description" content="Info e Contatti">
 	<meta name="author" content="Bene Sabato, Cozzolino Lidia, Napoli Riccardo, Penna Alessandro">  
 	<title>FreeVote &dash; Info e Contatti</title>
