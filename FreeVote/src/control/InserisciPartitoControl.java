@@ -117,8 +117,10 @@ public class InserisciPartitoControl extends HttpServlet {
 			boolean flag = model.doSaveCheck(partito, candidato);
 		    if(flag) {
 		    	response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/successo.jsp"));
+		    	return;
 		    } else {
 		    	response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/insertError.jsp"));
+		    	return;
 		    }
 		} catch(SQLException e) {
 			Utility.printSQLException(e);

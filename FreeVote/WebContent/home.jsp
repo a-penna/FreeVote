@@ -27,8 +27,8 @@
 <header class="head-banner text-white text-center">
 	<div class="container">
 		<div class="row">
-			<div class="col-xl-9 mx-auto">
-			<h1>Welcome to Our Site</h1>
+			<div class="col-xl-9 mx-auto text-primary bg-gradient-info">
+			<h1>Welcome to FreeVote!</h1>
 			</div>
 </header>
 
