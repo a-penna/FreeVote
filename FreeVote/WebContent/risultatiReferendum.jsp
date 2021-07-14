@@ -39,5 +39,25 @@
 	<p>Numero di No&colon; <%=no%></p>
 	<p>Numero di Astenuti&colon; <%=astenuti%></p>
 	</div>
+	
+<table class="table table-bordered">
+  	<thead class="thead-dark">
+    <tr>
+      <th scope="col"></th>
+      <th scope="col">S&igrave;</th>
+      <th scope="col">No</th>
+      <th scope="col">Astenuti</th>
+    </tr>
+  	</thead>
+  <tbody>
+    <tr>
+      <th scope="row">Numero</th>
+      <td><%=si%></td>
+      <td><%=no%></td>
+      <td><%=astenuti%></td>
+    </tr>
+  </tbody>
+</table>
+
 </body>
 </html>
