@@ -188,6 +188,9 @@ public class Utility {
 	
 	
 	public static boolean checkCAP(String s) {
+		if (s.length() != 5) 
+			return false;
+		
 		int i = 0;
 		for (; i < s.length(); i++) {
 			if (!Character.isDigit(s.charAt(i)))

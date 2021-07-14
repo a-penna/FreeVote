@@ -25,4 +25,8 @@ public class AdminBean {
 	public String getnomeUtente() {
 		return this.nomeUtente;
 	}
+	
+	public boolean isEmpty() {
+		return this.nomeUtente.equals("");
+	}
 }

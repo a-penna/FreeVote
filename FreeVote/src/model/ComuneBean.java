@@ -53,6 +53,10 @@ public class ComuneBean {
 	public void setRegione(String regione) {
 		this.regione = regione;
 	}
+	
+	public boolean isEmpty() {
+		return this.nome.equals("");
+	}
 
 
 }

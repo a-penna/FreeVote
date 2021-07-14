@@ -33,12 +33,12 @@
 
 <body>
 	<%@ include file="header.jsp"%>
-    <% boolean loggedAsElettore = request.getSession(false) != null && request.getSession(false).getAttribute("elettoreRoles")!= null;  
-    
-    if (loggedAsElettore)  { 
-		%><h3>Si prega di effettuare il logout da elettore prima di procedere con la normale autenticazione da admin</h3><%
-	} else { %>
-		<div class="container py-4">  
+		<div class="container py-5">  
+	    <% boolean loggedAsElettore = request.getSession(false) != null && request.getSession(false).getAttribute("elettoreRoles")!= null;  
+	    
+	    if (loggedAsElettore)  { 
+			%><h3>Si prega di effettuare il logout da elettore prima di procedere con la normale autenticazione da admin</h3><%
+		} else { %>
 		    <form action="Administrator" method="post"> 
 		        <fieldset>
 		             <legend>Inserisci credenziali&colon; </legend>
@@ -62,7 +62,7 @@
 								if (request.getAttribute("errorePass") != null) {
 									%><input type="password" class="form-control is-invalid" id="password" placeholder="Inserisci password" value="<%=request.getAttribute("password")%>" name="password" required><% 
 								} else if (request.getAttribute("password") != null) {
-									%><input type="password" class="form-control is-valid" id="password" placeholder="Inserisci password" value="<%=request.getAttribute("password")%>" name="password" required><% 
+									%><input type="password" class="form-control" id="password" placeholder="Inserisci password" value="<%=request.getAttribute("password")%>" name="password" required><% 
 								} else {
 									%><input type="password" class="form-control" id="password" placeholder="Inserisci password" name="password" required><% 
 								}

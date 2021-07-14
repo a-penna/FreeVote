@@ -18,16 +18,21 @@ import utils.*;
 public class LoginAdminControl extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/loginAdmin.jsp"));
+	}
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 			
 			if (request.getSession(false) != null && request.getSession(false).getAttribute("adminRoles")!= null) {
-				response.sendRedirect(response.encodeRedirectURL("/FreeVote/admin/interfacciaAdmin.jsp"));
+				response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/admin/interfacciaAdmin.jsp"));
 				return;
 			}
 			
 			if (request.getSession(false) != null && request.getSession(false).getAttribute("elettoreRoles")!= null) {
-				response.sendRedirect(response.encodeRedirectURL("/FreeVote/loginAdmin.jsp"));
+				response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/loginAdmin.jsp"));
 				return;
 			}
 			
@@ -38,15 +43,20 @@ public class LoginAdminControl extends HttpServlet {
 			String password = request.getParameter("password");
 			
 			if (username == null || password == null) {
-			 	response.sendRedirect(response.encodeRedirectURL("./loginAdmin.jsp"));
+			 	response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/loginAdmin.jsp"));
 			 	return;
 			}
-
+			
 			try {
 				AdminBean bean = model.doRetrieveByKey(username); 
 			
-				if (bean.getnomeUtente().equals("")) {
+				if (bean.isEmpty()) {
 					request.setAttribute("erroreUser", "true");
+					request.setAttribute("errorePass", "true");
+					username = Utility.filter(username);
+					password = Utility.filter(password);
+					request.setAttribute("username", username);
+					request.setAttribute("password", password);
 					RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher(response.encodeURL("/loginAdmin.jsp"));
 					dispatcher.forward(request, response);
 					return;
@@ -58,6 +68,10 @@ public class LoginAdminControl extends HttpServlet {
 					return;
 				} else {
 					request.setAttribute("errorePass", "true");
+					username = Utility.filter(username);
+					password = Utility.filter(password);
+					request.setAttribute("username", username);
+					request.setAttribute("password", password);
 					RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher(response.encodeURL("/loginAdmin.jsp"));
 					dispatcher.forward(request, response);
 					return;
@@ -67,8 +81,4 @@ public class LoginAdminControl extends HttpServlet {
 			}
 	}	
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		doPost(request, response);
-	}
 }

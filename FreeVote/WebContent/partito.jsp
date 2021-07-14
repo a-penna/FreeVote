@@ -35,27 +35,37 @@
 <body>
 	<%@ include file="header.jsp"%>
 	<div class="container-fluid pt-4">  
-	<h1 align="center"><%=partito.getNome()%></h1>
-	
-	<% if (!coalizione.getNome().equals("")) { %>
-		<h2 align="center">&lsqb;<%=coalizione.getNome()%>&rsqb;</h2>
-	<%} %>
-	
-	<img src="PhotoControl?type=partito&id=<%=partito.getNome()%>" class = "center" onerror="this.src='./imgs/nologo.png'" alt="foto">
-    <br>
-	<p><%=partito.getDescrizione()%></p>
-	<br>
-	<p>Candidati&colon;</p> <%
-	
-		Iterator<?> it  = candidati.iterator();
-		while(it.hasNext()) {
-			CandidatoBean candidato = (CandidatoBean) it.next();
-			%> 
-				<img src="PhotoControl?type=candidato&id=<%=candidato.getCf()%>" onerror="this.src='./imgs/nophoto.png'">
-				<a href="Candidato?cf=<%=candidato.getCf()%>"><%=candidato.getNome()%> <%=candidato.getCognome()%></a> <%
-		}
-	%>
-	</div>
+		<h1 align="center"><%=partito.getNome()%></h1>
+		
+		<% if (!coalizione.getNome().equals("")) { %>
+			<h2 align="center">&lsqb;<%=coalizione.getNome()%>&rsqb;</h2>
+		<%} %>
+		
+		<img src="PhotoControl?type=partito&id=<%=partito.getNome()%>" class = "center" onerror="this.src='./imgs/nologo.png'" alt="foto">
+	    <% boolean loggedIn = request.getSession(false) != null && request.getSession(false).getAttribute("elettoreRoles")!= null;
+		
+		if(loggedIn) { %>
+			<br>
+			 <form class="form" action="<%=response.encodeURL("/FreeVote/GestisciVoto")%>" method="post">
+			            <input type="hidden" name="action"  value="aggiornaPartito">
+			            <input type="hidden" name="partitoScelto"  value="<%=partito.getNome()%>">
+				      <input type="submit" class="btn btn-dark" value="Aggiungi alla scheda">
+			</form>
+		<% }%>
+	    <br>
+		<p><%=partito.getDescrizione()%></p>
+		<br>
+		<h3>Candidati&colon;</h3> <%
+		
+			Iterator<?> it  = candidati.iterator();
+			while(it.hasNext()) {
+				CandidatoBean candidato = (CandidatoBean) it.next();
+				%> 
+					<img src="PhotoControl?type=candidato&id=<%=candidato.getCf()%>" onerror="this.src='./imgs/nophoto.png'">
+					<a href="Candidato?cf=<%=candidato.getCf()%>"><%=candidato.getNome()%> <%=candidato.getCognome()%></a> <%
+			}
+		%>
+		</div>
 
 </body>
 </html>

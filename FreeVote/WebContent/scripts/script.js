@@ -19,6 +19,15 @@ function checkEta(inputtxt) {
 	return true;
 }
 
+function checkCAP(inputtxt) {
+	var name = /^\d{5}$/;
+	if(!inputtxt.value.match(name)) {
+		return false; 
+	}
+	
+	return true;
+}
+
 function checkCf(inputtxt)  {
     var name = /^[A-Z]{6}\d{2}[A-Z]\d{2}[A-Z]\d{3}[A-Z]$/i;
 	if(inputtxt.value.match(name)) 

@@ -31,23 +31,6 @@ boolean isAdmin = request.getSession(false) != null && request.getSession(false)
       <li class="nav-item">
         <a class="nav-link" href="<%=response.encodeURL("/FreeVote/statisticheLive.jsp")%>">Statistiche Live</a>
       </li>
-      <% 
-      boolean isElettore = request.getSession(false) != null && request.getSession(false).getAttribute("elettoreRoles")!= null;
-      if (isElettore) { %>
-        <li class="nav-item">
-          <a class="nav-link" href="<%=response.encodeURL("/FreeVote/elettore/schedaVoto.jsp")%>">Vai alla scheda</a>
-        </li>
-        <%	} %>
-      <li class="nav-item">
-        <a class="nav-link" href="<%=response.encodeURL("/FreeVote/infoEContatti.jsp")%>">Info &amp; Contatti</a>
-      </li>
-      <%
-      if (isElettore || isAdmin) { %>
-        <li class="nav-item">
-          <a class="nav-link" href="<%=response.encodeURL("/FreeVote/Logout")%>">Logout</a>
-      		</li> <%
-        }
-        %>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Risultati
@@ -60,6 +43,23 @@ boolean isAdmin = request.getSession(false) != null && request.getSession(false)
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="<%=response.encodeURL("/FreeVote/risultatiReferendum.jsp")%>">Risultati Generali Referendum</a>
         </div>
+      <li class="nav-item">
+        <a class="nav-link" href="<%=response.encodeURL("/FreeVote/infoEContatti.jsp")%>">Info &amp; Contatti</a>
+      </li>
+      <% 
+      boolean isElettore = request.getSession(false) != null && request.getSession(false).getAttribute("elettoreRoles")!= null;
+      if (isElettore) { %>
+        <li class="nav-item">
+          <a class="nav-link" href="<%=response.encodeURL("/FreeVote/elettore/schedaVoto.jsp")%>">Vai alla scheda</a>
+        </li>
+        <%	} 
+      
+      if (isElettore || isAdmin) { %>
+        <li class="nav-item">
+          <a class="nav-link" href="<%=response.encodeURL("/FreeVote/Logout")%>">Logout</a>
+      		</li> <%
+        }
+        %>
       </ul>
     </div>
   </nav>
