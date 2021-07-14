@@ -21,6 +21,7 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script> 
 	<!-- Latest compiled JavaScript --> 
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+	
 </head>
 <body>
 
@@ -85,9 +86,10 @@
 	</div>
 	</section> 
 	<%@ include file="header.jsp"%>
-    <br/>
-    <a href="<%=response.encodeURL("/FreeVote/Elettore")%>">Vota</a>
-      
+    <br>
+    <div class="container py-4" align="center">
+    <a href="<%=response.encodeURL("/FreeVote/Elettore")%>" class="btn btn-success btn-lg">Vota</a>
+    </div>
 </body>
 
 

@@ -30,7 +30,28 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> 
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script>
-		
+    function validate(obj) {	
+        var valid = true;	
+        
+        var eta = document.getElementsByName("eta")[0];
+        if(!checkEta(eta)) {
+            valid = false;
+            eta.classList.add("is-invalid");
+        } else {
+        	 eta.classList.remove("is-invalid");
+        }
+        
+        var cap = document.getElementsByName("cap")[0];
+        if(!checkCAP(cap)) {
+            valid = false;
+            cap.classList.add("is-invalid");
+        } else {
+        	 cap.classList.remove("is-invalid");
+        }
+
+        if(valid) obj.submit();
+    }
+    
 		$(document).ready(function() {
 			$('#regione').change(function() {
 				var reg = $(this).val();
@@ -54,8 +75,7 @@
 					
 				});
 			});
-			
-			</script> 
+	</script> 
 </head>            
 
 <body>
@@ -80,15 +100,41 @@
 	            <legend>Inserisci credenziali&colon; </legend>
 				<div class="form-group">
 		            <label for="codice">Codice&colon;</label>
-		            <input id="codice" type="text" class="form-control" name="codice" placeholder="inserisci codice" required> 
+		           		<%
+							if (request.getAttribute("erroreNome") != null) {
+								%><input type="text" class="form-control is-invalid" id="codice" placeholder="Inserisci codice" value="<%=request.getAttribute("codice")%>" name="codice" required><% 
+							} else if (request.getAttribute("codice") != null) {
+								%><input type="text" class="form-control is-valid" id="codice" placeholder="Inserisci codice" value="<%=request.getAttribute("codice")%>" name="codice" required><% 
+							} else {
+								%><input type="text" class="form-control" id="codice" placeholder="Inserisci codice" name="codice" required><% 
+							}
+						%>
 		        </div>   
 	            <div class="form-group">
 		            <label for="password">Password&colon;</label>
-		            <input id="password" type="password" class="form-control" name="password" placeholder="inserisci password" required> 
+		            	<%
+							if (request.getAttribute("errorePass") != null) {
+								%><input type="password" class="form-control is-invalid" id="password" placeholder="Inserisci password" value="<%=request.getAttribute("password")%>" name="password" required><% 
+							} else if (request.getAttribute("password") != null) {
+								%><input type="password" class="form-control is-valid" id="password" placeholder="Inserisci password" value="<%=request.getAttribute("password")%>" name="password" required><% 
+							} else {
+								%><input type="password" class="form-control" id="password" placeholder="Inserisci password" name="password" required><% 
+							}
+						%>
+	                    <div class="valid-feedback">Dati corretti&excl;</div>
+	                    <div class="invalid-feedback">Nome utente o password errati&excl;</div> 
 		        </div>
 	            <div class="form-group">
 		            <label for="eta">Età&colon;</label>
-		            <input type="number" id="eta" name="eta" class="form-control" placeholder="Et&agrave;" min="18" max="130" required>
+			    <%
+					if (request.getAttribute("erroreEta") != null) {
+						%><input type="number" class="form-control is-invalid" id="eta" name="eta" placeholder="Et&agrave;" min="18" max="130" value="<%=request.getAttribute("eta")%>" required><% 
+					} else if (request.getAttribute("eta") != null) {
+						%><input type="number" class="form-control is-valid" id="eta" name="eta" min="18" max="130" placeholder="Et&agrave;" value="<%=request.getAttribute("eta")%>" required><% 
+					} else {
+						%><input type="number" class="form-control" id="eta" name="eta" placeholder="Et&agrave;" min="18" max="130" required><% 
+					}
+				%>
 		        </div>
 	            <div class="form-group">
 		            <input type="radio" id="Maschio" name="sesso" value="M" required>
@@ -117,8 +163,16 @@
 					</select>
 				</div>
 				<div class="form-group">
-					<label for="cap">Cap&colon;</label>
-					<input id="cap" type="text" class="form-control" name="cap" placeholder="CAP" required> 
+					<label for="cap">CAP&colon;</label>
+						<%
+							if (request.getAttribute("erroreCap") != null) {
+								%><input type="text" class="form-control is-invalid" id="cap" placeholder="CAP" value="<%=request.getAttribute("cap")%>" name="cap" required><% 
+							} else if (request.getAttribute("codice") != null) {
+								%><input type="text" class="form-control is-valid" id="cap" placeholder="CAP" value="<%=request.getAttribute("cap")%>" name="cap" required><% 
+							} else {
+								%><input type="text" class="form-control" id="cap" placeholder="CAP" name="cap" required><% 
+							}
+						%> 
 				</div>
 				<input type="submit" class="btn btn-primary" value="Login"/>
 			</fieldset>

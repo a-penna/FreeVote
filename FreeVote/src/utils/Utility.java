@@ -185,5 +185,15 @@ public class Utility {
 		//6 lettere 2 numeri 1 lettera 2 numeri 1 lettera 3 numeri 1 lettera ignore case
 
 	}
+	
+	
+	public static boolean checkCAP(String s) {
+		int i = 0;
+		for (; i < s.length(); i++) {
+			if (!Character.isDigit(s.charAt(i)))
+				return false;
+		}
+		return true;
+	}
 }
 

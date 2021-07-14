@@ -33,22 +33,23 @@
 	<!-- Latest compiled JavaScript --> 
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
-<body>
+<body class="bg-light">
 	<%@ include file="header.jsp"%>
-	<section class="risultatiCoalizioni text-center bg-light">
+	<section class="risultatiCoalizioni text-center">
 		<div class="container">
-    <h3>Di seguito i risultati ordinati per coalizione&colon;</h3>
-	<%
-        Iterator<?> it = coalizioni.iterator();
-        Iterator<?> it2 = votazioni.iterator();
-        while (it.hasNext() && it2.hasNext()) {
-            CoalizioneBean c = (CoalizioneBean) it.next();
-            String v = (String) it2.next();
-            %>
-            <p><%=c.getNome()%> &lsqb;Voti&colon; <%=v%>&rsqb;</p>
-            <%
-        } 
-        %>
-
+		    <h3>Di seguito i risultati ordinati per coalizione&colon;</h3>
+			<%
+		        Iterator<?> it = coalizioni.iterator();
+		        Iterator<?> it2 = votazioni.iterator();
+		        while (it.hasNext() && it2.hasNext()) {
+		            CoalizioneBean c = (CoalizioneBean) it.next();
+		            String v = (String) it2.next();
+		            %>
+		            <p><%=c.getNome()%> &lsqb;Voti&colon; <%=v%>&rsqb;</p>
+		            <%
+		        } 
+		        %>
+	    </div>
+	</section>
 </body>
 </html>
