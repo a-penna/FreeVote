@@ -17,15 +17,37 @@ boolean isAdmin = request.getSession(false) != null && request.getSession(false)
       </li>
       <% if (isAdmin) { %>
         <li class="nav-item">
-          <a class="nav-link" href="<%=response.encodeURL("/FreeVote/admin/interfacciaAdmin.jsp")%>">Interfaccia Admin</a>
+        
+          <a class="nav-link" href="<%=response.encodeURL("/FreeVote/admin/interfacciaAdmin.jsp")%>">Interfaccia Admin <span class="badge badge-secondary"><i class="bi bi-wrench"></i></span></a>
         </li> <%
       } %>
       <li class="nav-item">
-        <a class="nav-link" href="<%=response.encodeURL("/FreeVote/PartitiControl")%>">Partiti</a>
+        <a class="nav-link" href="<%=response.encodeURL("/FreeVote/PartitiControl")%>">Partiti <span class="badge badge-secondary"><i class="bi bi-receipt-cutoff"></i></span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="<%=response.encodeURL("/FreeVote/Referendum")%>">Referendum</a>
+        <a class="nav-link" href="<%=response.encodeURL("/FreeVote/Referendum")%>">Referendum <span class="badge badge-secondary"><i class="bi bi-list-ol"></i></span></a>
       </li>
+      
+      <li class="nav-item">
+        <a class="nav-link" href="<%=response.encodeURL("/FreeVote/statisticheLive.jsp")%>">Statistiche Live <span class="badge badge-secondary"><i class="bi bi-globe"></i></span></a>
+      </li>
+      <% 
+      boolean isElettore = request.getSession(false) != null && request.getSession(false).getAttribute("elettoreRoles")!= null;
+      if (isElettore) { %>
+        <li class="nav-item">
+          <a class="nav-link" href="<%=response.encodeURL("/FreeVote/elettore/schedaVoto.jsp")%>">Vai alla scheda <span class="badge badge-secondary"><i class="bi bi-box-arrow-in-up-right"></i></span></a>
+        </li>
+        <%	} %>
+      <li class="nav-item">
+        <a class="nav-link" href="<%=response.encodeURL("/FreeVote/infoEContatti.jsp")%>">Info &amp; Contatti <span class="badge badge-secondary"><i class="bi bi-info-lg"></i></span></a>
+      </li>
+      <%
+      if (isElettore || isAdmin) { %>
+        <li class="nav-item">
+          <a class="nav-link" href="<%=response.encodeURL("/FreeVote/Logout")%>">Logout <span class="badge badge-secondary"><i class="bi bi-arrow-return-left"></i></span></a>
+      		</li> <%
+        }
+        %>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Risultati
@@ -38,27 +60,6 @@ boolean isAdmin = request.getSession(false) != null && request.getSession(false)
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="<%=response.encodeURL("/FreeVote/risultatiReferendum.jsp")%>">Risultati Generali Referendum</a>
         </div>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="<%=response.encodeURL("/FreeVote/statisticheLive.jsp")%>">Statistiche Live</a>
-      </li>
-      <% 
-      boolean isElettore = request.getSession(false) != null && request.getSession(false).getAttribute("elettoreRoles")!= null;
-      if (isElettore) { %>
-        <li class="nav-item">
-          <a class="nav-link" href="<%=response.encodeURL("/FreeVote/elettore/schedaVoto.jsp")%>">Vai alla scheda</a>
-        </li>
-        <%	} %>
-      <li class="nav-item">
-        <a class="nav-link" href="<%=response.encodeURL("/FreeVote/infoEContatti.jsp")%>">Info &amp; Contatti</a>
-      </li>
-      <%
-      if (isElettore || isAdmin) { %>
-        <li class="nav-item">
-          <a class="nav-link" href="<%=response.encodeURL("/FreeVote/Logout")%>">Logout</a>
-      		</li> <%
-        }
-        %>
       </ul>
     </div>
   </nav>
