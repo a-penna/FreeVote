@@ -10,8 +10,8 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
 	<meta name="description" content="Inserisci candidato">
 	<meta name="author" content="Bene Sabato, Cozzolino Lidia, Napoli Riccardo, Penna Alessandro">    
 	<title>FreeVote &dash; Inserisci Candidato</title>
-	<script type="text/javascript" src="/FreeVote/scripts/script.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+	<script type="text/javascript" src="/FreeVote/scripts/script.js"></script>
     <link rel="stylesheet" type="text/css" href="/FreeVote/css/style.css">						
 	<!-- Latest compiled and minified CSS --> 
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> 

@@ -3,6 +3,7 @@ package control;
 import java.io.IOException;
 import java.sql.SQLException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -40,27 +41,30 @@ public class LoginAdminControl extends HttpServlet {
 			 	response.sendRedirect(response.encodeRedirectURL("./loginAdmin.jsp"));
 			 	return;
 			}
-			
-			String redirectedPage = "";
 
 			try {
 				AdminBean bean = model.doRetrieveByKey(username); 
 			
 				if (bean.getnomeUtente().equals("")) {
-					response.sendRedirect(response.encodeRedirectURL("./loginAdmin.jsp"));
+					request.setAttribute("erroreUser", "true");
+					RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher(response.encodeURL("/loginAdmin.jsp"));
+					dispatcher.forward(request, response);
 					return;
 				}
 		
 				if (bean.getPassword().equals(Utility.encryptMD5(password))) {
 					request.getSession().setAttribute("adminRoles", "true");
-					redirectedPage = "/admin/interfacciaAdmin.jsp";
+					response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/admin/interfacciaAdmin.jsp"));
+					return;
 				} else {
-					redirectedPage = "/loginAdmin.jsp";
+					request.setAttribute("errorePass", "true");
+					RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher(response.encodeURL("/loginAdmin.jsp"));
+					dispatcher.forward(request, response);
+					return;
 				}
 			} catch(SQLException e) {
 				Utility.printSQLException(e);
 			}
-			response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + redirectedPage));
 	}	
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)

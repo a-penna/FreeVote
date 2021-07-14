@@ -42,20 +42,22 @@ public class LoginElettoreControl extends HttpServlet {
             boolean error = false;
             int eta = 9000;
             
-
-
 			DataSource ds = (DataSource) getServletContext().getAttribute("DataSource");
 			ComuneModelDS comuneModel = new ComuneModelDS(ds);
 			try {
 				Collection<String> regioni = comuneModel.doRetrieveAllRegioni("nome_regione");
 				request.setAttribute("listaRegioni", regioni);
 				
-				if ( !(codice == null  || comune==null || age==null || sesso==null || cap==null || codice.equals("") || comune.equals("") || age.equals("") || sesso.equals("") || cap.equals(""))) {
+				if ( !(codice == null  || password==null || comune==null || age==null || sesso==null || cap==null || codice.equals("") || comune.equals("") || age.equals("") || sesso.equals("") || cap.equals("") || password.equals(""))) {
 					try {
 						eta = Integer.parseInt(age);
 						
 						if(eta<18 || eta>120) {
 							request.setAttribute("erroreEta", "true");
+							error = true;
+						}
+						if(!Utility.checkCAP(cap)) {
+							request.setAttribute("erroreCap", "true");
 							error = true;
 						}
 					} catch (NumberFormatException e) {
@@ -75,8 +77,6 @@ public class LoginElettoreControl extends HttpServlet {
 						return;
 					}
 					ComuneBean bean = comuneModel.doRetrieveByKey(comune, cap); 
-					
-					
 					
 					if (bean.getNome().equals("")) {
 						response.sendRedirect(response.encodeRedirectURL("/FreeVote/loginElettore.jsp"));
@@ -100,6 +100,8 @@ public class LoginElettoreControl extends HttpServlet {
 			} catch(SQLException e) {
 				Utility.printSQLException(e);
 			}
+			request.setAttribute("erroreNome", "true");
+			request.setAttribute("errorePass", "true");
 			RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher(response.encodeURL("/loginElettore.jsp"));
 			dispatcher.forward(request, response);
 	}	

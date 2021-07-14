@@ -14,7 +14,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-    <meta name="keywords" content="FreeVote, piattaforma voto, voto, voto online, login admin, admin, amministratore, autenticazione">
+    <meta name="keywords" content="FreeVote, piattaforma voto, voto, voto online, login admin, admin, amministratore, autenticazione, autenticazione admin">
 	<meta name="description" content="Login Admin">
 	<meta name="author" content="Bene Sabato, Cozzolino Lidia, Napoli Riccardo, Penna Alessandro">    
     <title>FreeVote &dash; Login Admin</title>
@@ -44,11 +44,31 @@
 		             <legend>Inserisci credenziali&colon; </legend>
 		             <div class="form-group">
 			             <label for="username">Username&colon;</label>
-			             <input id="username" type="text" class="form-control" name="username" placeholder="inserisci username" required>   
+				            <%
+								if (request.getAttribute("erroreUser") != null) {
+									%><input type="text" class="form-control is-invalid" id="username" placeholder="Inserisci username" value="<%=request.getAttribute("username")%>" name="username" required><% 
+								} else if (request.getAttribute("username") != null) {
+									%><input type="text" class="form-control is-valid" id="username" placeholder="Inserisci username" value="<%=request.getAttribute("username")%>" name="username" required><% 
+								} else {
+									%><input type="text" class="form-control" id="username" placeholder="Inserisci username" name="username" required><% 
+								}
+							%>
+	                        <div class="valid-feedback">Corretto&excl;</div>
+	                        <div class="invalid-feedback">Username errato&excl;</div> 
 			         </div>
 			         <div class="form-group">
 			             <label for="password">Password&colon;</label>
-			             <input id="password" type="password" class="form-control" name="password" placeholder="inserisci password" required> 
+			           		<%
+								if (request.getAttribute("errorePass") != null) {
+									%><input type="password" class="form-control is-invalid" id="password" placeholder="Inserisci password" value="<%=request.getAttribute("password")%>" name="password" required><% 
+								} else if (request.getAttribute("password") != null) {
+									%><input type="password" class="form-control is-valid" id="password" placeholder="Inserisci password" value="<%=request.getAttribute("password")%>" name="password" required><% 
+								} else {
+									%><input type="password" class="form-control" id="password" placeholder="Inserisci password" name="password" required><% 
+								}
+							%>
+	                        <div class="valid-feedback">Corretto&excl;</div>
+	                        <div class="invalid-feedback">Password errata&excl;</div> 
 		             </div>
 		             <input type="submit" class="btn btn-primary" value="Login"/>
 		    	</fieldset>
