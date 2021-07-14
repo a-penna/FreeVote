@@ -42,7 +42,7 @@
 	<div class="form-group">
     <form action="RisultatiReg" method="post"> 
     	<label for="regione">Regione&colon; </label>
-        <select name="regione">
+        <select name="regione" class="form-control">
             <%
             Iterator<?> it = regioni.iterator();
             while(it.hasNext()) {
@@ -57,32 +57,40 @@
             %>
         </select> 
         <br>
-        <input type="submit" value="Scegli"/>
+        <input type="submit" class="btn btn-primary" value="Scegli"/>
     </form> 
     </div>
     <%  
     	Collection<?> percentuali = (Collection<?>)request.getAttribute("percentuali");
 		if (percentuali != null && !percentuali.isEmpty()) { %>
-    <table>
-    	<tr>
- 			<th>Partito</th>
- 			<th>&percnt;Voti</th>
-		</tr>
-		<% 	it = percentuali.iterator();	
-			while(it.hasNext()) { 
-				String perc = (String)it.next();
-				if (!perc.contains("Scheda Bianca")) {
-					String[] tableEl = perc.split(" ");
-		%> 
-		<tr>
- 			<td><%=tableEl[0]%></td>
- 			<td><%=tableEl[1]%></td>
-    	</tr>
-	<%
+    <table class="table">
+    	<thead>
+	    	<tr>
+	    		<th scope="col">#</th>
+	 			<th scope="col">Partito</th>
+	 			<th scope="col">&percnt; Voti</th>
+			</tr>
+		</thead>
+		<tbody>
+				<% 	it = percentuali.iterator();	
+					int i=0;
+					while(it.hasNext()) {
+						String perc = (String)it.next();
+						if (!perc.contains("Scheda Bianca")) {
+						i++;
+							String[] tableEl = perc.split(" ");
+				%> 
+				<tr>
+					<th scope="row"><%=i%></th>
+		 			<td><%=tableEl[0]%></td>
+		 			<td><%=tableEl[1]%></td>
+		    	</tr>
+			<%
+						}
+					}
 				}
-			}
-		}
-    %>
+		    %>
+    	</tbody>
     </table>
     </div>
 </body>
