@@ -24,7 +24,9 @@
 
 <body>
 	<%@ include file="admin-header.jsp"%>
-    <h1> Interfaccia admin segreta </h1>
+	<div class="container pt-4">
+    <h1> Benvenuto amministratore&excl; Da quest&apos;interfaccia potrai accedere ad alcune operazioni riservate&period; </h1>
+	</div>
 
 </body>
 </html>

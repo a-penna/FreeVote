@@ -151,7 +151,7 @@
 						%><input type="number" class="form-control" id="eta" name="eta" placeholder="Et&agrave;" min="18" max="130" required><% 
 					}
 				%>
-			    <div class="invalid-feedback">Et&agrave; minima non corretta&excl; Ricorda che il sistema ammette solo un&apos;et&agrave; compresa tra 18 e 130</div>
+			    <div class="invalid-feedback">Et&agrave; non corretta&excl; Ricorda che il sistema ammette solo un&apos;et&agrave; compresa tra 18 e 130</div>
 		        </div>
 	            <div class="form-group">
 	               <%

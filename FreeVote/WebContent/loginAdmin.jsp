@@ -41,7 +41,7 @@
 		} else { %>
 		    <form action="Administrator" method="post"> 
 		        <fieldset>
-		             <legend>Inserisci credenziali&colon; </legend>
+		             <legend>Inserisci credenziali amministratore&colon; </legend>
 		             <div class="form-group">
 			             <label for="username">Username&colon;</label>
 				            <%
