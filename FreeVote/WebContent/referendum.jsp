@@ -28,22 +28,22 @@
 	<!-- Latest compiled JavaScript --> 
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
-<body>
+<body class="bg-light">
 	<%@ include file="header.jsp"%>
 	
-	<section class="referendum text-center bg-light">
+	<section class="referendum text-center">
 		<div class="container">
-		<p>Di seguito la lista di tutte le mozioni che hanno portato all&apos;attuale referendum&comma; 
-		cliccando sull&apos;id sar&agrave; possibile visualizzare il testo intero della mozione corrispondente&colon;</p>
-	
-	<% 
-	Iterator<?> it  = mozioni.iterator();
-	while(it.hasNext()) { 
-		MozioneBean mozione = (MozioneBean)it.next();%>
-		<a href="Mozione?id=<%=mozione.getID()%>" class="btn btn-primary btn-lg btn-dark btn-block">Mozione </button></br><%=mozione.getID()%></a>
-		<br/> 
-	<% } %>
-</div>
-</section>
+			<p>Di seguito la lista di tutte le mozioni che hanno portato all&apos;attuale referendum&comma; 
+			cliccando sull&apos;id sar&agrave; possibile visualizzare il testo intero della mozione corrispondente&colon;</p>
+		
+			<% 
+			Iterator<?> it  = mozioni.iterator();
+			while(it.hasNext()) { 
+				MozioneBean mozione = (MozioneBean)it.next();%>
+				<a href="Mozione?id=<%=mozione.getID()%>" class="btn btn-primary btn-lg btn-dark btn-block">Mozione <%=mozione.getID()%></a>
+				<br/> 
+			<% } %>
+		</div>
+	</section>
 </body>
 </html>

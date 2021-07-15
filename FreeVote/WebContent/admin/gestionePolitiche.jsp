@@ -20,28 +20,20 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> 
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>            
-
 <body>
-	<%@ include file="admin-header.jsp"%> <!-- Da Completare -->
-    
-    <h3>Seleziona l'operazione da effettuare&colon;</h3>
-    <br>
-    <a href="<%=response.encodeURL("/FreeVote/admin/inserisciPartito.jsp")%>">Inserisci un nuovo partito</a>
-    <br>
-    <a href="<%=response.encodeURL("/FreeVote/admin/eliminaPartito.jsp")%>">Elimina un partito</a>
-    <br>
-    <a href="<%=response.encodeURL("/FreeVote/admin/inserisciPartitoCoalizione.jsp")%>">Inserisci un partito in una coalizione</a>
-    <br>
-    <a href="<%=response.encodeURL("/FreeVote/admin/eliminaPartitoCoalizione.jsp")%>">Elimina un partito da una coalizione</a> 
-    <br>
-    <a href="<%=response.encodeURL("/FreeVote/admin/inserisciCoalizione.jsp")%>">Crea una coalizione</a>
-    <br>
-    <a href="<%=response.encodeURL("/FreeVote/admin/eliminaCoalizione.jsp")%>">Elimina una coalizione</a>
-    <br>
-    <a href="<%=response.encodeURL("/FreeVote/admin/inserisciCandidato.jsp")%>">Aggiungi un candidato ad un partito</a>
-    <br>
-    <a href="<%=response.encodeURL("/FreeVote/admin/eliminaCandidato.jsp")%>">Rimuovi un candidato da un partito</a>
-    
-
+	<%@ include file="admin-header.jsp"%>
+	<div class="container-fluid py-5">
+	    <h3>Seleziona l'operazione da effettuare&colon;</h3>
+	    <div class="list-group">
+		  <a href="<%=response.encodeURL("/FreeVote/admin/inserisciPartito.jsp")%>" class="list-group-item list-group-item-action active"> Inserisci un nuovo partito</a>
+		  <a href="<%=response.encodeURL("/FreeVote/admin/eliminaPartito.jsp")%>" class="list-group-item list-group-item-action">Elimina un partito</a>
+		  <a href="<%=response.encodeURL("/FreeVote/admin/inserisciPartitoCoalizione.jsp")%>" class="list-group-item list-group-item-action">Inserisci un partito in una coalizione</a>
+		  <a href="<%=response.encodeURL("/FreeVote/admin/eliminaPartitoCoalizione.jsp")%>" class="list-group-item list-group-item-action">Elimina un partito da una coalizione</a>
+		  <a href="<%=response.encodeURL("/FreeVote/admin/inserisciCoalizione.jsp")%>" class="list-group-item list-group-item-action">Crea una coalizione</a>
+		  <a href="<%=response.encodeURL("/FreeVote/admin/eliminaCoalizione.jsp")%>" class="list-group-item list-group-item-action">Elimina una coalizione</a>
+		  <a href="<%=response.encodeURL("/FreeVote/admin/inserisciCandidato.jsp")%>" class="list-group-item list-group-item-action">Aggiungi un candidato ad un partito</a>
+		  <a href="<%=response.encodeURL("/FreeVote/admin/eliminaCandidato.jsp")%>" class="list-group-item list-group-item-action">Rimuovi un candidato da un partito</a>
+		</div>
+	</div>
 </body>
 </html>
