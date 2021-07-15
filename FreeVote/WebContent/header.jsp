@@ -35,7 +35,7 @@ boolean isAdmin = request.getSession(false) != null && request.getSession(false)
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Risultati
         </a>
-        <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdown">
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="<%=response.encodeURL("/FreeVote/Risultati")%>">Risultati Generali</a>
           <a class="dropdown-item" href="<%=response.encodeURL("/FreeVote/risultatiCoalizioni.jsp")%>">Risultati per coalizione</a>
           <a class="dropdown-item" href="<%=response.encodeURL("/FreeVote/risultatiPerEta.jsp")%>">Risultati per fascia d'et&agrave;</a>
