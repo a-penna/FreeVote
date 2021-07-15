@@ -66,35 +66,37 @@
 </head>
 <body>
 	<%@ include file="header.jsp"%>
+	
 	<div class="container pt-5">
 	    <h5>Di seguito i dati su&colon;</h5>
-	    
+	    <br>
 	    <h4>Elezioni Politiche</h4>
 	      
-		<p> Numero voti espressi&lpar;schede bianche escluse&rpar; &colon; <%=nVotantiPol%><p>
+		<p class=""> Numero voti espressi&lpar;schede bianche escluse&rpar; &colon; <%=nVotantiPol%></p>
 		  
-		<p> Numero di schede bianche &colon; <%=nBianche%><p>
+		<p> Numero di schede bianche &colon; <%=nBianche%></p>
 		</div>
 		
 	   <div class="container pt-5">
 	   <h4>Referendum</h4>
 	      
-	    <p> Numero di preferenze espresse &colon; <%=nVotantiRef%><p>
+	    <p> Numero di preferenze espresse &colon; <%=nVotantiRef%></p>
 		  
-		<p> Numero di astenuti &colon; <%=nAstenuti%><p>
+		<p> Numero di astenuti &colon; <%=nAstenuti%></p>
 		  
 	  	</div>
 	  	
 	  	<div class="container pt-5">
-		<h4> Numero totale di non votanti&lpar;persone che non si sono connesse alla piattaforma per votare&rpar; &colon; <%=nonVotanti%></h4>
+		<h4> Altre statistiche &colon;</h4>
+		<p> Numero totale di non votanti (Persone che non si sono connesse alla piattaforma per votare) &colon; <%=nonVotanti%> </p>
 	  	</div>
 	  	
-	  	<div class="container pt-5">
+	  	<div class="container  pt-5">
 	  	<h4>Affluenza elettori nei diversi giorni delle votazioni &colon;</h4> 
-	    <table>
+	    <table class="table">
 	    	<tr>
-	 			<th>Data</th>
-	 			<th>&percnt;Votanti</th>
+	 			<th scope="col">Data</th>
+	 			<th scope="col">&percnt;Votanti</th>
 			</tr>
 			<% 	Iterator it = affluenza.iterator();	
 				while(it.hasNext()) { 
@@ -102,8 +104,8 @@
 					String[] tableEl = perc.split(" ");
 			%> 
 			<tr>
-	 			<td><%=tableEl[0]%></td>
-	 			<td><%=tableEl[1]%></td>
+	 			<td scope="row"><%=tableEl[0]%></td>
+	 			<td scope="row"><%=tableEl[1]%></td>
 	    	</tr>
 		<%
 				}
