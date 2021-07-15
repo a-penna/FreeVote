@@ -6,10 +6,10 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
 <html>
 <head>
 	<meta charset="UTF-8">
-	<meta name="keywords" content="FreeVote, piattaforma voto, voto, voto online, inserisci coalizione, crea coalizione, coalizione, operazioni admin, inserisci, admin">
+	<meta name="keywords" content="FreeVote, piattaforma voto, voto, voto online, inserisci coalizione, coalizione, operazioni admin, inserisci, admin">
 	<meta name="description" content="Inserisci Coalizione">
 	<meta name="author" content="Bene Sabato, Cozzolino Lidia, Napoli Riccardo, Penna Alessandro">    
-	<title>FreeVote &dash; Crea Coalizione</title>
+	<title>FreeVote &dash; Inserisci Coalizione</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" type="text/css" href="/FreeVote/css/style.css" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> 
@@ -22,45 +22,26 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	
 	<script>
-		var count = 3;
-		
-		function addPartito()  {
-			var container = document.getElementById("partiti");
-		
-			var divv = document.createElement("div");
-			divv.id = "id"+count;
-			divv.classList.add("form-row");
-			count++;
+		$(document).ready(function() {
+			var count = 3;
+			$("#add").click(function(){
+				$("#partiti").append('<div class="row form-group align-items-end" id="div'+ count +'"> \n\
+										<div class="col-10"> \n\
+											<label for="partito'+ count +'">Nome del partito&colon;</label> \n\
+												<input type="text" id="partito'+ count +'" class="form-control" name="nomePartito" placeholder="Nome del partito" required> \n\
+										</div> \n\
+										<div class="col-2"> \n\
+	 										<input type="button" id="'+count+'" class="btn btn-dark rimuovi_btn" value="-"> \n\
+	 									</div> \n\
+									</div>');
+				count++;
+			});
 			
-			var label = document.createElement("label");
-			label.htmlFor = "nomePartito";
-			label.appendChild(document.createTextNode("Nome del partito:"));
-			divv.appendChild(label);
-			
-			var element = document.createElement("input");
-			element.type = "text";
-			element.classList.add("form-control");
-			element.name = "nomePartito";
-			element.placeholder = "Nome del partito";
-			element.required = "required";
-			divv.appendChild(element);
-			
-		    var input = document.createElement("input");
-	        input.type = "button";
-			input.classList.add("btn");
-			input.classList.add("btn-primary");
-			input.classList.add("mb-2");
-	        input.value = "-";
-	        input.addEventListener("click", function() {removePartito(divv.id)});
-	        divv.appendChild(input);
-			
-			container.appendChild(divv);
-		}
-		 
-		function removePartito(idd) {
-			var element = document.getElementById(idd);
-			element.parentNode.removeChild(element);
-		}
+			$(document).on('click', '.rimuovi_btn', function(){
+				var identificatore = $(this).attr("id");
+				$("#div"+ identificatore +"").remove();
+			});
+		});
 	</script>
 
 </head>            
@@ -73,8 +54,9 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
 				<%@ include file="/admin/politicheMenu.jsp" %>
 			</div>
 			<div class="col-md-10">
-				<p>Inserisci i dati nel seguente form per registare una nuova coalizione: <p>
-				<form action="<%=response.encodeURL("/FreeVote/InserisciCoalizione")%>" method="get">
+				<p>Inserisci i dati nel seguente form per registare una nuova coalizione &lpar;<strong>Ricorda che i partiti scelti devono essere gi&agrave; registrati sulla piattaforma&excl;</strong>&rpar;
+				 <p>
+				<form action="<%=response.encodeURL("/FreeVote/InserisciCoalizione")%>" method="post">
 				        <fieldset>
 				        	<legend>Informazioni sulla coalizione&colon; </legend> 
 							<div class="form-group"> 
@@ -87,15 +69,23 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
 										<input type="text" id="partito1" class="form-control" name="nomePartito" placeholder="Nome del primo partito" required>
 									</div>
 									<div class="row form-group align-items-end">
-										<div class="col-xl-10">
+										<div class="col-10">
 											<label for="partito2">Nome del secondo partito&colon;</label>
 											<input type="text" id="partito2" class="form-control" name="nomePartito" placeholder="Nome del secondo partito" required>
 										</div>
-										<div class="col-xl-2">
-								 			<input type="button" class="btn btn-primary" value="&plus;" onclick="addPartito()"> 
+										<div class="col-2">
+								 			<input type="button" id="add" class="btn btn-dark" value="&plus;"> 
 								 		</div>
 									</div>
 								</div>
+								<% if(request.getAttribute("error") != null) { %>
+									<div class="alert alert-danger alert-dismissible fade show" role="alert">
+									  <strong>Errore&excl;</strong> Non &egrave; stato possibile completare l'operazione con i dati inseriti, riprovare&excl;
+									  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+									    <span aria-hidden="true">&times;</span>
+									  </button>
+									</div>
+								<% } %>
 				        </fieldset>
 				        <button type="submit" class="btn btn-primary">Crea</button>    
 				</form> 

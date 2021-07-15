@@ -52,6 +52,8 @@ public class LoginElettoreControl extends HttpServlet {
 				request.setAttribute("listaRegioni", regioni);
 			} catch (SQLException e) {
 				Utility.printSQLException(e);
+				response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/error/generic.jsp"));
+				return;
 			} 
 			
 			if (codice == null  || password == null || comune == null || age == null || sesso == null || cap == null) {
@@ -114,6 +116,8 @@ public class LoginElettoreControl extends HttpServlet {
 				}
 			} catch(SQLException e) {
 				Utility.printSQLException(e);
+				response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/error/generic.jsp"));
+				return;
 			}
 			request.setAttribute("erroreCredenziali", "true");
 			request.setAttribute("error", "true");

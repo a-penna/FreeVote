@@ -31,6 +31,8 @@ public class EtaControl extends HttpServlet {
 			request.setAttribute("partiti", partiti);
 		} catch (SQLException e) {
 			Utility.printSQLException(e);
+			response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/error/generic.jsp"));
+			return;
 		} 
   
 		String partito = request.getParameter("partito");
@@ -91,6 +93,8 @@ public class EtaControl extends HttpServlet {
 			}                                   
 		} catch (SQLException e) {
 			Utility.printSQLException(e);
+			response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/error/generic.jsp"));
+			return;
 		} 
 		
 		if (error) {

@@ -60,6 +60,8 @@ public class EliminaPartitoCoalizioneControl extends HttpServlet {
 			}
 		} catch(SQLException e) {
 			Utility.printSQLException(e);
+			response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/error/generic.jsp"));
+			return;
 		}
 		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher(response.encodeURL("/admin/eliminaPartitoCoalizione.jsp"));
 		dispatcher.forward(request, response);

@@ -55,12 +55,12 @@
     			</span>
     			<% if (!coalizione.getNome().equals("")) { %>
     				<span class="container py-4">
-            		<a href="Partito?nome=<%=partito.getNome()%>"><%=partito.getNome()%> &lsqb;<%=coalizione.getNome()%>&rsqb;</a>
+            		<a href="<%=response.encodeURL(request.getContextPath() + "/Partito?nome=" + partito.getNome())%>"><%=partito.getNome()%> &lsqb;<%=coalizione.getNome()%>&rsqb;</a>
             		</span>
             		<br>
             	<%} else { %>
             		<span class="container py-4">
-            		<a href="Partito?nome=<%=partito.getNome()%>"><%=partito.getNome()%></a>
+            		<a href="<%=response.encodeURL(request.getContextPath() + "/Partito?nome=" + partito.getNome())%>"><%=partito.getNome()%></a>
             		</span>
             		<br>
             	<%} %>

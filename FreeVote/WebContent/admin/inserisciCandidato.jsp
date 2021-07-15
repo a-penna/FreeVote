@@ -24,7 +24,7 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
 
-        function validate(obj) {	
+    	function validate(obj) {	
             var valid = true;	
 
             var name = document.getElementsByName("nome")[0];
@@ -59,6 +59,7 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
             
             if(valid) obj.submit();
         }
+    	
     </script>
     
 </head>            
@@ -120,7 +121,7 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
 		                    <div class="form-group">
 		                        <label for="curriculum">Curriculum&colon;</label>
 		                    <%  if (request.getAttribute("curriculum") != null) {
-									%><textarea class="form-control" rows="10" cols="48" id="curriculum" placeholder="Inserisci qui il curriculum" name="curriculum""required><%=request.getAttribute("curriculum")%></textarea><% 
+									%><textarea class="form-control" rows="10" cols="48" id="curriculum" placeholder="Inserisci qui il curriculum" name="curriculum" required><%=request.getAttribute("curriculum")%></textarea><% 
 								} else {
 									%><textarea class="form-control" rows="10" cols="48" id="curriculum" placeholder="Inserisci qui il curriculum" name="curriculum" required></textarea><% 
 								}
@@ -128,7 +129,7 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
 		                      
 		                    </div>
 		                    <div class="form-group">
-		                        <label for="foto">Carica Foto&colon;</label>
+		                        <label for="foto">Carica Foto(Max&period; size&equals;10MB)&colon;</label>
 		                        <input id="foto" type="file" name="foto">  
 		                    </div>
 		                 </fieldset>
@@ -137,9 +138,9 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
 			                 <div class="form-group">
 				                 <label for="partito">Nome&colon;</label>
 				                 <%  if (request.getAttribute("partito") != null) {
-									%><input id="partito" class="form-control" type="text" name="partito" placeholder="Nome partito" value="<%=request.getAttribute("partito")%>" required></textarea><% 
+									%><input id="partito" class="form-control" type="text" name="partito" placeholder="Nome partito" value="<%=request.getAttribute("partito")%>" required><% 
 								} else {
-									%><input id="partito" class="form-control" type="text" name="partito" placeholder="Nome partito" required></textarea><% 
+									%><input id="partito" class="form-control" type="text" name="partito" placeholder="Nome partito" required><% 
 								}
 							%> 
 			                 </div>

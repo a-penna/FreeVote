@@ -17,8 +17,9 @@ import javax.sql.DataSource;
 import model.*;
 import utils.Utility;
 
-@MultipartConfig(maxFileSize = 16177215)
 @WebServlet("/InserisciCandidato")
+@MultipartConfig(fileSizeThreshold = 1024 * 1024 * 2, // 2MB after which the file will be temporarily stored on disk
+				maxFileSize = 1024 * 1024 * 10) // 10MB maximum size allowed for uploaded files
 public class InserisciCandidatoControl extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -30,7 +31,7 @@ public class InserisciCandidatoControl extends HttpServlet {
 
 		boolean loggedIn = request.getSession(false) != null && request.getSession(false).getAttribute("adminRoles")!= null;
 		if(!loggedIn) {
-			response.sendRedirect(request.getContextPath() + "/loginAdmin.jsp");
+			response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/loginAdmin.jsp"));
 			return;
 		}
 		
@@ -42,7 +43,7 @@ public class InserisciCandidatoControl extends HttpServlet {
         boolean error = false;
         
         if (nome == null || cognome == null || cf == null || curriculum == null || partito == null) {
-        	response.sendRedirect(response.encodeRedirectURL("/FreeVote/admin/inserisciCandidato.jsp"));
+        	response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/admin/inserisciCandidato.jsp"));
         	return;
         }
         
@@ -88,8 +89,6 @@ public class InserisciCandidatoControl extends HttpServlet {
 		DataSource ds = (DataSource) getServletContext().getAttribute("DataSource");
 		CandidatoModelDS model = new CandidatoModelDS(ds);
 		
-		String redirectedPage = "";
-
 		try {
 			CandidatoBean candidato = new CandidatoBean();
 			candidato.setNome(nome);
@@ -100,18 +99,19 @@ public class InserisciCandidatoControl extends HttpServlet {
 			candidato.setFoto(streamFoto.readAllBytes());
 
 			boolean flag = model.doSaveCheck(candidato);
-		    if(flag) {
-		    	redirectedPage="/successo.jsp";
-		    } else {
-		    	redirectedPage="/error/insertError.jsp";
-		    }
+			if(flag) {
+    			response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/successo.jsp"));
+    			return; 
+    		} else {
+    			response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/error/insertError.jsp"));
+    			return;
+    		}
 		    
 		} catch(SQLException e) {
 			Utility.printSQLException(e);
 			response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/error/insertError.jsp"));
 			return;
 		}
-		response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + redirectedPage));
 	}
 }
 

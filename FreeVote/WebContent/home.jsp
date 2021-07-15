@@ -23,14 +23,17 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 	
 </head>
-<body>
+<body class="bg-light">
 
+	<%@ include file="header.jsp"%>
 <header class="head-banner text-white text-center">
 	<div class="container">
 		<div class="row">
 			<div class="col-xl-9 mx-auto text-primary bg-gradient-info">
 			<h1>Welcome to FreeVote!</h1>
 			</div>
+		</div>
+	</div>
 </header>
 
 <section class="sezione-icone bg-light text-center">
@@ -85,11 +88,11 @@
 		</div>
 	</div>
 	</section> 
-	<%@ include file="header.jsp"%>
     <br>
     <div class="container py-4" align="center">
     <a href="<%=response.encodeURL("/FreeVote/Elettore")%>" class="btn btn-success btn-lg">Vota</a>
     </div>
+    <%@ include file="footer.jsp"%>
 </body>
 
 

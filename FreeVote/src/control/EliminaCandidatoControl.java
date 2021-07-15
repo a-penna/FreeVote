@@ -64,6 +64,8 @@ public class EliminaCandidatoControl extends HttpServlet {
 		    }
 		} catch(SQLException e) {
 			Utility.printSQLException(e);
+			response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/error/generic.jsp"));
+			return;
 		}
 	}
 }

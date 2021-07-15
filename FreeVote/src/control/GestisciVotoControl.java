@@ -84,20 +84,28 @@ public class GestisciVotoControl extends HttpServlet {
 						}
 					} 
 					else if (action.equals("aggiornaPartito")) {
-						VotazionePoliticaBean voto = new VotazionePoliticaBean();
-						voto.setCodice(0);
-						voto.setData(Utility.toSqlDate(new Date()));
-						voto.setElettore(Utility.encryptMD5((String) request.getSession().getAttribute("codice")));
-						voto.setPartito(request.getParameter("partitoScelto"));
-						scheda.addVP(voto);
+						String partito = (String) request.getParameter("partitoScelto");
+						PartitoModelDS modelPartito = new PartitoModelDS(ds);
+						PartitoBean p = modelPartito.doRetrieveByKey(partito);
+						if (!p.isEmpty()) {
+							VotazionePoliticaBean voto = new VotazionePoliticaBean();
+							voto.setCodice(0);
+							voto.setData(Utility.toSqlDate(new Date()));
+							voto.setElettore(Utility.encryptMD5((String) request.getSession().getAttribute("codice")));
+							voto.setPartito(partito);
+							scheda.addVP(voto);
+						}
 					} 
 					else if (action.equals("aggiornaPreferenza")) {
-						VotazioneReferendumBean voto = new VotazioneReferendumBean();
-						voto.setCodice(0);
-						voto.setData(Utility.toSqlDate(new Date()));
-						voto.setElettore(Utility.encryptMD5((String) request.getSession().getAttribute("codice")));
-						voto.setPreferenza(request.getParameter("preferenza"));
-						scheda.addVR(voto);
+						String preferenza = (String) request.getParameter("preferenza");
+						if (preferenza != null && (preferenza.equals("Si") || preferenza.equals("No"))) {
+							VotazioneReferendumBean voto = new VotazioneReferendumBean();
+							voto.setCodice(0);
+							voto.setData(Utility.toSqlDate(new Date()));
+							voto.setElettore(Utility.encryptMD5((String) request.getSession().getAttribute("codice")));
+							voto.setPreferenza(preferenza);
+							scheda.addVR(voto);
+						}
 					}
 					else if (action.equals("clear")) {
 						scheda.deleteVP();
@@ -106,6 +114,8 @@ public class GestisciVotoControl extends HttpServlet {
 				}
 			} catch(SQLException e) {
 				Utility.printSQLException(e);
+				response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/error/generic.jsp"));
+				return;
 			}
 			
 			request.setAttribute("scheda", scheda);
@@ -121,6 +131,8 @@ public class GestisciVotoControl extends HttpServlet {
 				}
 			} catch (SQLException e) {
 				Utility.printSQLException(e);
+				response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/error/generic.jsp"));
+				return;
 			}
 			
 			RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher(response.encodeURL("/elettore/schedaVoto.jsp"));
