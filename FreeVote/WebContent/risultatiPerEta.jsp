@@ -64,7 +64,7 @@
 
 </head>            
 
-<body>
+<body class="bg-light">
 	<%@ include file="header.jsp"%>
 	<div class="container py-5"> 
 	<%String partito = (String)request.getAttribute("partito");

@@ -21,9 +21,9 @@
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>            
 
-<body>
+<body class="bg-light">
 	<%@ include file="/admin/admin-header.jsp"%>
-    <div class="container py-4">
+    <div class="container-fluid py-5">
 	    <form action="<%=response.encodeURL("/FreeVote/EliminazioneElettore")%>" method="post"> 
 	    	<div class="form-group">
 		        <fieldset>

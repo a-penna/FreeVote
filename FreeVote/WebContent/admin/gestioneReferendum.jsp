@@ -22,15 +22,14 @@
    
 </head>            
 
-<body>
-	<%@ include file="admin-header.jsp"%> <!-- Da Completare -->
-    
-    <h3>Seleziona l'operazione da effettuare&colon;</h3>
-    <br>
-    <a href="<%=response.encodeURL("/FreeVote/InserisciMozione")%>">Aggiungi una mozione</a>
-    <br>
-    <a href="<%=response.encodeURL("/FreeVote/admin/eliminaMozione.jsp")%>">Rimuovi una mozione</a>
-    <br>
-
+<body class="bg-light">
+	<%@ include file="admin-header.jsp"%>
+    <div class="container-fluid py-5">
+	    <h3>Seleziona l'operazione da effettuare&colon;</h3>
+	    <div class="list-group">
+		  <a href="<%=response.encodeURL("/FreeVote/InserisciMozione")%>" class="list-group-item list-group-item-action">Aggiungi una mozione</a>
+		  <a href="<%=response.encodeURL("/FreeVote/admin/eliminaMozione.jsp")%>" class="list-group-item list-group-item-action">Rimuovi una mozione</a>
+		</div>
+	</div>
 </body>
 </html>

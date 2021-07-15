@@ -20,12 +20,12 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> 
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>            
-<body>
+<body class="bg-light">
 	<%@ include file="admin-header.jsp"%>
 	<div class="container-fluid py-5">
 	    <h3>Seleziona l'operazione da effettuare&colon;</h3>
 	    <div class="list-group">
-		  <a href="<%=response.encodeURL("/FreeVote/admin/inserisciPartito.jsp")%>" class="list-group-item list-group-item-action active"> Inserisci un nuovo partito</a>
+		  <a href="<%=response.encodeURL("/FreeVote/admin/inserisciPartito.jsp")%>" class="list-group-item list-group-item-action"> Inserisci un nuovo partito</a>
 		  <a href="<%=response.encodeURL("/FreeVote/admin/eliminaPartito.jsp")%>" class="list-group-item list-group-item-action">Elimina un partito</a>
 		  <a href="<%=response.encodeURL("/FreeVote/admin/inserisciPartitoCoalizione.jsp")%>" class="list-group-item list-group-item-action">Inserisci un partito in una coalizione</a>
 		  <a href="<%=response.encodeURL("/FreeVote/admin/eliminaPartitoCoalizione.jsp")%>" class="list-group-item list-group-item-action">Elimina un partito da una coalizione</a>

@@ -38,35 +38,42 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
         }
     </script>
 </head>            
-<body>
+<body class="bg-light">
 
 	<%@ include file="/admin/admin-header.jsp"%>
-	<div class="container py-4">
-		<p>Inserisci i dati nel seguente form per registare una nuova mozione: <p>
-	
-		<form action="<%=response.encodeURL("/FreeVote/InserisciMozione")%>" method="post" onsubmit="event.preventDefault(); validate(this)"> 
-			<div class="form-group">
-		        <fieldset>
-		        <legend>Informazioni sulla mozione&colon; </legend>
-		        	<label for="nomeCompleto">Nome e cognome dell&apos;autore&colon;</label> 
-		        	<%
-						if (request.getAttribute("erroreNomeCompleto") != null) {
-							%><input type="text" class="form-control is-invalid" id="nomeCompleto" placeholder="Nome e cognome Autore" value="<%=request.getAttribute("nomeCompleto")%>" name="nomeCompleto" required><% 
-						} else if (request.getAttribute("nomeCompleto") != null) {
-							%><input type="text" class="form-control is-valid" id="nomeCompleto" placeholder="Nome e cognome Autore" value="<%=request.getAttribute("nomeCompleto")%>" name="nomeCompleto" required><% 
-						} else {
-							%><input type="text" class="form-control" id="nomeCompleto" placeholder="Nome e cognome Autore" name="nomeCompleto" required><% 
-						}
-					%>
-                        <div class="valid-feedback">Corretto</div>
-                        <div class="invalid-feedback">Nome non valido&excl;</div>
-		        	<label for="testo">Testo della mozione&colon;</label>
-		        	<textarea id="testo" class="form-control" name="testo" rows="10" cols="48" placeholder="Inserisci qui il testo della mozione" required></textarea>
-					<br>
-		        </fieldset>
-		        <button type="submit" class="btn btn-primary">Crea</button>
-		    </div>
-		</form> 
+	<div class="container-fluid py-5">
+		<div class="row">
+			<div class="col-md-2">
+				<%@ include file="/admin/referendumMenu.jsp" %>
+			</div>
+			<div class="col-md-10">
+				<p>Inserisci i dati nel seguente form per registare una nuova mozione: <p>
+			
+				<form action="<%=response.encodeURL("/FreeVote/InserisciMozione")%>" method="post" onsubmit="event.preventDefault(); validate(this)"> 
+					<div class="form-group">
+				        <fieldset>
+				        <legend>Informazioni sulla mozione&colon; </legend>
+				        	<label for="nomeCompleto">Nome e cognome dell&apos;autore&colon;</label> 
+				        	<%
+								if (request.getAttribute("erroreNomeCompleto") != null) {
+									%><input type="text" class="form-control is-invalid" id="nomeCompleto" placeholder="Nome e cognome Autore" value="<%=request.getAttribute("nomeCompleto")%>" name="nomeCompleto" required><% 
+								} else if (request.getAttribute("nomeCompleto") != null) {
+									%><input type="text" class="form-control is-valid" id="nomeCompleto" placeholder="Nome e cognome Autore" value="<%=request.getAttribute("nomeCompleto")%>" name="nomeCompleto" required><% 
+								} else {
+									%><input type="text" class="form-control" id="nomeCompleto" placeholder="Nome e cognome Autore" name="nomeCompleto" required><% 
+								}
+							%>
+		                        <div class="valid-feedback">Corretto</div>
+		                        <div class="invalid-feedback">Nome non valido&excl;</div>
+				        	<label for="testo">Testo della mozione&colon;</label>
+				        	<textarea id="testo" class="form-control" name="testo" rows="10" cols="48" placeholder="Inserisci qui il testo della mozione" required></textarea>
+							<br>
+				        </fieldset>
+				        <button type="submit" class="btn btn-primary">Crea</button>
+				    </div>
+				</form> 
+			</div>
+		</div>
 	</div>
 
 </body>

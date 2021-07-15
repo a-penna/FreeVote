@@ -21,23 +21,30 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> 
 		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	</head>            
-	<body>
+	<body class="bg-light">
 		<%@ include file="/admin/admin-header.jsp"%>
-		<div class="container py-4">
-			<p>Inserisci i dati nel seguente form per inserire un partito in una coalizione&period; Sia il partito che la coalizione devono essere gi&agrave; presenti nel database&period;<p>
-			<form action="<%=response.encodeURL("/FreeVote/InserisciPartitoCoalizione")%>" method="post"> 
-			        <fieldset>
-						<div class="form-group">
-				        	<label for="nome">Nome Partito&colon;</label>
-				       	    <input id="nome" class="form-control" type="text" name="nome" placeholder="Nome partito" required> 
-						</div>
-						<div class="form-group">
-				        	<label for="coalizione">Nome Coalizione&colon;</label>
-				            <input id="coalizione" class="form-control" type="text" name="coalizione" placeholder="Nome coalizione" required> 
-				        </div>
-			        </fieldset>
-			        <button type="submit" class="btn btn-primary">Inserisci</button>
-			</form> 
+		<div class="container-fluid py-5">
+			<div class="row">
+				<div class="col-md-2">
+					<%@ include file="/admin/politicheMenu.jsp" %>
+				</div>
+				<div class="col-md-10">
+					<p>Inserisci i dati nel seguente form per inserire un partito in una coalizione&period; Sia il partito che la coalizione devono essere gi&agrave; presenti nel database&period;<p>
+					<form action="<%=response.encodeURL("/FreeVote/InserisciPartitoCoalizione")%>" method="post"> 
+					        <fieldset>
+								<div class="form-group">
+						        	<label for="nome">Nome Partito&colon;</label>
+						       	    <input id="nome" class="form-control" type="text" name="nome" placeholder="Nome partito" required> 
+								</div>
+								<div class="form-group">
+						        	<label for="coalizione">Nome Coalizione&colon;</label>
+						            <input id="coalizione" class="form-control" type="text" name="coalizione" placeholder="Nome coalizione" required> 
+						        </div>
+					        </fieldset>
+					        <button type="submit" class="btn btn-primary">Inserisci</button>
+					</form> 
+				</div>
+			</div>
 		</div>
 	</body>
 </html> 

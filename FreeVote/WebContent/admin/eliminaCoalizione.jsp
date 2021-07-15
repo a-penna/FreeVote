@@ -29,27 +29,34 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>            
 
-<body>
+<body class="bg-light">
 <%@ include file="/admin/admin-header.jsp"%>
-<div class="container py-4">
-	<h4>Scegliere il nome della coalizione per procedere&comma; ricorda che 
-	saranno cancellati tutti i dati della coalizione ma non quelli dei singoli partiti che la compongono</h4>
-	<form action="<%=response.encodeURL("/FreeVote/EliminaCoalizione")%>" method="post"> 
-		<div class="form-group">
-        <select class="form-select" name="coalizione" required>
-        		<option disabled selected>Scegli Coalizione&colon;</option>
-	            <%
-	            Iterator<?> it = coalizioni.iterator();
-	            while(it.hasNext()) {
-	                CoalizioneBean bean = (CoalizioneBean)it.next(); 
-	            %>
-	            <option value="<%=bean.getNome()%>"><%=bean.getNome()%></option>
-	            <%  }
-				%>
-	     </select> 
-	     </div>
-        <button type="submit" class="btn btn-primary">Elimina</button>
-	</form> 
+<div class="container-fluid py-5">
+	<div class="row">
+			<div class="col-md-2">
+				<%@ include file="/admin/politicheMenu.jsp" %>
+			</div>
+			<div class="col-md-10">
+				<h4>Scegliere il nome della coalizione per procedere&comma; ricorda che 
+				saranno cancellati tutti i dati della coalizione ma non quelli dei singoli partiti che la compongono</h4>
+				<form action="<%=response.encodeURL("/FreeVote/EliminaCoalizione")%>" method="post"> 
+					<div class="form-group">
+			        <select class="form-control" name="coalizione" required>
+			        		<option disabled selected>Scegli Coalizione&colon;</option>
+				            <%
+				            Iterator<?> it = coalizioni.iterator();
+				            while(it.hasNext()) {
+				                CoalizioneBean bean = (CoalizioneBean)it.next(); 
+				            %>
+				            <option value="<%=bean.getNome()%>"><%=bean.getNome()%></option>
+				            <%  }
+							%>
+				     </select> 
+				     </div>
+			        <button type="submit" class="btn btn-primary">Elimina</button>
+				</form> 
+			</div>
+	</div>
 </div>
 
 </body>

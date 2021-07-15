@@ -40,28 +40,35 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
     </script> 
 </head>            
 
-<body>
-<%@ include file="/admin/admin-header.jsp"%>
-<div class="container py-4">
-	<p>Inserire i dati del candidato da eliminare&colon;</p>
-	<form action="<%=response.encodeURL("/FreeVote/EliminazioneCandidato")%>" method="post" onsubmit="event.preventDefault(); validate(this)"> 
-    	<div class="form-group">
-        	<label for="cf">Codice Fiscale&colon;</label>
-           	<%
-				if (request.getAttribute("cfInvalido") != null) {
-					%><input type="text" class="form-control is-invalid" onkeyup="toUpperCaseCf()" id="cf" placeholder="Codice Fiscale" value="<%=request.getAttribute("cf")%>" name="cf" required><% 
-				} else if (request.getAttribute("cf") != null) {
-					%><input type="text" class="form-control is-valid" onkeyup="toUpperCaseCf()" id="cf" placeholder="Codice Fiscale" value="<%=request.getAttribute("cf")%>" name="cf" required><% 
-				} else {
-					%><input type="text" class="form-control" onkeyup="toUpperCaseCf()" id="cf" placeholder="Codice Fiscale" name="cf" required><% 
-				}
-			%>
-        	<div class="valid-feedback">Corretto</div>
-        	<div class="invalid-feedback">Codice fiscale non valido&excl;</div>
-        </div>
-		<button type="submit" class="btn btn-primary">Elimina</button>
-	</form> 
-</div>
+<body class="bg-light">
+	<%@ include file="/admin/admin-header.jsp"%>
+	<div class="container-fluid py-5">
+	    <div class="row">
+			<div class="col-md-2">
+				<%@ include file="/admin/politicheMenu.jsp" %>
+			</div>
+			<div class="col-md-10">
+				<p>Inserire i dati del candidato da eliminare&colon;</p>
+				<form action="<%=response.encodeURL("/FreeVote/EliminazioneCandidato")%>" method="post" onsubmit="event.preventDefault(); validate(this)"> 
+			    	<div class="form-group">
+			        	<label for="cf">Codice Fiscale&colon;</label>
+			           	<%
+							if (request.getAttribute("cfInvalido") != null) {
+								%><input type="text" class="form-control is-invalid" onkeyup="toUpperCaseCf()" id="cf" placeholder="Codice Fiscale" value="<%=request.getAttribute("cf")%>" name="cf" required><% 
+							} else if (request.getAttribute("cf") != null) {
+								%><input type="text" class="form-control is-valid" onkeyup="toUpperCaseCf()" id="cf" placeholder="Codice Fiscale" value="<%=request.getAttribute("cf")%>" name="cf" required><% 
+							} else {
+								%><input type="text" class="form-control" onkeyup="toUpperCaseCf()" id="cf" placeholder="Codice Fiscale" name="cf" required><% 
+							}
+						%>
+			        	<div class="valid-feedback">Corretto</div>
+			        	<div class="invalid-feedback">Codice fiscale non valido&excl;</div>
+			        </div>
+					<button type="submit" class="btn btn-primary">Elimina</button>
+				</form> 
+			</div>
+		</div>
+	</div>
 
 </body>
 </html> 

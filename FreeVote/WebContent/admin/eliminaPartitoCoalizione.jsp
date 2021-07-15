@@ -29,29 +29,36 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>            
 
-<body>
+<body class="bg-light">
 	<%@ include file="/admin/admin-header.jsp"%>
-	<div class="container py-4">
-		<p>Selezionare un partito per scollegarlo dalla sua coalizione&comma; nel caso in cui non ne abbia una l'operazione fallir&agrave;&period;</p>
-		<form action="<%=response.encodeURL("/FreeVote/EliminaPartitoCoalizione")%>" method="post"> 
-			    <fieldset>
-				<div class="form-group">
-			        <select name="nome" class="form-select" required>
-			        	<option disabled selected>Partito&colon;</option>
-			            <%
-			            Iterator<?> it = partiti.iterator();
-			            while(it.hasNext()) {
-			                PartitoBean bean = (PartitoBean)it.next();
-			                if (!bean.getNome().equals("Scheda Bianca")) { %>
-			                    <option value="<%=bean.getNome()%>"><%=bean.getNome()%></option>
-			            <%	}  
-			            } 
-			            %>
-				    </select> 
-			    	<button type="submit" class="btn btn-primary">Elimina</button>
-				</div>
-				</fieldset>
-		</form> 
+	<div class="container-fluid py-5">
+		<div class="row">
+			<div class="col-md-2">
+				<%@ include file="/admin/politicheMenu.jsp" %>
+			</div>
+			<div class="col-md-10">
+				<p>Selezionare un partito per scollegarlo dalla sua coalizione&comma; nel caso in cui non ne abbia una l'operazione fallir&agrave;&period;</p>
+				<form action="<%=response.encodeURL("/FreeVote/EliminaPartitoCoalizione")%>" method="post"> 
+					    <fieldset>
+						<div class="form-group">
+					        <select name="nome" class="form-control" required>
+					        	<option disabled selected>Partito&colon;</option>
+					            <%
+					            Iterator<?> it = partiti.iterator();
+					            while(it.hasNext()) {
+					                PartitoBean bean = (PartitoBean)it.next();
+					                if (!bean.getNome().equals("Scheda Bianca")) { %>
+					                    <option value="<%=bean.getNome()%>"><%=bean.getNome()%></option>
+					            <%	}  
+					            } 
+					            %>
+						    </select> 
+						</div>
+					    	<button type="submit" class="btn btn-primary">Elimina</button>
+						</fieldset>
+				</form> 
+			</div>
+		</div>
 	</div>
 </body>
 </html> 

@@ -6,10 +6,10 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
 <html>
 <head>
 	<meta charset="UTF-8">
-	<meta name="keywords" content="FreeVote, piattaforma voto, voto, voto online, inserisci coalizione, coalizione, operazioni admin, inserisci, admin">
+	<meta name="keywords" content="FreeVote, piattaforma voto, voto, voto online, inserisci coalizione, crea coalizione, coalizione, operazioni admin, inserisci, admin">
 	<meta name="description" content="Inserisci Coalizione">
 	<meta name="author" content="Bene Sabato, Cozzolino Lidia, Napoli Riccardo, Penna Alessandro">    
-	<title>FreeVote &dash; Inserisci Coalizione</title>
+	<title>FreeVote &dash; Crea Coalizione</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" type="text/css" href="/FreeVote/css/style.css" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> 
@@ -64,36 +64,43 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
 	</script>
 
 </head>            
-<body>
+<body class="bg-light">
 
 	<%@ include file="/admin/admin-header.jsp"%>
-	<div class="container py-4">
-		<p>Inserisci i dati nel seguente form per registare una nuova coalizione: <p>
-		<form action="<%=response.encodeURL("/FreeVote/InserisciCoalizione")%>" method="get">
-		        <fieldset>
-		        	<legend>Informazioni sulla coalizione&colon; </legend> 
-					<div class="form-group"> 
-			        	<label for="nome">Nome Coalizione&colon;</label>  
-			       	    <input id="nome" type="text" class="form-control" name="nomeCoalizione" placeholder="Nome della coalizione" required> 
-			 		</div>
-						<div id = "partiti">
-							<div class="form-group">
-								<label for="partito1">Nome del primo partito&colon;</label>
-								<input type="text" id="partito1" class="form-control" name="nomePartito" placeholder="Nome del primo partito" required>
-							</div>
-							<div class="row form-group align-items-end">
-								<div class="col-xl-10">
-									<label for="partito2">Nome del secondo partito&colon;</label>
-									<input type="text" id="partito2" class="form-control" name="nomePartito" placeholder="Nome del secondo partito" required>
+	<div class="container-fluid py-5">
+		<div class="row">
+			<div class="col-md-2">
+				<%@ include file="/admin/politicheMenu.jsp" %>
+			</div>
+			<div class="col-md-10">
+				<p>Inserisci i dati nel seguente form per registare una nuova coalizione: <p>
+				<form action="<%=response.encodeURL("/FreeVote/InserisciCoalizione")%>" method="get">
+				        <fieldset>
+				        	<legend>Informazioni sulla coalizione&colon; </legend> 
+							<div class="form-group"> 
+					        	<label for="nome">Nome Coalizione&colon;</label>  
+					       	    <input id="nome" type="text" class="form-control" name="nomeCoalizione" placeholder="Nome della coalizione" required> 
+					 		</div>
+								<div id = "partiti">
+									<div class="form-group">
+										<label for="partito1">Nome del primo partito&colon;</label>
+										<input type="text" id="partito1" class="form-control" name="nomePartito" placeholder="Nome del primo partito" required>
+									</div>
+									<div class="row form-group align-items-end">
+										<div class="col-xl-10">
+											<label for="partito2">Nome del secondo partito&colon;</label>
+											<input type="text" id="partito2" class="form-control" name="nomePartito" placeholder="Nome del secondo partito" required>
+										</div>
+										<div class="col-xl-2">
+								 			<input type="button" class="btn btn-primary" value="&plus;" onclick="addPartito()"> 
+								 		</div>
+									</div>
 								</div>
-								<div class="col-xl-2">
-						 			<input type="button" class="btn btn-primary" value="&plus;" onclick="addPartito()"> 
-						 		</div>
-							</div>
-						</div>
-		        </fieldset>
-		        <button type="submit" class="btn btn-primary">Crea</button>    
-		</form> 
+				        </fieldset>
+				        <button type="submit" class="btn btn-primary">Crea</button>    
+				</form> 
+			</div>
+		</div>
 	</div>
 
 </body>

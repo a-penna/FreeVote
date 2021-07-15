@@ -29,29 +29,36 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>            
 
-<body>
+<body class="bg-light">
 	<%@ include file="/admin/admin-header.jsp"%>
-	<div class="container py-4">
-		<form action="<%=response.encodeURL("/FreeVote/EliminaPartito")%>" method="post"> 
-			    <fieldset>
-			        <legend>Inserisci informazioni sul partito&colon; </legend>
-					<div class="form-group">
-				        <select class="form-select" name="nome" required>
-				        		<option disabled selected>Nome&colon;</option>
-					            <%
-					            Iterator<?> it = partiti.iterator();
-					            while(it.hasNext()) {
-									PartitoBean bean = (PartitoBean)it.next();
-									if (!bean.getNome().equals("Scheda Bianca")) { %>
-					            		<option value="<%=bean.getNome()%>"><%=bean.getNome()%></option>
-					            <%	}  
-								} 
-					            %>
-					     </select> 
-		   			</div>
-			        <button type="submit" class="btn btn-primary">Elimina</button>
-			   </fieldset>
-		</form> 
+	<div class="container-fluid py-5">
+		<div class="row">
+			<div class="col-md-2">
+				<%@ include file="/admin/politicheMenu.jsp" %>
+			</div>
+			<div class="col-md-10">
+				<form action="<%=response.encodeURL("/FreeVote/EliminaPartito")%>" method="post"> 
+					    <fieldset>
+					        <legend>Inserisci informazioni sul partito&colon; </legend>
+							<div class="form-group">
+						        <select class="form-control" name="nome" required>
+						        		<option disabled selected>Nome&colon;</option>
+							            <%
+							            Iterator<?> it = partiti.iterator();
+							            while(it.hasNext()) {
+											PartitoBean bean = (PartitoBean)it.next();
+											if (!bean.getNome().equals("Scheda Bianca")) { %>
+							            		<option value="<%=bean.getNome()%>"><%=bean.getNome()%></option>
+							            <%	}  
+										} 
+							            %>
+							     </select> 
+				   			</div>
+					        <button type="submit" class="btn btn-primary">Elimina</button>
+					   </fieldset>
+				</form> 
+			</div>
+		</div>
 	</div>
 </body>
 </html> 

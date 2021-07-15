@@ -28,30 +28,37 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> 
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>            
-<body>
+<body class="bg-light">
 
 	<%@ include file="/admin/admin-header.jsp"%>
-	<div class="container py-4">
-		<p>Inserisci i dati nel seguente form per eliminare una mozione già presente: <p>
-		<form action="<%=response.encodeURL("/FreeVote/EliminaMozione")%>" method="POST"> 
-		        <fieldset>
-		        <legend>Inserisci l'ID della mozione da rimuovere&colon; </legend> <!-- Testo, Nome completo autore-->
-			<div class="form-group">
-					<select class="form-select" name="id" required>
-						<option disabled selected>ID della mozione&colon;</option>
-			            <%
-			            Iterator<?> it = mozioni.iterator();
-			            while(it.hasNext()) {
-			                MozioneBean bean = (MozioneBean)it.next(); 
-			            %>
-			            <option value="<%=bean.getID()%>"><%=bean.getID()%></option>
-			            <%  } 
-			            %>
-			     	</select>    
+	<div class="container-fluid py-5">
+	    <div class="row">
+			<div class="col-md-2">
+				<%@ include file="/admin/referendumMenu.jsp" %>
 			</div>
-		        </fieldset>
-		        <button type="submit" class="btn btn-primary">Elimina</button>
-		</form> 
+			<div class="col-md-10">
+				<p>Inserisci i dati nel seguente form per eliminare una mozione già presente: <p>
+				<form action="<%=response.encodeURL("/FreeVote/EliminaMozione")%>" method="POST"> 
+				        <fieldset>
+				        <legend>Inserisci l'ID della mozione da rimuovere&colon; </legend> <!-- Testo, Nome completo autore-->
+					<div class="form-group">
+							<select class="form-control" name="id" required>
+								<option disabled selected>ID della mozione&colon;</option>
+					            <%
+					            Iterator<?> it = mozioni.iterator();
+					            while(it.hasNext()) {
+					                MozioneBean bean = (MozioneBean)it.next(); 
+					            %>
+					            <option value="<%=bean.getID()%>"><%=bean.getID()%></option>
+					            <%  } 
+					            %>
+					     	</select>    
+					</div>
+				        </fieldset>
+				        <button type="submit" class="btn btn-primary">Elimina</button>
+				</form> 
+			</div>
+		</div>
 	</div>
 
 </body>

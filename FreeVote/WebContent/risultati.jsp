@@ -36,9 +36,9 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>            
 
-<body>
+<body class="bg-light">
 	<%@ include file="header.jsp"%>
-	<div class="container-fluid pt-4"> 
+	<div class="container-fluid py-5"> 
     <br/>
     <h1 align="center">Risultati&colon;</h1>
         <%

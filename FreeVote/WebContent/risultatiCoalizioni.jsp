@@ -36,7 +36,7 @@
 <body class="bg-light">
 	<%@ include file="header.jsp"%>
 	<section class="risultatiCoalizioni text-center">
-		<div class="container">
+		<div class="container py-5">
 		    <h3>Di seguito i risultati ordinati per coalizione&colon;</h3>
 			<%
 		        Iterator<?> it = coalizioni.iterator();
