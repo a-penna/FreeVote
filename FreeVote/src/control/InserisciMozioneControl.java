@@ -27,20 +27,26 @@ public class InserisciMozioneControl extends HttpServlet{
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         boolean loggedIn = request.getSession(false) != null && request.getSession(false).getAttribute("adminRoles")!= null;
 		if(!loggedIn) {
-			response.sendRedirect(request.getContextPath() + "/loginAdmin.jsp");
+			response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/loginAdmin.jsp"));
 			return;
 		}
         
         String nomeCompleto = request.getParameter("nomeCompleto");
         String testo = request.getParameter("testo");
-        boolean error = false;
         
-        if(nomeCompleto == null || testo == null || nomeCompleto.equals("") || testo.equals("")) {
-            response.sendRedirect(response.encodeRedirectURL("/FreeVote/admin/inserisciMozione.jsp"));
+        if(nomeCompleto == null || testo == null) {
+            response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/admin/inserisciMozione.jsp"));
 			return;
         }
+
+        boolean error = false;
         
-		if (!Utility.checkNomeCognome(nomeCompleto)) {
+        if(testo.trim().equals("")) {
+        	request.setAttribute("erroreTesto", "true");
+			error = true;
+        }
+        
+		if (!Utility.checkNomeCompleto(nomeCompleto)) {
 			request.setAttribute("erroreNomeCompleto", "true");
 			error = true;
 		}
@@ -55,7 +61,6 @@ public class InserisciMozioneControl extends HttpServlet{
 			dispatcher.forward(request, response);
 			return;
 		}
-		
 		
         DataSource ds = (DataSource) getServletContext().getAttribute("DataSource");
         MozioneModelDS mozioneModel = new MozioneModelDS(ds);
@@ -76,10 +81,9 @@ public class InserisciMozioneControl extends HttpServlet{
 				return;
 			}
         } catch(SQLException e) {
-            Utility.printSQLException(e);
+        	Utility.printSQLException(e);
+			response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/error/generic.jsp"));
+			return;
         }
-      
-        RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher(response.encodeURL("/admin/inserisciMozione.jsp"));
-		dispatcher.forward(request, response);
     }
 }

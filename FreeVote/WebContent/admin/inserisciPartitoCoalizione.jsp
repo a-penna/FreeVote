@@ -29,7 +29,7 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
 					<%@ include file="/admin/politicheMenu.jsp" %>
 				</div>
 				<div class="col-md-10">
-					<p>Inserisci i dati nel seguente form per inserire un partito in una coalizione&period; Sia il partito che la coalizione devono essere gi&agrave; presenti nel database&period;<p>
+					<p>Inserisci i dati nel seguente form per inserire un partito in una coalizione&period; Sia il partito che la coalizione devono essere gi&agrave; registrati sulla piattaforma&period;<p>
 					<form action="<%=response.encodeURL("/FreeVote/InserisciPartitoCoalizione")%>" method="post"> 
 					        <fieldset>
 								<div class="form-group">

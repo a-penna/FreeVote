@@ -66,6 +66,10 @@ public class CandidatoBean {
 		this.foto = foto;
 	}
 	
+	public boolean isEmpty() {
+		return this.cf.equals("");
+	}
+	
 	public String toString() {
 		return getClass().getName() + "[cf=" + cf + ", nome=" + nome + ", cognome=" + cognome + ", partito=" + partito + ", curriculum=" + curriculum + "]";
 	} 

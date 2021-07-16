@@ -125,12 +125,12 @@
 						    <div class="col-lg-4">
 						      <img class="rounded-circle mx-auto d-block" src="/FreeVote/PhotoControl?type=partito&id=<%=partito.getNome()%>" height="150" width="150" onerror="this.src='./imgs/nologo.png'">
 						    </div>
-						    <div class="col-lg-4">
+						    <div class="col-lg-4 align-self-center">
 						      <a class="mx-auto d-block" href="<%=response.encodeURL(request.getContextPath() + "/Partito?nome=" + partito.getNome())%>"><%=partito.getNome()%></a>
 						    </div>
 					            <input type="hidden" name="action"  value="aggiornaPartito">
 					            <input type="hidden" name="partitoScelto"  value="<%=partito.getNome()%>">
-						    <div class="col-lg-4">
+						    <div class="col-lg-4 align-self-center">
 						      <button type="submit" class="btn btn-block btn-dark">Scegli</button>
 						    </div>
 						  </div>

@@ -50,9 +50,9 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
 				<p>Inserisci i dati nel seguente form per registare una nuova mozione: <p>
 			
 				<form action="<%=response.encodeURL("/FreeVote/InserisciMozione")%>" method="post" onsubmit="event.preventDefault(); validate(this)"> 
-					<div class="form-group">
-				        <fieldset>
+				    <fieldset>
 				        <legend>Informazioni sulla mozione&colon; </legend>
+						<div class="form-group">
 				        	<label for="nomeCompleto">Nome e cognome dell&apos;autore&colon;</label> 
 				        	<%
 								if (request.getAttribute("erroreNomeCompleto") != null) {
@@ -65,12 +65,23 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
 							%>
 		                        <div class="valid-feedback">Corretto</div>
 		                        <div class="invalid-feedback">Nome non valido&excl;</div>
+		              	</div>
+		              	<div class="form-group">
 				        	<label for="testo">Testo della mozione&colon;</label>
-				        	<textarea id="testo" class="form-control" name="testo" rows="10" cols="48" placeholder="Inserisci qui il testo della mozione" required></textarea>
-							<br>
-				        </fieldset>
+				        	<%
+								if (request.getAttribute("erroreTesto") != null) {
+									%><textarea id="testo" class="form-control is-invalid" name="testo" rows="10" cols="48" placeholder="Inserisci qui il testo della mozione" required></textarea><% 
+								} else if (request.getAttribute("testo") != null) {
+									%><textarea id="testo" class="form-control" name="testo" rows="10" cols="48" placeholder="Inserisci qui il testo della mozione" required><%=request.getAttribute("testo")%></textarea><% 
+								} else {
+									%><textarea id="testo" class="form-control" name="testo" rows="10" cols="48" placeholder="Inserisci qui il testo della mozione" required></textarea><% 
+								}
+							%>
+							<div class="invalid-feedback">Inserisci il testo della mozione&excl;</div>
+						</div>
+						<br>
 				        <button type="submit" class="btn btn-primary">Crea</button>
-				    </div>
+				     </fieldset>
 				</form> 
 			</div>
 		</div>

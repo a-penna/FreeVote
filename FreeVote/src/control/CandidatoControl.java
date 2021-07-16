@@ -31,7 +31,7 @@ public class CandidatoControl extends HttpServlet {
 		
 		try {
 			CandidatoBean candidato = candidatoModel.doRetrieveByKey(cf);
-			if (candidato.getCf().equals("")) {
+			if (candidato.isEmpty()) {
 				response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/PartitiControl")); 
 				return;
 			}

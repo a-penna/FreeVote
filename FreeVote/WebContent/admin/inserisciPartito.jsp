@@ -73,11 +73,31 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
 				        	<legend>Informazioni sul partito&colon; </legend>
 							<div class="form-group">
 					        	<label for="nome">Nome&colon;</label>
-					       	    <input id="nome" type="text" class="form-control" name="nome" placeholder="Nome partito" required> 
+								<%
+									if (request.getAttribute("errorePartito") != null) {
+										%> <input id="nome" type="text" class="form-control is-invalid" name="nome" placeholder="Nome partito" required> <%
+									} else if (request.getAttribute("nome") != null) {
+										%> <input id="nome" type="text" class="form-control is-valid" value="<%=request.getAttribute("nomeLeader")%>" name="nome" placeholder="Nome partito" required> <%
+									} else {
+										%><input id="nome" type="text" class="form-control" name="nome" placeholder="Nome partito" required><% 
+									}
+								%>
+					        	<div class="valid-feedback">Corretto</div>
+			                    <div class="invalid-feedback">Inserisci il nome&excl;</div>
 				    		</div>
 				    		<div class="form-group">
 					        	<label for="descrizione">Descrizione&colon;</label>
-					        	<textarea id="descrizione" class="form-control" name="descrizione" rows="10" cols="48" placeholder="Inserisci qui la descrizione" required></textarea>
+					        	<%
+									if (request.getAttribute("erroreDescrizione") != null) {
+										%> <textarea id="descrizione" class="form-control is-invalid" name="descrizione" rows="10" cols="48" placeholder="Inserisci qui la descrizione" required></textarea> <%
+									} else if (request.getAttribute("descrizione") != null) {
+										%><textarea id="descrizione" class="form-control is-valid" name="descrizione" rows="10" cols="48" placeholder="Inserisci qui la descrizione" required><%=request.getAttribute("descrizione")%></textarea><%
+									} else {
+										%><textarea id="descrizione" class="form-control" name="descrizione" rows="10" cols="48" placeholder="Inserisci qui la descrizione" required></textarea><% 
+									}
+								%>
+					        	<div class="valid-feedback">Corretto</div>
+			                    <div class="invalid-feedback">Inserisci la descrizione&excl;</div>
 							</div>
 							<div class="form-group">
 					        	<label for="logo">Carica Logo&colon;</label>
@@ -131,7 +151,17 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
 		                    </div>
 		                    <div class="form-group">
 					        	<label for="curriculum">Curriculum&colon;</label>
-					        	<textarea id="curriculum" name="curriculum" class="form-control" rows="10" cols="48" placeholder="Inserisci qui il curriculum"></textarea>
+					        	<%
+									if (request.getAttribute("erroreCurriculum") != null) {
+										%><textarea id="curriculum" name="curriculum" class="form-control is-invalid" rows="10" cols="48" placeholder="Inserisci qui il curriculum" required></textarea><%
+									} else if (request.getAttribute("curriculum") != null) {
+										%><textarea id="curriculum" name="curriculum" class="form-control is-valid" rows="10" cols="48" placeholder="Inserisci qui il curriculum" required><%=request.getAttribute("curriculum")%></textarea><% 
+									} else {
+										%><textarea id="curriculum" name="curriculum" class="form-control" rows="10" cols="48" placeholder="Inserisci qui il curriculum" required></textarea><% 
+									}
+								%>
+					        	<div class="valid-feedback">Corretto</div>
+			                    <div class="invalid-feedback">Inserisci il curriculum&excl;</div>
 					        	<br>
 				        	</div>
 				        	<div class="form-group">

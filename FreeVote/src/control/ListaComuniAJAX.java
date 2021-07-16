@@ -21,7 +21,7 @@ import model.ComuneModelDS;
 import utils.Utility;
 
 @WebServlet("/ListaComuni")
-public class ListaComuniControl extends HttpServlet {
+public class ListaComuniAJAX extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -37,7 +37,6 @@ public class ListaComuniControl extends HttpServlet {
 
 			JSONArray jsArray = new JSONArray();
 			Iterator<ComuneBean> it = comuni.iterator();
-			
 			while(it.hasNext()) {
 				ComuneBean comune = it.next();
 				jsArray.put(comune.getNome());
@@ -48,7 +47,7 @@ public class ListaComuniControl extends HttpServlet {
 			e.printStackTrace();
 		}
 		catch (SQLException e1) {
-		Utility.printSQLException(e1);
+			Utility.printSQLException(e1);
 		}
 
 		response.getWriter().print(json);

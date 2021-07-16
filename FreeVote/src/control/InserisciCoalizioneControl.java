@@ -25,7 +25,7 @@ public class InserisciCoalizioneControl extends HttpServlet{
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	boolean loggedIn = request.getSession(false) != null && request.getSession(false).getAttribute("adminRoles")!= null;
     	if(!loggedIn) {
-    		response.sendRedirect(request.getContextPath() + "/loginAdmin.jsp");
+    		response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/loginAdmin.jsp"));
     		return;
     	}
     	

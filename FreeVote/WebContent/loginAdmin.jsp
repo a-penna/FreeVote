@@ -90,14 +90,14 @@
 	                     </div>
 		             </div>
 		             <input type="submit" class="btn btn-dark" value="Login"/>
-		             <div class="card-footer text-muted">
-		             </br>
-		             </div>
 		    	</fieldset>
 		    </form> 
 		</div>
-		</div>
-		</div>
+		             <div class="card-footer text-muted">
+		             <br>
+		             </div>
+	 </div>
+  </div>
 <% 	} %>
 </body>
 </html>

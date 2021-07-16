@@ -119,9 +119,24 @@ public class Utility {
 	}
 	
 	public static boolean checkNomeCognome(String s) {
+		if(s.length() == 0)
+			return false;
+		
 		int i = 0;
 		for (; i < s.length(); i++) {
 			if (!Character.isLetter(s.charAt(i)))
+				return false;
+		}
+		return true;
+	}
+	
+	public static boolean checkNomeCompleto(String s) {
+		if(s.length() == 0)
+			return false;
+		
+		int i = 0;
+		for (; i < s.length(); i++) {
+			if (!Character.isLetter(s.charAt(i)) && !Character.isWhitespace(s.charAt(i)))
 				return false;
 		}
 		return true;

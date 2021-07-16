@@ -17,8 +17,10 @@ import javax.sql.DataSource;
 import model.*;
 import utils.Utility;
 
-@MultipartConfig(maxFileSize = 16177215)
+
 @WebServlet("/InserisciPartito")
+@MultipartConfig(fileSizeThreshold = 1024 * 1024 * 2, // 2MB after which the file will be temporarily stored on disk
+				maxFileSize = 1024 * 1024 * 10) // 10MB maximum size allowed for uploaded files
 public class InserisciPartitoControl extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -30,7 +32,7 @@ public class InserisciPartitoControl extends HttpServlet {
 
 		boolean loggedIn = request.getSession(false) != null && request.getSession(false).getAttribute("adminRoles")!= null;
 		if(!loggedIn) {
-			response.sendRedirect(request.getContextPath() + "/loginAdmin.jsp");
+			response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/loginAdmin.jsp"));
 			return;
 		}
 		
@@ -42,10 +44,24 @@ public class InserisciPartitoControl extends HttpServlet {
 		String curriculum = request.getParameter("curriculum");
 		boolean error = false;
 		
-		if (nome == null || descrizione == null || nomeLeader == null || cognomeLeader == null || cf == null || curriculum == null
-				|| nome.equals("") || descrizione.equals("") || nomeLeader.equals("") || cognomeLeader.equals("") || cf.equals("") || curriculum.equals("")) {
-			response.sendRedirect(response.encodeRedirectURL("/FreeVote/admin/inserisciPartito.jsp"));
+		if (nome == null || descrizione == null || nomeLeader == null || cognomeLeader == null || cf == null || curriculum == null) {
+			response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/admin/inserisciPartito.jsp"));
 			return;
+		}
+		
+		if (nome.trim().equals("")) {
+			request.setAttribute("errorePartito", "true");
+			error = true;
+		}
+		
+		if (descrizione.trim().equals("")) {
+			request.setAttribute("erroreDescrizione", "true");
+			error = true;
+		}
+
+		if (curriculum.trim().equals("")) {
+			request.setAttribute("erroreCurriculum", "true");
+			error = true;
 		}
 		
 		if (!Utility.checkNomeCognome(nomeLeader)) {
@@ -66,6 +82,7 @@ public class InserisciPartitoControl extends HttpServlet {
 		nomeLeader = Utility.filter(nomeLeader);
 		cognomeLeader = Utility.filter(cognomeLeader);
         curriculum = Utility.filter(curriculum);
+        cf = Utility.filter(cf);
 		
 		if(error) {
 			request.setAttribute("nome", nome);
@@ -96,7 +113,6 @@ public class InserisciPartitoControl extends HttpServlet {
 
 		DataSource ds = (DataSource) getServletContext().getAttribute("DataSource");
 		PartitoModelDS model = new PartitoModelDS(ds);
-		
 
 		try {
 			PartitoBean partito = new PartitoBean();
