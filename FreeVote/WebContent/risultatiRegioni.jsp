@@ -63,8 +63,8 @@
     <%  
     	Collection<?> percentuali = (Collection<?>)request.getAttribute("percentuali");
 		if (percentuali != null && !percentuali.isEmpty()) { %>
-    <table class="table">
-    	<thead>
+<table class="table table-bordered">
+  		<thead class="thead-dark">
 	    	<tr>
 	    		<th scope="col">#</th>
 	 			<th scope="col">Partito</th>
@@ -91,7 +91,7 @@
 				}
 		    %>
     	</tbody>
-    </table>
-    </div>
+</table>
+</div>
 </body>
 </html>
