@@ -96,7 +96,7 @@
 		        </button>
 		      </div>
 		      <div class="modal-body">
-		        Ricorda che&comma; dopo aver votato&comma; il tuo codice sar&agrave; inutilizzabile e non potrai tornare indietro
+		        Ricorda che&comma; dopo aver votato&comma; il tuo codice sar&agrave; inutilizzabile e non potrai tornare indietro&excl;
 		      </div>
 		      <div class="modal-footer">
 		        <button type="button" class="btn btn-secondary" data-dismiss="modal">Annulla</button>

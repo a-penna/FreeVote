@@ -28,7 +28,7 @@
 
 	<%@ include file="header.jsp"%>
 <header class="head-banner">
-	<img src="/FreeVote/imgs/illustrazioneFreevote1.jpg" width="1494" height="752" class="img-fluid" alt="Responsive image">
+	<img src="/FreeVote/imgs/illustrazioneFreevote1.jpg" width="1494" height="752" class="img-fluid" alt="responsive image">
 </header>
 
 <section class="sezione-icone bg-light text-center">
@@ -38,21 +38,21 @@
 				<div class="mb-5">
 					<i class="bi bi-shield-check"></i>
 					<h3>Sicuro</h3>
-					<p class="lead mb-0">Il nostro sito web è sicuro ed efficace, rispetta la privacy ed è amministrato nel modo più trasparente possibile</p>
+					<p class="lead mb-0">FreeVote &egrave; sicuro ed efficace, rispetta la privacy ed &egrave; amministrato nel modo pi&ugrave; trasparente possibile</p>
 				</div>
 			</div>
 			<div class="col-lg-4">
 				<div class="mb-5">
 					<i class="bi bi-arrow-down-circle-fill"></i>
 					<h3>Facile da usare</h3>
-					<p class="lead mb-0">Grazie alla grafica interattiva e alla dinamicità il sito risulta di semplice utilizzo</p>
+					<p class="lead mb-0">Grazie alla grafica interattiva e alla dinamicit&agrave; il sito risulta di semplice utilizzo</p>
 				</div>
 			</div>
 			<div class="col-lg-4">
 				<div class="mb-5">
 					<i class="bi bi-clock"></i>
-					<h3>Online 24/7h</h3>
-					<p class="lead mb-0">Il sito web resterà sempre attivo per consultare i risultati anche dopo la fine delle votazioni</p>
+					<h3>Online 24/7</h3>
+					<p class="lead mb-0">FreeVote rester&agrave; sempre attivo per consultare i risultati anche dopo la fine delle votazioni</p>
 				</div>
 			</div>
 		</div>
@@ -77,7 +77,7 @@
 	</section> 
     <br>
     <div class="container py-4" align="center">
-    <a href="<%=response.encodeURL("/FreeVote/Elettore")%>" class="btn btn-success btn-lg">Vota</a>
+    <a href="<%=response.encodeURL("/FreeVote/Elettore")%>" class="btn btn-primary btn-lg">Vota</a>
     </div>
     <%@ include file="footer.jsp"%>
 </body>
