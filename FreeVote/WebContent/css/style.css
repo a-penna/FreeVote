@@ -12,8 +12,8 @@
 
 @media screen and (min-width: 768px){
 	.head-banner{
-		padding-top: 12rem;
-		padding-bottom: 12rem;
+		/*padding-top: 12rem;*/
+		padding-bottom: 7rem;
 	}
 	
 	.sezione-immagini .testo{
