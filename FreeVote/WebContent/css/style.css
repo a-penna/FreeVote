@@ -1,5 +1,12 @@
-.bi {
-    font-size: 60px;
+.dropdown:hover .dropdown-menu{
+	display: block;
+	margin-top: 0;
+}
+
+.dropdown-menu .dropdown-item{
+	color: #FFF;
+	text-decoration: none;
+	transition: 0.5s;
 }
 
 .sezione-immagini .immagine{

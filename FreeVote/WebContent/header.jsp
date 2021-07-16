@@ -7,8 +7,7 @@ boolean isAdmin = request.getSession(false) != null && request.getSession(false)
 <div class="container-fluid pb-5">   
 <nav class="navbar navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
 <a class="navbar-brand" href="<%=response.encodeURL("/FreeVote/home.jsp")%>">
-	<img src="/FreeVote/imgs/logoFreevote3.png" width="60" height="60"  alt="Logo FreeVote Admin">     FreeVote
-</a>
+	<img src="/FreeVote/imgs/logo freevote 3.png" width="50" height="50"  alt="Logo FreeVote Admin"></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -35,7 +34,7 @@ boolean isAdmin = request.getSession(false) != null && request.getSession(false)
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Risultati
         </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+        <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="<%=response.encodeURL("/FreeVote/Risultati")%>">Risultati Generali</a>
           <a class="dropdown-item" href="<%=response.encodeURL("/FreeVote/risultatiCoalizioni.jsp")%>">Risultati per coalizione</a>
           <a class="dropdown-item" href="<%=response.encodeURL("/FreeVote/risultatiPerEta.jsp")%>">Risultati per fascia d'et&agrave;</a>
@@ -64,4 +63,3 @@ boolean isAdmin = request.getSession(false) != null && request.getSession(false)
     </div>
   </nav>
 </div>
-  

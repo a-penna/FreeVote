@@ -39,7 +39,7 @@
 				<div class="email mx-auto mb-5 mb-lg-0">
 					<img class="img-fluid roundend-circle mb-3" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQpITCJk4Qdzd9NHmJgOPN-y1lLvc5RxDicsKXe-WszN1O4LSEddT--oqBtp_f1GJGVvnA&usqp=CAU" alt="Foto autore">
 						<h5>Lidia Cozzolino</h5>
-						<p class="font-weight-light mb-0">lidia.cozzolino@gmail.com</p>
+						<p class="font-weight-light mb-0">l.cozzolino13@studenti.unisa.it</p>
 				</div>	
 			</div>
 			<div class="col-lg-3">

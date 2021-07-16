@@ -31,9 +31,15 @@
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> 
 </head>            
 
-<body>
+<body class="bg-dark text-black">
 	<%@ include file="header.jsp"%>
-		<div class="container py-5">  
+		<div class="container py-5">
+		<div class="card text-white bg-secondary mb-3" style="max-width: 25rem;">
+  <div class="card-header text-center">
+    Amministratore
+  </div>
+  <div class="card-body text-left">
+    <h4 class="card-title text-left">Login</h4>
 	    <% boolean loggedAsElettore = request.getSession(false) != null && request.getSession(false).getAttribute("elettoreRoles")!= null;  
 	    
 	    if (loggedAsElettore)  { 
@@ -41,15 +47,13 @@
 		} else { %>
 		    <form action="Administrator" method="post"> 
 		        <fieldset>
-		             <legend>Inserisci credenziali amministratore&colon; </legend>
-		              
 		             <div class="form-group">
 		             	<label for="username">Username&colon;</label>
 				      <div class="input-group">
 				        <div class="input-group-prepend">
 				          <span class="input-group-text" id="inputGroupPrepend1"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
-																				  <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
-																				</svg></span>
+																				  <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>									
+																				  </svg></span>
 				        </div>
 				            <%
 								if (request.getAttribute("erroreUser") != null) {
@@ -85,11 +89,15 @@
 	                        <div class="invalid-feedback">Password errata&excl;</div> 
 	                     </div>
 		             </div>
-		             <input type="submit" class="btn btn-primary" value="Login"/>
+		             <input type="submit" class="btn btn-dark" value="Login"/>
+		             <div class="card-footer text-muted">
+		             </br>
+		             </div>
 		    	</fieldset>
 		    </form> 
 		</div>
-
+		</div>
+		</div>
 <% 	} %>
 </body>
 </html>

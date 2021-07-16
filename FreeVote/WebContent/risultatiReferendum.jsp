@@ -29,16 +29,11 @@
 	<!-- Latest compiled JavaScript --> 
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
-<body class="bg-light">
+<body class="bg-light text-center">
 	<%@ include file="header.jsp"%>
 	<div class="container-fluid py-5"> 
-    <h3>Di seguito i risultati del referendum&colon;</h3>
-	
-	<p>Numero di S&igrave;&colon; <%=si%></p>
-	<p>Numero di No&colon; <%=no%></p>
-	<p>Numero di Astenuti&colon; <%=astenuti%></p>
-	</div>
-	
+    </br><h3>Di seguito i risultati del referendum&colon;</h3>
+	</br>
 <table class="table table-bordered">
   	<thead class="thead-dark">
     <tr>
@@ -57,6 +52,6 @@
     </tr>
   </tbody>
 </table>
-
+</div>
 </body>
 </html>
