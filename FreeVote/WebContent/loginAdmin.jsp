@@ -42,33 +42,48 @@
 		    <form action="Administrator" method="post"> 
 		        <fieldset>
 		             <legend>Inserisci credenziali amministratore&colon; </legend>
+		              
 		             <div class="form-group">
-			             <label for="username">Username&colon;</label>
+		             	<label for="username">Username&colon;</label>
+				      <div class="input-group">
+				        <div class="input-group-prepend">
+				          <span class="input-group-text" id="inputGroupPrepend1"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+																				  <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+																				</svg></span>
+				        </div>
 				            <%
 								if (request.getAttribute("erroreUser") != null) {
-									%><input type="text" class="form-control is-invalid" id="username" placeholder="Inserisci username" value="<%=request.getAttribute("username")%>" name="username" required><% 
+									%><input type="text" class="form-control is-invalid" id="username" aria-describedby="inputGroupPrepend1" placeholder="Inserisci username" value="<%=request.getAttribute("username")%>" name="username" required><% 
 								} else if (request.getAttribute("username") != null) {
-									%><input type="text" class="form-control is-valid" id="username" placeholder="Inserisci username" value="<%=request.getAttribute("username")%>" name="username" required><% 
+									%><input type="text" class="form-control is-valid" id="username" aria-describedby="inputGroupPrepend1" placeholder="Inserisci username" value="<%=request.getAttribute("username")%>" name="username" required><% 
 								} else {
-									%><input type="text" class="form-control" id="username" placeholder="Inserisci username" name="username" required><% 
+									%><input type="text" class="form-control" id="username" aria-describedby="inputGroupPrepend1" placeholder="Inserisci username" name="username" required><% 
 								}
 							%>
 	                        <div class="valid-feedback">Corretto&excl;</div>
 	                        <div class="invalid-feedback">Username errato&excl;</div> 
+				      </div>
 			         </div>
 			         <div class="form-group">
-			             <label for="password">Password&colon;</label>
+			         <label for="password">Password&colon;</label>
+				      <div class="input-group">
+				        <div class="input-group-prepend">
+				          <span class="input-group-text" id="inputGroupPrepend2"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-lock-fill" viewBox="0 0 16 16">
+																				  <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/>
+																				</svg></span>
+				        </div>
 			           		<%
 								if (request.getAttribute("errorePass") != null) {
-									%><input type="password" class="form-control is-invalid" id="password" placeholder="Inserisci password" value="<%=request.getAttribute("password")%>" name="password" required><% 
+									%><input type="password" class="form-control is-invalid" id="password"  aria-describedby="inputGroupPrepend2" placeholder="Inserisci password" value="<%=request.getAttribute("password")%>" name="password" required><% 
 								} else if (request.getAttribute("password") != null) {
-									%><input type="password" class="form-control" id="password" placeholder="Inserisci password" value="<%=request.getAttribute("password")%>" name="password" required><% 
+									%><input type="password" class="form-control" id="password" placeholder="Inserisci password"  aria-describedby="inputGroupPrepend2" value="<%=request.getAttribute("password")%>" name="password" required><% 
 								} else {
-									%><input type="password" class="form-control" id="password" placeholder="Inserisci password" name="password" required><% 
+									%><input type="password" class="form-control" id="password" placeholder="Inserisci password"  aria-describedby="inputGroupPrepend2" name="password" required><% 
 								}
 							%>
 	                        <div class="valid-feedback">Corretto&excl;</div>
 	                        <div class="invalid-feedback">Password errata&excl;</div> 
+	                     </div>
 		             </div>
 		             <input type="submit" class="btn btn-primary" value="Login"/>
 		    	</fieldset>
