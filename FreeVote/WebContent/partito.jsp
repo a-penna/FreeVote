@@ -34,7 +34,7 @@
 </head>
 <body>
 	<%@ include file="header.jsp"%>
-	<div class="container-fluid pt-4">  
+	<div class="container py-5">  
 		<h1 align="center"><%=partito.getNome()%></h1>
 		
 		<% if (!coalizione.getNome().equals("")) { %>
@@ -61,8 +61,10 @@
 			while(it.hasNext()) {
 				CandidatoBean candidato = (CandidatoBean) it.next();
 				%> 
+					<span class="container py-5">
 					<img src="PhotoControl?type=candidato&id=<%=candidato.getCf()%>" onerror="this.src='./imgs/nophoto.png'">
-					<a href="Candidato?cf=<%=candidato.getCf()%>"><%=candidato.getNome()%> <%=candidato.getCognome()%></a> <%
+					<a href="Candidato?cf=<%=candidato.getCf()%>"><%=candidato.getNome()%> <%=candidato.getCognome()%></a>
+					</span> <%
 			}
 		%>
 		</div>

@@ -31,13 +31,18 @@
 </head>
 <body>
 	<%@ include file="header.jsp"%>
-	<div class="container py-4">
+	
+	<div class="container py-5">
+	
 	<h1><%=candidato.getNome()%> <%=candidato.getCognome()%></h1> 
     <a href="Partito?nome=<%=candidato.getPartito()%>"><%=candidato.getPartito()%></a>
 	<img src="PhotoControl?type=candidato&id=<%=candidato.getCf()%>" onerror="this.src='./imgs/nophoto.png'">
     <br>
-	<p><%=candidato.getCurriculum()%></p>
+    <br>
+	<p class="h5"><%=candidato.getCurriculum()%></p>
+	<hr>
 	<br>
 	</div>
+	
 </body>
 </html>
