@@ -22,6 +22,7 @@
 	<meta name="description" content="Pagina Partito">
 	<meta name="author" content="Bene Sabato, Cozzolino Lidia, Napoli Riccardo, Penna Alessandro">  
 	<title>FreeVote &dash; <%=partito.getNome()%> </title>
+	    <meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" type="text/css" href="/FreeVote/css/style.css">						
 	<!-- Latest compiled and minified CSS --> 
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> 
@@ -32,7 +33,7 @@
 	<!-- Latest compiled JavaScript --> 
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
-<body>
+<body class="bg-light">
 	<%@ include file="header.jsp"%>
 	<div class="container py-5">  
 		<h1 align="center"><%=partito.getNome()%></h1>
