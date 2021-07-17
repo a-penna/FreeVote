@@ -1,6 +1,8 @@
-.dropdown:hover .dropdown-menu{
+@media screen and (min-width: 1366px){
+	.dropdown:hover .dropdown-menu{
 	display: block;
 	margin-top: 0;
+}
 }
 
 .dropdown-menu .dropdown-item{
