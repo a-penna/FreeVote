@@ -39,28 +39,39 @@
 
 <body class="bg-light">
 	<%@ include file="header.jsp"%>
-	<div class="container-fluid py-5"> 
-    <br/>
-    <h1 align="center">Risultati&colon;</h1>
-        <%
-        Iterator<?> it = partiti.iterator();
-        Iterator<?> it2 = coalizioni.iterator();
-        while(it.hasNext() && it2.hasNext()) {
-        	CoalizioneBean coalizione= (CoalizioneBean)it2.next();
-            PartitoBean partito = (PartitoBean)it.next();    
-            if (!partito.getNome().equals("Scheda Bianca")) {  
-    %>
-            	<img src="PhotoControl?type=partito&id=<%=partito.getNome()%>" onerror="this.src='./imgs/nologo.png'">
-    			<% if (!coalizione.getNome().equals("")) { %>
-            		<p><%=partito.getNome()%> &lsqb;<%=coalizione.getNome()%>&rsqb; Voti: <%=partito.getn_votazioni_ricevute()%></p>
-            	<%} else { %>
-            		<p><%=partito.getNome()%> Voti: <%=partito.getn_votazioni_ricevute()%></p>
-            		<br>
-            	<% } 
-            	
-      	}
-        }
-    %>
-    </div>
+	<div class="container py-5"> 
+		<div class="row">
+			<div class="col-md">
+			    <h1>Risultati&colon;</h1>
+			</div>
+		</div>
+				<br>
+			        <%
+			        Iterator<?> it = partiti.iterator();
+			        Iterator<?> it2 = coalizioni.iterator();
+			        while(it.hasNext() && it2.hasNext()) {
+			        	CoalizioneBean coalizione= (CoalizioneBean)it2.next();
+			            PartitoBean partito = (PartitoBean)it.next();    
+			            if (!partito.getNome().equals("Scheda Bianca")) {  
+			    	%>
+			    			<div class="row py-3">
+				    			<div class="col-md-4">
+					            	<img src="PhotoControl?type=partito&id=<%=partito.getNome()%>" height=225 width=225 onerror="this.src='./imgs/nologo.png'">
+					            </div>
+					    		<% if (!coalizione.getNome().equals("")) { %>
+						    		<div class="col-md-4 align-self-center">
+						            	<p><%=partito.getNome()%> &lsqb;<%=coalizione.getNome()%>&rsqb; Voti&colon; <%=partito.getn_votazioni_ricevute()%></p>
+						            </div>
+					            <%} else { %>
+						            <div class="col-md-4 align-self-center">
+						            	<p><%=partito.getNome()%> Voti&colon; <%=partito.getn_votazioni_ricevute()%></p>
+						            </div>
+					            	<% } %>
+							</div>
+					 <% 
+					     }
+					 }
+					 %>
+	</div>
 </body>
 </html>
