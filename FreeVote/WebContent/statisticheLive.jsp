@@ -68,6 +68,108 @@
 	<%@ include file="header.jsp"%>
 	
 	<div class="container pt-5">
+	<h5>Di seguito i dati su&colon;</h5>
+	    <br>
+	<table class="table table-striped text-center">
+  <thead>
+    <tr>
+    <th scope="col"></th>
+      <th scope="col"><p>Elezioni Politiche</p></th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+<tbody>
+    <tr>
+      <th scope="row"># Voti espressi</th>
+      <td><%=nVotantiPol%></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <th scope="row"># Schede Bianche</th>
+      <td><%=nBianche%></td>
+      <td></td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+
+	<div class="container pt-5">
+	<table class="table table-striped text-center">
+  <thead>
+    <tr>
+    <th scope="col"></th>
+      <th scope="col"><p>Referendum</p></th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+<tbody>
+    <tr>
+      <th scope="row"># Preferenze espresse</th>
+      <td><%=nVotantiRef%></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <th scope="row"># Astenuti</th>
+      <td><%=nAstenuti%></td>
+      <td></td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+
+	<div class="container pt-5">
+	<table class="table table-striped text-center">
+  <thead>
+    <tr>
+    <th scope="col"></th>
+      <th scope="col"><p>Altre Statistiche</p></th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+<tbody>
+    <tr>
+      <th scope="row"># Totale non votanti</th>
+      <td><%=nonVotanti%></td>
+      <td></td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+
+	<div class="container pt-5">
+	<table class="table table-striped text-center">
+  <thead>
+    <tr>
+    <th scope="col"></th>
+      <th scope="col">Affluenza elettori nei diversi giorni delle votazioni</th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+<tbody>
+    <tr>
+      <th scope="row">Data</th>
+      <td></td>
+      <th scope="row">&percnt;Votanti</th>
+      <td></td>
+    </tr>
+    <tr>
+      <td>QUI DATA</td>
+      <td></td>
+      <td>QUI VOTANTI</td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+	
+	
+<!--  	
+	<div class="container pt-5">
 	    <h5>Di seguito i dati su&colon;</h5>
 	    <br>
 	    <h4>Elezioni Politiche</h4>
@@ -111,6 +213,7 @@
 				}
 	    %>
 	    </table>
+	    -->
 	 </div> 
 </body>
 </html>

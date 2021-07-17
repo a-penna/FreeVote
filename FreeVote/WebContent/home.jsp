@@ -28,7 +28,7 @@
 
 	<%@ include file="header.jsp"%>
 <header class="head-banner">
-	<img src="/FreeVote/imgs/ko.jpeg" class="img-fluid" alt="responsive image">
+	<img src="/FreeVote/imgs/illustrazione-banner.jpeg" class="img-fluid" alt="responsive image">
 </header>
 
 <section class="sezione-icone bg-light text-center">
