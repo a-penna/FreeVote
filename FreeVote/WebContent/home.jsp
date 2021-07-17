@@ -98,9 +98,6 @@
 	</div>
 	</section> 
     <br>
-    <div class="container py-4" align="center">
-    <a href="<%=response.encodeURL("/FreeVote/Elettore")%>" class="btn btn-primary btn-lg">Vota</a>
-    </div>
     <%@ include file="footer.jsp"%>
 </body>
 
