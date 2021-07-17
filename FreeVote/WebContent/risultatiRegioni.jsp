@@ -31,17 +31,17 @@
 </head>
 <body class="bg-light">
 	<%@ include file="header.jsp"%>
-	<div class="container-fluid pt-4"> 
-    <br>
-    <h3>Scegliendo il nome di una regione sarà possibile visualizzare 
-    	in percentuale le preferenze politiche espresse dagli abitanti</h3>
-
-	<%String regione = (String)request.getAttribute("regione");
+	<div class="container-fluid py-5">
+	<div class="card text-black bg-light mb-3">
+  		<div class="card-header bg-dark text-white">Scegliendo il nome di una regione sarà possibile visualizzare 
+    	in percentuale le preferenze politiche espresse dagli abitanti</div>
+  <div class="card-body">
+  	<%String regione = (String)request.getAttribute("regione");
 	  if (regione == null) regione = "";
 	%>
 	<div class="form-group">
     <form action="RisultatiReg" method="post"> 
-    	<label for="regione">Regione&colon; </label>
+    	<label for="regione">Regione&colon;</label>
         <select name="regione" class="form-control">
             <%
             Iterator<?> it = regioni.iterator();
@@ -63,10 +63,11 @@
     <%  
     	Collection<?> percentuali = (Collection<?>)request.getAttribute("percentuali");
 		if (percentuali != null && !percentuali.isEmpty()) { %>
+
 <table class="table table-bordered">
   		<thead class="thead-dark">
 	    	<tr>
-	    		<th scope="col">&num;</th>
+	    		<th scope="col">#</th>
 	 			<th scope="col">Partito</th>
 	 			<th scope="col">&percnt; Voti</th>
 			</tr>
@@ -75,14 +76,15 @@
 				<% 	it = percentuali.iterator();	
 					int i=0;
 					while(it.hasNext()) {
-						String[] perc = (String[])it.next();
-						if (!perc[0].equals("Scheda Bianca")) {
-							i++;
+						String perc = (String)it.next();
+						if (!perc.contains("Scheda Bianca")) {
+						i++;
+							String[] tableEl = perc.split(" ");
 				%> 
 				<tr>
 					<th scope="row"><%=i%></th>
-		 			<td><%=perc[0]%></td>
-		 			<td><%=perc[1]%></td>
+		 			<td><%=tableEl[0]%></td>
+		 			<td><%=tableEl[1]%></td>
 		    	</tr>
 			<%
 						}
@@ -91,7 +93,8 @@
 		    %>
     	</tbody>
 </table>
-    	<p>La percentuale rimanente di votanti ha consegnato scheda bianca</p>
-</div>
+  </div>
+  </div>
+ 	</div>
 </body>
 </html>
