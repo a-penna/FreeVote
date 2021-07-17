@@ -67,7 +67,7 @@
 <table class="table table-bordered">
   		<thead class="thead-dark">
 	    	<tr>
-	    		<th scope="col">#</th>
+	    		<th scope="col">&num;</th>
 	 			<th scope="col">Partito</th>
 	 			<th scope="col">&percnt; Voti</th>
 			</tr>
@@ -76,15 +76,14 @@
 				<% 	it = percentuali.iterator();	
 					int i=0;
 					while(it.hasNext()) {
-						String perc = (String)it.next();
-						if (!perc.contains("Scheda Bianca")) {
+						String[] perc = (String[])it.next();
+						if (!perc[0].equals("Scheda Bianca")) {
 						i++;
-							String[] tableEl = perc.split(" ");
 				%> 
 				<tr>
 					<th scope="row"><%=i%></th>
-		 			<td><%=tableEl[0]%></td>
-		 			<td><%=tableEl[1]%></td>
+		 			<td><%=perc[0]%></td>
+		 			<td><%=perc[1]%></td>
 		    	</tr>
 			<%
 						}
@@ -93,6 +92,7 @@
 		    %>
     	</tbody>
 </table>
+<p>La percentuale rimanente di votanti ha consegnato scheda bianca</p>
   </div>
   </div>
  	</div>
