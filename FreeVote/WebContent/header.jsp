@@ -61,7 +61,7 @@ boolean isAdmin = request.getSession(false) != null && request.getSession(false)
         %>
       </ul>
       <div class="my-2 my-lg-0">
-      <a href="<<%=response.encodeURL("/FreeVote/Elettore")%>" class="btn btn-info">Vota</a>
+      <a href="<%=response.encodeURL("/FreeVote/Elettore")%>" class="btn btn-info">Vota</a>
       </div>
     </div>
   </nav>

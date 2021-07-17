@@ -98,8 +98,11 @@
 <body>
 	<%@ include file="/header.jsp"%>
 	
-	<div class="container py-5">  
-    
+	<div class="container py-5">
+    	<div class="card text-white bg-info mb-3">
+  			<div class="card-header">Login</div>
+  			<div class="card-body">
+    			<h4 class="card-title">Inserisci credenziali&colon;</h4>
     <% 
     boolean loggedAsAdmin = request.getSession(false) != null && request.getSession(false).getAttribute("adminRoles")!= null;  
     
@@ -114,7 +117,6 @@
 	%>
 	    <form action="Elettore" method="post" onsubmit="event.preventDefault(); validate(this)"> 
 	        <fieldset>
-	            <legend>Inserisci credenziali&colon; </legend>
 				<div class="form-group">
 		            <label for="codice">Codice&colon;</label>
 		           		<%
@@ -242,10 +244,12 @@
 						%> 
 						 <div class="invalid-feedback">Il CAP inserito non corrisponde con il comune indicato&excl;</div> 
 				</div>
-				<input type="submit" class="btn btn-primary" value="Login"/>
+				<input type="submit" class="btn btn-dark" value="Login"/>
 			</fieldset>
 	    </form> 
 	</div>
 <%} %>
+ </div>
+</div>
 </body>
 </html> 
