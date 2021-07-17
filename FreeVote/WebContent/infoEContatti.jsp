@@ -27,28 +27,28 @@
 <section class="autori text-center bg-light">
 <div class="container pt-5">
 <div class="row">
-			<div class="col-md-3">
+			<div class="col-lg-3">
 				<div class="email mx-auto mb-5 mb-lg-0">
 						<img class="img-fluid roundend-circle mb-3" src="https://banner2.cleanpng.com/20180418/evq/kisspng-pointer-computer-icons-encapsulated-postscript-5ad7d9175bc6f9.5007918615240952553759.jpg" height="225" width="225" alt="Foto autore">
 						<h5>Sabato Bene</h5>
 						<p class="font-weight-light mb-0">s.bene@studenti.unisa.it</p>
 				</div>	
 			</div>
-			<div class="col-md-3">
+			<div class="col-lg-3">
 				<div class="email mx-auto mb-5 mb-lg-0">
 					<img class="img-fluid roundend-circle mb-3" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQpITCJk4Qdzd9NHmJgOPN-y1lLvc5RxDicsKXe-WszN1O4LSEddT--oqBtp_f1GJGVvnA&usqp=CAU" height="225" width="225" alt="Foto autore">
 					<h5>Lidia Cozzolino</h5>
 					<p class="font-weight-light mb-0">l.cozzolino13@studenti.unisa.it</p>
 				</div>	
 			</div>
-			<div class="col-md-3">
+			<div class="col-lg-3">
 				<div class="email mx-auto mb-5 mb-lg-0">
 					<img class="img-fluid roundend-circle mb-3" src="https://cdn.iconscout.com/icon/premium/png-512-thumb/thinking-man-pictogram-1667576-1416423.png" height="225" width="225" alt="Foto autore">
 					<h5>Riccardo Napoli</h5>
 					<p class="font-weight-light mb-0">email riccardo napoli</p>
 				</div>	
 			</div>
-			<div class="col-md-3">
+			<div class="col-lg-3">
 				<div class="email mx-auto mb-5 mb-lg-0">
 					<img class="img-fluid roundend-circle mb-3" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQo3EGZ5A6_u00Eolsq1gsSSDG5KUNTQFfj7IgsMCdK0biO05Evf2ng7VwJeApzJdH0zw&usqp=CAU" height="225" width="225" alt="Foto autore">
 					<h5>Alessandro Penna</h5>

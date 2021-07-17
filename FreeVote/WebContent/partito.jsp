@@ -42,7 +42,7 @@
 			<h2 align="center">&lsqb;<%=coalizione.getNome()%>&rsqb;</h2>
 		<%} %>
 		
-		<img src="PhotoControl?type=partito&id=<%=partito.getNome()%>" class = "center" onerror="this.src='./imgs/nologo.png'" alt="foto">
+		<img src="PhotoControl?type=partito&id=<%=partito.getNome()%>" class ="mx-auto d-block" onerror="this.src='./imgs/nologo.png'" alt="foto">
 	    <% boolean loggedIn = request.getSession(false) != null && request.getSession(false).getAttribute("elettoreRoles")!= null;
 		
 		if(loggedIn) { %>
@@ -50,7 +50,7 @@
 			 <form class="form" action="<%=response.encodeURL("/FreeVote/GestisciVoto")%>" method="post">
 			            <input type="hidden" name="action"  value="aggiornaPartito">
 			            <input type="hidden" name="partitoScelto"  value="<%=partito.getNome()%>">
-				      <input type="submit" class="btn btn-dark" value="Aggiungi alla scheda">
+				      <input type="submit" class="btn btn-primary" value="Aggiungi alla scheda">
 			</form>
 		<% }%>
 	    <br>
@@ -62,10 +62,14 @@
 			while(it.hasNext()) {
 				CandidatoBean candidato = (CandidatoBean) it.next();
 				%> 
-					<span class="container py-5">
-					<img src="PhotoControl?type=candidato&id=<%=candidato.getCf()%>" onerror="this.src='./imgs/nophoto.png'">
-					<a href="Candidato?cf=<%=candidato.getCf()%>"><%=candidato.getNome()%> <%=candidato.getCognome()%></a>
-					</span> <%
+					<div class="container py-5">
+						<div class="row py-3">
+				    		<div class="col-md-4">
+								<img src="PhotoControl?type=candidato&id=<%=candidato.getCf()%>" onerror="this.src='./imgs/nophoto.png'">
+								<a href="Candidato?cf=<%=candidato.getCf()%>"><%=candidato.getNome()%> <%=candidato.getCognome()%></a>
+							</div>
+						</div>
+					</div> <%
 			}
 		%>
 		</div>
