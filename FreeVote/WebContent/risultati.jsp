@@ -22,7 +22,7 @@
 <head>
 	<meta charset="UTF-8">
     <meta name="keywords" content="FreeVote, piattaforma voto, voto, voto online, risultati, risultati votazioni, votazioni, risultati generali">
-	<meta name="description" content="Risultati votazioni">
+	<meta name="description" content="Risultati Generali Votazioni">
 	<meta name="author" content="Bene Sabato, Cozzolino Lidia, Napoli Riccardo, Penna Alessandro">    
     <title>FreeVote &dash; Risultati Generali</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">

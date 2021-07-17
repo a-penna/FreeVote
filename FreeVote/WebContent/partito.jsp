@@ -18,7 +18,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-    <meta name="keywords" content="FreeVote, piattaforma voto, voto, voto online, partito, <%=partito.getNome()%>">
+    <meta name="keywords" content="FreeVote, piattaforma voto, voto, voto online, info partito, partito, <%=partito.getNome()%>">
 	<meta name="description" content="Pagina Partito">
 	<meta name="author" content="Bene Sabato, Cozzolino Lidia, Napoli Riccardo, Penna Alessandro">  
 	<title>FreeVote &dash; <%=partito.getNome()%> </title>
