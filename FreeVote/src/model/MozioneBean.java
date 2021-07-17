@@ -25,6 +25,10 @@ public class MozioneBean {
         this.id=id;
     }
 
+    public boolean isEmpty() {
+    	return this.id == -1;
+    }
+    
     public String toString() {
     	return getClass().getName() + "[testo=" + testo + ", id=" + id + "]";
     } 

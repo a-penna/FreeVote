@@ -25,7 +25,7 @@ public class MozioneControl extends HttpServlet {
 		String id = request.getParameter("id");
 		
 		if (id == null) {
-		 	response.sendRedirect(response.encodeRedirectURL("./Referendum"));
+		 	response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/Referendum"));
 		 	return;
 		}
 		
@@ -35,17 +35,22 @@ public class MozioneControl extends HttpServlet {
 		
 		try {
 			MozioneBean mozione = mozioneModel.doRetrieveByKey(id);
+			if (mozione.isEmpty()) {
+				response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/Referendum"));
+			 	return;
+			}
 			request.setAttribute("mozione", mozione); 
 			
 			Collection<AutoreBean> autori = autoreModel.doRetrieveByID(mozione.getID());
 			request.setAttribute("autori", autori);
 		} catch (SQLException e) {
 			Utility.printSQLException(e);
-		} catch (NumberFormatException e1) {
-		 	response.sendRedirect(response.encodeRedirectURL("./Referendum"));
+			response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/error/generic.jsp"));
+			return;
+		} catch (NumberFormatException ex) {
+		 	response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/Referendum"));
 		 	return;
 		}
-		
 		
 		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher(response.encodeURL("/mozione.jsp"));
 		dispatcher.forward(request, response);

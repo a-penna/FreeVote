@@ -130,7 +130,7 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
 		                    </div>
 		                    <div class="form-group">
 		                        <label for="foto">Carica Foto(Max&period; size&equals;10MB)&colon;</label>
-		                        <input id="foto" type="file" name="foto">  
+		                        <input id="foto" type="file" accept="image/*" name="foto">  
 		                    </div>
 		                 </fieldset>
 		                 <fieldset>

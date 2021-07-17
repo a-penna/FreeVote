@@ -101,7 +101,7 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
 							</div>
 							<div class="form-group">
 					        	<label for="logo">Carica Logo&colon;</label>
-					       	    <input id="logo" type="file" name="logo"> 
+					       	    <input id="logo" type="file" accept="image/*" name="logo"> 
 					        	<br>
 					        </div>
 				        </fieldset>
@@ -166,7 +166,7 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
 				        	</div>
 				        	<div class="form-group">
 					        	<label for="foto">Carica Foto&colon;</label>
-					       	    <input id="foto" type="file" name="foto">  
+					       	    <input id="foto" type="file" accept="image/*" name="foto">  
 					        </div>
 				        </fieldset>
 				        <button type="submit" class="btn btn-primary">Inserisci</button>

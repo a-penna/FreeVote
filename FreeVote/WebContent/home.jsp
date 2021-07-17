@@ -33,7 +33,7 @@
 
 <section class="sezione-icone bg-light text-center">
 	<div class="container">
-		<div class="row">
+		<div class="row py-5">
 			<div class="col-lg-4">
 				<div class="mb-5">
 					<i class="bi bi-shield-check"></i>
@@ -62,16 +62,38 @@
 <section class="sezione-immagini">
 	<div class="container-fluid p-0">
 		<div class="row no-gutters">
-			<div class="col-lg-6 order-lg-2 immagine" style="background-color: #000;"></div>
-			<div class="col-lg-6 order-lg-1"><p>Paragrafo Partiti</p></div>
+			<div class="col-lg-6 order-lg-2 immagine" style="background-image: url('./imgs/partito.jpg');background-size: cover;background-position:center;">
+			</div>
+			<div class="col-lg-6 order-lg-1">
+				<div class="bg-light mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center">
+       				 <div class="my-3 p-3">
+          				<h2 class="display-5">Paragrafo Partito</h2>
+         				 <p class="lead">Robe da scrivere</p>
+        			</div>
+      	   		</div>
+      		</div>
 		</div>
 		<div class="row no-gutters">
-			<div class="col-lg-6 immagine" style="background-color: #000;"></div>
-			<div class="col-lg-6"><p>Paragrafo Referendum</p></div>
+			<div class="col-lg-6 immagine" style="background-image: url('./imgs/referendum.jpg');background-size: cover;background-position:center;"></div>
+			<div class="col-lg-6 order-lg-1">
+				<div class="bg-light mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center">
+       				 <div class="my-3 p-3">
+          				<h2 class="display-5">Paragrafo Referendum</h2>
+         				 <p class="lead">Robe da scrivere</p>
+        			</div>
+      	   		</div>
+      		</div>
 		</div>
 		<div class="row no-gutters">
-			<div class="col-lg-6 order-lg-2 immagine" style="background-color: #000;"></div>
-			<div class="col-lg-6 order-lg-1"><p>Paragrafo Risultati</p></div>
+			<div class="col-lg-6 order-lg-2 immagine" style="background-image: url('./imgs/risultati1.jpg');background-size: cover;background-position:center;"></div>
+			<div class="col-lg-6 order-lg-1">
+				<div class="bg-light mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center">
+       				 <div class="my-3 p-3">
+          				<h2 class="display-5">Paragrafo Risultati</h2>
+         				 <p class="lead">Robe da scrivere</p>
+        			</div>
+      	   		</div>
+      		</div>
 		</div>
 	</div>
 	</section> 

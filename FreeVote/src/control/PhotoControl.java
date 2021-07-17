@@ -23,7 +23,7 @@ public class PhotoControl extends HttpServlet {
 		String id = (String) request.getParameter("id");
 		
 		if (type == null || id == null) {
-			response.sendRedirect(response.encodeRedirectURL("/FreeVote/PartitiControl"));
+			response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/home.jsp"));
 		 	return;
 		}
 		
@@ -34,6 +34,10 @@ public class PhotoControl extends HttpServlet {
 			PartitoModelDS partitoModel = new PartitoModelDS(ds);
 			try {
 				PartitoBean partito = partitoModel.doRetrieveByKey(id);
+				if (partito.isEmpty()) {
+					response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/home.jsp"));
+				 	return;
+				}
 				bt = partito.getLogo();
 				
 			} catch (SQLException e) {
@@ -47,6 +51,10 @@ public class PhotoControl extends HttpServlet {
 			CandidatoModelDS candidatoModel = new CandidatoModelDS(ds);
 			try {
 				CandidatoBean candidato = candidatoModel.doRetrieveByKey(id);
+				if (candidato.isEmpty()) {
+					response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/home.jsp"));
+				 	return;
+				}
 				bt = candidato.getFoto();
 				
 			} catch (SQLException e) {
@@ -54,9 +62,10 @@ public class PhotoControl extends HttpServlet {
 			}
 		}
 		else {
-			response.sendRedirect(response.encodeRedirectURL("/FreeVote/PartitiControl"));
+			response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/home.jsp"));
 		 	return;
 		}
+		
 		ServletOutputStream out = response.getOutputStream();
 		
 		if(bt != null) {

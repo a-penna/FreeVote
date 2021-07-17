@@ -4,7 +4,7 @@
 <%
  	MozioneBean mozione = (MozioneBean)request.getAttribute("mozione");
   	
- 	if(mozione == null || mozione.getID() == -1) {
+ 	if(mozione == null) {
  		response.sendRedirect(response.encodeRedirectURL("./Referendum"));
  		return;
  	}
