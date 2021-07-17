@@ -17,9 +17,15 @@
 	<!-- Latest compiled JavaScript --> 
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
-<body class="bg-light">
+<body class="bg-warning">
 	<%@ include file="/header.jsp"%>
-	<br/>
-	<h1>Errore 404&colon; Risorsa non trovata&excl;</h1>
+	<div class="container py-5">
+		<div class="alert alert-warning text-center py-5" role="alert">
+			<h1>Errore 404&colon; Risorsa non trovata&excl;</h1>
+		</div>
+	</div>
+	<div class="container">
+		<img class="mx-auto d-block" src="/FreeVote/imgs/vote.png" height="450" width="375">
+	</div>
 </body>
 </html>

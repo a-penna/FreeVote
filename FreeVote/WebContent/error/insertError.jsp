@@ -17,15 +17,18 @@
 	<!-- Latest compiled JavaScript --> 
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
-<body class="bg-light">
+<body class="bg-danger">
 	<%@ include file="/header.jsp"%>
-	<div class="container py-4">
-		<div class="alert alert-danger" role="alert">
-		  <h4 class="alert-heading">ERRORE&excl;</h4>
+	<div class="container py-5">
+		<div class="alert alert-danger text-center" role="alert">
+		  <h1 class="alert-heading">ERRORE&excl;</h1>
 		  <p> Errore nell&apos;inserimento dei dati all'interno del database</p>
 		  <hr>
 		   <p class="mb-0">Probabilmente i dati sono formattati in modo errato</p>
 		</div>
+	</div>
+	<div class="container">
+		<img class="mx-auto d-block" src="/FreeVote/imgs/vote.png" height="450" width="375">
 	</div>
 </body>
 </html>

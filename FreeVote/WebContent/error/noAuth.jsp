@@ -17,11 +17,16 @@
 	<!-- Latest compiled JavaScript --> 
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
-<body>
+<body class="bg-danger">
 	<%@ include file="/header.jsp"%>
-    <br/>
-    <h1>Errore&excl;</h1>
-    <br>
-    <p> Non hai l'autorizzazione per accedere a questo contenuto </p>
+    <div class="container py-5">
+    	<div class="alert alert-danger text-center" role="alert">
+		    <h1 class="alert-heading">ERRORE&excl;</h1>
+		    <p> Non hai l'autorizzazione per accedere a questo contenuto </p>
+	    </div>
+    </div>
+    <div class="container">
+		<img class="mx-auto d-block" src="/FreeVote/imgs/vote.png" height="450" width="375">
+	</div>
 </body>
 </html>
