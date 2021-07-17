@@ -56,7 +56,7 @@
 			    %>			
 			    			<div class="row py-3">
 				    			<div class="col-md-4">
-				    				<img src="PhotoControl?type=partito&id=<%=partito.getNome()%>" height=225 width=225 onerror="this.src='./imgs/nologo.png'">
+				    				<img src="PhotoControl?type=partito&id=<%=partito.getNome()%>" class="rounded" height="225" width="225" onerror="this.src='./imgs/nologo.png'">
 				    			</div>
 				    			<% if (!coalizione.getNome().equals("")) { %>
 				    				<div class="col-md-4 align-self-center">

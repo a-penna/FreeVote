@@ -42,7 +42,7 @@
 			<h2 align="center">&lsqb;<%=coalizione.getNome()%>&rsqb;</h2>
 		<%} %>
 		
-		<img src="PhotoControl?type=partito&id=<%=partito.getNome()%>" class ="mx-auto d-block" onerror="this.src='./imgs/nologo.png'" alt="foto">
+		<img src="PhotoControl?type=partito&id=<%=partito.getNome()%>" class ="mx-auto d-block" height="225" width="225" onerror="this.src='./imgs/nologo.png'" alt="foto">
 	    <% boolean loggedIn = request.getSession(false) != null && request.getSession(false).getAttribute("elettoreRoles")!= null;
 		
 		if(loggedIn) { %>
@@ -65,7 +65,7 @@
 					<div class="container py-5">
 						<div class="row py-3">
 				    		<div class="col-md-4">
-								<img src="PhotoControl?type=candidato&id=<%=candidato.getCf()%>" onerror="this.src='./imgs/nophoto.png'">
+								<img src="PhotoControl?type=candidato&id=<%=candidato.getCf()%>" class="rounded-circle mx-auto d-block" height="225" width="225" onerror="this.src='./imgs/nophoto.png'">
 								<a href="Candidato?cf=<%=candidato.getCf()%>"><%=candidato.getNome()%> <%=candidato.getCognome()%></a>
 							</div>
 						</div>

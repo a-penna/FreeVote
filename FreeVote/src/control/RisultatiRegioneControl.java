@@ -34,15 +34,22 @@ public class RisultatiRegioneControl extends HttpServlet {
 				dispatcher.forward(request, response);
 				return;
 			}
-			request.setAttribute("regione", regione);
 			
-			Collection<String> percentuali = votoModel.doRetrievePercByRegione(regione);
-
+			if (comuneModel.doRetrieveAllRegioni(regione).isEmpty()) {
+				response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/risultatiRegioni.jsp"));
+				return;
+			}
+			
+			request.setAttribute("regione", regione);
+			Collection<String[]> percentuali = votoModel.doRetrievePercByRegione(regione);
 			request.setAttribute("percentuali", percentuali);
+			
 			RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher(response.encodeURL("/risultatiRegioni.jsp"));
 			dispatcher.forward(request, response);
 		} catch(SQLException e) {
 			Utility.printSQLException(e);
+			response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/error/generic.jsp"));
+			return;
 		}
 		
 	}

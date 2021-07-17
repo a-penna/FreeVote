@@ -48,6 +48,7 @@ public class StatisticheControl extends HttpServlet {
 			} else {
 				request.setAttribute("nVotantiRef", "" + nVotantiRef);
 			}
+			
 			int nAstenuti = modelRef.doRetrieveNAstenuti();
 			if (nAstenuti == -1) {
 				response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/error/generic.jsp")); 
@@ -55,6 +56,7 @@ public class StatisticheControl extends HttpServlet {
 			} else {
 				request.setAttribute("nAstenuti", "" + nAstenuti);
 			}
+			
 			int nonVotanti = modelRef.doRetrieveNNonVotanti();
 			if (nonVotanti == -1) {
 				response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/error/generic.jsp")); 
@@ -68,6 +70,8 @@ public class StatisticheControl extends HttpServlet {
 		
 		} catch (SQLException e) {
 			Utility.printSQLException(e);
+			response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/error/generic.jsp"));
+			return;
 		}
 
 		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher(response.encodeURL("/statisticheLive.jsp"));

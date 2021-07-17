@@ -496,11 +496,11 @@ public class VotazionePoliticaModelDS implements Model<VotazionePoliticaBean> {
 		throw new UnsupportedOperationException();
 	}
 	
-	public Collection<String> doRetrievePercByRegione(String regione) throws SQLException {
+	public Collection<String[]> doRetrievePercByRegione(String regione) throws SQLException {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 
-		Collection<String> percentuali = new LinkedList<String>();
+		Collection<String[]> percentuali = new LinkedList<String[]>();
 
 		String selectSQL = "SELECT VP.partito, COUNT(*)*100/(SELECT COUNT(*) "
 														  + "FROM Votazione_Politica as VP2, Elettore as E2, Comune2 as C2 "
@@ -522,10 +522,9 @@ public class VotazionePoliticaModelDS implements Model<VotazionePoliticaBean> {
 			ResultSet rs = preparedStatement.executeQuery();
 
 			while (rs.next()) {
-				String percentuale = "";
-				percentuale += rs.getString("partito");
-				percentuale += " ";
-				percentuale += rs.getString("percentuale");
+				String[] percentuale = new String[2];
+				percentuale[0] = rs.getString("partito");
+				percentuale[1] = rs.getString("percentuale");
 				percentuali.add(percentuale);
 			}
 

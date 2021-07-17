@@ -42,6 +42,8 @@ public class PhotoControl extends HttpServlet {
 				
 			} catch (SQLException e) {
 				Utility.printSQLException(e);
+				response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/error/insertError.jsp"));
+				return;
 			}
 			
 		}
@@ -59,6 +61,8 @@ public class PhotoControl extends HttpServlet {
 				
 			} catch (SQLException e) {
 				Utility.printSQLException(e);
+				response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/error/insertError.jsp"));
+				return;
 			}
 		}
 		else {

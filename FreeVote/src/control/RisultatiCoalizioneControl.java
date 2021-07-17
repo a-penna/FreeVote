@@ -39,6 +39,8 @@ import utils.Utility;
                 request.setAttribute("nVotazioni", nVotazioni);  
 			} catch (SQLException e) {
 				Utility.printSQLException(e);
+				response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/error/generic.jsp"));
+				return;
 			}
 			
 			RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher(response.encodeURL("/risultatiCoalizioni.jsp"));

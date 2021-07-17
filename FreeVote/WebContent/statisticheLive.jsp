@@ -73,7 +73,6 @@
 	<table class="table table-striped table-bordered text-center">
   <thead>
     <tr>
-    <th scope="col"></th>
       <th scope="col"><p>Elezioni Politiche</p></th>
     </tr>
   </thead>
@@ -93,7 +92,6 @@
 	<table class="table table-striped table-bordered text-center">
   <thead>
     <tr>
-    <th scope="col"></th>
       <th scope="col"><p>Referendum</p></th>
     </tr>
   </thead>
@@ -113,13 +111,12 @@
 	<table class="table table-striped table-bordered text-center">
   <thead>
     <tr>
-    <th scope="col"></th>
       <th scope="col"><p>Altre Statistiche</p></th>
     </tr>
   </thead>
 <tbody>
     <tr>
-      <th scope="row"># Totale non votanti</th>
+      <th scope="row">&num; Totale non votanti</th>
       <td><%=nonVotanti%></td>
     </tr>
   </tbody>

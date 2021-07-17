@@ -69,8 +69,8 @@ public class InserisciCoalizioneControl extends HttpServlet{
     			return;
     		}
     	} catch(SQLException e) {
-    		Utility.printSQLException(e);
-			response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/error/generic.jsp"));
+			Utility.printSQLException(e);
+			response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/error/insertError.jsp"));
 			return;
     	}
     }
