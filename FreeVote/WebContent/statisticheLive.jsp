@@ -67,91 +67,95 @@
 <body class="bg-light">
 	<%@ include file="header.jsp"%>
 	
-	<div class="container pt-5">
-	<h5>Di seguito i dati su&colon;</h5>
+	<div class="container pt-5 text-center">
+	<h5><b>DATI STATISTICI</b></h5>
 	    <br>
-	<table class="table table-striped table-bordered text-center">
-  <thead>
-    <tr>
-      <th scope="col"><p>Elezioni Politiche</p></th>
-    </tr>
-  </thead>
-<tbody>
-    <tr>
-      <th scope="row"># Voti espressi</th>
-      <td><%=nVotantiPol%></td>
-    </tr>
-    <tr>
-      <th scope="row"># Schede Bianche</th>
-      <td><%=nBianche%></td>
-    </tr>
-  </tbody>
-</table>
+		<div class="card text-white bg-primary mb-3">
+  			<div class="card-header">AFFLUENZA ELETTORI NEI DIVERSI GIORNI DELLE VOTAZIONI</div>
+  			<div class="card-body bg-light">	    
+				<table class="table table-striped table-bordered text-center">
+						<tbody>
+						<% 	Iterator it = affluenza.iterator();	
+										while(it.hasNext()) { 
+											String perc = (String)it.next();
+											String[] tableEl = perc.split(" ");
+						%> 
+						    	<tr class="table-primary">
+						      	   <th scope="row">Data</th>
+						      	   <th scope="row">&percnt;Votanti</th>
+						    	</tr>
+						    	<tr>
+						      	   <td><%=tableEl[0]%></td>
+						           <td><%=tableEl[1]%></td>
+						    	</tr>
+						<%
+															}
+					    %>
+						</tbody>
+				</table>
+			</div>
+	 	</div>
+	 </div>
 
 	<div class="container pt-5">
-	<table class="table table-striped table-bordered text-center">
-  <thead>
-    <tr>
-      <th scope="col"><p>Referendum</p></th>
-    </tr>
-  </thead>
-<tbody>
-    <tr>
-      <th scope="row"># Preferenze espresse</th>
-      <td><%=nVotantiRef%></td>
-    </tr>
-    <tr>
-      <th scope="row"># Astenuti</th>
-      <td><%=nAstenuti%></td>
-    </tr>
-  </tbody>
-</table>
+  	    <div class="card text-white bg-warning mb-3">
+  			<div class="card-header">ELEZIONI POLITICHE</div>
+  			<div class="card-body bg-light">	    
+				<table class="table table-stripered table-bordered text-center">
+						<tbody>
+							    <tr class="table-warning">
+							       <th><p>Numero voti espressi</p></th>
+							       <th><p>Numero schede Bianche</p></th>
+					   	        </tr>
+							    <tr>
+								   <td><%=nVotantiPol%></td>
+								   <td><%=nBianche%></td>
+							    </tr>
+						</tbody>
+				</table>
+			</div>
+		</div>
+	 </div>
+
 
 	<div class="container pt-5">
-	<table class="table table-striped table-bordered text-center">
-  <thead>
-    <tr>
-      <th scope="col"><p>Altre Statistiche</p></th>
-    </tr>
-  </thead>
-<tbody>
-    <tr>
-      <th scope="row">&num; Totale non votanti</th>
-      <td><%=nonVotanti%></td>
-    </tr>
-  </tbody>
-</table>
-
+		<div class="card text-white bg-success mb-3">
+  			<div class="card-header">REFERENDUM</div>
+  			<div class="card-body bg-light">	    
+				<table class="table table-striped table-bordered text-center">
+						<tbody>
+								<tr class="table-success">
+      							   <th><p>Numero preferenze espresse</p></th>
+      							   <th><p>Numero astenuti</p></th>
+    							</tr>
+    							<tr>
+      							   <td><%=nVotantiRef%></td>
+      							   <td><%=nAstenuti%></td>
+    							</tr>
+      					</tbody>
+				</table>
+			</div>
+		 </div>
+	 </div>
+		
 	<div class="container pt-5">
-	<table class="table table-striped table-bordered text-center">
-  <thead>
-    <tr>
-      <th scope="col">Affluenza elettori nei diversi giorni delle votazioni</th>
-    </tr>
-  </thead>
-<tbody>
-<% 	Iterator it = affluenza.iterator();	
-				while(it.hasNext()) { 
-					String perc = (String)it.next();
-					String[] tableEl = perc.split(" ");
-			%> 
-    <tr>
-      <th scope="row">Data</th>
-      <th scope="row">&percnt;Votanti</th>
-    </tr>
-    <tr>
-      <td><%=tableEl[0]%></td>
-      <td><%=tableEl[1]%></td>
-    </tr>
-    <%
-				}
-	    %>
-  </tbody>
-</table>
-	
-	
-
-	 </div> 
+		<div class="card text-white bg-danger mb-3">
+  			<div class="card-header">ALTRE STATISTICHE</div>
+  			<div class="card-body bg-light"">	    
+				<table class="table table-striped table-bordered text-center">
+						<tbody>
+								<tr class="table-danger">
+      							   <th><p>Numero totale non votanti</p></th>
+    							</tr>
+    							<tr>
+      							   <td><%=nonVotanti%></td>
+    							</tr>
+      					</tbody>
+				</table>
+			</div>
+		 </div>
+	 </div>
+			  
 </body>
 </html>
 
