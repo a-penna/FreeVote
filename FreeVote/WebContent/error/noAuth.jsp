@@ -28,5 +28,6 @@
     <div class="container">
 		<img class="mx-auto d-block" src="/FreeVote/imgs/voteX.png" height="450" width="425">
 	</div>
+	<br>
 </body>
 </html>

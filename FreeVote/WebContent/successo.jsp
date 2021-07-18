@@ -23,7 +23,7 @@
 
 <body>
 	<%@ include file="header.jsp"%>
-	<div class="container py-4">
+	<div class="container py-5">
 		<div class="alert alert-success" role="alert">
 		  <h4 class="alert-heading">SUCCESSO&excl;</h4>
 		  <p>L&apos;operazione scelta &egrave; stata completata correttamente</p>
