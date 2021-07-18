@@ -25,7 +25,7 @@
 		</div>
 	</div>
     <div class="container">
-		<img class="mx-auto d-block" src="/FreeVote/imgs/vote.png" height="450" width="375">
+		<img class="mx-auto d-block" src="/FreeVote/imgs/voteX.png" height="450" width="425">
 	</div>
 </body>
 </html>
