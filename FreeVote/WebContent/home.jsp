@@ -67,8 +67,10 @@
 			<div class="col-lg-6 order-lg-1">
 				<div class="bg-light mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center">
        				 <div class="my-3 p-3">
-          				<h2 class="display-5">Paragrafo Partito</h2>
-         				 <p class="lead">Robe da scrivere</p>
+          				<h2 class="display-5">Partiti</h2>
+         				 <p class="lead">Permette all'elettore di visionare le informazioni di base sui partiti e sui candidati che ne fanno parte.
+         				 Sarà possibile valutare le proposte elettorali avanzate dai vari partiti, al fine di effettuare
+         				 una votazione più consapevole</p>
         			</div>
       	   		</div>
       		</div>
@@ -78,8 +80,10 @@
 			<div class="col-lg-6 order-lg-1">
 				<div class="bg-light mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center">
        				 <div class="my-3 p-3">
-          				<h2 class="display-5">Paragrafo Referendum</h2>
-         				 <p class="lead">Robe da scrivere</p>
+          				<h2 class="display-5">Referendum</h2>
+         				 <p class="lead">All'interno di questa sezione l'elettore avrà la possibilità di visionare il testo
+         				 della mozione per il referendum costituzionale confermativo/abrogativo in atto, favorendo
+         				 una scelta mirata</p>
         			</div>
       	   		</div>
       		</div>
@@ -89,8 +93,9 @@
 			<div class="col-lg-6 order-lg-1">
 				<div class="bg-light mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center">
        				 <div class="my-3 p-3">
-          				<h2 class="display-5">Paragrafo Risultati</h2>
-         				 <p class="lead">Robe da scrivere</p>
+          				<h2 class="display-5">Risultati</h2>
+         				 <p class="lead">Una volta terminata la votazione, i risultati vengono immediatamente recepiti.
+         				 L'elettore portà visualizzare i risultati in tempo reale insieme a vari report sull'attività di voto</p>
         			</div>
       	   		</div>
       		</div>
