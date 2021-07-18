@@ -24,17 +24,21 @@
 <body class="bg-light">
 	<%@ include file="/admin/admin-header.jsp"%>
     <div class="container-fluid py-5">
-	    <form action="<%=response.encodeURL("/FreeVote/EliminazioneElettore")%>" method="post"> 
-	    	<div class="form-group">
-		        <fieldset>
-		            <legend>Inserisci credenziali&colon; </legend>
-		            <label for="codice">Codice&colon;</label>
-		            <input id="codice" type="text" class="form-control" name="codice" placeholder="inserisci codice" required> 
-		            <br>
-		            <button type="submit" class="btn btn-primary">Elimina</button>
-		       </fieldset>
-	    	</div>
-		</form> 
+    	<div class="card text-black bg-light mb-3">
+  			<div class="card-header bg-dark text-white">Inserisci le credenziali dell&apos;elettore da eliminare&colon;</div>
+  			<div class="card-body">
+			    <form action="<%=response.encodeURL("/FreeVote/EliminazioneElettore")%>" method="post"> 
+			    	<div class="form-group">
+				        <fieldset>
+				            <label for="codice">Codice&colon;</label>
+				            <input id="codice" type="text" class="form-control" name="codice" placeholder="inserisci codice" required> 
+				            <br>
+				            <button type="submit" class="btn btn-primary">Elimina</button>
+				       </fieldset>
+			    	</div>
+				</form> 
+			</div>
+		</div>
     </div>
 
 </body>
