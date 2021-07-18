@@ -10,8 +10,8 @@
 	<meta name="author" content="Bene Sabato, Cozzolino Lidia, Napoli Riccardo, Penna Alessandro">    
     <title>FreeVote &dash; Elimina Elettore</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="/FreeVote/css/style.css" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> 
+    <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/style.css" />
 	<!-- jQuery library --> 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
 	<!-- Popper JS --> 
@@ -27,7 +27,7 @@
     	<div class="card text-black bg-light mb-3">
   			<div class="card-header bg-dark text-white">Inserisci le credenziali dell&apos;elettore da eliminare&colon;</div>
   			<div class="card-body">
-			    <form action="<%=response.encodeURL("/FreeVote/EliminazioneElettore")%>" method="post"> 
+			    <form action="<%=response.encodeURL(request.getContextPath() + "/EliminazioneElettore")%>" method="post"> 
 			    	<div class="form-group">
 				        <fieldset>
 				            <label for="codice">Codice&colon;</label>

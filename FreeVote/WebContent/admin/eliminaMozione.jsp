@@ -4,7 +4,7 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
 <% 
 	Collection<?> mozioni = (Collection<?>) request.getAttribute("mozioni");
     if (mozioni == null) {
-        response.sendRedirect(response.encodeURL("/FreeVote/EliminaMozione"));
+        response.sendRedirect(response.encodeURL(request.getContextPath() + "/EliminaMozione"));
         return;
     }
 %>
@@ -18,8 +18,8 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
 	<meta name="author" content="Bene Sabato, Cozzolino Lidia, Napoli Riccardo, Penna Alessandro">    
 	<title>FreeVote &dash; Elimina Mozione</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" type="text/css" href="/FreeVote/css/style.css" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> 
+	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/style.css" />
 	<!-- jQuery library --> 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
 	<!-- Popper JS --> 
@@ -38,9 +38,9 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
 			</div>
 			<div class="col-md-10">
 				<p>Inserisci i dati nel seguente form per eliminare una mozione già presente: <p>
-				<form action="<%=response.encodeURL("/FreeVote/EliminaMozione")%>" method="POST"> 
+				<form action="<%=response.encodeURL(request.getContextPath() + "/EliminaMozione")%>" method="POST"> 
 				        <fieldset>
-				        <legend>Inserisci l'ID della mozione da rimuovere&colon; </legend> <!-- Testo, Nome completo autore-->
+				        <legend>Inserisci l'ID della mozione da rimuovere&colon; </legend> 
 					<div class="form-group">
 							<select class="form-control" name="id" required>
 								<option disabled selected>ID della mozione&colon;</option>

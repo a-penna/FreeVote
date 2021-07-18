@@ -47,15 +47,15 @@ public class InserisciCandidatoControl extends HttpServlet {
         	return;
         }
         
-		if (!Utility.checkNomeCognome(nome)) {
+		if (!Utility.checkNomeCognome(nome.trim())) {
 			request.setAttribute("erroreNome", "true");
 			error = true;
 		}
-		if (!Utility.checkNomeCognome(cognome)) {
+		if (!Utility.checkNomeCognome(cognome.trim())) {
 			request.setAttribute("erroreCognome", "true");
 			error = true;
 		}
-		if (!Utility.checkCf(cf)) {
+		if (!Utility.checkCf(cf.trim())) {
 			request.setAttribute("erroreCf", "true");
 			error = true;
 		}

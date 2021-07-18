@@ -4,7 +4,7 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
 <% 
 	Collection<?> coalizioni = (Collection<?>) request.getAttribute("listaCoalizioni");
     if (coalizioni == null) {
-        response.sendRedirect(response.encodeURL("/FreeVote/EliminaCoalizione"));
+        response.sendRedirect(response.encodeURL(request.getContextPath() + "/EliminaCoalizione"));
         return;
     }
 %>
@@ -18,8 +18,8 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
 	<meta name="author" content="Bene Sabato, Cozzolino Lidia, Napoli Riccardo, Penna Alessandro">    
 	<title>FreeVote &dash; Elimina Coalizione</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" type="text/css" href="/FreeVote/css/style.css" />
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> 
+	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/style.css" />
 	<!-- jQuery library --> 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
 	<!-- Popper JS --> 
@@ -39,7 +39,7 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
 			<div class="col-md-10">
 				<h4>Scegliere il nome della coalizione per procedere&comma; ricorda che 
 				saranno cancellati tutti i dati della coalizione ma non quelli dei singoli partiti che la compongono</h4>
-				<form action="<%=response.encodeURL("/FreeVote/EliminaCoalizione")%>" method="post"> 
+				<form action="<%=response.encodeURL(request.getContextPath() + "/EliminaCoalizione")%>" method="post"> 
 					<div class="form-group">
 			        <select class="form-control" name="coalizione" required>
 			        		<option disabled selected>Scegli Coalizione&colon;</option>

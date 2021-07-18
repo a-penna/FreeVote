@@ -5,14 +5,14 @@
     Collection<?> partiti = (Collection<?>) request.getAttribute("partiti");
 
     if (partiti == null) {
-        response.sendRedirect(response.encodeRedirectURL("./PartitiControl"));
+        response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/PartitiControl"));
         return;
     }
     
     Collection<?> coalizioni = (Collection<?>) request.getAttribute("coalizioni");
 
     if (coalizioni == null) {
-        response.sendRedirect(response.encodeRedirectURL("./PartitiControl"));
+        response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/PartitiControl"));
         return;
     }
 %>    
@@ -26,9 +26,9 @@
 	<meta name="author" content="Bene Sabato, Cozzolino Lidia, Napoli Riccardo, Penna Alessandro">    
     <title>FreeVote &dash; Partiti</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="/FreeVote/css/style.css">						
 	<!-- Latest compiled and minified CSS --> 
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> 
+    <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/style.css">						
 	<!-- jQuery library --> 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
 	<!-- Popper JS --> 

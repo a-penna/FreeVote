@@ -5,7 +5,7 @@
     Collection<?> partiti = (Collection<?>) request.getAttribute("partiti");
      
     if(partiti == null) {
-        response.sendRedirect(response.encodeRedirectURL("./EtaControl")); 
+        response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/EtaControl")); 
         return;
     }
 %>
@@ -19,9 +19,9 @@
 	<meta name="author" content="Bene Sabato, Cozzolino Lidia, Napoli Riccardo, Penna Alessandro">    
     <title>FreeVote &dash; Risultati votazioni per et&agrave;</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="/FreeVote/css/style.css">						
 	<!-- Latest compiled and minified CSS --> 
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> 
+    <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/style.css">						
 	<!-- jQuery library --> 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
 	<!-- Popper JS --> 
@@ -70,7 +70,7 @@
 	<%String partito = (String)request.getAttribute("partito");
 	  if (partito == null) partito = "";
 	%>
-    <form action="EtaControl" method="post" onsubmit="event.preventDefault(); validate(this)"> 
+    <form action="<%=response.encodeURL(request.getContextPath() + "/EtaControl")%>" method="post" onsubmit="event.preventDefault(); validate(this)"> 
      <fieldset>
        <legend>Scegliendo il nome di un partito ed inserendo una particolare fascia d'et&agrave; potrai visualizzare, in percentuale,
     quante votazioni quel partito ha ricevuto in quella specifica fascia d'et&agrave;</legend>
@@ -147,7 +147,7 @@
 		  if (percentuale != null) { %>
 		  <br>
 		  <div class="alert alert-info" role="alert">
-			  <a href="Partito?nome=<%=request.getParameter("partito")%>" class="alert-link"><%=request.getParameter("partito")%></a> ha ricevuto dalla fascia d'et&agrave;
+			  <a href="<%=response.encodeURL(request.getContextPath() + "/Partito?nome=" + request.getParameter("partito"))%>" class="alert-link"><%=request.getParameter("partito")%></a> ha ricevuto dalla fascia d'et&agrave;
 			   <%=request.getAttribute("min")%>&sol;<%=request.getAttribute("max")%> il <%=percentuale%>&percnt; dei voti
 		  </div>
 		 <% }

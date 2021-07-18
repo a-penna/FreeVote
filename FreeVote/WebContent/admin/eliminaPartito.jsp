@@ -4,7 +4,7 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
 <% 
 	Collection<?> partiti = (Collection<?>) request.getAttribute("listaPartiti");
     if (partiti == null) {
-        response.sendRedirect(response.encodeURL("/FreeVote/EliminaPartito"));
+        response.sendRedirect(response.encodeURL(request.getContextPath() + "/EliminaPartito"));
         return;
     }
 %>
@@ -18,8 +18,8 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
 	<meta name="author" content="Bene Sabato, Cozzolino Lidia, Napoli Riccardo, Penna Alessandro">    
 	<title>FreeVote &dash; Elimina Partito</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" type="text/css" href="/FreeVote/css/style.css" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> 
+	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/style.css">
 	<!-- jQuery library --> 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
 	<!-- Popper JS --> 
@@ -37,7 +37,7 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
 				<%@ include file="/admin/politicheMenu.jsp" %>
 			</div>
 			<div class="col-md-10">
-				<form action="<%=response.encodeURL("/FreeVote/EliminaPartito")%>" method="post"> 
+				<form action="<%=response.encodeURL(request.getContextPath() + "/EliminaPartito")%>" method="post"> 
 					    <fieldset>
 					        <legend>Inserisci informazioni sul partito&colon; </legend>
 							<div class="form-group">

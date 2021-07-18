@@ -10,9 +10,9 @@
 	<meta name="author" content="Bene Sabato, Cozzolino Lidia, Napoli Riccardo, Penna Alessandro">  
 	<title>FreeVote &dash; Info e Contatti</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" type="text/css" href="/FreeVote/css/style.css">						
 	<!-- Latest compiled and minified CSS --> 
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> 
+	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/style.css">						
 	<!-- jQuery library --> 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
 	<!-- Popper JS --> 
@@ -24,9 +24,9 @@
 	<%@ include file="header.jsp"%>
 	<br>
 	
-<section class="autori text-center bg-light">
-<div class="container pt-5">
-<div class="row">
+	<section class="autori text-center bg-light">
+	<div class="container pt-5">
+	<div class="row">
 			<div class="col-lg-3">
 				<div class="email mx-auto mb-5 mb-lg-0">
 						<img class="img-fluid roundend-circle mb-3" src="https://banner2.cleanpng.com/20180418/evq/kisspng-pointer-computer-icons-encapsulated-postscript-5ad7d9175bc6f9.5007918615240952553759.jpg" height="225" width="225" alt="Foto autore">

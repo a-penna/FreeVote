@@ -4,7 +4,7 @@
 <% 
 	String si = (String)request.getAttribute("si");
 	if(si == null) {
-		response.sendRedirect(response.encodeRedirectURL("/FreeVote/RisultatiReferendum"));
+		response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/RisultatiReferendum"));
 		return; 
 	}
 	String no = (String)request.getAttribute("no");
@@ -20,9 +20,9 @@
 	<meta name="author" content="Bene Sabato, Cozzolino Lidia, Napoli Riccardo, Penna Alessandro">    
 	<title>FreeVote &dash; Risultati Referendum</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="/FreeVote/css/style.css">						
 	<!-- Latest compiled and minified CSS --> 
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> 
+    <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/style.css">						
 	<!-- jQuery library --> 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
 	<!-- Popper JS --> 
@@ -33,8 +33,8 @@
 <body class="bg-light text-center">
 	<%@ include file="header.jsp"%>
 	<div class="container-fluid py-5"> 
-    </br><h3>Di seguito i risultati del referendum&colon;</h3>
-	</br>
+    <br><h3>Di seguito i risultati del referendum&colon;</h3>
+	<br>
 <table class="table table-bordered">
   	<thead class="thead-dark">
     <tr>

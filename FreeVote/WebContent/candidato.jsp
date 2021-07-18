@@ -5,7 +5,7 @@
  	CandidatoBean candidato = (CandidatoBean)request.getAttribute("candidato");
   	
  	if(candidato == null) {
- 		response.sendRedirect(response.encodeRedirectURL("./PartitiControl"));
+ 		response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/PartitiControl"));
  		return;
  	}
 %>    
@@ -17,11 +17,11 @@
     <meta name="keywords" content="FreeVote, piattaforma voto, voto, voto online, candidato, <%=candidato.getPartito()%>, <%=candidato.getNome()%>">
 	<meta name="description" content="Pagina Candidato">
 	<meta name="author" content="Bene Sabato, Cozzolino Lidia, Napoli Riccardo, Penna Alessandro">  
-	<title>FreeVote &dash; <%=candidato.getNome()%> <%=candidato.getCognome()%> </title>
+	<title>FreeVote &dash; <%=candidato.getNome()%> <%=candidato.getCognome()%></title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	 <link rel="stylesheet" type="text/css" href="/FreeVote/css/style.css">						
 	<!-- Latest compiled and minified CSS --> 
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> 
+	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/style.css">						
 	<!-- jQuery library --> 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
 	<!-- Popper JS --> 
@@ -35,14 +35,21 @@
 	
 	<div class="container py-5">
 	
-	<h1><%=candidato.getNome()%> <%=candidato.getCognome()%></h1> 
-    <a href="Partito?nome=<%=candidato.getPartito()%>"><%=candidato.getPartito()%></a>
-	<img src="PhotoControl?type=candidato&id=<%=candidato.getCf()%>" onerror="this.src='./imgs/nophoto.png'">
+	<h1><%=candidato.getNome()%> <%=candidato.getCognome()%></h1>
+	<br> 
+	<div class="card float-md-left mr-5 mb-3" style="width: 18rem;">
+	  <img class="card-img-top" src="PhotoControl?type=candidato&id=<%=candidato.getCf()%>" alt="<%=candidato.getNome()%>" onerror="this.src='./imgs/nophoto.png'">
+	  <div class="card-body">
+	    <p class="card-text"><a href="Partito?nome=<%=candidato.getPartito()%>"><%=candidato.getPartito()%></a></p>
+	  </div>
+	</div>
     <br>
     <br>
-	<p class="h5"><%=candidato.getCurriculum()%></p>
+    <div class="container">
+	<p class="h5 text-justify font-weight-normal"><%=candidato.getCurriculum()%></p>
 	<hr>
 	<br>
+	</div>
 	</div>
 	
 </body>

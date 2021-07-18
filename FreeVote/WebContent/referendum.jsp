@@ -5,7 +5,7 @@
  	Collection<?> mozioni = (Collection<?>) request.getAttribute("mozioni");
   	
  	if(mozioni == null) {
- 		response.sendRedirect(response.encodeRedirectURL("./Referendum")); 
+ 		response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/Referendum")); 
  		return;
  	}
 %>
@@ -19,9 +19,9 @@
 	<meta name="author" content="Bene Sabato, Cozzolino Lidia, Napoli Riccardo, Penna Alessandro">  
 	<title>FreeVote &dash; Referendum</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" type="text/css" href="/FreeVote/css/style.css">						
 	<!-- Latest compiled and minified CSS --> 
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> 
+	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/style.css">						
 	<!-- jQuery library --> 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
 	<!-- Popper JS --> 
@@ -41,7 +41,7 @@
 			Iterator<?> it  = mozioni.iterator();
 			while(it.hasNext()) { 
 				MozioneBean mozione = (MozioneBean)it.next();%>
-				<a href="Mozione?id=<%=mozione.getID()%>" class="btn btn-primary btn-lg btn-dark btn-block">Mozione <%=mozione.getID()%></a>
+				<a href="<%=response.encodeURL(request.getContextPath() + "/Mozione?id=" + mozione.getID())%>" class="btn btn-primary btn-lg btn-dark btn-block">Mozione <%=mozione.getID()%></a>
 				<br/> 
 			<% } %>
 		</div>

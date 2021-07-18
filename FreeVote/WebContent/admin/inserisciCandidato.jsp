@@ -11,10 +11,10 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
 	<meta name="author" content="Bene Sabato, Cozzolino Lidia, Napoli Riccardo, Penna Alessandro">    
 	<title>FreeVote &dash; Inserisci Candidato</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-	<script type="text/javascript" src="/FreeVote/scripts/script.js"></script>
-    <link rel="stylesheet" type="text/css" href="/FreeVote/css/style.css">						
 	<!-- Latest compiled and minified CSS --> 
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> 
+    <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/style.css">						
+	<script type="text/javascript" src="<%=request.getContextPath()%>/scripts/script.js"></script>
 	<!-- jQuery library --> 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
 	<!-- Popper JS --> 
@@ -73,7 +73,7 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
 				</div>
 				<div class="col-md-10">
 					<p>Inserisci i dati nel seguente form per inserire un nuovo candidato all&apos;interno di un partito gi&agrave; registrato sulla piattaforma&colon;<p>
-					<form name="form" action="<%=response.encodeURL("/FreeVote/InserisciCandidato")%>" method="post" enctype="multipart/form-data" onsubmit="event.preventDefault(); validate(this)"> 
+					<form name="form" action="<%=response.encodeURL(request.getContextPath() + "/InserisciCandidato")%>" method="post" enctype="multipart/form-data" onsubmit="event.preventDefault(); validate(this)"> 
 		                 <fieldset>
 		                    <legend>Informazioni sul candidato&colon; </legend>
 		                    <div class="form-group">

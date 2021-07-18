@@ -1,6 +1,6 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8" import="java.util.*, model.*"%>
+
 
 <!DOCTYPE html>
 <html>
@@ -11,10 +11,10 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
 	<meta name="author" content="Bene Sabato, Cozzolino Lidia, Napoli Riccardo, Penna Alessandro">    
 	<title>FreeVote &dash; Elimina Candidato</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<script type="text/javascript" src="/FreeVote/scripts/script.js"></script>
-	<link rel="stylesheet" type="text/css" href="/FreeVote/css/style.css" />
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> 
+	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/style.css" />
 	<!-- jQuery library --> 
+	<script type="text/javascript" src="<%=request.getContextPath()%>/scripts/script.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
 	<!-- Popper JS --> 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script> 
@@ -49,7 +49,7 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
 			</div>
 			<div class="col-md-10">
 				<p>Inserire i dati del candidato da eliminare&colon;</p>
-				<form action="<%=response.encodeURL("/FreeVote/EliminazioneCandidato")%>" method="post" onsubmit="event.preventDefault(); validate(this)"> 
+				<form action="<%=response.encodeURL(request.getContextPath() + "/EliminazioneCandidato")%>" method="post" onsubmit="event.preventDefault(); validate(this)"> 
 			    	<div class="form-group">
 			        	<label for="cf">Codice Fiscale&colon;</label>
 			           	<%

@@ -12,9 +12,9 @@
 	<meta name="author" content="Bene Sabato, Cozzolino Lidia, Napoli Riccardo, Penna Alessandro">
     <title>FreeVote &dash; HomePage</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="/FreeVote/css/style.css">						
 	<!-- Latest compiled and minified CSS --> 
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> 
+    <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/style.css">						
 	<!-- jQuery library --> 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
 	<!-- Popper JS --> 
@@ -28,7 +28,7 @@
 
 	<%@ include file="header.jsp"%>
 <header class="head-banner">
-	<img src="/FreeVote/imgs/illustrazione-banner.jpeg" class="img-fluid" alt="responsive image">
+	<img src="<%=request.getContextPath()%>/imgs/illustrazione-banner.jpeg" class="img-fluid" alt="responsive image">
 </header>
 
 <section class="sezione-icone bg-light text-center">
@@ -68,9 +68,9 @@
 				<div class="bg-light mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center">
        				 <div class="my-3 p-3">
           				<h2 class="display-5">Partiti</h2>
-         				 <p class="lead">Permette all'elettore di visionare le informazioni di base sui partiti e sui candidati che ne fanno parte.
-         				 Sarà possibile valutare le proposte elettorali avanzate dai vari partiti, al fine di effettuare
-         				 una votazione più consapevole</p>
+         				 <p class="lead">Permette all&apos;elettore di visionare le informazioni di base sui partiti e sui candidati che ne fanno parte&period;
+         				 Sar&agrave; possibile valutare le proposte elettorali avanzate dai vari partiti&comma; al fine di effettuare
+         				 una votazione pi&ugrave; consapevole</p>
         			</div>
       	   		</div>
       		</div>
@@ -81,8 +81,8 @@
 				<div class="bg-light mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center">
        				 <div class="my-3 p-3">
           				<h2 class="display-5">Referendum</h2>
-         				 <p class="lead">All'interno di questa sezione l'elettore avrà la possibilità di visionare il testo
-         				 della mozione per il referendum costituzionale confermativo/abrogativo in atto, favorendo
+         				 <p class="lead">All&apos;interno di questa sezione l&apos;elettore avr&agrave; la possibilit&agrave; di visionare il testo
+         				 della mozione per il referendum costituzionale confermativo&sol;abrogativo in atto&comma; favorendo
          				 una scelta mirata</p>
         			</div>
       	   		</div>
@@ -94,8 +94,8 @@
 				<div class="bg-light mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center">
        				 <div class="my-3 p-3">
           				<h2 class="display-5">Risultati</h2>
-         				 <p class="lead">Una volta terminata la votazione, i risultati vengono immediatamente recepiti.
-         				 L'elettore portà visualizzare i risultati in tempo reale insieme a vari report sull'attività di voto</p>
+         				 <p class="lead">Una volta terminata la votazione&comma; i risultati vengono immediatamente recepiti&period;
+         				 L&apos;elettore port&agrave; visualizzare i risultati in tempo reale insieme a vari report sull&apos;attivit&agrave; di voto</p>
         			</div>
       	   		</div>
       		</div>
