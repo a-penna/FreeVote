@@ -18,8 +18,8 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
 	<meta name="author" content="Bene Sabato, Cozzolino Lidia, Napoli Riccardo, Penna Alessandro">    
 	<title>FreeVote &dash; Elimina Partito da una Coalizione</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> 
 	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/style.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> 
 	<!-- jQuery library --> 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
 	<!-- Popper JS --> 
@@ -27,6 +27,20 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
 	<!-- Latest compiled JavaScript --> 
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> 
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script>
+        function validate(obj) {	
+            var valid = true;	
+			
+            var nome = document.getElementsByName("nome")[0];
+            if((nome.value == "Seleziona Partito")) {
+                valid = false;
+                nome.classList.add("is-invalid");
+                nome.focus();
+            } 
+            
+            if(valid) obj.submit();
+        }
+    </script> 
 </head>            
 
 <body class="bg-light">
@@ -38,11 +52,11 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
 			</div>
 			<div class="col-md-10">
 				<p>Selezionare un partito per scollegarlo dalla sua coalizione&comma; nel caso in cui non ne abbia una l'operazione fallir&agrave;&period;</p>
-				<form action="<%=response.encodeURL(request.getContextPath() + "/EliminaPartitoCoalizione")%>" method="post"> 
+				<form action="<%=response.encodeURL(request.getContextPath() + "/EliminaPartitoCoalizione")%>" method="post" onsubmit="event.preventDefault(); validate(this)"> 
 					    <fieldset>
 						<div class="form-group">
-					        <select name="nome" class="form-control" required>
-					        	<option disabled selected>Partito&colon;</option>
+					        <select name="nome" class="custom-select">
+					        	<option disabled selected>Seleziona Partito</option>
 					            <%
 					            Iterator<?> it = partiti.iterator();
 					            while(it.hasNext()) {
@@ -53,6 +67,7 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
 					            } 
 					            %>
 						    </select> 
+						     <div class="invalid-feedback">Seleziona il partito da eliminare&excl;</div>
 						</div>
 					    	<button type="submit" class="btn btn-primary">Elimina</button>
 						</fieldset>

@@ -20,8 +20,8 @@
     <title>FreeVote &dash; Login Admin</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	<!-- Latest compiled and minified CSS --> 
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> 
 	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/style.css">						
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> 
 	<!-- jQuery library --> 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
 	<!-- Popper JS --> 
@@ -34,17 +34,17 @@
 <body class="bg-dark text-black">
 	<%@ include file="header.jsp"%>
 		<div class="container py-5">
-		<div class="card text-white bg-secondary mb-3" style="max-width: 25rem;">
-  <div class="card-header text-center">
-    Amministratore
-  </div>
-  <div class="card-body text-left">
-    <h4 class="card-title text-left">Login</h4>
 	    <% boolean loggedAsElettore = request.getSession(false) != null && request.getSession(false).getAttribute("elettoreRoles")!= null;  
 	    
 	    if (loggedAsElettore)  { 
-			%><h3>Si prega di effettuare il logout da elettore prima di procedere con la normale autenticazione da admin</h3><%
+			%><h3 class="text-white">Si prega di effettuare il logout da elettore prima di procedere con la normale autenticazione da admin</h3><%
 		} else { %>
+		<div class="card text-white bg-secondary mb-3" style="max-width: 25rem;">
+		  <div class="card-header text-center">
+		    Amministratore
+		  </div>
+		  <div class="card-body text-left">
+		    <h4 class="card-title text-left">Login</h4>
 		    <form action="Administrator" method="post"> 
 		        <fieldset>
 		             <div class="form-group">
@@ -93,9 +93,9 @@
 		    	</fieldset>
 		    </form> 
 		</div>
-		             <div class="card-footer text-muted">
-		             <br>
-		             </div>
+		<div class="card-footer text-muted">
+		 <br>
+	  </div>
 	 </div>
   </div>
 <% 	} %>

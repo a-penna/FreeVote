@@ -18,8 +18,8 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
 	<meta name="author" content="Bene Sabato, Cozzolino Lidia, Napoli Riccardo, Penna Alessandro">    
 	<title>FreeVote &dash; Elimina Mozione</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> 
 	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/style.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> 
 	<!-- jQuery library --> 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
 	<!-- Popper JS --> 
@@ -27,6 +27,20 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
 	<!-- Latest compiled JavaScript --> 
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> 
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script>
+        function validate(obj) {	
+            var valid = true;	
+			
+            var idMozione = document.getElementsByName("id")[0];
+            if((idMozione.value == "Seleziona ID")) {
+                valid = false;
+                idMozione.classList.add("is-invalid");
+                idMozione.focus();
+            } 
+            
+            if(valid) obj.submit();
+        }
+    </script> 
 </head>            
 <body class="bg-light">
 
@@ -37,23 +51,24 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
 				<%@ include file="/admin/referendumMenu.jsp" %>
 			</div>
 			<div class="col-md-10">
-				<p>Inserisci i dati nel seguente form per eliminare una mozione già presente: <p>
-				<form action="<%=response.encodeURL(request.getContextPath() + "/EliminaMozione")%>" method="POST"> 
+				<p>Inserisci i dati nel seguente form per eliminare una mozione gi&agrave; presente&colon; <p>
+				<form action="<%=response.encodeURL(request.getContextPath() + "/EliminaMozione")%>" method="post" onsubmit="event.preventDefault(); validate(this)"> 
 				        <fieldset>
 				        <legend>Inserisci l'ID della mozione da rimuovere&colon; </legend> 
-					<div class="form-group">
-							<select class="form-control" name="id" required>
-								<option disabled selected>ID della mozione&colon;</option>
-					            <%
-					            Iterator<?> it = mozioni.iterator();
-					            while(it.hasNext()) {
-					                MozioneBean bean = (MozioneBean)it.next(); 
-					            %>
-					            <option value="<%=bean.getID()%>"><%=bean.getID()%></option>
-					            <%  } 
-					            %>
-					     	</select>    
-					</div>
+						<div class="form-group">
+								<select class="custom-select" name="id">
+									<option disabled selected>Seleziona ID</option>
+						            <%
+						            Iterator<?> it = mozioni.iterator();
+						            while(it.hasNext()) {
+						                MozioneBean bean = (MozioneBean)it.next(); 
+						            %>
+						            <option value="<%=bean.getID()%>"><%=bean.getID()%></option>
+						            <%  } 
+						            %>
+						     	</select>    
+							<div class="invalid-feedback">Seleziona un&apos;ID&excl;</div>
+						</div>
 				        </fieldset>
 				        <button type="submit" class="btn btn-primary">Elimina</button>
 				</form> 

@@ -36,6 +36,7 @@ public class EliminaCandidatoControl extends HttpServlet {
 			return;
 		}
 		
+		codice = codice.trim();
 		if (!Utility.checkCf(codice)) {
 			request.setAttribute("cfInvalido", "true");
 			request.setAttribute("cf", codice);

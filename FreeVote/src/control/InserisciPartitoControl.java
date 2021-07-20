@@ -35,7 +35,7 @@ public class InserisciPartitoControl extends HttpServlet {
 			response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/loginAdmin.jsp"));
 			return;
 		}
-		
+		request.setCharacterEncoding("UTF-8");
 		String nome = request.getParameter("nome");
 		String descrizione = request.getParameter("descrizione");
 		String nomeLeader = request.getParameter("nomeLeader");

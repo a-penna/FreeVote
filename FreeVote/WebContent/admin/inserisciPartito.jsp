@@ -10,7 +10,7 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
 	<meta name="author" content="Bene Sabato, Cozzolino Lidia, Napoli Riccardo, Penna Alessandro">    
 	<title>FreeVote &dash; Inserisci Partito</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" type="text/css" href="/FreeVote/css/style.css" />
+	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/style.css" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> 
 	<!-- jQuery library --> 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
@@ -68,7 +68,7 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
 			</div>
 			<div class="col-md-10">
 				<p>Inserisci i dati nel seguente form per registare un nuovo partito&colon; <p>
-				<form action="<%=response.encodeURL("/FreeVote/InserisciPartito")%>" method="post" enctype="multipart/form-data" onsubmit="event.preventDefault(); validate(this)"> 
+				<form action="<%=response.encodeURL(request.getContextPath() + "/InserisciPartito")%>" method="post" enctype="multipart/form-data" onsubmit="event.preventDefault(); validate(this)"> 
 				        <fieldset>
 				        	<legend>Informazioni sul partito&colon; </legend>
 							<div class="form-group">

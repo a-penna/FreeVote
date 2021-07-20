@@ -12,8 +12,8 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
 	<title>FreeVote &dash; Inserisci Candidato</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	<!-- Latest compiled and minified CSS --> 
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> 
     <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/style.css">						
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> 
 	<script type="text/javascript" src="<%=request.getContextPath()%>/scripts/script.js"></script>
 	<!-- jQuery library --> 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
@@ -32,6 +32,7 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
                 valid = false;
                 name.classList.remove("is-valid");
                 name.classList.add("is-invalid");
+                name.focus();
             } else {
             	 name.classList.remove("is-invalid");
             	 name.classList.add("is-valid");
@@ -42,6 +43,7 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
                 valid = false;
                 surname.classList.remove("is-valid");
                 surname.classList.add("is-invalid");
+                surname.focus();
             } else {
             	surname.classList.remove("is-invalid");
            	 	surname.classList.add("is-valid");
@@ -52,6 +54,7 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
                 valid = false;
                 cf.classList.remove("is-valid");
                 cf.classList.add("is-invalid");
+                cf.focus();
             } else {
             	cf.classList.remove("is-invalid");
            	 	cf.classList.add("is-valid");
@@ -72,7 +75,7 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
 					<%@ include file="/admin/politicheMenu.jsp" %>
 				</div>
 				<div class="col-md-10">
-					<p>Inserisci i dati nel seguente form per inserire un nuovo candidato all&apos;interno di un partito gi&agrave; registrato sulla piattaforma&colon;<p>
+					<p>Compila il seguente form per inserire un nuovo candidato all&apos;interno di un partito gi&agrave; registrato sulla piattaforma&colon;<p>
 					<form name="form" action="<%=response.encodeURL(request.getContextPath() + "/InserisciCandidato")%>" method="post" enctype="multipart/form-data" onsubmit="event.preventDefault(); validate(this)"> 
 		                 <fieldset>
 		                    <legend>Informazioni sul candidato&colon; </legend>
@@ -80,11 +83,11 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
 		                        <label for="nome">Nome&colon;</label>
 								<%
 									if (request.getAttribute("erroreNome") != null) {
-										%><input type="text" class="form-control is-invalid" id="nome" placeholder="Inserisci Nome" value="<%=request.getAttribute("nome")%>" name="nome" required><% 
+										%><input type="text" class="form-control is-invalid" id="nome" placeholder="Inserisci Nome" value="<%=request.getAttribute("nome")%>" name="nome"><% 
 									} else if (request.getAttribute("nome") != null) {
-										%><input type="text" class="form-control is-valid" id="nome" placeholder="Inserisci Nome" value="<%=request.getAttribute("nome")%>" name="nome" required><% 
+										%><input type="text" class="form-control is-valid" id="nome" placeholder="Inserisci Nome" value="<%=request.getAttribute("nome")%>" name="nome"><% 
 									} else {
-										%><input type="text" class="form-control" id="nome" placeholder="Inserisci Nome" name="nome" required><% 
+										%><input type="text" class="form-control" id="nome" placeholder="Inserisci Nome" name="nome"><% 
 									}
 								%>
 		                        <div class="valid-feedback">Corretto</div>
@@ -94,11 +97,11 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
 		                        <label for="cognome">Cognome&colon;</label>
 		                        <%
 									if (request.getAttribute("erroreCognome") != null) {
-										%><input type="text" class="form-control is-invalid" id="cognome" placeholder="Inserisci Cognome" value="<%=request.getAttribute("cognome")%>" name="cognome" required><% 
+										%><input type="text" class="form-control is-invalid" id="cognome" placeholder="Inserisci Cognome" value="<%=request.getAttribute("cognome")%>" name="cognome"><% 
 									} else if (request.getAttribute("cognome") != null) {
-										%><input type="text" class="form-control is-valid" id="cognome" placeholder="Inserisci Cognome" value="<%=request.getAttribute("cognome")%>" name="cognome" required><% 
+										%><input type="text" class="form-control is-valid" id="cognome" placeholder="Inserisci Cognome" value="<%=request.getAttribute("cognome")%>" name="cognome"><% 
 									} else {
-										%><input type="text" class="form-control" id="cognome" placeholder="Inserisci Cognome" name="cognome" required><% 
+										%><input type="text" class="form-control" id="cognome" placeholder="Inserisci Cognome" name="cognome"><% 
 									}
 								%>
 		                        <div class="valid-feedback">Corretto</div>
@@ -108,11 +111,11 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
 		                        <label for="cf">Codice Fiscale&colon;</label>
 		                        <%
 									if (request.getAttribute("erroreCf") != null) {
-										%><input type="text" class="form-control is-invalid" onkeyup="toUpperCaseCf()" id="cf" placeholder="Codice Fiscale" value="<%=request.getAttribute("cf")%>" name="cf" required><% 
+										%><input type="text" class="form-control is-invalid" onkeyup="toUpperCaseCf()" id="cf" placeholder="Codice Fiscale" value="<%=request.getAttribute("cf")%>" name="cf"><% 
 									} else if (request.getAttribute("cf") != null) {
-										%><input type="text" class="form-control is-valid" onkeyup="toUpperCaseCf()" id="cf" placeholder="Codice Fiscale" value="<%=request.getAttribute("cf")%>" name="cf" required><% 
+										%><input type="text" class="form-control is-valid" onkeyup="toUpperCaseCf()" id="cf" placeholder="Codice Fiscale" value="<%=request.getAttribute("cf")%>" name="cf"><% 
 									} else {
-										%><input type="text" class="form-control" onkeyup="toUpperCaseCf()" id="cf" placeholder="Codice Fiscale" name="cf" required><% 
+										%><input type="text" class="form-control" onkeyup="toUpperCaseCf()" id="cf" placeholder="Codice Fiscale" name="cf"><% 
 									}
 								%>
 		                        <div class="valid-feedback">Corretto</div>
@@ -121,9 +124,9 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
 		                    <div class="form-group">
 		                        <label for="curriculum">Curriculum&colon;</label>
 		                    <%  if (request.getAttribute("curriculum") != null) {
-									%><textarea class="form-control" rows="10" cols="48" id="curriculum" placeholder="Inserisci qui il curriculum" name="curriculum" required><%=request.getAttribute("curriculum")%></textarea><% 
+									%><textarea class="form-control" rows="10" cols="48" id="curriculum" placeholder="Inserisci qui il curriculum" name="curriculum"><%=request.getAttribute("curriculum")%></textarea><% 
 								} else {
-									%><textarea class="form-control" rows="10" cols="48" id="curriculum" placeholder="Inserisci qui il curriculum" name="curriculum" required></textarea><% 
+									%><textarea class="form-control" rows="10" cols="48" id="curriculum" placeholder="Inserisci qui il curriculum" name="curriculum"></textarea><% 
 								}
 							%>   
 		                      
@@ -138,9 +141,9 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
 			                 <div class="form-group">
 				                 <label for="partito">Nome&colon;</label>
 				                 <%  if (request.getAttribute("partito") != null) {
-									%><input id="partito" class="form-control" type="text" name="partito" placeholder="Nome partito" value="<%=request.getAttribute("partito")%>" required><% 
+									%><input id="partito" class="form-control" type="text" name="partito" placeholder="Nome partito" value="<%=request.getAttribute("partito")%>"><% 
 								} else {
-									%><input id="partito" class="form-control" type="text" name="partito" placeholder="Nome partito" required><% 
+									%><input id="partito" class="form-control" type="text" name="partito" placeholder="Nome partito"><% 
 								}
 							%> 
 			                 </div>

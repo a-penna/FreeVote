@@ -10,8 +10,8 @@
 	<meta name="author" content="Bene Sabato, Cozzolino Lidia, Napoli Riccardo, Penna Alessandro">    
     <title>FreeVote &dash; Men&ugrave; Gestione Politiche</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> 
     <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/style.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> 
 	<!-- jQuery library --> 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
 	<!-- Popper JS --> 
@@ -23,7 +23,7 @@
 <body class="bg-light">
 	<%@ include file="admin-header.jsp"%>
 	<div class="container-fluid py-5">
-	    <h3>Seleziona l'operazione da effettuare&colon;</h3>
+	    <h6>Seleziona l'operazione da effettuare&colon;</h6>
 	    <div class="list-group">
 		  <a href="<%=response.encodeURL(request.getContextPath() + "/admin/inserisciPartito.jsp")%>" class="list-group-item list-group-item-action"> Inserisci un nuovo partito</a>
 		  <a href="<%=response.encodeURL(request.getContextPath() + "/admin/eliminaPartito.jsp")%>" class="list-group-item list-group-item-action">Elimina un partito</a>

@@ -11,8 +11,8 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
 	<meta name="author" content="Bene Sabato, Cozzolino Lidia, Napoli Riccardo, Penna Alessandro">    
 	<title>FreeVote &dash; Elimina Candidato</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> 
 	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/style.css" />
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> 
 	<!-- jQuery library --> 
 	<script type="text/javascript" src="<%=request.getContextPath()%>/scripts/script.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
@@ -24,16 +24,13 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
 	<script>
         function validate(obj) {	
             var valid = true;	
-
+			
             var cf = document.getElementsByName("cf")[0];
             if(!checkCf(cf)) {
                 valid = false;
-                cf.classList.remove("is-valid");
                 cf.classList.add("is-invalid");
-            } else {
-            	cf.classList.remove("is-invalid");
-           	 	cf.classList.add("is-valid");
-            }
+                cf.focus();
+            } 
             
             if(valid) obj.submit();
         }
@@ -54,14 +51,11 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
 			        	<label for="cf">Codice Fiscale&colon;</label>
 			           	<%
 							if (request.getAttribute("cfInvalido") != null) {
-								%><input type="text" class="form-control is-invalid" onkeyup="toUpperCaseCf()" id="cf" placeholder="Codice Fiscale" value="<%=request.getAttribute("cf")%>" name="cf" required><% 
-							} else if (request.getAttribute("cf") != null) {
-								%><input type="text" class="form-control is-valid" onkeyup="toUpperCaseCf()" id="cf" placeholder="Codice Fiscale" value="<%=request.getAttribute("cf")%>" name="cf" required><% 
+								%><input type="text" class="form-control is-invalid" onkeyup="toUpperCaseCf()" id="cf" placeholder="Codice Fiscale" value="<%=request.getAttribute("cf")%>" name="cf"><% 
 							} else {
-								%><input type="text" class="form-control" onkeyup="toUpperCaseCf()" id="cf" placeholder="Codice Fiscale" name="cf" required><% 
+								%><input type="text" class="form-control" onkeyup="toUpperCaseCf()" id="cf" placeholder="Codice Fiscale" name="cf"><% 
 							}
 						%>
-			        	<div class="valid-feedback">Corretto</div>
 			        	<div class="invalid-feedback">Codice fiscale non valido&excl;</div>
 			        </div>
 					<button type="submit" class="btn btn-primary">Elimina</button>

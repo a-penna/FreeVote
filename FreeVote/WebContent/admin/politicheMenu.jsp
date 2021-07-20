@@ -12,3 +12,4 @@
 					  <a href="<%=response.encodeURL("/FreeVote/admin/inserisciCandidato.jsp")%>" class="list-group-item list-group-item-action">Aggiungi un candidato ad un partito</a>
 					  <a href="<%=response.encodeURL("/FreeVote/admin/eliminaCandidato.jsp")%>" class="list-group-item list-group-item-action">Rimuovi un candidato da un partito</a>
 					</div>
+					<br>

@@ -11,7 +11,7 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
 		<meta name="author" content="Bene Sabato, Cozzolino Lidia, Napoli Riccardo, Penna Alessandro">    
 		<title>FreeVote &dash; Inserisci Partito in Coalizione</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" type="text/css" href="/FreeVote/css/style.css" />
+		<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/style.css" />
 	    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> 
 		<!-- jQuery library --> 
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
@@ -30,7 +30,7 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
 				</div>
 				<div class="col-md-10">
 					<p>Inserisci i dati nel seguente form per inserire un partito in una coalizione&period; Sia il partito che la coalizione devono essere gi&agrave; registrati sulla piattaforma&period;<p>
-					<form action="<%=response.encodeURL("/FreeVote/InserisciPartitoCoalizione")%>" method="post"> 
+					<form action="<%=response.encodeURL(request.getContextPath() + "/InserisciPartitoCoalizione")%>" method="post"> 
 					        <fieldset>
 								<div class="form-group">
 						        	<label for="nome">Nome Partito&colon;</label>

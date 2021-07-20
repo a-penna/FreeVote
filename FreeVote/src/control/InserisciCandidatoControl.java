@@ -34,7 +34,7 @@ public class InserisciCandidatoControl extends HttpServlet {
 			response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/loginAdmin.jsp"));
 			return;
 		}
-		
+		request.setCharacterEncoding("UTF-8");
 		String nome = request.getParameter("nome");
 		String cognome = request.getParameter("cognome");
 		String cf = request.getParameter("cf");

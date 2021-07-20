@@ -30,7 +30,7 @@ function checkCAP(inputtxt) {
 
 function checkCf(inputtxt)  {
     var name = /^[A-Z]{6}\d{2}[A-Z]\d{2}[A-Z]\d{3}[A-Z]$/i;
-	if(inputtxt.value.match(name)) 
+	if(inputtxt.value.trim().match(name)) 
 		return true;
 
 	return false;	
