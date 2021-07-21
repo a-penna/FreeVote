@@ -36,6 +36,9 @@ public class InserisciPartitoCoalizioneControl extends HttpServlet {
 			return;
 		};
 		
+		partito = partito.trim();
+		coalizione = coalizione.trim();
+		
         DataSource ds = (DataSource) getServletContext().getAttribute("DataSource");
 		AppartieneModelDS model = new AppartieneModelDS(ds);
 

@@ -26,7 +26,7 @@
 	    </div>
     </div>
     <div class="container">
-		<img class="mx-auto d-block" src="<%=request.getContextPath()%>/imgs/voteX.png" height="450" width="425">
+		<img class="mx-auto d-block img-fluid" src="<%=request.getContextPath()%>/imgs/voteX.png" height="450" width="425">
 	</div>
 	<br>
 </body>

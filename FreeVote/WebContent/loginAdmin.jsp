@@ -31,7 +31,7 @@
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> 
 </head>            
 
-<body class="bg-dark text-black py-3" style="background-image: url('./imgs/Illogin-1.jpeg'); background-position:center; background-size: cover;">
+<body class="bg-login-admin text-black pt-3">
 	<%@ include file="header.jsp"%>
 		<div class="container py-5">
 	    <% boolean loggedAsElettore = request.getSession(false) != null && request.getSession(false).getAttribute("elettoreRoles")!= null;  

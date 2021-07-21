@@ -1,6 +1,6 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8" import="java.util.*, model.*"%>
+
 
 <!DOCTYPE html>
 <html>
@@ -20,6 +20,31 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
 		<!-- Latest compiled JavaScript --> 
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> 
 		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+		<script>
+	        function validate(obj) {	
+	            var valid = true;	
+				
+	            var name = document.getElementsByName("nome")[0];
+	            if(name.value.trim() == "") {
+	                valid = false;
+	                name.classList.add("is-invalid");
+	                name.focus();
+	            } else {
+	            	name.classList.remove("is-invalid");
+	            }
+	            
+	            var nomeCoalizione = document.getElementsByName("coalizione")[0];
+	            if(nomeCoalizione.value.trim() == "") {
+	                valid = false;
+	                nomeCoalizione.classList.add("is-invalid");
+	                nomeCoalizione.focus();
+	            } else {
+	            	nomeCoalizione.classList.remove("is-invalid");
+	            }
+	            
+	            if(valid) obj.submit();
+	        }
+    	</script> 
 	</head>            
 	<body class="bg-light">
 		<%@ include file="/admin/admin-header.jsp"%>
@@ -30,15 +55,17 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
 				</div>
 				<div class="col-md-10">
 					<p>Inserisci i dati nel seguente form per inserire un partito in una coalizione&period; Sia il partito che la coalizione devono essere gi&agrave; registrati sulla piattaforma&period;<p>
-					<form action="<%=response.encodeURL(request.getContextPath() + "/InserisciPartitoCoalizione")%>" method="post"> 
+					<form action="<%=response.encodeURL(request.getContextPath() + "/InserisciPartitoCoalizione")%>" method="post" onsubmit="event.preventDefault(); validate(this)"> 
 					        <fieldset>
 								<div class="form-group">
 						        	<label for="nome">Nome Partito&colon;</label>
-						       	    <input id="nome" class="form-control" type="text" name="nome" placeholder="Nome partito" required> 
+						       	    <input id="nome" class="form-control" type="text" name="nome" placeholder="Nome partito">
+			                    <div class="invalid-feedback">Inserire il nome del partito&excl;</div> 
 								</div>
 								<div class="form-group">
 						        	<label for="coalizione">Nome Coalizione&colon;</label>
-						            <input id="coalizione" class="form-control" type="text" name="coalizione" placeholder="Nome coalizione" required> 
+						            <input id="coalizione" class="form-control" type="text" name="coalizione" placeholder="Nome coalizione"> 
+			                   		<div class="invalid-feedback">Inserisci il nome della coalizione&excl;</div>
 						        </div>
 					        </fieldset>
 					        <button type="submit" class="btn btn-primary">Inserisci</button>

@@ -26,8 +26,9 @@
 	}
 	
 	.sezione-immagini .testo{
-	padding: 7rem;
-}
+		padding: 7rem;
+	}
+
 }
 
 .autori{
@@ -61,3 +62,31 @@
 .sezione-icone{
 	font-size: 50px;
 }
+
+
+@media screen and (min-width: 1366px){
+	.head-banner{
+		padding-top: 0.5rem;
+		padding-bottom: 7rem;
+	}
+	
+	.sezione-immagini .testo{
+		padding: 7rem;
+	}
+
+}
+
+@media screen and (min-width: 540px){
+	.bg-login-admin {
+			 background-image: url('../imgs/Illogin-1.jpeg');
+			 background-position:bottom; 
+			 background-size: cover;
+			 background-repeat:no-repeat;
+			 background-attachment: fixed;
+	}	
+}
+
+.bg-login-admin {
+		 background-color: #156e7a;
+}
+	
