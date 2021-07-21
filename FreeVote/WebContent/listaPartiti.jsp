@@ -39,7 +39,7 @@
 
 <body class="bg-light">
 	<%@ include file="header.jsp"%>
-	<div class="container py-5">
+	<!-- <div class="container py-5">
 		<div class="row">
 			<div class="col-md">
 			    <h1>Lista partiti&colon;</h1>
@@ -72,6 +72,51 @@
 			        }
 			    %>
 	</div>
+     -->
     
+    <div class="container py-5"> 
+		<div class="row">
+			<div class="col-md">
+			    <h2 class="display-5 text-center pt-5">Lista partiti</h2>
+			</div>
+		</div>
+				<br>
+				<table class="table text-center">
+						<thead class="bg-info text-white">
+						    <tr>
+						      <th scope="col">Partito</th>
+						      <th class="text-center" scope="col">Nome Partito</th>
+						    </tr>
+						  </thead>
+						  <tbody>
+					  <%
+					        Iterator<?> it = partiti.iterator();
+					    	Iterator<?> it2 = coalizioni.iterator();
+					        while(it.hasNext() && it2.hasNext()) {
+					            PartitoBean partito = (PartitoBean)it.next(); 
+					            CoalizioneBean coalizione= (CoalizioneBean)it2.next(); 
+					            if (!partito.getNome().equals("Scheda Bianca")) {
+					  %>		
+						  <tr>
+								<th scope="row">
+								<img class="rounded-corners" src="PhotoControl?type=partito&id=<%=partito.getNome()%>" height=50 width=50 onerror="this.src='./imgs/nologo.png'">
+								           </th>
+								           <td><%=partito.getNome()%></td>
+								           <% if (!coalizione.getNome().equals("")) { %>
+										  		  <a href="<%=response.encodeURL(request.getContextPath() + "/Partito?nome=" + partito.getNome())%>"><%=partito.getNome()%> &lsqb;<%=coalizione.getNome()%>&rsqb;</a>
+										   <%} else { %>
+										      	  <a href="<%=response.encodeURL(request.getContextPath() + "/Partito?nome=" + partito.getNome())%>"><%=partito.getNome()%></a>
+
+										    <% } %>
+									    </tr>
+					
+					 <%   	}
+			        	}
+			    	 %>
+						</tbody>
+						</table>
+				</div>
+    
+
 </body>
 </html>

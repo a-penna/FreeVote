@@ -42,7 +42,7 @@
 	<div class="container py-5"> 
 		<div class="row">
 			<div class="col-md">
-			    <h2 class="display-5 text-center pt-5">Risultati&colon;</h2>
+			    <h2 class="display-5 text-center pt-5">Risultati</h2>
 			</div>
 		</div>
 				<br>
@@ -52,7 +52,7 @@
 						      <th scope="col"></th>
 						      <th class="text-left" scope="col">Partito</th>
 						      <th scope="col">Coalizione</th>
-						      <th scope="col">&num;Voti</th>
+						      <th scope="col">Voti</th>
 						    </tr>
 						  </thead>
 						  <tbody>
