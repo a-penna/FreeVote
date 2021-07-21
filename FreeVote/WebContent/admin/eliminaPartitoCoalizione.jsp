@@ -31,11 +31,11 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
         function validate(obj) {	
             var valid = true;	
 			
-            var nome = document.getElementsByName("nome")[0];
-            if((nome.value == "Seleziona Partito")) {
+            var name = document.getElementsByName("nome")[0];
+            if((name.value == "Seleziona Partito")) {
                 valid = false;
-                nome.classList.add("is-invalid");
-                nome.focus();
+                name.classList.add("is-invalid");
+                name.focus();
             } 
             
             if(valid) obj.submit();

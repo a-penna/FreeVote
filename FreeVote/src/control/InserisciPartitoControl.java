@@ -35,6 +35,7 @@ public class InserisciPartitoControl extends HttpServlet {
 			response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/loginAdmin.jsp"));
 			return;
 		}
+		
 		request.setCharacterEncoding("UTF-8");
 		String nome = request.getParameter("nome");
 		String descrizione = request.getParameter("descrizione");
@@ -49,17 +50,24 @@ public class InserisciPartitoControl extends HttpServlet {
 			return;
 		}
 		
-		if (nome.trim().equals("")) {
+		nome = nome.trim();
+		descrizione = descrizione.trim();
+		nomeLeader = nomeLeader.trim();
+		cognomeLeader = cognomeLeader.trim();
+		cf = cf.trim();
+		curriculum = curriculum.trim();
+		
+		if (nome.equals("")) {
 			request.setAttribute("errorePartito", "true");
 			error = true;
 		}
 		
-		if (descrizione.trim().equals("")) {
+		if (descrizione.equals("")) {
 			request.setAttribute("erroreDescrizione", "true");
 			error = true;
 		}
 
-		if (curriculum.trim().equals("")) {
+		if (curriculum.equals("")) {
 			request.setAttribute("erroreCurriculum", "true");
 			error = true;
 		}

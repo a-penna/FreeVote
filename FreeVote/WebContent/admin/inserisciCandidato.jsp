@@ -1,6 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8" import="java.util.*, model.*"%>
 
+<% 
+	Collection<?> partiti = (Collection<?>) request.getAttribute("listaPartiti");
+    if (partiti == null) {
+        response.sendRedirect(response.encodeURL(request.getContextPath() + "/InserisciCandidato"));
+        return;
+    }
+%>
 
 <!DOCTYPE html>
 <html>
@@ -49,15 +56,35 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
            	 	surname.classList.add("is-valid");
             }
 
-            var cf = document.getElementsByName("cf")[0];
-            if(!checkCf(cf)) {
+            var codiceF = document.getElementsByName("cf")[0];
+            if(!checkCf(codiceF)) {
                 valid = false;
-                cf.classList.remove("is-valid");
-                cf.classList.add("is-invalid");
-                cf.focus();
+                codiceF.classList.remove("is-valid");
+                codiceF.classList.add("is-invalid");
+                codiceF.focus();
             } else {
-            	cf.classList.remove("is-invalid");
-           	 	cf.classList.add("is-valid");
+            	codiceF.classList.remove("is-invalid");
+           	 	codiceF.classList.add("is-valid");
+            }
+            
+            var curriculumC = document.getElementsByName("curriculum")[0];
+            if((curriculumC.value.trim() == "")) {
+                valid = false;
+                curriculumC.classList.add("is-invalid");
+                curriculumC.focus();
+            } else {
+            	curriculumC.classList.remove("is-invalid");
+           	 	curriculumC.classList.add("is-valid");
+            }
+            
+            var nomePartito = document.getElementsByName("partito")[0];
+            if((nomePartito.value == "Seleziona Partito")) {
+                valid = false;
+                nomePartito.classList.add("is-invalid");
+                nomePartito.focus();
+            } else {
+            	nomePartito.classList.remove("is-invalid");
+           	 	nomePartito.classList.add("is-valid");
             }
             
             if(valid) obj.submit();
@@ -123,13 +150,16 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
 		                    </div>
 		                    <div class="form-group">
 		                        <label for="curriculum">Curriculum&colon;</label>
-		                    <%  if (request.getAttribute("curriculum") != null) {
+		                    <%  if (request.getAttribute("erroreCurriculum") != null) {
+		                    		%><textarea class="form-control is-invalid" rows="10" cols="48" id="curriculum" placeholder="Inserisci qui il curriculum" name="curriculum"></textarea><% 
+		                    	} else if(request.getAttribute("curriculum") != null) {
 									%><textarea class="form-control" rows="10" cols="48" id="curriculum" placeholder="Inserisci qui il curriculum" name="curriculum"><%=request.getAttribute("curriculum")%></textarea><% 
 								} else {
 									%><textarea class="form-control" rows="10" cols="48" id="curriculum" placeholder="Inserisci qui il curriculum" name="curriculum"></textarea><% 
 								}
 							%>   
-		                      
+							  <div class="valid-feedback">Corretto</div>
+		                      <div class="invalid-feedback">Inserire il curriculum&excl;</div>
 		                    </div>
 		                    <div class="form-group">
 		                        <label for="foto">Carica Foto(Max&period; size&equals;10MB)&colon;</label>
@@ -140,12 +170,26 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
 			                 <legend>Nome del partito in cui inserire il candidato&colon; </legend>
 			                 <div class="form-group">
 				                 <label for="partito">Nome&colon;</label>
-				                 <%  if (request.getAttribute("partito") != null) {
-									%><input id="partito" class="form-control" type="text" name="partito" placeholder="Nome partito" value="<%=request.getAttribute("partito")%>"><% 
-								} else {
-									%><input id="partito" class="form-control" type="text" name="partito" placeholder="Nome partito"><% 
-								}
-							%> 
+				                 <select class="custom-select" name="partito">
+						        		<option disabled selected>Seleziona Partito</option>
+							            <%
+							            String partito = (String)request.getAttribute("partito");
+				                		 if (partito == null) partito = "";
+							            Iterator<?> it = partiti.iterator();
+							            while(it.hasNext()) {
+											PartitoBean bean = (PartitoBean)it.next();
+											if (!bean.getNome().equals("Scheda Bianca")) { 
+												if (bean.getNome().equals(partito)) {%>
+							            		  <option value="<%=bean.getNome()%>" selected><%=bean.getNome()%></option>
+							            		<%} else { %>
+							            		  <option value="<%=bean.getNome()%>"><%=bean.getNome()%></option>
+							            <%		}
+							            	}  
+										} 
+							            %>
+							     </select> 
+							     <div class="valid-feedback">Selezionato&excl;</div>
+							     <div class="invalid-feedback">Seleziona il partito&excl;</div>
 			                 </div>
 		                 </fieldset>
 		               <button type="submit" class="btn btn-dark">Inserisci</button>

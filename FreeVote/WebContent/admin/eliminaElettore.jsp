@@ -23,11 +23,11 @@
         function validate(obj) {	
             var valid = true;	
 			
-            var codice = document.getElementsByName("codice")[0];
-            if((codice.value.trim() == "")) {
+            var c = document.getElementsByName("codice")[0];
+            if((c.value.trim() == "")) {
                 valid = false;
-                codice.classList.add("is-invalid");
-                codice.focus();
+                c.classList.add("is-invalid");
+                c.focus();
             } 
             
             if(valid) obj.submit();

@@ -34,7 +34,7 @@ public class EliminaElettoreControl extends HttpServlet {
 			response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/admin/eliminaElettore.jsp"));
 			return;
 		}
-		codice = Utility.encryptMD5(request.getParameter("codice"));
+		codice = Utility.encryptMD5(codice.trim());
 		
 		DataSource ds = (DataSource) getServletContext().getAttribute("DataSource");
 		ElettoreModelDS model = new ElettoreModelDS(ds);	

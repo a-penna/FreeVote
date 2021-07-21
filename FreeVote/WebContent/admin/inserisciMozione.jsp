@@ -19,7 +19,7 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
 	<!-- Latest compiled JavaScript --> 
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> 
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-	<script type="text/javascript" src="/FreeVote/scripts/script.js"></script>
+	<script type="text/javascript" src="<%=request.getContextPath()%>/scripts/script.js"></script>
     <script>
         function validate(obj) {	
             var valid = true;	
@@ -29,9 +29,19 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
                 valid = false;
                 nomeCompleto.classList.remove("is-valid");
                 nomeCompleto.classList.add("is-invalid");
+                testo.focus();
             } else {
             	nomeCompleto.classList.remove("is-invalid");
             	nomeCompleto.classList.add("is-valid");
+            }
+            
+            if((testo.value.trim() == "")) {
+                valid = false;
+                testo.classList.add("is-invalid");
+                testo.focus();
+            } else {
+            	testo.classList.remove("is-invalid");
+           	 	testo.classList.add("is-valid");
             }
             
             if(valid) obj.submit();
@@ -56,27 +66,28 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
 				        	<label for="nomeCompleto">Nome e cognome dell&apos;autore&colon;</label> 
 				        	<%
 								if (request.getAttribute("erroreNomeCompleto") != null) {
-									%><input type="text" class="form-control is-invalid" id="nomeCompleto" placeholder="Nome e cognome Autore" value="<%=request.getAttribute("nomeCompleto")%>" name="nomeCompleto" required><% 
+									%><input type="text" class="form-control is-invalid" id="nomeCompleto" placeholder="Nome e cognome autore" value="<%=request.getAttribute("nomeCompleto")%>" name="nomeCompleto"><% 
 								} else if (request.getAttribute("nomeCompleto") != null) {
-									%><input type="text" class="form-control is-valid" id="nomeCompleto" placeholder="Nome e cognome Autore" value="<%=request.getAttribute("nomeCompleto")%>" name="nomeCompleto" required><% 
+									%><input type="text" class="form-control is-valid" id="nomeCompleto" placeholder="Nome e cognome autore" value="<%=request.getAttribute("nomeCompleto")%>" name="nomeCompleto"><% 
 								} else {
-									%><input type="text" class="form-control" id="nomeCompleto" placeholder="Nome e cognome Autore" name="nomeCompleto" required><% 
+									%><input type="text" class="form-control" id="nomeCompleto" placeholder="Nome e cognome autore" name="nomeCompleto"><% 
 								}
 							%>
 		                        <div class="valid-feedback">Corretto</div>
-		                        <div class="invalid-feedback">Nome non valido&excl;</div>
+		                        <div class="invalid-feedback">Nome e cognome non validi&excl;</div>
 		              	</div>
 		              	<div class="form-group">
 				        	<label for="testo">Testo della mozione&colon;</label>
 				        	<%
 								if (request.getAttribute("erroreTesto") != null) {
-									%><textarea id="testo" class="form-control is-invalid" name="testo" rows="10" cols="48" placeholder="Inserisci qui il testo della mozione" required></textarea><% 
+									%><textarea id="testo" class="form-control is-invalid" name="testo" rows="10" cols="48" placeholder="Inserisci qui il testo della mozione"></textarea><% 
 								} else if (request.getAttribute("testo") != null) {
-									%><textarea id="testo" class="form-control" name="testo" rows="10" cols="48" placeholder="Inserisci qui il testo della mozione" required><%=request.getAttribute("testo")%></textarea><% 
+									%><textarea id="testo" class="form-control" name="testo" rows="10" cols="48" placeholder="Inserisci qui il testo della mozione"><%=request.getAttribute("testo")%></textarea><% 
 								} else {
-									%><textarea id="testo" class="form-control" name="testo" rows="10" cols="48" placeholder="Inserisci qui il testo della mozione" required></textarea><% 
+									%><textarea id="testo" class="form-control" name="testo" rows="10" cols="48" placeholder="Inserisci qui il testo della mozione"></textarea><% 
 								}
 							%>
+							<div class="valid-feedback">Corretto</div>
 							<div class="invalid-feedback">Inserisci il testo della mozione&excl;</div>
 						</div>
 						<br>

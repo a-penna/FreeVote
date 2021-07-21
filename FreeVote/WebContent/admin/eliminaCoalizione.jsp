@@ -31,11 +31,11 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
         function validate(obj) {	
             var valid = true;	
 			
-            var coalizione = document.getElementsByName("coalizione")[0];
-            if((coalizione.value == "Scegli Coalizione")) {
+            var nomeCoalizione = document.getElementsByName("coalizione")[0];
+            if((nomeCoalizione.value == "Scegli Coalizione")) {
                 valid = false;
-                coalizione.classList.add("is-invalid");
-                coalizione.focus();
+                nomeCoalizione.classList.add("is-invalid");
+                nomeCoalizione.focus();
             } 
             
             if(valid) obj.submit();

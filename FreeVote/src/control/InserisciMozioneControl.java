@@ -31,6 +31,7 @@ public class InserisciMozioneControl extends HttpServlet{
 			return;
 		}
         
+		request.setCharacterEncoding("UTF-8");
         String nomeCompleto = request.getParameter("nomeCompleto");
         String testo = request.getParameter("testo");
         
@@ -38,10 +39,13 @@ public class InserisciMozioneControl extends HttpServlet{
             response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/admin/inserisciMozione.jsp"));
 			return;
         }
-
+        
+        nomeCompleto = nomeCompleto.trim();
+        testo = testo.trim();
+        
         boolean error = false;
         
-        if(testo.trim().equals("")) {
+        if(testo.equals("")) {
         	request.setAttribute("erroreTesto", "true");
 			error = true;
         }

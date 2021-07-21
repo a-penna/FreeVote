@@ -25,11 +25,11 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
         function validate(obj) {	
             var valid = true;	
 			
-            var cf = document.getElementsByName("cf")[0];
-            if(!checkCf(cf)) {
+            var codiceF = document.getElementsByName("cf")[0];
+            if(!checkCf(codiceF)) {
                 valid = false;
-                cf.classList.add("is-invalid");
-                cf.focus();
+                codiceF.classList.add("is-invalid");
+                codiceF.focus();
             } 
             
             if(valid) obj.submit();

@@ -1,6 +1,6 @@
 function checkNomeCognome(inputtxt) {
 	var name = /^[A-Za-z ]+$/;
-	if(inputtxt.value.match(name)) 
+	if(inputtxt.value.trim().match(name)) 
 		return true;
 
 	return false;	
@@ -8,11 +8,11 @@ function checkNomeCognome(inputtxt) {
 
 function checkEta(inputtxt) {
 	var name = /^[0-9]+$/;
-	if(!inputtxt.value.match(name)) {
+	if(!inputtxt.value.trim().match(name)) {
 		return false; 
 	}
 
-	if((inputtxt.value < 18) || (inputtxt.value > 130)) {
+	if((inputtxt.value.trim() < 18) || (inputtxt.value.trim() > 130)) {
 		return false;	
 	}
 	
@@ -21,7 +21,7 @@ function checkEta(inputtxt) {
 
 function checkCAP(inputtxt) {
 	var name = /^\d{5}$/;
-	if(!inputtxt.value.match(name)) {
+	if(!inputtxt.value.trim().match(name)) {
 		return false; 
 	}
 	

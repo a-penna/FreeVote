@@ -3,6 +3,7 @@ package control;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.SQLException;
+import java.util.Collection;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -34,29 +35,53 @@ public class InserisciCandidatoControl extends HttpServlet {
 			response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/loginAdmin.jsp"));
 			return;
 		}
+		
 		request.setCharacterEncoding("UTF-8");
 		String nome = request.getParameter("nome");
 		String cognome = request.getParameter("cognome");
 		String cf = request.getParameter("cf");
 		String curriculum = request.getParameter("curriculum");
         String partito = request.getParameter("partito");
-        boolean error = false;
+        
+        DataSource ds = (DataSource) getServletContext().getAttribute("DataSource");
+        PartitoModelDS modelPartito = new PartitoModelDS(ds); 
+        try {
+        	Collection<PartitoBean> partiti = modelPartito.doRetrieveAll("nome");
+			request.setAttribute("listaPartiti", partiti);
+		} catch (SQLException e) {
+			Utility.printSQLException(e);
+			response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/error/generic.jsp"));
+			return;
+		} 
         
         if (nome == null || cognome == null || cf == null || curriculum == null || partito == null) {
-        	response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/admin/inserisciCandidato.jsp"));
-        	return;
+        	RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher(response.encodeURL("/admin/inserisciCandidato.jsp"));
+			dispatcher.forward(request, response);
+			return;
         }
         
-		if (!Utility.checkNomeCognome(nome.trim())) {
+        nome = nome.trim();
+        cognome = cognome.trim();
+        cf = cf.trim();
+        curriculum = curriculum.trim();
+        partito = partito.trim();
+        
+        boolean error = false;
+
+        if (!Utility.checkNomeCognome(nome)) {
 			request.setAttribute("erroreNome", "true");
 			error = true;
 		}
-		if (!Utility.checkNomeCognome(cognome.trim())) {
+		if (!Utility.checkNomeCognome(cognome)) {
 			request.setAttribute("erroreCognome", "true");
 			error = true;
 		}
-		if (!Utility.checkCf(cf.trim())) {
+		if (!Utility.checkCf(cf)) {
 			request.setAttribute("erroreCf", "true");
+			error = true;
+		}
+		if (curriculum.equals("")) {
+			request.setAttribute("erroreCurriculum", "true");
 			error = true;
 		}
 		
@@ -85,8 +110,7 @@ public class InserisciCandidatoControl extends HttpServlet {
 		if (filePart != null) {
 			streamFoto = filePart.getInputStream();
 		}
-
-		DataSource ds = (DataSource) getServletContext().getAttribute("DataSource");
+		
 		CandidatoModelDS model = new CandidatoModelDS(ds);
 		
 		try {
