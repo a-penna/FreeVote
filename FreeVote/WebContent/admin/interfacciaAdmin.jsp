@@ -25,7 +25,7 @@
 <body class="bg-light">
 	<%@ include file="admin-header.jsp"%>
 	<div class="container-fluid py-5">
-    <h1> Benvenuto amministratore&excl; Da quest&apos;interfaccia potrai accedere ad alcune operazioni riservate&period; </h1>
+    <h1>Benvenuto amministratore&excl; Da quest&apos;interfaccia potrai accedere ad alcune operazioni riservate&period;</h1>
 	</div>
 
 </body>
