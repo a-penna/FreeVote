@@ -88,29 +88,11 @@ public class Utility {
 			else if (c == '>') {
 				filtered.append("&gt;");
 			}
-			else if (c == '.') {
-				filtered.append("&period;");
-			}
-			else if (c == ',') {
-				filtered.append("&comma;");
-			}
-			else if (c == ':') {
-				filtered.append("&colon;");
-			}
-			else if (c == '$') {
-				filtered.append("&dollar;");
-			}
-			else if (c == '%') {
-				filtered.append("&percnt;");
-			}
 			else if (c == '&') {
 				filtered.append("&amp;");
 			} else if (c == '"') {
 				filtered.append("&quot;");
 			}
-			else if (c == '@') {
-				filtered.append("&commat;");
-			} 
 			else {
 				filtered.append(c);
 			}

@@ -68,17 +68,15 @@
 						  <tr>
 								<th scope="row">
 								<img class="rounded-corners" src="PhotoControl?type=partito&id=<%=partito.getNome()%>" height=50 width=50 onerror="this.src='./imgs/nologo.png'">
-								           </th>
-								           <% if (!coalizione.getNome().equals("")) { %>
-								           <td><%=partito.getNome()%></td>
-										  		  <a href="<%=response.encodeURL(request.getContextPath() + "/Partito?nome=" + partito.getNome())%>"><%=partito.getNome()%> &lsqb;<%=coalizione.getNome()%>&rsqb;</a>
-										   <%} else { %>
-										      	  <a href="<%=response.encodeURL(request.getContextPath() + "/Partito?nome=" + partito.getNome())%>"><%=partito.getNome()%></a>
-										    <% } %>
-									      <td><%=coalizione.getNome()%></td>
-									      </tr>
-									    
-									  
+								</th>
+								<% if (!coalizione.getNome().equals("")) { %>
+								           <td><a href="<%=response.encodeURL(request.getContextPath() + "/Partito?nome=" + partito.getNome())%>"><%=partito.getNome()%></a></td>
+										   <td><%=coalizione.getNome()%></td>
+							   <%} else { %>
+							   			  <td><a href="<%=response.encodeURL(request.getContextPath() + "/Partito?nome=" + partito.getNome())%>"><%=partito.getNome()%></a></td>
+										  <td>&ast;</td>
+							  <% } %>
+						  </tr>
 					
 					 <%   	}
 			        	}
