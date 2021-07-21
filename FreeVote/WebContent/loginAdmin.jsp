@@ -39,7 +39,7 @@
 	    if (loggedAsElettore)  { 
 			%><h3 class="text-white">Si prega di effettuare il logout da elettore prima di procedere con la normale autenticazione da admin</h3><%
 		} else { %>
-		<div class="card text-white bg-secondary mb-3" style="max-width: 25rem;">
+		<div class="card text-black bg-light mb-5" style="max-width: 25rem;">
 		  <div class="card-header text-center">
 		    Amministratore
 		  </div>

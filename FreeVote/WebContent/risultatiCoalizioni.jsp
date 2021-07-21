@@ -40,26 +40,32 @@
 	
 	<div class="container py-5">
 	<div class="card text-white bg-dark mb-3">
-  		<div class="card-header">Risultati ordinati per coalizione</div>
-  			<div class="card-body">
-  			
-  			<%
-		        Iterator<?> it = coalizioni.iterator();
-		        Iterator<?> it2 = votazioni.iterator();
-		        while (it.hasNext() && it2.hasNext()) {
-		            CoalizioneBean c = (CoalizioneBean) it.next();
-		            String v = (String) it2.next();
-		            %>
-		            <p><%=c.getNome()%> &lsqb;Voti&colon; <%=v%>&rsqb;</p>
-		            <%
-		        } 
-		        %>
+  		<div class="card-header text-center">Risultati ordinati per coalizione</div>
+  			<div class="card-body bg-light">
+  				<table class="table table-bordered text-center">
+						<tbody>
+								 <tr class="table-secondary">
+						      	   <th scope="row">Coalizione</th>
+						      	   <th scope="row">&percnt;Voti</th>
+						    	</tr>
+						<%
+				        Iterator<?> it = coalizioni.iterator();
+				        Iterator<?> it2 = votazioni.iterator();
+				        while (it.hasNext() && it2.hasNext()) {
+				            CoalizioneBean c = (CoalizioneBean) it.next();
+				            String v = (String) it2.next();
+		            	%>
+						    	<tr>
+						      	   <td><%=c.getNome()%></td>
+						           <td><%=v%></td>
+						    	</tr>
+						<%
+				       		 }								
+					    %>
+						</tbody>
+				</table>
   			</div>
 	</div>
 	</div>
-	
-	
-	
-	
 </body>
 </html>

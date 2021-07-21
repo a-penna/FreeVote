@@ -66,14 +66,16 @@
 
 <body class="bg-light">
 	<%@ include file="header.jsp"%>
-	<div class="container py-5"> 
+	<div class="container py-5">
+		<div class="card bg-light text-black mb-3">
+  		<div class="card-header text-center">Scegliendo il nome di un partito ed inserendo una particolare fascia d'et&agrave; potrai visualizzare, in percentuale,
+    quante votazioni quel partito ha ricevuto in quella specifica fascia d'et&agrave;</div>
+  			<div class="card-body">
 	<%String partito = (String)request.getAttribute("partito");
 	  if (partito == null) partito = "";
 	%>
     <form action="<%=response.encodeURL(request.getContextPath() + "/EtaControl")%>" method="post" onsubmit="event.preventDefault(); validate(this)"> 
      <fieldset>
-       <legend>Scegliendo il nome di un partito ed inserendo una particolare fascia d'et&agrave; potrai visualizzare, in percentuale,
-    quante votazioni quel partito ha ricevuto in quella specifica fascia d'et&agrave;</legend>
 		<div class="form-group">
 	    	<label for="partito">Partito&colon; </label>
 	    	 <%
@@ -152,6 +154,9 @@
 		  </div>
 		 <% }
 		%>
+ </div>
+ 
+ </div>
  </div>
  
 </body>
