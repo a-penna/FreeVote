@@ -36,10 +36,14 @@
 </head>
 <body class="bg-light">
 	<%@ include file="header.jsp"%>
-	<section class="risultatiCoalizioni text-center">
-		<div class="container py-5">
-		    <h3>Di seguito i risultati ordinati per coalizione&colon;</h3>
-			<%
+
+	
+	<div class="container py-5">
+	<div class="card text-white bg-dark mb-3">
+  		<div class="card-header">Risultati ordinati per coalizione</div>
+  			<div class="card-body">
+  			
+  			<%
 		        Iterator<?> it = coalizioni.iterator();
 		        Iterator<?> it2 = votazioni.iterator();
 		        while (it.hasNext() && it2.hasNext()) {
@@ -50,7 +54,12 @@
 		            <%
 		        } 
 		        %>
-	    </div>
-	</section>
+  			</div>
+	</div>
+	</div>
+	
+	
+	
+	
 </body>
 </html>

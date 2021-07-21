@@ -49,10 +49,11 @@
 		</div>
 				<br>
 				<table class="table text-center">
-						<thead class="bg-info text-white">
+						<thead class="bg-secondary text-white">
 						    <tr>
 						      <th scope="col">Partito</th>
 						      <th class="text-center" scope="col">Nome Partito</th>
+						      <th class="text-center" scope="col">Nome Coalizione</th>
 						    </tr>
 						  </thead>
 						  <tbody>
@@ -73,9 +74,11 @@
 										  		  <a href="<%=response.encodeURL(request.getContextPath() + "/Partito?nome=" + partito.getNome())%>"><%=partito.getNome()%> &lsqb;<%=coalizione.getNome()%>&rsqb;</a>
 										   <%} else { %>
 										      	  <a href="<%=response.encodeURL(request.getContextPath() + "/Partito?nome=" + partito.getNome())%>"><%=partito.getNome()%></a>
-
 										    <% } %>
-									    </tr>
+									      <td><%=coalizione.getNome()%></td>
+									      </tr>
+									    
+									  
 					
 					 <%   	}
 			        	}
