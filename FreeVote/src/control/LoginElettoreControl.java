@@ -21,22 +21,23 @@ public class LoginElettoreControl extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		doPost(request, response);
+			doPost(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 			
-			if (request.getSession(false) != null && request.getSession(false).getAttribute("adminRoles")!= null) {
+			if (request.getSession(false) != null && request.getSession(false).getAttribute("adminRoles")!= null) { //non permettiamo di essere sia admin che elettore
 				response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/loginElettore.jsp"));
 	 			return;
 			}
 			
-			if (request.getSession(false) != null && request.getSession(false).getAttribute("elettoreRoles")!= null) {
+			if (request.getSession(false) != null && request.getSession(false).getAttribute("elettoreRoles")!= null) { //se si è già loggati da elettore si passa alla scheda voto
 				response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/elettore/schedaVoto.jsp"));
 	 			return;
 			}
 
+			//ottenimento dati dell'elettore
 			String codice = request.getParameter("codice");
 			String password = request.getParameter("password");
             String comune = request.getParameter("comune");
@@ -47,7 +48,7 @@ public class LoginElettoreControl extends HttpServlet {
 			DataSource ds = (DataSource) getServletContext().getAttribute("DataSource");
 			ComuneModelDS comuneModel = new ComuneModelDS(ds);
 			
-			try {
+			try { //ottenimento regioni dal database
 				Collection<String> regioni = comuneModel.doRetrieveAllRegioni("nome_regione");
 				request.setAttribute("listaRegioni", regioni);
 			} catch (SQLException e) {
@@ -56,20 +57,19 @@ public class LoginElettoreControl extends HttpServlet {
 				return;
 			} 
 			
-			if (codice == null  || password == null || comune == null || age == null || sesso == null || cap == null) {
+			if (codice == null  || password == null || comune == null || age == null || sesso == null || cap == null) { //controllo di parametri nulli da url
 				RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher(response.encodeURL("/loginElettore.jsp"));
 				dispatcher.forward(request, response);
 				return;
 			}
 			
-			if (!sesso.equals("M") && !sesso.equals("F")) {
+			if (!sesso.equals("M") && !sesso.equals("F")) { //controllo genere da url
 				response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/loginElettore.jsp"));
 	 			return;
 			}
 			
 			boolean error = false;
-			
-			int eta = Utility.checkEta(age);
+			int eta = Utility.checkEta(age); //controlla se l'età è compresa tra 18 e 130
 			if (eta == -1) {
 				request.setAttribute("erroreEta", "true");
 				request.setAttribute("error", "true");
@@ -85,7 +85,7 @@ public class LoginElettoreControl extends HttpServlet {
 					error = true;
 				}
 				
-				if (error) {
+				if (error) { //filtriamo per evitare html malevolo immesso da utente e settiamo parametri per validazione lato server
 					codice = Utility.filter(codice);
 					password = Utility.filter(password);
 					age = Utility.filter(age);
@@ -100,7 +100,7 @@ public class LoginElettoreControl extends HttpServlet {
 					dispatcher.forward(request, response);
 					return;
 				}
-
+				//se non c'è errore andiamo a schedavoto salvando tutti gli attributi per la sessione elettore
 				String lista = bean.getListaCodiciPassword();
 				if (lista.contains(Utility.encryptMD5(codice+","+password))) {
 					request.getSession().setAttribute("elettoreRoles", "true");

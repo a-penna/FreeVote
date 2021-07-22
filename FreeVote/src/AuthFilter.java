@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-public class AuthFilter implements Filter{
+public class AuthFilter implements Filter{ //definito in web.xml
 
 	public void destroy() {
 	}
@@ -18,11 +18,11 @@ public class AuthFilter implements Filter{
 		HttpServletRequest hrequest = (HttpServletRequest) request;
 		HttpServletResponse hresponse = (HttpServletResponse) response;
 		
-		HttpSession session = hrequest.getSession(false);
+		HttpSession session = hrequest.getSession(false); //restituisce la sessione solo se esiste, non ne crea una nuova
 		boolean loggedIn = session != null && session.getAttribute("adminRoles")!= null;
 		
-		if(!loggedIn) {
-			hresponse.sendRedirect(hrequest.getContextPath()+ "/loginAdmin.jsp");
+		if(!loggedIn) { //se un utente non è admin reindirizziamo al login, altrimenti il filtro lo lascerà passare
+			hresponse.sendRedirect(hrequest.getContextPath() + "/loginAdmin.jsp");
 		} else {
 			chain.doFilter(request, response);
 		}

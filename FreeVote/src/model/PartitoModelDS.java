@@ -91,7 +91,7 @@ public class PartitoModelDS implements Model<PartitoBean>{
 				bean.setNome(rs.getString("nome"));
 				bean.setDescrizione(rs.getString("descrizione"));
 				bean.setn_votazioni_ricevute(rs.getInt("n_votazioni_ricevute"));
-				bean.setLogo(rs.getBytes("logo")); 
+				bean.setLogo(rs.getBytes("logo"));  //gestiamo foto come array di byte
 
 				partiti.add(bean);
 			}

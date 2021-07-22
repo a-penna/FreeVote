@@ -15,9 +15,7 @@ public class AdminModelDS implements Model<AdminBean> {
 	public AdminModelDS(DataSource ds) {
 		this.ds = ds;
 	}
-	
 
-	
 	public Collection<AdminBean> doRetrieveAll(String order) throws SQLException {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
@@ -31,7 +29,7 @@ public class AdminModelDS implements Model<AdminBean> {
 		}
 
 		try {
-			connection = ds.getConnection();
+			connection = ds.getConnection(); 
 			preparedStatement = connection.prepareStatement(selectSQL);
 
 			ResultSet rs = preparedStatement.executeQuery();
@@ -67,7 +65,7 @@ public class AdminModelDS implements Model<AdminBean> {
 	public void doDelete(AdminBean admin) throws SQLException { }
 
 	@Override
-	public AdminBean doRetrieveByKey(String key) throws SQLException {
+	public AdminBean doRetrieveByKey(String key) throws SQLException { 
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		AdminBean bean = new AdminBean();
@@ -76,19 +74,15 @@ public class AdminModelDS implements Model<AdminBean> {
 		String selectSQL = "SELECT * FROM Admin WHERE nomeutente = MD5(?)";
 
 		try {
-			connection = ds.getConnection();
+			connection = ds.getConnection(); 
 			preparedStatement = connection.prepareStatement(selectSQL);
-			preparedStatement.setString(1, key);
+			preparedStatement.setString(1, key); //inseriamo key nello statement SQL
 
 			ResultSet rs = preparedStatement.executeQuery();
 
-			while (rs.next()) {
-								
-				
+			while (rs.next()) {					
 				bean.setPassword(rs.getString("password"));
 				bean.setnomeUtente(rs.getString("nomeutente"));
-				
-				
 			}
 
 		} finally {

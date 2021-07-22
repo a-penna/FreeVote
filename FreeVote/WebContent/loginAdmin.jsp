@@ -59,8 +59,7 @@
 <body class="bg-login-admin text-black pt-3">
 	<%@ include file="header.jsp"%>
 		<div class="container py-5">
-	    <% boolean loggedAsElettore = request.getSession(false) != null && request.getSession(false).getAttribute("elettoreRoles")!= null;  
-	    
+	    <% boolean loggedAsElettore = request.getSession(false) != null && request.getSession(false).getAttribute("elettoreRoles")!= null;  //non permettiamo che un elettore possa autenticarsi come admin
 	    if (loggedAsElettore)  { 
 			%><h3 class="text-white">Si prega di effettuare il logout da elettore prima di procedere con la normale autenticazione da admin</h3><%
 		} else { %>

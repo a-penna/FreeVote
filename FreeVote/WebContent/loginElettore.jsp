@@ -133,7 +133,7 @@
 		%><h3>Si prega di effettuare il logout da admin prima di procedere con la normale autenticazione da elettore</h3><%
 	} else {
 		Collection<?> regioni = (Collection<?>) request.getAttribute("listaRegioni");
-    	if (regioni == null) {
+    	if (regioni == null) { 
         	response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/Elettore"));
         	return;
     	}
@@ -262,7 +262,8 @@
 							if (request.getAttribute("error") != null) { %>
 								<select name="regione" class="custom-select is-invalid" id="regione">
 					            	<option disabled selected>Seleziona Regione</option>
-									<%
+									<!--prendiamo ogni regione dalla collection e costruiamo la select--> 
+									<% 
 									Iterator<?> it = regioni.iterator();
 									while(it.hasNext()) {
 										String regione = (String)it.next(); 

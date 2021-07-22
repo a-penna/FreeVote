@@ -5,9 +5,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- * Servlet implementation class Logout
- */
 @WebServlet("/Logout")
 public class Logout extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -37,6 +34,5 @@ public class Logout extends HttpServlet {
 			throws ServletException, IOException {
 		doGet(request, response);
 	}
-
     
 }

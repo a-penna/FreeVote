@@ -5,7 +5,7 @@
     <welcome-file>home.jsp</welcome-file>
   </welcome-file-list>
 
-  <resource-ref>
+  <resource-ref> <!--ogni volta che facciamo riferimento a VotoDB ci riferiamo a un DataSource-->
     <description>
     	Riferimento JNDI ad un data source
     </description>
@@ -14,7 +14,7 @@
     <res-auth>Container</res-auth>
   </resource-ref>
 
-  <filter>
+  <filter> <!--filtri per sicurezza-->
   	<filter-name>httpHeaderSecurity</filter-name>
 	<filter-class>org.apache.catalina.filters.HttpHeaderSecurityFilter</filter-class>
 	<init-param>
@@ -35,11 +35,11 @@
 	<url-pattern>/*</url-pattern>
   </filter-mapping>
 
-  <filter>
+  <filter> <!--filtri per l'autenticazione-->
     <filter-name>AuthFilter</filter-name>
     <filter-class>AuthFilter</filter-class>
  </filter>
- <filter-mapping>
+ <filter-mapping> <!--le risorse della cartella admin vengono filtrate tutte con AuthFilter-->
     <filter-name>AuthFilter</filter-name>
     <url-pattern>/admin/*</url-pattern>
  </filter-mapping> 
