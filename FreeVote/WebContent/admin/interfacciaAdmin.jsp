@@ -22,10 +22,11 @@
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> 
 </head>            
 
-<body class="bg-light">
+<body class="bg-interfaccia-admin">
 	<%@ include file="admin-header.jsp"%>
 	<div class="container-fluid py-5">
-    <h1>Benvenuto amministratore&excl; Da quest&apos;interfaccia potrai accedere ad alcune operazioni riservate&period;</h1>
+    	<div class="text-interfaccia-mobile"><h1 class="text-light text-center">Benvenuto amministratore&excl;</h1><p class="lead text-light text-center"> Da quest&apos;interfaccia potrai accedere ad alcune operazioni riservate&period;</h1>
+		</div>
 	</div>
 
 </body>

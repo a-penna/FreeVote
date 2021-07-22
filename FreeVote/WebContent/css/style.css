@@ -60,7 +60,15 @@
 
 @media screen and (min-width: 540px){
 	.bg-login-admin {
-			 background-image: url('../imgs/illogin-5.jpeg');
+			 background-image: url('../imgs/illogin-5.jpg');
+			 background-position:bottom; 
+			 background-size: cover;
+			 background-repeat:no-repeat;
+			 background-attachment: fixed;
+	}	
+	
+	.bg-interfaccia-admin {
+			 background-image: url('../imgs/interfacciaAdmin.jpeg');
 			 background-position:bottom; 
 			 background-size: cover;
 			 background-repeat:no-repeat;
@@ -71,4 +79,21 @@
 .bg-login-admin {
 		 background-color: #156e7a;
 }
+
+@media screen and (max-width: 540px){
+	.bg-interfaccia-admin {
+			 background-image: url('../imgs/interfacciaAdminMobile.png');
+		     background-position:bottom; 
+		     background-size: cover;
+			 background-repeat:no-repeat;
+		     background-attachment: fixed;
+	}
 	
+	.text-interfaccia-mobile {
+			margin: 0;
+		  	position: absolute;
+		  	top: 40%;
+		  	-ms-transform: translateY(-60%);
+		  	transform: translateY(-60%);
+	}
+}
