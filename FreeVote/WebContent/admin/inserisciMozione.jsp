@@ -46,6 +46,13 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
             
             if(valid) obj.submit();
         }
+        
+        function firstFocus() {	
+            var nameSurname = document.getElementsByName("nomeCompleto")[0];
+            nameSurname.focus();
+        }
+        
+        window.onload = firstFocus;
     </script>
 </head>            
 <body class="bg-light">

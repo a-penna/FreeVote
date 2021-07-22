@@ -40,6 +40,13 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
             
             if(valid) obj.submit();
         }
+        
+        function firstFocus() {	
+            var idMozione = document.getElementsByName("id")[0];
+            idMozione.focus();
+        }
+        
+        window.onload = firstFocus;
     </script> 
 </head>            
 <body class="bg-light">

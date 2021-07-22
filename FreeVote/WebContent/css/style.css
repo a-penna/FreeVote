@@ -1,8 +1,8 @@
 @media screen and (min-width: 1366px){
 	.dropdown:hover .dropdown-menu{
-	display: block;
-	margin-top: 0;
-}
+		display: block;
+		margin-top: 0;
+	}
 }
 
 .dropdown-menu .dropdown-item{
@@ -20,11 +20,6 @@
 }
 
 @media screen and (min-width: 1366px){
-	.head-banner{
-		padding-top: 0.5rem;
-		padding-bottom: 7rem;
-	}
-	
 	.sezione-immagini .testo{
 		padding: 7rem;
 	}
@@ -61,19 +56,6 @@
 
 .sezione-icone{
 	font-size: 50px;
-}
-
-
-@media screen and (min-width: 1366px){
-	.head-banner{
-		padding-top: 0.5rem;
-		padding-bottom: 7rem;
-	}
-	
-	.sezione-immagini .testo{
-		padding: 7rem;
-	}
-
 }
 
 @media screen and (min-width: 540px){

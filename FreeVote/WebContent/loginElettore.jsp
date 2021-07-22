@@ -19,7 +19,7 @@
 	<meta name="author" content="Bene Sabato, Cozzolino Lidia, Napoli Riccardo, Penna Alessandro">    
 	<title>FreeVote &dash; Login Elettore</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<script type="text/javascript" src="/FreeVote/scripts/script.js"></script>
+	<script type="text/javascript" src="<%=request.getContextPath()%>/scripts/script.js"></script>
 	<!-- Latest compiled and minified CSS --> 
     <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/style.css">						
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> 
@@ -34,36 +34,63 @@
 	    function validate(obj) {	
 	        var valid = true;	
 
-	        var regione = document.getElementsByName("regione")[0];
-            if (regione.value == "Seleziona Regione") {
-            	valid = false;
-            	regione.classList.add("is-invalid");
+	        var login = document.getElementsByName("codice")[0];
+            var pass = document.getElementsByName("password")[0];
+            if((login.value.trim() == "") || (pass.value.trim() == "")) {
+                valid = false;
+                login.classList.add("is-invalid");
+                login.focus();
+                pass.classList.add("is-invalid");
             } else {
-            	 regione.classList.remove("is-invalid");
-            }
-	        
-	        var comune = document.getElementsByName("comune")[0];
-            if (comune.value == "Seleziona Comune") {
-            	valid = false;
-            	comune.classList.add("is-invalid");
-            } else {
-            	 comune.classList.remove("is-invalid");
+            	login.classList.remove("is-invalid");
+            	pass.classList.remove("is-invalid");
             }
             
-	        var eta = document.getElementsByName("eta")[0];
-	        if(!checkEta(eta)) {
+	        var age = document.getElementsByName("eta")[0];
+	        if(!checkEta(age)) {
 	            valid = false;
-	            eta.classList.add("is-invalid");
+	            age.classList.add("is-invalid");
+	            age.focus();
 	        } else {
-	        	 eta.classList.remove("is-invalid");
+	        	 age.classList.remove("is-invalid");
 	        }
+            
+            var genderM = document.getElementsByName("sesso")[0];
+            var genderF = document.getElementsByName("sesso")[1];
+            if(!genderM.checked && !genderF.checked) {
+                valid = false;
+                genderM.classList.add("is-invalid");
+                genderM.focus();
+                genderF.classList.add("is-invalid");
+            } else {
+            	genderM.classList.remove("is-invalid");
+            	genderF.classList.remove("is-invalid");
+            }
 	        
-	        var cap = document.getElementsByName("cap")[0];
-	        if(!checkCAP(cap)) {
+	        var reg = document.getElementsByName("regione")[0];
+            if (reg.value == "Seleziona Regione") {
+            	valid = false;
+            	reg.classList.add("is-invalid");
+            	reg.focus();
+            } else {
+            	 reg.classList.remove("is-invalid");
+            }
+	        
+	        var com = document.getElementsByName("comune")[0];
+            if (com.value == "Seleziona Comune") {
+            	valid = false;
+            	com.classList.add("is-invalid");
+            } else {
+            	 com.classList.remove("is-invalid");
+            }
+	        
+	        var c = document.getElementsByName("cap")[0];
+	        if(!checkCAP(c)) {
 	            valid = false;
-	            cap.classList.add("is-invalid");
+	            c.classList.add("is-invalid");
+	            c.focus();
 	        } else {
-	        	 cap.classList.remove("is-invalid");
+	        	 c.classList.remove("is-invalid");
 	        }
 	
 	        if(valid) obj.submit();
@@ -129,11 +156,11 @@
 					        </div>
 			           		<%
 								if (request.getAttribute("erroreCredenziali") != null) {
-									%><input type="text" class="form-control is-invalid" id="codice" placeholder="Inserisci codice" value="<%=request.getAttribute("codice")%>" name="codice" required><% 
+									%><input type="text" class="form-control is-invalid" id="codice" placeholder="Inserisci codice" value="<%=request.getAttribute("codice")%>" name="codice"><% 
 								} else if (request.getAttribute("codice") != null) {
-									%><input type="text" class="form-control" id="codice" placeholder="Inserisci codice" value="<%=request.getAttribute("codice")%>" name="codice" required><% 
+									%><input type="text" class="form-control" id="codice" placeholder="Inserisci codice" value="<%=request.getAttribute("codice")%>" name="codice"><% 
 								} else {
-									%><input type="text" class="form-control" id="codice" placeholder="Inserisci codice" name="codice" required><% 
+									%><input type="text" class="form-control" id="codice" placeholder="Inserisci codice" name="codice"><% 
 								}
 							%>
 					 </div>
@@ -150,11 +177,11 @@
 					        </div>
 			            	<%
 								if (request.getAttribute("erroreCredenziali") != null) {
-									%><input type="password" class="form-control is-invalid" id="password" placeholder="Inserisci password" value="<%=request.getAttribute("password")%>" name="password" required><% 
+									%><input type="password" class="form-control is-invalid" id="password" placeholder="Inserisci password" value="<%=request.getAttribute("password")%>" name="password"><% 
 								} else if (request.getAttribute("password") != null) {
-									%><input type="password" class="form-control" id="password" placeholder="Inserisci password" value="<%=request.getAttribute("password")%>" name="password" required><% 
+									%><input type="password" class="form-control" id="password" placeholder="Inserisci password" value="<%=request.getAttribute("password")%>" name="password"><% 
 								} else {
-									%><input type="password" class="form-control" id="password" placeholder="Inserisci password" name="password" required><% 
+									%><input type="password" class="form-control" id="password" placeholder="Inserisci password" name="password"><% 
 								}
 							%>
 		                    <div class="invalid-feedback">Nome utente o password errati&excl;</div> 
@@ -174,42 +201,52 @@
 					        </div>
 				    <%
 				   		if (request.getAttribute("erroreEta") != null) {
-							%><input type="number" class="form-control is-invalid" id="eta" name="eta" placeholder="Et&agrave;" min="18" max="130" value="<%=request.getAttribute("eta")%>" required><% 
+							%><input type="number" class="form-control is-invalid" id="eta" name="eta" placeholder="Et&agrave;" min="18" max="130" value="<%=request.getAttribute("eta")%>"><% 
 						} else if (request.getAttribute("eta") != null) {
-							%><input type="number" class="form-control" id="eta" name="eta" min="18" max="130" placeholder="Et&agrave;" value="<%=request.getAttribute("eta")%>" required><% 
+							%><input type="number" class="form-control" id="eta" name="eta" min="18" max="130" placeholder="Et&agrave;" value="<%=request.getAttribute("eta")%>"><% 
 						} else {
-							%><input type="number" class="form-control" id="eta" name="eta" placeholder="Et&agrave;" min="18" max="130" required><% 
+							%><input type="number" class="form-control" id="eta" name="eta" placeholder="Et&agrave;" min="18" max="130"><% 
 						}
 					%>
-				    <div class="invalid-feedback">Et&agrave; non corretta&excl; Ricorda che il sistema ammette solo un&apos;et&agrave; compresa tra 18 e 130</div>
+				    <div class="invalid-feedback">Et&agrave; non valida&excl; Ricorda che il sistema ammette solo un&apos;et&agrave; compresa tra 18 e 130</div>
 			        </div>
 			        </div>
-		            <div class="form-group">
 		               <%
 		               	String sesso = (String)request.getAttribute("sesso");
 						if (sesso != null && sesso.equals("M")) {
 							%>
-			           		  <input type="radio" id="maschio" name="sesso" value="M" required checked>
-							  <label for="maschio">Maschio</label><br>
-			           		  <input type="radio" id="femmina" name="sesso" value="F" required>
-			            	  <label for="femmina">Femmina</label><br>
+		            		<div class="custom-control custom-radio">
+			           		  <input type="radio" class="custom-control-input" id="maschio" name="sesso" value="M" checked>
+							  <label for="maschio" class="custom-control-label">Maschio</label><br>
+			           		</div>
+			           		<div class="custom-control custom-radio mb-3"> 
+			           		  <input type="radio" class="custom-control-input" id="femmina" name="sesso" value="F">
+			            	  <label for="femmina" class="custom-control-label">Femmina</label><br>
+			            	</div>
 							<% 
 						} else if (sesso != null && sesso.equals("F")) { %>
-			           		 	<input type="radio" id="maschio" name="sesso" value="M" required>
-								<label for="maschio">Maschio</label><br>
-			           		 	<input type="radio" id="femmina" name="sesso" value="F" required checked>
-			            	  	<label for="femmina">Femmina</label><br>
+							<div class="custom-control custom-radio">
+			           		 	<input type="radio" class="custom-control-input" id="maschio" name="sesso" value="M">
+								<label for="maschio" class="custom-control-label">Maschio</label><br>
+			           		 </div>
+			           		 <div class="custom-control custom-radio mb-3">
+			           		 	<input type="radio" class="custom-control-input mb-3" id="femmina" name="sesso" value="F" checked>
+			            	  	<label for="femmina" class="custom-control-label">Femmina</label><br>
+							 </div>
 						<% 
 						} else {
 						%>  
-					        <input type="radio" id="maschio" name="sesso" value="M" required>
-					        <label for="maschio">Maschio</label><br>
-					        <input type="radio" id="femmina" name="sesso" value="F" required>
-					        <label for="femmina">Femmina</label><br> <%
+							<div class="custom-control custom-radio">
+					        	<input type="radio" id="maschio" class="custom-control-input" name="sesso" value="M">
+					        	<label for="maschio" class="custom-control-label">Maschio</label><br>
+					        </div>
+					        <div class="custom-control custom-radio mb-3">
+					        	<input type="radio" id="femmina" class="custom-control-input" name="sesso" value="F">
+					        	<label for="femmina" class="custom-control-label">Femmina</label><br>
+					            <div class="invalid-feedback">Selezionare il sesso&excl;</div> 
+					        </div>	<%
 						}
 					%>
-			            
-			        </div>
 		            <div class="form-group">
 			            <label for="regione">Regioni&colon; </label>
 			            <div class="input-group">
@@ -223,7 +260,7 @@
 					        </div>
 		            	 <%
 							if (request.getAttribute("error") != null) { %>
-								<select name="regione" class="custom-select is-invalid" id="regione" required>
+								<select name="regione" class="custom-select is-invalid" id="regione">
 					            	<option disabled selected>Seleziona Regione</option>
 									<%
 									Iterator<?> it = regioni.iterator();
@@ -236,7 +273,7 @@
 									%>
 								</select>
 						 <%	} else {
-			        	 %>		<select name="regione" class="custom-select" id="regione" required>
+			        	 %>		<select name="regione" class="custom-select" id="regione">
 					            	<option disabled selected>Seleziona Regione</option>
 									<%
 									Iterator<?> it = regioni.iterator();
@@ -266,13 +303,13 @@
 					        </div>
 			              <%
 							if (request.getAttribute("error") != null) { %>
-								<select name="comune" id="comune" class="custom-select is-invalid" required>
+								<select name="comune" id="comune" class="custom-select is-invalid">
 									<option disabled selected>Seleziona Comune</option>
 								</select>
 								
 						 <%	} else {
 			        	 %>		
-								<select name="comune" id="comune" class="custom-select" required>
+								<select name="comune" id="comune" class="custom-select">
 									<option disabled selected>Seleziona Comune</option>
 								</select>	        	
 				        <% } %>
@@ -283,11 +320,11 @@
 						<label for="cap">CAP&colon;</label>
 							<%
 								if (request.getAttribute("erroreCap") != null) {
-									%><input type="text" class="form-control is-invalid" id="cap" placeholder="CAP" value="<%=request.getAttribute("cap")%>" name="cap" required><% 
+									%><input type="text" class="form-control is-invalid" id="cap" placeholder="CAP" value="<%=request.getAttribute("cap")%>" name="cap"><% 
 								} else if (request.getAttribute("codice") != null) {
-									%><input type="text" class="form-control" id="cap" placeholder="CAP" value="<%=request.getAttribute("cap")%>" name="cap" required><% 
+									%><input type="text" class="form-control" id="cap" placeholder="CAP" value="<%=request.getAttribute("cap")%>" name="cap"><% 
 								} else {
-									%><input type="text" class="form-control" id="cap" placeholder="CAP" name="cap" required><% 
+									%><input type="text" class="form-control" id="cap" placeholder="CAP" name="cap"><% 
 								}
 							%> 
 							 <div class="invalid-feedback">Il CAP inserito non corrisponde con il comune indicato&excl;</div> 

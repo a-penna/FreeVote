@@ -34,6 +34,13 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
             
             if(valid) obj.submit();
         }
+        
+        function firstFocus() {	
+            var codiceF = document.getElementsByName("cf")[0];
+            codiceF.focus();
+        }
+        
+        window.onload = firstFocus;
     </script> 
 </head>            
 
@@ -46,7 +53,7 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
 			</div>
 			<div class="col-md-10">
 				<p>Inserire i dati del candidato da eliminare&colon;</p>
-				<form action="<%=response.encodeURL(request.getContextPath() + "/EliminazioneCandidato")%>" method="post" onsubmit="event.preventDefault(); validate(this)"> 
+				<form name="form" action="<%=response.encodeURL(request.getContextPath() + "/EliminazioneCandidato")%>" method="post" onsubmit="event.preventDefault(); validate(this)"> 
 			    	<div class="form-group">
 			        	<label for="cf">Codice Fiscale&colon;</label>
 			           	<%

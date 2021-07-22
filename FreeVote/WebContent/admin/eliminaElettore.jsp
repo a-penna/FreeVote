@@ -32,6 +32,13 @@
             
             if(valid) obj.submit();
         }
+        
+        function firstFocus() {	
+            var c = document.getElementsByName("codice")[0];
+            c.focus();
+        }
+        
+        window.onload = firstFocus;
     </script> 
 </head>            
 

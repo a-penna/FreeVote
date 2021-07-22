@@ -72,7 +72,7 @@
 								           <% if (!coalizione.getNome().equals("")) { %>
 										      <td><%=coalizione.getNome()%></td>
 										   <%} else { %>
-										      <td>&ast;</td>
+										      <td>&dash;</td>
 										    <% } %>
 										    <td><%=partito.getn_votazioni_ricevute()%></td>
 									    </tr>

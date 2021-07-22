@@ -5,7 +5,7 @@
 	boolean loggedIn = request.getSession(false) != null && request.getSession(false).getAttribute("adminRoles")!= null;
 
 	if(loggedIn) {
-		response.sendRedirect(response.encodeRedirectURL("admin/interfacciaAdmin.jsp"));
+		response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/admin/interfacciaAdmin.jsp"));
 	 	return;
 	}
 %>
@@ -29,6 +29,31 @@
 	<!-- Latest compiled JavaScript --> 
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> 
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> 
+	<script>
+        function validate(obj) {	
+            var valid = true;	
+			
+            var login = document.getElementsByName("username")[0];
+            if(login.value.trim() == "") {
+                valid = false;
+                login.classList.add("is-invalid");
+                login.focus();
+            } else {
+            	login.classList.remove("is-invalid");
+            }
+            
+            var pass = document.getElementsByName("password")[0];
+            if(pass.value.trim() == "") {
+                valid = false;
+                pass.classList.add("is-invalid");
+                pass.focus();
+            } else {
+            	pass.classList.remove("is-invalid");
+            }
+            
+            if(valid) obj.submit();
+        }
+    </script> 
 </head>            
 
 <body class="bg-login-admin text-black pt-3">
@@ -45,23 +70,25 @@
 		  </div>
 		  <div class="card-body text-left">
 		    <h4 class="card-title text-left">Login</h4>
-		    <form action="Administrator" method="post"> 
+		    <form method="post" action="<%=response.encodeURL(request.getContextPath() + "/Administrator")%>" onsubmit="event.preventDefault(); validate(this)"> 
 		        <fieldset>
 		             <div class="form-group">
 		             	<label for="username">Username&colon;</label>
 				      <div class="input-group">
 				        <div class="input-group-prepend">
-				          <span class="input-group-text" id="inputGroupPrepend1"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
-																				  <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>									
-																				  </svg></span>
+				          <span class="input-group-text" id="inputGroupPrepend1">
+				          	<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+								<path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>									
+							</svg>
+						  </span>
 				        </div>
 				            <%
 								if (request.getAttribute("erroreUser") != null) {
-									%><input type="text" class="form-control is-invalid" id="username" aria-describedby="inputGroupPrepend1" placeholder="Inserisci username" value="<%=request.getAttribute("username")%>" name="username" required><% 
+									%><input type="text" class="form-control is-invalid" id="username" aria-describedby="inputGroupPrepend1" placeholder="Inserisci username" value="<%=request.getAttribute("username")%>" name="username"><% 
 								} else if (request.getAttribute("username") != null) {
-									%><input type="text" class="form-control is-valid" id="username" aria-describedby="inputGroupPrepend1" placeholder="Inserisci username" value="<%=request.getAttribute("username")%>" name="username" required><% 
+									%><input type="text" class="form-control is-valid" id="username" aria-describedby="inputGroupPrepend1" placeholder="Inserisci username" value="<%=request.getAttribute("username")%>" name="username"><% 
 								} else {
-									%><input type="text" class="form-control" id="username" aria-describedby="inputGroupPrepend1" placeholder="Inserisci username" name="username" required><% 
+									%><input type="text" class="form-control" id="username" aria-describedby="inputGroupPrepend1" placeholder="Inserisci username" name="username"><% 
 								}
 							%>
 	                        <div class="valid-feedback">Corretto&excl;</div>
@@ -72,17 +99,19 @@
 			         <label for="password">Password&colon;</label>
 				      <div class="input-group">
 				        <div class="input-group-prepend">
-				          <span class="input-group-text" id="inputGroupPrepend2"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-lock-fill" viewBox="0 0 16 16">
-																				  <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/>
-																				</svg></span>
+				          <span class="input-group-text" id="inputGroupPrepend2">
+				          	<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-lock-fill" viewBox="0 0 16 16">
+								<path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/>
+							</svg>
+						  </span>
 				        </div>
 			           		<%
 								if (request.getAttribute("errorePass") != null) {
-									%><input type="password" class="form-control is-invalid" id="password"  aria-describedby="inputGroupPrepend2" placeholder="Inserisci password" value="<%=request.getAttribute("password")%>" name="password" required><% 
+									%><input type="password" class="form-control is-invalid" id="password"  aria-describedby="inputGroupPrepend2" placeholder="Inserisci password" value="<%=request.getAttribute("password")%>" name="password"><% 
 								} else if (request.getAttribute("password") != null) {
-									%><input type="password" class="form-control" id="password" placeholder="Inserisci password"  aria-describedby="inputGroupPrepend2" value="<%=request.getAttribute("password")%>" name="password" required><% 
+									%><input type="password" class="form-control" id="password" placeholder="Inserisci password"  aria-describedby="inputGroupPrepend2" value="<%=request.getAttribute("password")%>" name="password"><% 
 								} else {
-									%><input type="password" class="form-control" id="password" placeholder="Inserisci password"  aria-describedby="inputGroupPrepend2" name="password" required><% 
+									%><input type="password" class="form-control" id="password" placeholder="Inserisci password"  aria-describedby="inputGroupPrepend2" name="password"><% 
 								}
 							%>
 	                        <div class="valid-feedback">Corretto&excl;</div>

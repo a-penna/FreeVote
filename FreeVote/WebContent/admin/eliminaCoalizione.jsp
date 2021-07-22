@@ -40,6 +40,13 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
             
             if(valid) obj.submit();
         }
+        
+        function firstFocus() {	
+            var c = document.getElementsByName("coalizione")[0];
+            c.focus();
+        }
+        
+        window.onload = firstFocus;
     </script> 
 </head>            
 

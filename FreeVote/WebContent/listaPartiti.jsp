@@ -74,7 +74,7 @@
 										   <td><%=coalizione.getNome()%></td>
 							   <%} else { %>
 							   			  <td><a href="<%=response.encodeURL(request.getContextPath() + "/Partito?nome=" + partito.getNome())%>"><%=partito.getNome()%></a></td>
-										  <td>&ast;</td>
+										  <td>&dash;</td>
 							  <% } %>
 						  </tr>
 					
