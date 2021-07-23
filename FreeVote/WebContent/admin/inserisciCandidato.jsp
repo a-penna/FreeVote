@@ -168,7 +168,7 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
 		                      <div class="invalid-feedback">Inserire il curriculum&excl;</div>
 		                    </div>
 		                    <div class="form-group">
-		                        <label for="foto">Carica Foto(Max&period; size&equals;10MB)&colon;</label>
+		                        <label for="foto">Carica Foto&lpar;Max&period; size&equals;10MB&rpar;&colon;</label>
 		                        <input id="foto" type="file" accept="image/*" name="foto">  
 		                    </div>
 		                 </fieldset>
@@ -198,7 +198,7 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
 							     <div class="invalid-feedback">Seleziona il partito&excl;</div>
 			                 </div>
 		                 </fieldset>
-		               <button type="submit" class="btn btn-dark">Inserisci</button>
+		               <button type="submit" class="btn btn-primary">Inserisci</button>
 		            </form>
 		        </div>
 		    </div>

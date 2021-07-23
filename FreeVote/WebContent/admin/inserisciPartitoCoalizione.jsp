@@ -1,6 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8" import="java.util.*, model.*"%>
 
+<% 
+	Collection<?> partiti = (Collection<?>) request.getAttribute("listaPartiti");
+    if (partiti == null) {
+        response.sendRedirect(response.encodeURL(request.getContextPath() + "/InserisciPartitoCoalizione"));
+        return;
+    }
+    
+    Collection<?> coalizioni = (Collection<?>) request.getAttribute("listaCoalizioni");
+    if (coalizioni == null) {
+        response.sendRedirect(response.encodeURL(request.getContextPath() + "/InserisciPartitoCoalizione"));
+        return;
+    }
+%>
 
 <!DOCTYPE html>
 <html>
@@ -25,7 +38,7 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
 	            var valid = true;	
 				
 	            var name = document.getElementsByName("nome")[0];
-	            if(name.value.trim() == "") {
+	            if((name.value == "Seleziona Partito")) {
 	                valid = false;
 	                name.classList.add("is-invalid");
 	                name.focus();
@@ -34,7 +47,7 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
 	            }
 	            
 	            var nomeCoalizione = document.getElementsByName("coalizione")[0];
-	            if(nomeCoalizione.value.trim() == "") {
+	            if((nomeCoalizione.value == "Scegli Coalizione")) {
 	                valid = false;
 	                nomeCoalizione.classList.add("is-invalid");
 	                nomeCoalizione.focus();
@@ -61,18 +74,39 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
 					<%@ include file="/admin/politicheMenu.jsp" %>
 				</div>
 				<div class="col-md-10">
-					<p>Inserisci i dati nel seguente form per inserire un partito in una coalizione&period; Sia il partito che la coalizione devono essere gi&agrave; registrati sulla piattaforma&period;<p>
+					<p>Compila il seguente form per inserire un partito in una coalizione&comma; nota che sar&agrave; possibile scegliere solo tra i partiti non ancora coalizzati&period; <p>
 					<form action="<%=response.encodeURL(request.getContextPath() + "/InserisciPartitoCoalizione")%>" method="post" onsubmit="event.preventDefault(); validate(this)"> 
 					        <fieldset>
 								<div class="form-group">
-						        	<label for="nome">Nome Partito&colon;</label>
-						       	    <input id="nome" class="form-control" type="text" name="nome" placeholder="Nome partito">
-			                    <div class="invalid-feedback">Inserire il nome del partito&excl;</div> 
-								</div>
+									<label for="nome">Nome Partito&colon;</label>
+							        <select class="custom-select" name="nome">
+							        		<option disabled selected>Seleziona Partito</option>
+								            <%
+								            Iterator<?> it = partiti.iterator();
+								            while(it.hasNext()) {
+												PartitoBean bean = (PartitoBean)it.next();
+												if (!bean.getNome().equals("Scheda Bianca")) { %>
+								            		<option value="<%=bean.getNome()%>"><%=bean.getNome()%></option>
+								            <%	}  
+											} 
+								            %>
+								     </select> 
+								     <div class="invalid-feedback">Seleziona il partito&excl;</div>
+				   				</div>
 								<div class="form-group">
 						        	<label for="coalizione">Nome Coalizione&colon;</label>
-						            <input id="coalizione" class="form-control" type="text" name="coalizione" placeholder="Nome coalizione"> 
-			                   		<div class="invalid-feedback">Inserisci il nome della coalizione&excl;</div>
+			                   		<select class="custom-select" name="coalizione">
+						        		<option disabled selected>Scegli Coalizione</option>
+							            <%
+							            Iterator<?> it2 = coalizioni.iterator();
+							            while(it2.hasNext()) {
+							                CoalizioneBean bean = (CoalizioneBean)it2.next(); 
+							            %>
+							            <option value="<%=bean.getNome()%>"><%=bean.getNome()%></option>
+							            <%  }
+										%>
+							     	</select> 
+					     			<div class="invalid-feedback">Seleziona una coalizione&excl;</div>
 						        </div>
 					        </fieldset>
 					        <button type="submit" class="btn btn-primary">Inserisci</button>

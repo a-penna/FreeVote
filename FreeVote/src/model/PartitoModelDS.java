@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Collection;
 import java.util.LinkedList;
 
@@ -326,6 +327,89 @@ public class PartitoModelDS implements Model<PartitoBean>{
 			try {
 				if (preparedStatement != null)
 					preparedStatement.close();
+			} finally {
+				if (connection != null) {
+					connection.close();
+				}
+			}
+		}
+	
+		return partiti;
+	}
+	
+	public Collection<PartitoBean> doRetrieveAllCoalizzati(String order) throws SQLException{
+		Connection connection = null;
+		Statement statement = null;
+	
+		Collection<PartitoBean> partiti = new LinkedList<PartitoBean>();
+	
+		String selectSQL = "SELECT * FROM partito WHERE nome IN (SELECT partito FROM appartiene)";
+	
+		if (checkOrder(order)) {
+			selectSQL += " ORDER BY " + order;
+		}
+		
+		try {
+			connection = ds.getConnection();
+			statement = connection.createStatement();
+			ResultSet rs = statement.executeQuery(selectSQL);
+	
+			while (rs.next()) {
+				PartitoBean bean = new PartitoBean();
+				bean.setLeader(rs.getString("leader"));
+				bean.setNome(rs.getString("nome"));
+				bean.setDescrizione(rs.getString("descrizione"));
+				bean.setn_votazioni_ricevute(rs.getInt("n_votazioni_ricevute"));
+				bean.setLogo(rs.getBytes("logo")); 
+	
+				partiti.add(bean);
+			}
+		} finally {
+			try {
+				if (statement != null)
+					statement.close();
+			} finally {
+				if (connection != null) {
+					connection.close();
+				}
+			}
+		}
+	
+		return partiti;
+	}
+	
+	
+	public Collection<PartitoBean> doRetrieveAllNonCoalizzati(String order) throws SQLException{
+		Connection connection = null;
+		Statement statement = null;
+	
+		Collection<PartitoBean> partiti = new LinkedList<PartitoBean>();
+	
+		String selectSQL = "SELECT * FROM partito WHERE nome NOT IN (SELECT partito FROM appartiene)";
+	
+		if (checkOrder(order)) {
+			selectSQL += " ORDER BY " + order;
+		}
+		
+		try {
+			connection = ds.getConnection();
+			statement = connection.createStatement();
+			ResultSet rs = statement.executeQuery(selectSQL);
+	
+			while (rs.next()) {
+				PartitoBean bean = new PartitoBean();
+				bean.setLeader(rs.getString("leader"));
+				bean.setNome(rs.getString("nome"));
+				bean.setDescrizione(rs.getString("descrizione"));
+				bean.setn_votazioni_ricevute(rs.getInt("n_votazioni_ricevute"));
+				bean.setLogo(rs.getBytes("logo")); 
+	
+				partiti.add(bean);
+			}
+		} finally {
+			try {
+				if (statement != null)
+					statement.close();
 			} finally {
 				if (connection != null) {
 					connection.close();
