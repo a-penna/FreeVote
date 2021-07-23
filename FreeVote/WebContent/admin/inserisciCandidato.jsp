@@ -31,7 +31,7 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
 
-    	function validate(obj) {	
+    	function validate(obj) {	//validazione lato client
             var valid = true;	
 
             var name = document.getElementsByName("nome")[0];
@@ -169,7 +169,7 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
 		                    </div>
 		                    <div class="form-group">
 		                        <label for="foto">Carica Foto(Max&period; size&equals;10MB)&colon;</label>
-		                        <input id="foto" type="file" accept="image/*" name="foto">  
+		                        <input id="foto" type="file" accept="image/*" name="foto">  <!--campo per accettare immagini-->
 		                    </div>
 		                 </fieldset>
 		                 <fieldset>

@@ -19,8 +19,8 @@ import model.*;
 import utils.Utility;
 
 @WebServlet("/InserisciCandidato")
-@MultipartConfig(fileSizeThreshold = 1024 * 1024 * 2, // 2MB after which the file will be temporarily stored on disk
-				maxFileSize = 1024 * 1024 * 10) // 10MB maximum size allowed for uploaded files
+@MultipartConfig(fileSizeThreshold = 1024 * 1024 * 2, // 2MB dimensione dopo la quale il file sarà temporaneamente spostato su disco
+				maxFileSize = 1024 * 1024 * 10) // 10MB dimensione massima permessa per i file caricati
 public class InserisciCandidatoControl extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -36,7 +36,7 @@ public class InserisciCandidatoControl extends HttpServlet {
 			return;
 		}
 		
-		request.setCharacterEncoding("UTF-8");
+		request.setCharacterEncoding("UTF-8"); //metodo per evitare accenti, setta l'encoding utf-8
 		String nome = request.getParameter("nome");
 		String cognome = request.getParameter("cognome");
 		String cf = request.getParameter("cf");
@@ -60,7 +60,7 @@ public class InserisciCandidatoControl extends HttpServlet {
 			return;
         }
         
-        nome = nome.trim();
+        nome = nome.trim();  //Rimuove gli spazi all'inizio e alla fine di una stringa
         cognome = cognome.trim();
         cf = cf.trim();
         curriculum = curriculum.trim();
@@ -106,8 +106,8 @@ public class InserisciCandidatoControl extends HttpServlet {
         
 		InputStream streamFoto = null; 
 		
-		Part filePart = request.getPart("foto");
-		if (filePart != null) {
+		Part filePart = request.getPart("foto"); //usiamo Part per trasferire foto, getPart ci permette di prenderla
+		if (filePart != null) { //se la foto è effettivamente stata caricata ne prendiamo l'inputStream
 			streamFoto = filePart.getInputStream();
 		}
 		
