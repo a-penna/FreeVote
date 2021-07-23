@@ -2,7 +2,9 @@ package control;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Collection;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -28,18 +30,33 @@ public class InserisciPartitoCoalizioneControl extends HttpServlet {
 			return;
 		}
 		
+		DataSource ds = (DataSource) getServletContext().getAttribute("DataSource");
+		PartitoModelDS partitoModel = new PartitoModelDS(ds);
+		CoalizioneModelDS coalizioneModel = new CoalizioneModelDS(ds);
+		
+		try { 
+			Collection<PartitoBean> partiti = partitoModel.doRetrieveAllNonCoalizzati("nome");
+			request.setAttribute("listaPartiti", partiti);
+			Collection<CoalizioneBean> coalizioni = coalizioneModel.doRetrieveAll("nome");
+			request.setAttribute("listaCoalizioni", coalizioni);
+		} catch (SQLException e) {
+			Utility.printSQLException(e);
+			response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/error/generic.jsp"));
+			return;
+		} 
+		
 		String partito = request.getParameter("nome");
 		String coalizione = request.getParameter("coalizione");
          
 		if (partito == null || coalizione == null) {
-			response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/admin/inserisciPartitoCoalizione.jsp"));
+			RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher(response.encodeURL("/admin/inserisciPartitoCoalizione.jsp"));
+			dispatcher.forward(request, response);
 			return;
 		};
 		
 		partito = partito.trim();
 		coalizione = coalizione.trim();
 		
-        DataSource ds = (DataSource) getServletContext().getAttribute("DataSource");
 		AppartieneModelDS model = new AppartieneModelDS(ds);
 
 		try {

@@ -140,7 +140,7 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
 			                    <div class="invalid-feedback">Inserisci la descrizione&excl;</div>
 							</div>
 							<div class="form-group">
-					        	<label for="logo">Carica Logo&colon;</label>
+					        	<label for="logo">Carica Logo&lpar;Max&period; size&equals;10MB&rpar;&colon;</label>
 					       	    <input id="logo" type="file" accept="image/*" name="logo"> 
 					        	<br>
 					        </div>
@@ -205,7 +205,7 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
 					        	<br>
 				        	</div>
 				        	<div class="form-group">
-					        	<label for="foto">Carica Foto&colon;</label>
+					        	<label for="foto">Carica Foto&lpar;Max&period; size&equals;10MB&rpar;&colon;</label>
 					       	    <input id="foto" type="file" accept="image/*" name="foto">  
 					        </div>
 				        </fieldset>

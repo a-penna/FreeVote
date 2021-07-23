@@ -28,12 +28,12 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
 				$("#partiti").append('<div class="row form-group align-items-end" id="div'+ count +'"> \n\
 										<div class="col-10"> \n\
 											<label for="partito'+ count +'">Nome del partito&colon;</label> \n\
-												<input type="text" id="partito'+ count +'" class="form-control" name="nomePartito" placeholder="Nome del partito" required> \n\
+											<input type="text" id="partito'+ count +'" class="form-control" name="nomePartito" placeholder="Nome del partito"> \n\
 										</div> \n\
 										<div class="col-2"> \n\
-	 										<input type="button" id="'+count+'" class="btn btn-dark rimuovi_btn" value="-"> \n\
+	 										<input type="button" id="'+count+'" class="btn btn-dark rimuovi_btn" value="&dash;"> \n\
 	 									</div> \n\
-									</div>');
+									  </div>');
 				count++;
 			});
 			
@@ -41,7 +41,41 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
 				var identificatore = $(this).attr("id");
 				$("#div"+ identificatore +"").remove();
 			});
+			
 		});
+		
+		function validate(obj) {	
+	    	var valid = true;	
+	            
+	        var coalizione = document.getElementsByName("nomeCoalizione")[0];
+	        if(coalizione.value.trim() == "") {
+	        	valid = false;
+	            coalizione.classList.add("is-invalid");
+	            coalizione.focus();
+            } else {
+            	coalizione.classList.remove("is-invalid");
+            } 
+	            
+            var partiti = document.getElementsByName("nomePartito");
+            for (var i = 0; i < partiti.length; i++) {
+	            if(partiti[i].value.trim() == "") {
+	                valid = false;
+	                partiti[i].classList.add("is-invalid");
+	                partiti[i].focus();
+	            } else {
+	            	partiti[i].classList.remove("is-invalid");
+	            } 
+            }
+            
+            if(valid) obj.submit();
+        }
+        
+        function firstFocus() {	
+            var coalizione = document.getElementsByName("nomeCoalizione")[0];
+            coalizione.focus();
+        }
+        
+        window.onload = firstFocus;
 	</script>
 
 </head>            
@@ -56,22 +90,24 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
 			<div class="col-md-10">
 				<p>Inserisci i dati nel seguente form per registare una nuova coalizione &lpar;<strong>Ricorda che i partiti scelti devono essere gi&agrave; registrati sulla piattaforma&excl;</strong>&rpar;
 				 <p>
-				<form action="<%=response.encodeURL(request.getContextPath() + "/InserisciCoalizione")%>" method="post">
+				<form action="<%=response.encodeURL(request.getContextPath() + "/InserisciCoalizione")%>" method="post" onsubmit="event.preventDefault(); validate(this)">
 				        <fieldset>
 				        	<legend>Informazioni sulla coalizione&colon; </legend> 
 							<div class="form-group"> 
 					        	<label for="nome">Nome Coalizione&colon;</label>  
-					       	    <input id="nome" type="text" class="form-control" name="nomeCoalizione" placeholder="Nome della coalizione" required> 
+					       	    <input id="nome" type="text" class="form-control" name="nomeCoalizione" placeholder="Nome della coalizione"> 
+					 			<div class="invalid-feedback">Inserire il nome di una coalizione&excl;</div>
 					 		</div>
 								<div id = "partiti">
 									<div class="form-group">
 										<label for="partito1">Nome del primo partito&colon;</label>
-										<input type="text" id="partito1" class="form-control" name="nomePartito" placeholder="Nome del primo partito" required>
+										<input type="text" id="partito1" class="form-control" name="nomePartito" placeholder="Nome del primo partito">
+										<div class="invalid-feedback">Inserire il nome del partito&excl;</div>
 									</div>
 									<div class="row form-group align-items-end">
 										<div class="col-10">
 											<label for="partito2">Nome del secondo partito&colon;</label>
-											<input type="text" id="partito2" class="form-control" name="nomePartito" placeholder="Nome del secondo partito" required>
+											<input type="text" id="partito2" class="form-control" name="nomePartito" placeholder="Nome del secondo partito">
 										</div>
 										<div class="col-2">
 								 			<input type="button" id="add" class="btn btn-dark" value="&plus;"> 

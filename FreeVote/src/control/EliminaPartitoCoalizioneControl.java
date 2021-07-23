@@ -40,7 +40,7 @@ public class EliminaPartitoCoalizioneControl extends HttpServlet {
         CoalizioneModelDS coalizioneModel = new CoalizioneModelDS(ds);	
 		
 		try {
-            Collection<PartitoBean> partiti = model.doRetrieveAll("nome");
+            Collection<PartitoBean> partiti = model.doRetrieveAllCoalizzati("nome");
 			request.setAttribute("listaPartiti", partiti);
 			String nome = request.getParameter("nome");
 			if (nome != null) {

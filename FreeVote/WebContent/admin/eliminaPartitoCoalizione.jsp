@@ -58,7 +58,7 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
 				<%@ include file="/admin/politicheMenu.jsp" %>
 			</div>
 			<div class="col-md-10">
-				<p>Selezionare un partito per scollegarlo dalla sua coalizione&comma; nel caso in cui non ne abbia una l'operazione fallir&agrave;&period;</p>
+				<p>Selezionare un partito per scollegarlo dalla sua coalizione&comma; ovviamente sarà possibile selezionare solo un partito gi&agrave; coalizzato&period;</p>
 				<form action="<%=response.encodeURL(request.getContextPath() + "/EliminaPartitoCoalizione")%>" method="post" onsubmit="event.preventDefault(); validate(this)"> 
 					    <fieldset>
 						<div class="form-group">
