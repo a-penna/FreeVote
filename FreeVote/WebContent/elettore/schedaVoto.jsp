@@ -100,7 +100,7 @@
 		      </div>
 		      <div class="modal-footer">
 		        <button type="button" class="btn btn-secondary" data-dismiss="modal">Annulla</button>
-		        <a href="<%=response.encodeURL("/FreeVote/GestisciVoto?action=vota")%>" class="btn btn-primary">Vota</a>
+		        <a href="<%=response.encodeURL("/FreeVote/GestisciVoto?action=vota")%>" class="btn btn-info">Vota</a>
 		      </div>
 		    </div>
 		  </div>

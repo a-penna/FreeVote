@@ -168,13 +168,9 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
 		                      <div class="invalid-feedback">Inserire il curriculum&excl;</div>
 		                    </div>
 		                    <div class="form-group">
-<<<<<<< HEAD
 		                        <label for="foto">Carica Foto(Max&period; size&equals;10MB)&colon;</label>
 		                        <input id="foto" type="file" accept="image/*" name="foto">  <!--campo per accettare immagini-->
-=======
-		                        <label for="foto">Carica Foto&lpar;Max&period; size&equals;10MB&rpar;&colon;</label>
-		                        <input id="foto" type="file" accept="image/*" name="foto">  
->>>>>>> branch 'master' of https://github.com/a-penna/FreeVote.git
+
 		                    </div>
 		                 </fieldset>
 		                 <fieldset>

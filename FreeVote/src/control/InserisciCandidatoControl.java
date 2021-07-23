@@ -36,7 +36,7 @@ public class InserisciCandidatoControl extends HttpServlet {
 			return;
 		}
 		
-		request.setCharacterEncoding("UTF-8"); //metodo per evitare accenti, setta l'encoding utf-8
+		request.setCharacterEncoding("UTF-8"); //metodo per evitare problemi con accenti, setta l'encoding utf-8
 		String nome = request.getParameter("nome");
 		String cognome = request.getParameter("cognome");
 		String cf = request.getParameter("cf");
@@ -106,8 +106,8 @@ public class InserisciCandidatoControl extends HttpServlet {
         
 		InputStream streamFoto = null; 
 		
-		Part filePart = request.getPart("foto"); //usiamo Part per trasferire foto, getPart ci permette di prenderla
-		if (filePart != null) { //se la foto è effettivamente stata caricata ne prendiamo l'inputStream
+		Part filePart = request.getPart("foto"); //usiamo la classe Part ed il suo metodo getParts per ottenere la foto trasferita
+		if (filePart != null) { 
 			streamFoto = filePart.getInputStream();
 		}
 		

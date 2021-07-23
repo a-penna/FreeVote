@@ -29,6 +29,7 @@
 	<div class="row">
 			<div class="col-lg-3">
 				<div class="email mx-auto mb-5 mb-lg-0">
+						<br>
 						<img class="img-fluid roundend-circle mb-3" src="<%=request.getContextPath()%>/imgs/sabato.jpeg" height="225" width="225" alt="Foto autore">
 						<h5>Sabato Bene</h5>
 						<p class="font-weight-light mb-0">s.bene@studenti.unisa.it</p>

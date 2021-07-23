@@ -80,7 +80,7 @@
 	    	<label for="partito">Partito&colon; </label>
 	    	 <%
 				if (request.getAttribute("errorePartito") != null) { %>
-					<select name="partito" class="custom-select is-invalid" required>
+					<select name="partito" class="custom-select is-invalid">
 						<option disabled selected>Seleziona Partito</option>
 			            <%
 			            Iterator<?> it = partiti.iterator();
@@ -95,7 +95,7 @@
 			        </select>
 			 <%	} else {
         	 %>
-	        		<select name="partito" class="custom-select" required>
+	        		<select name="partito" class="custom-select">
 			        	<option disabled selected>Seleziona Partito</option>
 			            <%
 			            Iterator<?> it = partiti.iterator();
@@ -120,11 +120,11 @@
 	        <label for="etaMin">Et&agrave; minima&colon; </label>
 	        <%
 				if (request.getAttribute("erroreEtaMin") != null) {
-					%><input type="number" class="form-control is-invalid" id="etaMin" name="minima" min="18" max="130" value="<%=request.getAttribute("min")%>" required><% 
+					%><input type="number" class="form-control is-invalid" id="etaMin" name="minima" min="18" max="130" value="<%=request.getAttribute("min")%>"><% 
 				} else if (request.getAttribute("min") != null) {
-					%><input type="number" class="form-control" id="etaMin" name="minima" min="18" max="130" value="<%=request.getAttribute("min")%>" required><% 
+					%><input type="number" class="form-control" id="etaMin" name="minima" min="18" max="130" value="<%=request.getAttribute("min")%>"><% 
 				} else {
-					%><input type="number" class="form-control" id="etaMin" name="minima" min="18" max="130" required><% 
+					%><input type="number" class="form-control" id="etaMin" name="minima" min="18" max="130"><% 
 				}
 			%>
             <div class="invalid-feedback">Et&agrave; minima non corretta&excl; Ricorda che il sistema ammette solo un&apos;et&agrave; compresa tra 18 e 130</div>
@@ -133,11 +133,11 @@
 	        <label for="etaMax">Et&agrave; massima&colon; </label>
 	         <%
 				if (request.getAttribute("erroreEtaMax") != null) {
-					%><input type="number" class="form-control is-invalid" id="etaMax" name="massima" min="18" max="130" value="<%=request.getAttribute("max")%>" required><% 
+					%><input type="number" class="form-control is-invalid" id="etaMax" name="massima" min="18" max="130" value="<%=request.getAttribute("max")%>"><% 
 				} else if (request.getAttribute("max") != null) {
-					%><input type="number" class="form-control" id="etaMax" name="massima" min="18" max="130" value="<%=request.getAttribute("max")%>" required><% 
+					%><input type="number" class="form-control" id="etaMax" name="massima" min="18" max="130" value="<%=request.getAttribute("max")%>"><% 
 				} else {
-					%><input type="number" class="form-control" id="etaMax" name="massima" min="18" max="130" required><% 
+					%><input type="number" class="form-control" id="etaMax" name="massima" min="18" max="130"><% 
 				}
 			%>
  <div class="invalid-feedback">Et&agrave; massima non corretta&excl; Ricorda che il sistema ammette solo un&apos;et&agrave; compresa tra 18 e 130</div>	    </div>
