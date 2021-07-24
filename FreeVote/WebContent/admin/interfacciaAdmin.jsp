@@ -25,7 +25,7 @@
 <body class="bg-interfaccia-admin">
 	<%@ include file="admin-header.jsp"%>
 	<div class="container-fluid py-5">
-    	<div class="text-interfaccia-mobile"><h1 class="text-light text-center">Benvenuto amministratore&excl;</h1><p class="lead text-light text-center"> Da quest&apos;interfaccia potrai accedere ad alcune operazioni riservate&period;</h1>
+    	<div class="text-interfaccia-mobile"><h1 class="text-light text-center">Benvenuto amministratore&excl;</h1><p class="lead text-light text-center"> Da quest&apos;interfaccia potrai accedere ad alcune operazioni riservate&period;</p>
 		</div>
 	</div>
 

@@ -14,7 +14,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-    <meta name="keywords" content="FreeVote, piattaforma voto, voto, voto online, Votazione, login, login elettore, elettore, autenticazione">
+    <meta name="keywords" content="FreeVote, piattaforma voto, voto, voto online, Votazione, login, login elettore, elettore, autenticazione, autenticazione elettore">
 	<meta name="description" content="Login Elettore">
 	<meta name="author" content="Bene Sabato, Cozzolino Lidia, Napoli Riccardo, Penna Alessandro">    
 	<title>FreeVote &dash; Login Elettore</title>
@@ -105,7 +105,7 @@
 				})
 				.done(function(msg) {
 					$("#comune").html("<option disabled selected>Seleziona Comune</option>");
-					var comuni = msg.listaComuni;  
+					var comuni = msg.listaComuni;  //listacomuni è un array json
 					var c;
 					for (c in comuni) {
 						var opt = document.createElement("option");

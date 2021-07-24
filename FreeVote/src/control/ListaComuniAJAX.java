@@ -50,7 +50,7 @@ public class ListaComuniAJAX extends HttpServlet {
 			Utility.printSQLException(e1);
 		}
 
-		response.getWriter().print(json);
+		response.getWriter().print(json); 
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

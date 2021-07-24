@@ -44,28 +44,28 @@ public class GestisciVotoControl extends HttpServlet {
 			}
 			
 			DataSource ds = (DataSource) getServletContext().getAttribute("DataSource");
-			String action = request.getParameter("action");
+			String action = request.getParameter("action"); //Utilizziamo il parametro action del form per capire che tipo di operazione effettuiamo sulla scheda voto
 			try {
 				if (action != null) {
 					if (action.equals("vota")) {
 						VotazionePoliticaBean vp = scheda.getVP();
 						VotazioneReferendumBean vr = scheda.getVR();
 						ElettoreBean elettore = new ElettoreBean();
-						elettore.setCap((String) request.getSession().getAttribute("CAP"));
+						elettore.setCap((String) request.getSession().getAttribute("CAP")); //prendiamo i dati dell'elettore salvati nella sessione dal login
 						elettore.setCodice(Utility.encryptMD5((String) request.getSession().getAttribute("codice")));
 						elettore.setComune((String) request.getSession().getAttribute("comune"));
 						elettore.setEta((Integer) (request.getSession().getAttribute("eta")));
 						elettore.setPassword(Utility.encryptMD5((String) request.getSession().getAttribute("password")));
 						elettore.setSesso((String) request.getSession().getAttribute("sesso"));
 						VotazionePoliticaModelDS modelVotazione = new VotazionePoliticaModelDS(ds);
-						if (vp == null) {
+						if (vp == null) { //se l'elettore non ha espresso una preferenza per un partito si considera scheda bianca
 							vp = new VotazionePoliticaBean();
 							vp.setCodice(0);
 							vp.setData(Utility.toSqlDate(new Date()));
 							vp.setElettore(Utility.encryptMD5((String) request.getSession().getAttribute("codice")));
 							vp.setPartito("Scheda Bianca");
 						}
-						if (vr == null) {
+						if (vr == null) {//se l'elettore non ha espresso una preferenza per il referendum si considera astenuto.
 							vr = new VotazioneReferendumBean();
 							vr.setCodice(0);
 							vr.setData(Utility.toSqlDate(new Date()));
@@ -84,10 +84,10 @@ public class GestisciVotoControl extends HttpServlet {
 						}
 					} 
 					else if (action.equals("aggiornaPartito")) {
-						String partito = (String) request.getParameter("partitoScelto");
+						String partito = (String) request.getParameter("partitoScelto"); //prendiamo il partito selezionato
 						PartitoModelDS modelPartito = new PartitoModelDS(ds);
-						PartitoBean p = modelPartito.doRetrieveByKey(partito);
-						if (!p.isEmpty()) {
+						PartitoBean p = modelPartito.doRetrieveByKey(partito); 
+						if (!p.isEmpty()) { //se esiste aggiungiamo alla scheda una votazione politica per il partito scelto
 							VotazionePoliticaBean voto = new VotazionePoliticaBean();
 							voto.setCodice(0);
 							voto.setData(Utility.toSqlDate(new Date()));
@@ -98,7 +98,7 @@ public class GestisciVotoControl extends HttpServlet {
 					} 
 					else if (action.equals("aggiornaPreferenza")) {
 						String preferenza = (String) request.getParameter("preferenza");
-						if (preferenza != null && (preferenza.equals("Si") || preferenza.equals("No"))) {
+						if (preferenza != null && (preferenza.equals("Si") || preferenza.equals("No"))) { //se esiste ed è si/no aggiungiamo alla scheda una votazione per la preferenza scelta
 							VotazioneReferendumBean voto = new VotazioneReferendumBean();
 							voto.setCodice(0);
 							voto.setData(Utility.toSqlDate(new Date()));
@@ -107,7 +107,7 @@ public class GestisciVotoControl extends HttpServlet {
 							scheda.addVR(voto);
 						}
 					}
-					else if (action.equals("clear")) {
+					else if (action.equals("clear")) { //reset button
 						scheda.deleteVP();
 						scheda.deleteVR();
 					} 

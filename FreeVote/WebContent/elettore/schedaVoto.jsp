@@ -4,13 +4,13 @@
 <% 
     SchedaVoto scheda = (SchedaVoto) request.getAttribute("scheda");
     if (scheda == null) {
-        response.sendRedirect(response.encodeRedirectURL("/FreeVote/GestisciVoto"));
+        response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/GestisciVoto"));
    	    return;
     }
     
 	Collection<?> partiti = (Collection<?>) request.getAttribute("partiti");
 	if (partiti == null) {
-  	    response.sendRedirect(response.encodeRedirectURL("/FreeVote/GestisciVoto"));
+  	    response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/GestisciVoto"));
    	    return;
 	}
 	
@@ -128,7 +128,7 @@
 						    <div class="col-lg-4 align-self-center">
 						      <a class="mx-auto d-block" href="<%=response.encodeURL(request.getContextPath() + "/Partito?nome=" + partito.getNome())%>"><%=partito.getNome()%></a>
 						    </div>
-					            <input type="hidden" name="action"  value="aggiornaPartito">
+					            <input type="hidden" name="action"  value="aggiornaPartito"> <!-- hidden form per aggiornare la scheda voto con il partito scelto -->
 					            <input type="hidden" name="partitoScelto"  value="<%=partito.getNome()%>">
 						    <div class="col-lg-4 align-self-center">
 						      <button type="submit" class="btn btn-block btn-dark">Scegli</button>
@@ -158,7 +158,7 @@
 						  <input type="radio" id="no" value="No" name="preferenza" class="custom-control-input">
 						  <label class="custom-control-label" for="no">No</label>
 						</div>
-			            <input type="hidden" name="action" value="aggiornaPreferenza">
+			            <input type="hidden" name="action" value="aggiornaPreferenza"> <!-- hidden form per aggiornare la scheda voto con la preferenza scelta -->
 			            <br>
 			            <br>
 			            <button type="submit" class="btn btn-dark">Aggiungi preferenza alla scheda</button>

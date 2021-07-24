@@ -19,8 +19,8 @@ public class PhotoControl extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String type = (String) request.getParameter("type");
-		String id = (String) request.getParameter("id");
+		String type = (String) request.getParameter("type"); //gestisce sia partito che candidato
+		String id = (String) request.getParameter("id"); //per partito è il nome, per candidato il cf
 		
 		if (type == null || id == null) {
 			response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/home.jsp"));
@@ -72,7 +72,7 @@ public class PhotoControl extends HttpServlet {
 		
 		ServletOutputStream out = response.getOutputStream();
 		
-		if(bt != null) {
+		if(bt != null) { 
 			out.write(bt);
 			response.setContentType("image/png");			
 		}

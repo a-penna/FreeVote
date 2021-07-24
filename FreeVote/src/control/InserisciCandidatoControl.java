@@ -106,7 +106,7 @@ public class InserisciCandidatoControl extends HttpServlet {
         
 		InputStream streamFoto = null; 
 		
-		Part filePart = request.getPart("foto"); //usiamo la classe Part ed il suo metodo getParts per ottenere la foto trasferita
+		Part filePart = request.getPart("foto"); //usiamo la classe Part ed il suo metodo getPart per ottenere la foto trasferita
 		if (filePart != null) { 
 			streamFoto = filePart.getInputStream();
 		}
@@ -120,7 +120,7 @@ public class InserisciCandidatoControl extends HttpServlet {
 			candidato.setCf(cf);
 			candidato.setCurriculum(curriculum);
 			candidato.setPartito(partito);
-			candidato.setFoto(streamFoto.readAllBytes());
+			candidato.setFoto(streamFoto.readAllBytes()); //readallbytes permette di ottenere un array di bytes dall'inputstream
 
 			boolean flag = model.doSaveCheck(candidato);
 			if(flag) {
