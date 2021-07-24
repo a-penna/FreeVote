@@ -27,7 +27,7 @@ public class Logout extends HttpServlet {
 		}
 		request.getSession().invalidate();
 		
-		response.sendRedirect("/FreeVote" + redirectedPage);	
+		response.sendRedirect(request.getContextPath() + redirectedPage);	
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) 

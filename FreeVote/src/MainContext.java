@@ -13,18 +13,18 @@ public class MainContext implements ServletContextListener {
 
 		ServletContext context = event.getServletContext();
 		
-		DataSource ds = null; //Si crea la connessione
+		DataSource ds = null; 
 		try {
 			Context initCtx = new InitialContext();
-			Context envCtx = (Context) initCtx.lookup("java:comp/env"); //cerco java_:comp/env per cercare il database
+			Context envCtx = (Context) initCtx.lookup("java:comp/env"); //cerchiamo servizi java offerti dall'environment tomcat
 
-			ds = (DataSource) envCtx.lookup("jdbc/VotoDB"); //definito in web.xml, lo prendiamo
+			ds = (DataSource) envCtx.lookup("jdbc/VotoDB"); //lookup del DataSource definito in web.xml
 
 		} catch (NamingException e) {
 			System.out.println(e.getMessage());
 		}
 
-		context.setAttribute("DataSource", ds); //inseriamo il DataSource nel context per averla disponibile ovunque
+		context.setAttribute("DataSource", ds); //inseriamo il DataSource nel context per averlo disponibile ovunque
 	}
 
 	public void contextDestroyed(ServletContextEvent event) {

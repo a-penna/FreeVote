@@ -22,7 +22,7 @@ public class ElettoreFilter implements Filter{ //definito in web.xml
 		boolean loggedIn = session != null && session.getAttribute("elettoreRoles")!= null;
 		
 		if(!loggedIn) { //se un utente non è elettore reindirizziamo al login, altrimenti il filtro lo lascerà passare
-			hresponse.sendRedirect(hrequest.getContextPath()+ "/Elettore");
+			hresponse.sendRedirect(hresponse.encodeRedirectURL(hrequest.getContextPath()+ "/Elettore"));
 		} else {
 			chain.doFilter(request, response);
 		}

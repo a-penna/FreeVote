@@ -22,7 +22,7 @@ public class AuthFilter implements Filter{ //definito in web.xml
 		boolean loggedIn = session != null && session.getAttribute("adminRoles")!= null;
 		
 		if(!loggedIn) { //se un utente non è admin reindirizziamo al login, altrimenti il filtro lo lascerà passare
-			hresponse.sendRedirect(hrequest.getContextPath() + "/loginAdmin.jsp");
+			hresponse.sendRedirect(hresponse.encodeRedirectURL(hrequest.getContextPath() + "/loginAdmin.jsp"));
 		} else {
 			chain.doFilter(request, response);
 		}
