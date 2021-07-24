@@ -37,8 +37,8 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
 				count++;
 			});
 			
-			$(document).on('click', '.rimuovi_btn', function(){
-				var identificatore = $(this).attr("id");
+			$(document).on('click', '.rimuovi_btn', function(){ //non possiamo usare .click perchè funziona solo su codice non generato dinamicamente
+				var identificatore = $(this).attr("id"); //prendiamo l'id corrispondente al rimuovibutton che è stato cliccato
 				$("#div"+ identificatore +"").remove();
 			});
 			
