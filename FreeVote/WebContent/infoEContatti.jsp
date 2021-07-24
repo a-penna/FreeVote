@@ -46,14 +46,14 @@
 				<div class="email mx-auto mb-5 mb-lg-0">
 					<img class="img-fluid roundend-circle mb-3" src="<%=request.getContextPath()%>/imgs/riccardo.jpeg" height="225" width="225" alt="Foto autore">
 					<h5>Riccardo Napoli</h5>
-					<p class="font-weight-light mb-0">email riccardo napoli</p>
+					<p class="font-weight-light mb-0">r.napoli37@studenti.unisa.it</p>
 				</div>	
 			</div>
 			<div class="col-lg-3">
 				<div class="email mx-auto mb-5 mb-lg-0">
 					<img class="img-fluid roundend-circle mb-3" src="<%=request.getContextPath()%>/imgs/alessandro.jpeg" height="225" width="225" alt="Foto autore">
 					<h5>Alessandro Penna</h5>
-					<p class="font-weight-light mb-0">email alessandro penna</p>
+					<p class="font-weight-light mb-0">a.penna12@studenti.unisa.it</p>
 				</div>	
 			</div>
 		</div>
