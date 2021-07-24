@@ -25,9 +25,9 @@
 	<meta name="author" content="Bene Sabato, Cozzolino Lidia, Napoli Riccardo, Penna Alessandro">    
     <title>FreeVote &dash; Scheda Elettorale</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="/FreeVote/css/style.css">						
 	<!-- Latest compiled and minified CSS --> 
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> 
+    <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/style.css">						
 	<!-- jQuery library --> 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
 	<!-- Popper JS --> 
@@ -80,7 +80,7 @@
 		    %>
 		  <hr class="my-4">
 		  <p class="lead">
-		  <a class="btn btn-dark" href="<%=response.encodeURL("/FreeVote/GestisciVoto?action=clear")%>" role="button">Reset</a>
+		  <a class="btn btn-dark" href="<%=response.encodeURL(request.getContextPath() + "/GestisciVoto?action=clear")%>" role="button">Reset</a>
 		  <a class="btn btn-dark" role="button" data-toggle="modal" data-target="#confermaModal">Conferma</a>
 		  </p>
 		</div>
@@ -100,7 +100,7 @@
 		      </div>
 		      <div class="modal-footer">
 		        <button type="button" class="btn btn-secondary" data-dismiss="modal">Annulla</button>
-		        <a href="<%=response.encodeURL("/FreeVote/GestisciVoto?action=vota")%>" class="btn btn-info">Vota</a>
+		        <a href="<%=response.encodeURL(request.getContextPath() + "/GestisciVoto?action=vota")%>" class="btn btn-info">Vota</a>
 		      </div>
 		    </div>
 		  </div>
@@ -118,12 +118,12 @@
 		        if (!partito.getNome().equals("Scheda Bianca")) {
 		            %>
 
-		            <form class="form-inline" action="<%=response.encodeURL("/FreeVote/GestisciVoto")%>" method="post">
+		            <form class="form-inline" action="<%=response.encodeURL(request.getContextPath() + "/GestisciVoto")%>" method="post">
 			    		
 			          <div class="container">
 						  <div class="row">
 						    <div class="col-lg-4">
-						      <img class="rounded-circle mx-auto d-block" src="/FreeVote/PhotoControl?type=partito&id=<%=partito.getNome()%>" height="150" width="150" onerror="this.src='./imgs/nologo.png'">
+						      <img class="rounded-circle mx-auto d-block" src="<%=request.getContextPath()%>/PhotoControl?type=partito&id=<%=partito.getNome()%>" height="150" width="150" onerror="this.src='./imgs/nologo.png'">
 						    </div>
 						    <div class="col-lg-4 align-self-center">
 						      <a class="mx-auto d-block" href="<%=response.encodeURL(request.getContextPath() + "/Partito?nome=" + partito.getNome())%>"><%=partito.getNome()%></a>
@@ -149,7 +149,7 @@
 		</div>
 		<br>
 		<div id="referendum" style="display:none">
-				<form action="<%=response.encodeURL("/FreeVote/GestisciVoto")%>" method="post">
+				<form action="<%=response.encodeURL(request.getContextPath() + "/GestisciVoto")%>" method="post">
 			    		<div class="custom-control custom-radio custom-control-inline">
 						  <input type="radio" id="si" value="Si" name="preferenza" class="custom-control-input">
 						  <label class="custom-control-label" for="si">S&igrave;</label>

@@ -1,14 +1,18 @@
-@media screen and (min-width: 1366px){
-	.dropdown:hover .dropdown-menu{
-		display: block;
-		margin-top: 0;
-	}
-}
-
-.dropdown-menu .dropdown-item{
+.mydark-dropdown-menu .mydark-dropdown-item {
 	color: #FFF;
 	text-decoration: none;
 	transition: 0.5s;
+}
+
+.mydark-dropdown-item:hover {
+	color: black;
+}
+
+@media screen and (min-width: 1025px){
+	.dropdown:hover .mydark-dropdown-menu{
+		display: block;
+		margin-top: 0;
+	}
 }
 
 .sezione-immagini .immagine{
@@ -26,74 +30,85 @@
 
 }
 
-.autori{
+.autori {
 	padding-top: 9rem;
 	padding-bottom: 9rem;
 	text-align: center;
 }
 
-.referendum{
+.referendum {
 	padding-top: 11rem;
 	padding-bottom: 11rem;
 }
 
-.mozione{
-	padding-top: 14rem;
-	padding-bottom: 14rem;
-}
-
-.risultatiCoalizioni{
+.mozione {
 	padding-top: 14rem;
 	padding-bottom: 14rem;
 }
 
 .center {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 15%;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	width: 15%;
 }
 
 .sezione-icone{
 	font-size: 50px;
 }
 
-@media screen and (min-width: 540px){
-	.bg-login-admin {
-			 background-image: url('../imgs/illogin-5.jpg');
-			 background-position:bottom; 
-			 background-size: cover;
-			 background-repeat:no-repeat;
-			 background-attachment: fixed;
-	}	
-	
-	.bg-interfaccia-admin {
-			 background-image: url('../imgs/interfacciaAdmin.jpeg');
-			 background-position:bottom; 
-			 background-size: cover;
-			 background-repeat:no-repeat;
-			 background-attachment: fixed;
-	}	
-}
-
 .bg-login-admin {
-		 background-color: #156e7a;
+	 background-image: url('../imgs/illogin-5.jpg');
+	 background-position:bottom; 
+	 background-size: cover;
+	 background-repeat:no-repeat;
+	 background-attachment: fixed;
+}	
+
+.bg-interfaccia-admin {
+	 background-image: url('../imgs/interfacciaAdmin.jpeg');
+	 background-position:bottom; 
+	 background-size: cover;
+	 background-repeat:no-repeat;
+	 background-attachment: fixed;
+}	
+
+#xl {
+	display:none;	
 }
 
 @media screen and (max-width: 540px){
 	.bg-interfaccia-admin {
-			 background-image: url('../imgs/interfacciaAdminMobile.png');
-		     background-position:bottom; 
-		     background-size: cover;
-			 background-repeat:no-repeat;
-		     background-attachment: fixed;
+		background-image: url('../imgs/interfacciaAdminMobile.png');
+	    background-position:bottom; 
+	    background-size: cover;
+		background-repeat:no-repeat;
+	    background-attachment: fixed;
 	}
 	
 	.text-interfaccia-mobile {
-			margin: 0;
-		  	position: absolute;
-		  	top: 40%;
-		  	-ms-transform: translateY(-60%);
-		  	transform: translateY(-60%);
+		margin: 0;
+		position: absolute;
+		top: 40%;
+		-ms-transform: translateY(-60%);
+		transform: translateY(-60%);
+	}
+	
+	.bg-login-admin {
+		background-image: none;
+		background-color: #156e7a;
 	}
 }
+
+@media screen and (min-width: 1366px){
+	
+	#cell {
+		display:none;
+	}
+
+	#xl {
+		display: block;
+	}
+	
+}
+

@@ -34,14 +34,15 @@ boolean isAdmin = request.getSession(false) != null && request.getSession(false)
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Risultati
         </a>
-        <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="<%=response.encodeURL(request.getContextPath() + "/Risultati")%>">Risultati Generali</a>
-          <a class="dropdown-item" href="<%=response.encodeURL(request.getContextPath() + "/risultatiCoalizioni.jsp")%>">Risultati per coalizione</a>
-          <a class="dropdown-item" href="<%=response.encodeURL(request.getContextPath() + "/risultatiPerEta.jsp")%>">Risultati per fascia d'et&agrave;</a>
-          <a class="dropdown-item" href="<%=response.encodeURL(request.getContextPath() + "/risultatiRegioni.jsp")%>">Risultati per Regione</a>
+        <div class="dropdown-menu mydark-dropdown-menu bg-dark" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item mydark-dropdown-item" href="<%=response.encodeURL(request.getContextPath() + "/Risultati")%>">Risultati Generali</a>
+          <a class="dropdown-item mydark-dropdown-item" href="<%=response.encodeURL(request.getContextPath() + "/risultatiCoalizioni.jsp")%>">Risultati per coalizione</a>
+          <a class="dropdown-item mydark-dropdown-item" href="<%=response.encodeURL(request.getContextPath() + "/risultatiPerEta.jsp")%>">Risultati per fascia d'et&agrave;</a>
+          <a class="dropdown-item mydark-dropdown-item" href="<%=response.encodeURL(request.getContextPath() + "/risultatiRegioni.jsp")%>">Risultati per Regione</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="<%=response.encodeURL(request.getContextPath() + "/risultatiReferendum.jsp")%>">Risultati Generali Referendum</a>
+          <a class="dropdown-item mydark-dropdown-item" href="<%=response.encodeURL(request.getContextPath() + "/risultatiReferendum.jsp")%>">Risultati Generali Referendum</a>
         </div>
+       </li>
       <li class="nav-item">
         <a class="nav-link" href="<%=response.encodeURL(request.getContextPath() + "/infoEContatti.jsp")%>">Info &amp; Contatti</a>
       </li>
