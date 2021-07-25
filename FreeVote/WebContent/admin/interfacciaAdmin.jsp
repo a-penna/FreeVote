@@ -22,15 +22,15 @@
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> 
 </head>            
 
-<body class="bg-interfaccia-admin">
+<body style="background-color:black">
 	<%@ include file="admin-header.jsp"%>
 
-	<div class="pt-5">
-		<div class="text-interfaccia-admin">
+	 <div class="pt-5 bg-interfaccia-admin">
+		<div>
 		  <h1 class="text-light text-center">Benvenuto amministratore&excl;</h1>
 		  <p class="lead text-light text-center">Da quest&apos;interfaccia potrai accedere ad alcune operazioni riservate&period;</p>
 		</div>
-		<img src="<%=request.getContextPath()%>/imgs/interfacciaAdmin.jpeg" class="img-fluid banner-admin" alt="responsive image">
+		<img src="<%=request.getContextPath()%>/imgs/interfacciaAdmin.jpeg" class="img-fluid" alt="responsive image">
 	</div>
 </body>
 </html>

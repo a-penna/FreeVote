@@ -58,31 +58,14 @@
 }	
 
 .bg-interfaccia-admin {
-		background-color: #156e7a;
-}
-
-.banner-admin {
-	position:absolute;
-	bottom:0;
+	background-color: #156e7a;
 }
 	
 @media screen and (max-width: 540px){
-	.text-interfaccia-admin {
-		margin: 0;
-		position: absolute;
-		top: 40%;
-		-ms-transform: translateY(-60%);
-		transform: translateY(-60%);
-	}
-	
 	.bg-login-admin {
 		background-image: none;
 		background-color: #156e7a;
 	}
 }
 
-@media screen and (min-width: 1300px){
-	.banner-admin {
-		position:static;
-	}
-}	
+
