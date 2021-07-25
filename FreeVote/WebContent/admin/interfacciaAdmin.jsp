@@ -21,15 +21,26 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> 
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> 
 </head>            
-
+<!--
 <body class="bg-interfaccia-admin">
-	<%@ include file="admin-header.jsp"%>
+
 	
 	<div class="container-fluid py-5">
-		<div class="alert myalert-dark" role="alert">
+		<div class="text-interfaccia-mobile" id="cell">
+			<h1 class="text-light text-center">Benvenuto amministratore&excl;</h1>
+			<p class="lead text-light text-center"> Da quest&apos;interfaccia potrai accedere ad alcune operazioni riservate&period;</p>
+		</div>
+-->
+
+<body class="bg-interfaccia bg-dark">
+	<%@ include file="admin-header.jsp"%>
+
+	<header class="pt-3">
+		<div class="alert myalert-dark " role="alert">
 		  <h4 class="text-light text-center">Benvenuto amministratore&excl;</h4>
 		  <p class="lead text-light text-center">Da quest&apos;interfaccia potrai accedere ad alcune operazioni riservate&period;</p>
+		<img src="<%=request.getContextPath()%>/imgs/interfacciaAdmin.jpeg" class="img-fluid" alt="responsive image">
 		</div>
-	</div>
+	</header>
 </body>
 </html>
