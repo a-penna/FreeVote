@@ -40,7 +40,7 @@
 	<div class="card float-md-left mr-5 mb-3" style="width: 18rem;">
 	  <img class="card-img-top" src="PhotoControl?type=candidato&id=<%=candidato.getCf()%>" alt="<%=candidato.getNome()%>" onerror="this.src='./imgs/nophoto.png'">
 	  <div class="card-body">
-	    <p class="card-text"><a href="Partito?nome=<%=candidato.getPartito()%>"><%=candidato.getPartito()%></a></p>
+	    <p class="card-text"><a href="<%=response.encodeURL(request.getContextPath() + "/Partito?nome=" + candidato.getPartito())%>"><%=candidato.getPartito()%></a></p>
 	  </div>
 	</div>
     <br>

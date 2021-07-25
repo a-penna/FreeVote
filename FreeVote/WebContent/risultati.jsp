@@ -42,9 +42,10 @@
 	<div class="container py-5"> 
 		<div class="row">
 			<div class="col-md">
-			    <h2 class="display-5 text-center pt-5">Risultati</h2>
+			    <h2 class="display-5 text-center pt-5 pb-4">Risultati</h2>
 			</div>
 		</div>
+		<div class="row">
 				<br>
 				<table class="table text-center">
 						<thead class="bg-info text-white">
@@ -68,7 +69,7 @@
 									      <th scope="row">
 									         <img class="rounded-circle" src="PhotoControl?type=partito&id=<%=partito.getNome()%>" height=50 width=50 onerror="this.src='./imgs/nologo.png'">
 								           </th>
-								           <td class="text-left"><%=partito.getNome()%></td>
+								           <td class="text-left"><a href="<%=response.encodeURL(request.getContextPath() + "/Partito?nome=" + partito.getNome())%>"><%=partito.getNome()%></a></td>
 								           <% if (!coalizione.getNome().equals("")) { %>
 										      <td><%=coalizione.getNome()%></td>
 										   <%} else { %>
@@ -83,7 +84,7 @@
 						 	 </tbody>
 							</table>
 					    		
-						    		
+			</div>			    		
 	</div>
 </body>
 </html>

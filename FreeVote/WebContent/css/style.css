@@ -27,7 +27,6 @@
 	.sezione-immagini .testo{
 		padding: 7rem;
 	}
-
 }
 
 .autori {
@@ -46,13 +45,6 @@
 	padding-bottom: 14rem;
 }
 
-.center {
-	display: block;
-	margin-left: auto;
-	margin-right: auto;
-	width: 15%;
-}
-
 .sezione-icone{
 	font-size: 50px;
 }
@@ -66,27 +58,16 @@
 }	
 
 .bg-interfaccia-admin {
-	 background-image: url('../imgs/interfacciaAdmin.jpeg');
-	 background-position:bottom; 
-	 background-size: cover;
-	 background-repeat:no-repeat;
-	 background-attachment: fixed;
-}	
-
-#xl {
-	display:none;	
+		background-color: #156e7a;
 }
 
-@media screen and (max-width: 540px){
-	.bg-interfaccia-admin {
-		background-image: url('../imgs/interfacciaAdminMobile.png');
-	    background-position:bottom; 
-	    background-size: cover;
-		background-repeat:no-repeat;
-	    background-attachment: fixed;
-	}
+.banner-admin {
+	position:absolute;
+	bottom:0;
+}
 	
-	.text-interfaccia-mobile {
+@media screen and (max-width: 540px){
+	.text-interfaccia-admin {
 		margin: 0;
 		position: absolute;
 		top: 40%;
@@ -100,19 +81,8 @@
 	}
 }
 
-@media screen and (min-width: 1366px){
-	
-	#cell {
-		display:none;
+@media screen and (min-width: 1300px){
+	.banner-admin {
+		position:static;
 	}
-
-	#xl {
-		display: block;
-	}
-	
-}
-
-.myalert-dark {
-	color:#FFF;
-	background-color: rgb(52,58,64);
-}
+}	
