@@ -46,7 +46,7 @@
 						<tbody>
 								 <tr class="table-secondary">
 						      	   <th scope="row">Coalizione</th>
-						      	   <th scope="row">&percnt;Voti</th>
+						      	   <th scope="row">Numero totale voti</th>
 						    	</tr>
 						<%
 				        Iterator<?> it = coalizioni.iterator();
