@@ -57,7 +57,7 @@ public class InserisciPartitoControl extends HttpServlet {
 		cf = cf.trim();
 		curriculum = curriculum.trim();
 		
-		if (nome.equals("")) {
+		if (!Utility.checkNomePartitoCoalizione(nome)) {
 			request.setAttribute("errorePartito", "true");
 			error = true;
 		}

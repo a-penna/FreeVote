@@ -74,7 +74,7 @@
 	<%String partito = (String)request.getAttribute("partito");
 	  if (partito == null) partito = "";
 	%>
-    <form action="<%=response.encodeURL(request.getContextPath() + "/EtaControl")%>" method="post" onsubmit="event.preventDefault(); validate(this)"> 
+    <form action="<%=response.encodeURL(request.getContextPath() + "/EtaControl")%>" method="get" onsubmit="event.preventDefault(); validate(this)"> 
      <fieldset>
 		<div class="form-group">
 	    	<label for="partito">Partito&colon; </label>
@@ -149,8 +149,9 @@
 		  if (percentuale != null) { %>
 		  <br>
 		  <div class="alert alert-info" role="alert">
+		  <%System.out.println(request.getAttribute("partito")); %>
 			  <a href="<%=response.encodeURL(request.getContextPath() + "/Partito?nome=" + request.getParameter("partito"))%>" class="alert-link"><%=request.getParameter("partito")%></a> ha ricevuto dalla fascia d'et&agrave;
-			   <%=request.getAttribute("min")%>&sol;<%=request.getAttribute("max")%> il <%=percentuale%>&percnt; dei voti
+			   <%=request.getAttribute("min")%>&sol;<%=request.getAttribute("max")%> la seguente percentuale di voti&colon; <%=percentuale%>&percnt; 
 		  </div>
 		 <% }
 		%>

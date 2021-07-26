@@ -20,7 +20,7 @@ public class PhotoControl extends HttpServlet {
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String type = (String) request.getParameter("type"); //gestisce sia partito che candidato
-		String id = (String) request.getParameter("id"); //per partito è il nome, per candidato il cf
+		String id = (String) request.getParameter("id"); //per partito ï¿½ il nome, per candidato il cf
 		
 		if (type == null || id == null) {
 			response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/home.jsp"));

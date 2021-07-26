@@ -1,5 +1,21 @@
 function checkNomeCognome(inputtxt) {
+	var name = /^[A-Za-z]+$/;
+	if(inputtxt.value.trim().match(name)) 
+		return true;
+
+	return false;	
+}
+
+function checkNomeCompleto(inputtxt) {
 	var name = /^[A-Za-z ]+$/;
+	if(inputtxt.value.trim().match(name)) 
+		return true;
+
+	return false;	
+}
+
+function checkNomePartitoCoalizione(inputtxt) {
+	var name = /^[0-9A-Za-z ]+$/;
 	if(inputtxt.value.trim().match(name)) 
 		return true;
 

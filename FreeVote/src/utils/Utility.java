@@ -182,7 +182,19 @@ public class Utility {
 		//6 lettere 2 numeri 1 lettera 2 numeri 1 lettera 3 numeri 1 lettera ignore case
 
 	}
-	
+
+	public static boolean checkNomePartitoCoalizione(String s) {
+		if(s.length() == 0)
+			return false;
+		
+		int i = 0;
+		for (; i < s.length(); i++) {
+			if (!Character.isLetter(s.charAt(i))&&!Character.isDigit(s.charAt(i))&&!Character.isWhitespace(s.charAt(i)))
+				return false;
+		}
+		
+		return true;
+	}
 	
 	public static boolean checkCAP(String s) {
 		if (s.length() != 5) 

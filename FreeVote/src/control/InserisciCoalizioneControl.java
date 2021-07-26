@@ -37,7 +37,7 @@ public class InserisciCoalizioneControl extends HttpServlet{
 			return;
     	}
     	
-    	if(nome.equals("")) {
+    	if(!Utility.checkNomePartitoCoalizione(nome)) {
     		request.setAttribute("error", "true");
     		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher(response.encodeURL("/admin/inserisciCoalizione.jsp"));
     		dispatcher.forward(request, response);
@@ -45,7 +45,7 @@ public class InserisciCoalizioneControl extends HttpServlet{
     	}
 
     	for(int i = 0; i < partiti.length; i++) {
-    		if(partiti[i].equals("")) {
+    		if(!Utility.checkNomePartitoCoalizione(partiti[i])) {
     			request.setAttribute("error", "true");
     			RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher(response.encodeURL("/admin/inserisciCoalizione.jsp"));
     			dispatcher.forward(request, response);

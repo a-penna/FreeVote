@@ -40,7 +40,7 @@
 	  if (regione == null) regione = "";
 	%>
 	<div class="form-group">
-    <form action="RisultatiReg" method="post"> 
+    <form action="<%=response.encodeURL(request.getContextPath() + "/RisultatiReg")%>" method="get"> 
     	<label for="regione">Regione&colon;</label>
         <select name="regione" class="form-control">
             <%
@@ -88,11 +88,12 @@
 			<%
 						}
 					}
-				}
 		    %>
     	</tbody>
 </table>
 <p>La percentuale rimanente di votanti ha consegnato scheda bianca</p>
+
+		<%} %>
   </div>
   </div>
  	</div>

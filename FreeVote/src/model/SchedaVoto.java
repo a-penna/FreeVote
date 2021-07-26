@@ -8,7 +8,7 @@ public class SchedaVoto {
         
     }
 
-	public void addVP(VotazionePoliticaBean voto) { // FARE CLONE 
+	public void addVP(VotazionePoliticaBean voto) { 
 		votoP = voto;
 	}
 

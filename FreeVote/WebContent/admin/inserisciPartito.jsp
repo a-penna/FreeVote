@@ -25,7 +25,7 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
             var valid = true;	
 
             var nomePartito = document.getElementsByName("nome")[0];
-            if((nomePartito.value.trim() == "")) {
+            if(!checkNomePartitoCoalizione(nomePartito)) {
                 valid = false;
                 nomePartito.classList.add("is-invalid");
                 nomePartito.focus();
@@ -115,15 +115,15 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
 					        	<label for="nome">Nome&colon;</label>
 								<%
 									if (request.getAttribute("errorePartito") != null) {
-										%> <input id="nome" type="text" class="form-control is-invalid" name="nome" placeholder="Nome partito"> <%
-									} else if (request.getAttribute("nome") != null) {
-										%> <input id="nome" type="text" class="form-control is-valid" value="<%=request.getAttribute("nomeLeader")%>" name="nome" placeholder="Nome partito"> <%
+										%> <input id="nome" type="text" class="form-control is-invalid" value="<%=request.getAttribute("nome")%>" name="nome" placeholder="Nome partito"> <%
+									} else if (request.getAttribute("nome") != null) { 
+										%> <input id="nome" type="text" class="form-control is-valid" value="<%=request.getAttribute("nome")%>" name="nome" placeholder="Nome partito"> <%
 									} else {
 										%><input id="nome" type="text" class="form-control" name="nome" placeholder="Nome partito"><% 
 									}
 								%>
 								<div class="valid-feedback">Corretto</div>
-			                    <div class="invalid-feedback">Inserisci il nome&excl;</div>
+			                    <div class="invalid-feedback">Nome non valido, utilizzare solo lettere e numeri&excl;</div>
 				    		</div>
 				    		<div class="form-group">
 					        	<label for="descrizione">Descrizione&colon;</label>
@@ -167,7 +167,7 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
 									if (request.getAttribute("erroreCognome") != null) {
 										%><input type="text" class="form-control is-invalid" id="cognomeLeader" placeholder="Inserisci Cognome" value="<%=request.getAttribute("cognomeLeader")%>" name="cognomeLeader"><% 
 									} else if (request.getAttribute("cognomeLeader") != null) {
-										%><input type="text" class="form-control is-valid" id="cognomeleader" placeholder="Inserisci Cognome" value="<%=request.getAttribute("cognomeLeader")%>" name="cognome"><% 
+										%><input type="text" class="form-control is-valid" id="cognomeleader" placeholder="Inserisci Cognome" value="<%=request.getAttribute("cognomeLeader")%>" name="cognomeLeader"><% 
 									} else {
 										%><input type="text" class="form-control" id="cognomeLeader" placeholder="Inserisci Cognome" name="cognomeLeader"><% 
 									}

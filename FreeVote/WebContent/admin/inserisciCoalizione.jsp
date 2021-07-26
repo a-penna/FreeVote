@@ -13,6 +13,7 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> 
 	<link rel="stylesheet" type="text/css"href="<%=request.getContextPath()%>/css/style.css" />
+	<script type="text/javascript" src="<%=request.getContextPath()%>/scripts/script.js"></script>
 	<!-- jQuery library --> 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
 	<!-- Popper JS --> 
@@ -48,7 +49,7 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
 	    	var valid = true;	
 	            
 	        var coalizione = document.getElementsByName("nomeCoalizione")[0];
-	        if(coalizione.value.trim() == "") {
+	        if(!checkNomePartitoCoalizione(coalizione)) {
 	        	valid = false;
 	            coalizione.classList.add("is-invalid");
 	            coalizione.focus();
@@ -58,7 +59,7 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
 	            
             var partiti = document.getElementsByName("nomePartito");
             for (var i = 0; i < partiti.length; i++) {
-	            if(partiti[i].value.trim() == "") {
+	            if(!checkNomePartitoCoalizione(partiti[i])) {
 	                valid = false;
 	                partiti[i].classList.add("is-invalid");
 	                partiti[i].focus();
@@ -96,13 +97,13 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
 							<div class="form-group"> 
 					        	<label for="nome">Nome Coalizione&colon;</label>  
 					       	    <input id="nome" type="text" class="form-control" name="nomeCoalizione" placeholder="Nome della coalizione"> 
-					 			<div class="invalid-feedback">Inserire il nome di una coalizione&excl;</div>
+					 			<div class="invalid-feedback">Nome non valido, utilizzare solo lettere e numeri&excl;</div>
 					 		</div>
 								<div id = "partiti">
 									<div class="form-group">
 										<label for="partito1">Nome del primo partito&colon;</label>
 										<input type="text" id="partito1" class="form-control" name="nomePartito" placeholder="Nome del primo partito">
-										<div class="invalid-feedback">Inserire il nome del partito&excl;</div>
+										<div class="invalid-feedback">Nome non valido, utilizzare solo lettere e numeri&excl;</div>
 									</div>
 									<div class="row form-group align-items-end">
 										<div class="col-10">
@@ -116,14 +117,14 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
 								</div>
 								<% if(request.getAttribute("error") != null) { %>
 									<div class="alert alert-danger alert-dismissible fade show" role="alert">
-									  <strong>Errore&excl;</strong> Non &egrave; stato possibile completare l'operazione con i dati inseriti, riprovare&excl;
+									  <strong>Errore&excl;</strong> Non &egrave; stato possibile completare l'operazione con i dati inseriti, ricorda che il nome della coalizione può contenere solo numeri e lettere e che i partiti devono essere già presenti sulla piattaforma&excl;
 									  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
 									    <span aria-hidden="true">&times;</span>
 									  </button>
 									</div>
 								<% } %>
 				        </fieldset>
-				        <button type="submit" class="btn btn-primary">Crea</button>    
+				    <button type="submit" class="btn btn-primary">Crea</button>    
 				</form> 
 			</div>
 		</div>

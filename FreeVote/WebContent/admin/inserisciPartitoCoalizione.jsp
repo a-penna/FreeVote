@@ -26,6 +26,7 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 	    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> 
 		<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/style.css" />
+		<script type="text/javascript" src="<%=request.getContextPath()%>/scripts/script.js"></script>
 		<!-- jQuery library --> 
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
 		<!-- Popper JS --> 
@@ -74,7 +75,7 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
 					<%@ include file="/admin/politicheMenu.jsp" %>
 				</div>
 				<div class="col-md-10">
-					<p>Compila il seguente form per inserire un partito in una coalizione&comma; nota che sar&agrave; possibile scegliere solo tra i partiti non ancora coalizzati&period; <p>
+					<p>Compila il seguente form per inserire un partito in una coalizione&comma; sar&agrave; possibile scegliere solo tra i partiti non ancora coalizzati&period; <p>
 					<form action="<%=response.encodeURL(request.getContextPath() + "/InserisciPartitoCoalizione")%>" method="post" onsubmit="event.preventDefault(); validate(this)"> 
 					        <fieldset>
 								<div class="form-group">

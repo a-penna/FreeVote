@@ -142,7 +142,7 @@
   			<div class="card-header text-white bg-dark">Login</div>
   			<div class="card-body">
     			<h4 class="card-title">Inserisci credenziali&colon;</h4>
-		    <form action="Elettore" method="post" onsubmit="event.preventDefault(); validate(this)"> 
+		    <form action="<%=response.encodeURL(request.getContextPath() + "/Elettore")%>" method="post" onsubmit="event.preventDefault(); validate(this)"> 
 		        <fieldset>
 					<div class="form-group">
 			            <label for="codice">Codice&colon;</label>

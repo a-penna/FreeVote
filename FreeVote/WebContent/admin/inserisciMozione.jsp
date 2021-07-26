@@ -25,7 +25,7 @@ pageEncoding="UTF-8" import="java.util.*, model.*"%>
             var valid = true;	
 
             var nomeCompleto = document.getElementsByName("nomeCompleto")[0];
-            if(!checkNomeCognome(nomeCompleto)) {
+            if(!checkNomeCompleto(nomeCompleto)) {
                 valid = false;
                 nomeCompleto.classList.remove("is-valid");
                 nomeCompleto.classList.add("is-invalid");
