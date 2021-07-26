@@ -3,7 +3,6 @@
 
 <!DOCTYPE html>
 <html>
-
 <head>
 	<meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -66,7 +65,7 @@
 				</div>
 				<div class="col-lg-6 order-lg-1">
 					<div class="bg-light mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center">
-	       				 <div class="my-3 p-3">
+	       				 <div class="my-5 p-4">
 	          				<h2 class="display-5">Partiti</h2>
 	         				 <p class="lead">Permette all&apos;elettore di visionare le informazioni di base sui partiti e sui candidati che ne fanno parte&period;
 	         				 Sar&agrave; possibile valutare le proposte elettorali avanzate dai vari partiti&comma; al fine di effettuare
@@ -79,7 +78,7 @@
 				<div class="col-lg-6 immagine" style="background-image: url('./imgs/referendum.jpg');background-size: cover;background-position:center;"></div>
 				<div class="col-lg-6 order-lg-1">
 					<div class="bg-light mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center">
-	       				 <div class="my-3 p-3">
+	       				 <div class="my-5 p-5">
 	          				<h2 class="display-5">Referendum</h2>
 	         				 <p class="lead">All&apos;interno di questa sezione l&apos;elettore avr&agrave; la possibilit&agrave; di visionare il testo
 	         				 della mozione per il referendum costituzionale confermativo&sol;abrogativo in atto&comma; favorendo
@@ -92,7 +91,7 @@
 				<div class="col-lg-6 order-lg-2 immagine" style="background-image: url('./imgs/risultati1.jpg');background-size: cover;background-position:center;"></div>
 				<div class="col-lg-6 order-lg-1">
 					<div class="bg-light mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center">
-	       				 <div class="my-3 p-3">
+	       				 <div class="my-5 p-5">
 	          				<h2 class="display-5">Risultati</h2>
 	         				 <p class="lead">Una volta terminata la votazione&comma; i risultati vengono immediatamente recepiti&period;
 	         				 L&apos;elettore port&agrave; visualizzare i risultati in tempo reale insieme a vari report sull&apos;attivit&agrave; di voto</p>
@@ -105,6 +104,4 @@
     <br>
     <%@ include file="footer.jsp"%>
 </body>
-
-
 </html>

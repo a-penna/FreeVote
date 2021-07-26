@@ -36,7 +36,6 @@
 </head>
 <body class="bg-light">
 	<%@ include file="header.jsp"%>
-
 	
 	<div class="container py-5">
 	<div class="card text-white bg-dark mb-3">
@@ -47,7 +46,7 @@
 								 <tr class="table-secondary">
 						      	   <th scope="row">Coalizione</th>
 						      	   <th scope="row">Numero totale voti</th>
-						    	</tr>
+						    	 </tr>
 						<%
 				        Iterator<?> it = coalizioni.iterator();
 				        Iterator<?> it2 = votazioni.iterator();

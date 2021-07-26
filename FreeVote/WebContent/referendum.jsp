@@ -36,7 +36,7 @@
 		<div class="container">
 			<p>Di seguito la lista di tutte le mozioni che hanno portato all&apos;attuale referendum&comma; 
 			cliccando sull&apos;id sar&agrave; possibile visualizzare il testo intero della mozione corrispondente&colon;</p>
-		
+			<br>
 			<% 
 			Iterator<?> it  = mozioni.iterator();
 			while(it.hasNext()) { 

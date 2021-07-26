@@ -36,6 +36,7 @@
 	<section class="mozione text-center">
 		<div class="container">
 		<h1>Testo della mozione <%=mozione.getID()%></h1>
+		<br>
 		<p><%=mozione.getTesto()%></p>
 		<br>
 		<i>Autori&colon; <%

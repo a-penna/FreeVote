@@ -19,10 +19,6 @@
 	min-height: 30rem;
 }
 
-.sezione-immagini .testo{
-	padding: 3rem;
-}
-
 @media screen and (min-width: 1366px){
 	.sezione-immagini .testo{
 		padding: 7rem;
@@ -41,8 +37,9 @@
 }
 
 .mozione {
-	padding-top: 14rem;
-	padding-bottom: 14rem;
+	padding-top: 4rem;
+	padding-bottom: 4rem;
+
 }
 
 .sezione-icone{
@@ -67,5 +64,3 @@
 		background-color: #156e7a;
 	}
 }
-
-
