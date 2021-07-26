@@ -30,7 +30,7 @@
 		  <h1 class="text-light text-center">Benvenuto amministratore&excl;</h1>
 		  <p class="lead text-light text-center">Da quest&apos;interfaccia potrai accedere ad alcune operazioni riservate&period;</p>
 		</div>
-		<img src="<%=request.getContextPath()%>/imgs/InterfacciaAdmin-1.jpeg" class="img-fluid" alt="responsive image">
+		<img src="<%=request.getContextPath()%>/imgs/InterfacciaAdmin-3.jpeg" class="img-fluid" alt="responsive image">
 	</div>
 </body>
 </html>
