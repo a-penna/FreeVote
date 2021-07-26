@@ -41,7 +41,7 @@
 		<% if (!coalizione.getNome().equals("")) { %>
 			<h2 align="center">&lsqb;<%=coalizione.getNome()%>&rsqb;</h2>
 		<%} %>
-		
+		<br>
 		<img src="PhotoControl?type=partito&id=<%=partito.getNome()%>" class ="mx-auto d-block rounded" height="225" width="225" onerror="this.src='./imgs/nologo.png'" alt="foto">
 	    <% boolean loggedIn = request.getSession(false) != null && request.getSession(false).getAttribute("elettoreRoles")!= null;
 		
