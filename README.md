@@ -18,4 +18,10 @@ The idea stems from the desire to promote the exercise of the right to vote in a
 * **Riccardo Napoli**       - [rnapoli00](https://github.com/rnapoli00)
 * **Alessandro Penna**      - [a-penna](https://github.com/a-penna)
 
+## Used Technologies
+
+* [Apache Tomcat v9.0](https://tomcat.apache.org/) - Used as a web server. 
+* [MySQL v8.0.23](https://www.mysql.com/) - Used as a DBMS.
+* [Bootstrap v4.5.2](https://getbootstrap.com/docs/4.6/getting-started/introduction/) - For page styling and responsiveness.
+
 <sup>[1]</sup> : Being a project for the University of Salerno, all the documentation is written in italian.
